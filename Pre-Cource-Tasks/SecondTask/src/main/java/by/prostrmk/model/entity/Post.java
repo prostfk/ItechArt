@@ -5,8 +5,22 @@ public class Post {
     private Long id;
     private String description;
     private String pathToPhoto;
+    private Long userId;
 
     public Post() {
+    }
+
+    public Post(Long id, String description, String pathToPhoto, Long userId) {
+        this.id = id;
+        this.description = description;
+        this.pathToPhoto = pathToPhoto;
+        this.userId = userId;
+    }
+
+    public Post(String description, String pathToPhoto, Long userId) {
+        this.description = description;
+        this.pathToPhoto = pathToPhoto;
+        this.userId = userId;
     }
 
     public Post(Long id, String description, String pathToPhoto) {
@@ -14,12 +28,6 @@ public class Post {
         this.description = description;
         this.pathToPhoto = pathToPhoto;
     }
-
-    public Post(String description, String pathToPhoto) {
-        this.description = description;
-        this.pathToPhoto = pathToPhoto;
-    }
-
 
     public Long getId() {
         return id;
@@ -43,6 +51,14 @@ public class Post {
 
     public void setPathToPhoto(String pathToPhoto) {
         this.pathToPhoto = pathToPhoto;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     @Override

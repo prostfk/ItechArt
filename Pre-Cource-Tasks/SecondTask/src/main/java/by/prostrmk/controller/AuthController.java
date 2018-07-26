@@ -29,9 +29,9 @@ public class AuthController extends HttpServlet {
         User user = new User(userByUsername.getId(),username,HashUtil.hash(password));
         if (userByUsername.equals(user)){
             req.getSession().setAttribute("user", user);
-            resp.getWriter().print("<h1>Congrats</h1>");
+            resp.sendRedirect("/photos");
         }else{
-            resp.getWriter().print("<h1>Loh idi nahui</h1>");
+            resp.getWriter().print("<h1>Wrong</h1>");
         }
     }
 }

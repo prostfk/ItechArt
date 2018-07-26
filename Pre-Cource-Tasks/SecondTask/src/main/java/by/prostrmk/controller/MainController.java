@@ -12,6 +12,7 @@ import java.util.List;
 
 import by.prostrmk.model.entity.Post;
 import by.prostrmk.model.dao.PostDao;
+import by.prostrmk.model.entity.User;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -28,17 +29,21 @@ public class MainController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/index.jsp").forward(req,resp);
+        if (req.getSession().getAttribute("user")!=null){
+            req.getRequestDispatcher("/index.jsp").forward(req,resp);
+        }
+        req.getRequestDispatcher("/auth.jsp").forward(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = (User) req.getSession().getAttribute("user");
         if (!ServletFileUpload.isMultipartContent(req)){
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
         }
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setSizeThreshold(1024*1024);
-        File file = new File("/home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Pre-Cource-Tasks/SecondTask/src/main/webapp/resources/pics/");
+        File file = new File("/home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Pre-Cource-Tasks/SecondTask/src/main/webapp/resources/pics/" + user.getUsername()+"/");
         if (!file.exists()){
             file.mkdir();
         }
@@ -46,12 +51,13 @@ public class MainController extends HttpServlet {
         ServletFileUpload upload = new ServletFileUpload(factory);
         upload.setSizeMax(1024 * 1024 * 10);
         Post post = new Post();
+        post.setUserId(user.getId());
         try {
             List<FileItem> fileItems = upload.parseRequest(req);
             fileItems.forEach(fileItem -> {
                 if (!fileItem.isFormField()){
 //                    String path = processUploadedFile(fileItem, file);
-                    String path = getNewName("/home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Pre-Cource-Tasks/SecondTask/src/main/webapp/resources/pics/",post.getDescription(),fileItem);
+                    String path = getNewName("/home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Pre-Cource-Tasks/SecondTask/src/main/webapp/resources/pics/" + user.getUsername() + "/",post.getDescription(),fileItem, user.getUsername());
                     post.setPathToPhoto(path);
                 }else{
                     if(fileItem.getFieldName().equals("description")){
@@ -67,10 +73,10 @@ public class MainController extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
 
-        resp.sendRedirect("/photo/" + post.getDescription());
+        resp.sendRedirect("/photos");
     }
 
-    private String getNewName(String path,String desc,  FileItem item){
+    private String getNewName(String path,String desc, FileItem item, String username){
         String format = ".jpg";
         File file = new File(path + desc + format);
         try {
@@ -79,7 +85,7 @@ public class MainController extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "/resources/pics/" + desc + format;
+        return "/resources/pics/" + username + "/" + desc + format;
     }
 
 }
