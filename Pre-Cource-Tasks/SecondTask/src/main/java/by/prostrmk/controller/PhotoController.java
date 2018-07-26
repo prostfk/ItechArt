@@ -1,6 +1,6 @@
 package by.prostrmk.controller;
 
-import by.prostrmk.model.Post;
+import by.prostrmk.model.entity.Post;
 import by.prostrmk.model.dao.PostDao;
 
 import javax.servlet.ServletException;
