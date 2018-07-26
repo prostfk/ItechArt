@@ -90,7 +90,7 @@ public class StudentsDao {
     }
 
 //    4
-    public double findMiddleValueOfDataBaseManagment(){
+    public double findMiddleValueOfDataBaseManagement(){
         double value = .0;
         try{
             ResultSet resultSet = connection.createStatement().executeQuery("SELECT AVG(result) FROM students.student_result WHERE training_course_id = 1");
@@ -102,5 +102,62 @@ public class StudentsDao {
         }
         return value;
     }
+//    5 (NO GRAPH ROW)
+    public List<String> findStudentsWhoDidNotPassTheExam(){
+        var list = new ArrayList<String>();
+        try{
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT first_name,last_name, students.student_result.result FROM students.student JOIN students.student_result ON student.id = student_result.student_id WHERE result < 3 AND training_course_id = 2;");
+            while (resultSet.next()){
+                list.add(String.format("Name: %s, Last name: %s, Result: %d", resultSet.getString("first_name"),resultSet.getString("last_name"), resultSet.getInt("result")));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+//    6
+    public List<String> findTeacherWhoProfessMoreThanOneCourse(){
+        var list = new ArrayList<String>();
+        try{
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT students.techer.first_name,students.techer.last_name, students.techer.id FROM students.techer JOIN students.training_course ON techer.id = training_course.teacher_id GROUP BY first_name,last_name HAVING COUNT(*) > 1");
+            while (resultSet.next()){
+                list.add(String.format("Id: %d, First name: %s, Last name: %s",resultSet.getInt("id"), resultSet.getString("first_name"),resultSet.getString("last_name")));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+//    7
+    public List<String> findPeopleWhoRetriedToPassExam(){
+        ArrayList<String> strings = new ArrayList<>();
+        try {
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT first_name, last_name, student_id FROM students.student JOIN students.exam_result result on student.id = result.student_id GROUP BY first_name, last_name, student_id HAVING COUNT(exam_id) > 1;");
+            while (resultSet.next()){
+                strings.add(String.format("Id: %d, Name: %s, Surname: %s", resultSet.getInt("student_id"), resultSet.getString("first_name"), resultSet.getString("last_name")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return strings;
+    }
+
+//    8
+    public List<String> findFiveSmartest(){
+        List<String> strings = new ArrayList<>();
+        try {
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT first_name, last_name FROM students.student JOIN students.exam_result result on student.id = result.student_id ORDER BY result DESC LIMIT 5;");
+            while (resultSet.next()){
+                strings.add(String.format("Name: %s, Surname: %s", resultSet.getString("first_name"), resultSet.getString("last_name")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return strings;
+    }
+
+//    9
 
 }

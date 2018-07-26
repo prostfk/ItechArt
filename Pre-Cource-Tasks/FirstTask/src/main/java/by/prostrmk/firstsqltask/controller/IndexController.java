@@ -44,7 +44,28 @@ public class IndexController {
     @RequestMapping(value = "/middle",method = RequestMethod.GET)
     @ResponseBody
     public String middleValueOfDBManagement(){
-        return "Middle value: " + studentsDao.findMiddleValueOfDataBaseManagment();
+        return "Middle value: " + studentsDao.findMiddleValueOfDataBaseManagement();
     }
+
+    @RequestMapping(value = "/losers",method = RequestMethod.GET)
+    public ModelAndView studentsWhoDidNotPass(){
+        return new ModelAndView("index", "users",studentsDao.findStudentsWhoDidNotPassTheExam());
+    }
+
+    @RequestMapping(value = "/coolTeacher", method = RequestMethod.GET)
+    public ModelAndView smartTeacher(){
+        return new ModelAndView("index", "users", studentsDao.findTeacherWhoProfessMoreThanOneCourse());
+    }
+
+    @RequestMapping(value = "/retried", method = RequestMethod.GET)
+    public ModelAndView personsThoRetried(){
+        return new ModelAndView("index", "users", studentsDao.findPeopleWhoRetriedToPassExam());
+    }
+
+    @RequestMapping(value = "/topFive", method = RequestMethod.GET)
+    public ModelAndView fiveSmartest(){
+        return new ModelAndView("index", "users", studentsDao.findFiveSmartest());
+    }
+
 
 }
