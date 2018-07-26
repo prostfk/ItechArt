@@ -34,7 +34,21 @@ public class PostDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
+    public Post findById(String description){
+        try {
+            ResultSet resultSet = connection.createStatement().executeQuery(String.format("SELECT * FROM post WHERE id='%s'", description));
+            if (resultSet.next()){
+                long id = resultSet.getLong("id");
+                String description1 = resultSet.getString("description");
+                String path = resultSet.getString("path");
+                return new Post(id,description,path);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

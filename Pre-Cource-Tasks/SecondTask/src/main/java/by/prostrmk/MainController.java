@@ -49,12 +49,13 @@ public class MainController extends HttpServlet {
         factory.setRepository(file);
         ServletFileUpload upload = new ServletFileUpload(factory);
         upload.setSizeMax(1024 * 1024 * 10);
+        Post post = new Post();
         try {
             List<FileItem> fileItems = upload.parseRequest(req);
-            Post post = new Post();
             fileItems.forEach(fileItem -> {
                 if (!fileItem.isFormField()){
-                    String path = processUploadedFile(fileItem, file);
+//                    String path = processUploadedFile(fileItem, file);
+                    String path = getNewName("/home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Pre-Cource-Tasks/SecondTask/src/main/webapp/resources/pics/",post.getDescription(),fileItem);
                     post.setPathToPhoto(path);
                 }else{
                     if(fileItem.getFieldName().equals("description")){
@@ -70,17 +71,19 @@ public class MainController extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
 
-
-
+        resp.sendRedirect("/photo/" + post.getDescription());
     }
-    private String processUploadedFile(FileItem fileItem, File file)  {
-        File uploadedFile = new File(file.getPath() + "/" + fileItem.getName());
+
+    private String getNewName(String path,String desc,  FileItem item){
+        String format = ".jpg";
+        File file = new File(path + desc + format);
         try {
-            uploadedFile.createNewFile();
-            fileItem.write(uploadedFile);
+            file.createNewFile();
+            item.write(file);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "resources/pics/" +  fileItem.getName();
+        return "/resources/pics/" + desc + format;
     }
+
 }

@@ -9,6 +9,12 @@ public class Post {
     public Post() {
     }
 
+    public Post(Long id, String description, String pathToPhoto) {
+        this.id = id;
+        this.description = description;
+        this.pathToPhoto = pathToPhoto;
+    }
+
     public Post(String description, String pathToPhoto) {
         this.description = description;
         this.pathToPhoto = pathToPhoto;
