@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" href="../css/index.css"/>
+    <script src="../js/index.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+    <!--<form action="">-->
+    <div class="row">
+        <div class="col-25">
+            <label for="fname">First Name</label>
+        </div>
+        <div class="col-75">
+            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-25">
+            <label for="lname">Last Name</label>
+        </div>
+        <div class="col-75">
+            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-25">
+            <label for="country">Country</label>
+        </div>
+        <div class="col-75">
+            <select id="country" name="country">
+                <option value="belarus">Belarus</option>
+                <option value="russia">Russia</option>
+                <option value="ukraine">Ukraine</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-25">
+            <label for="subject">Subject</label>
+        </div>
+        <div class="col-75">
+            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <input type="submit" class="submit-input" value="Submit" onclick="launch_toast()">
+    </div>
+    <!--</form>-->
+</div>
+
+<div id="toast">
+    <div id="img"><img src="../icons/alarm.png" width="25" height="25"/></div>
+    <div id="desc">Check your <data></data></div>
+</div>
+
+</body>
+</html>

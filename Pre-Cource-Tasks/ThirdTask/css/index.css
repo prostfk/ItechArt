@@ -1,0 +1,47 @@
+.jlab-row{
+    display: flex;
+    width: 100%;
+}
+.jlab-row div{
+    padding: 2px;
+    border: 2px solid rebeccapurple;
+}
+.jlab-cell-1{
+    flex: 8.3%;
+}
+.jlab-cell-2{
+    flex: 16.6%;
+}
+.jlab-cell-3{
+    flex: 25%;
+}
+.jlab-cell-4{
+    flex: 33.3%;
+}
+.jlab-cell-5{
+    flex: 41.6%;
+}
+.jlab-cell-6{
+    flex: 50%;
+}
+.jlab-cell-7{
+    flex: 58.33%;
+}
+.jlab-cell-8{
+    flex: 66.6%;
+}
+.jlab-cell-9{
+    flex: 75%;
+}
+.jlab-cell-10{
+    flex: 83.33%;
+}
+.jlab-cell-11{
+    flex: 91.66%;
+}
+.jlab-cell-12{
+    flex: 100%;
+}
+.gap{
+    margin: 2% 0 0 0;
+}

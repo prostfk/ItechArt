@@ -498,16 +498,15 @@
       <option name="presentableId" value="Default" />
       <updated>1532595601511</updated>
       <workItem from="1532595603176" duration="7344000" />
-      <workItem from="1532634495215" duration="6275000" />
+      <workItem from="1532634495215" duration="6874000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13619000" />
+    <option name="totallyTimeSpent" value="14218000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1016" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -527,7 +526,7 @@
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32932165" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32932165" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Database Console" order="7" weight="0.32932165" />
