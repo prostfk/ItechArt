@@ -29,6 +29,7 @@ public class MainController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        System.out.println();
         if (req.getSession().getAttribute("user")!=null){
             req.getRequestDispatcher("/index.jsp").forward(req,resp);
         }
@@ -44,7 +45,11 @@ public class MainController extends HttpServlet {
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setSizeThreshold(1024*1024);
         File file = new File("/home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Pre-Cource-Tasks/SecondTask/src/main/webapp/resources/pics/" + user.getUsername()+"/");
+        File file2 = new File(req.getSession().getServletContext().getRealPath("resources") + "/pics/" + user.getUsername() + "/");
         if (!file.exists()){
+            file.mkdir();
+        }
+        if (!file2.exists()){
             file.mkdir();
         }
         factory.setRepository(file);
@@ -58,6 +63,7 @@ public class MainController extends HttpServlet {
                 if (!fileItem.isFormField()){
                     String path = getNewName("/home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Pre-Cource-Tasks/SecondTask/src/main/webapp/resources/pics/" + user.getUsername() + "/",post.getDescription(),fileItem, user.getUsername());
                     post.setPathToPhoto(path);
+                    getNewName(file2.getAbsolutePath() + "/",post.getDescription(),fileItem, user.getUsername());
                 }else{
                     if(fileItem.getFieldName().equals("description")){
                         post.setDescription(fileItem.getString());

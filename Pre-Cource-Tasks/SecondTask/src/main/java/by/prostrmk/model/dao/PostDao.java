@@ -18,7 +18,6 @@ public class PostDao implements Dao{
 
     public PostDao() {
         connection = init();
-        System.out.println("OBJECT INITIALIZED");
     }
 
     public void save(Post post){

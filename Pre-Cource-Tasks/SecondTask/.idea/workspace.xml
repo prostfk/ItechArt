@@ -7,36 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ba091fe-9dc7-465b-9dc0-601f5d52ac4a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/by/prostrmk/controller/DeleteController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/by/prostrmk/controller/LogoutController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/delete.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Fourth/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Fourth/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/prostrmk/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/prostrmk/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/prostrmk/controller/DeleteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/prostrmk/controller/DeleteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/prostrmk/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/prostrmk/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/prostrmk/model/dao/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/prostrmk/model/dao/Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/prostrmk/model/dao/PostDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/prostrmk/model/dao/PostDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/prostrmk/model/util/HashUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/prostrmk/model/util/CommonUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/photos.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/photos.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/pics/Roman/.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/pics/Roman/ASdsaf.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/pics/Roman/CheckFile.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/by/prostrmk/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/prostrmk/controller/AuthController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/by/prostrmk/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/prostrmk/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/by/prostrmk/model/dao/Dao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/prostrmk/model/dao/Dao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/by/prostrmk/model/dao/PostDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/by/prostrmk/model/dao/PostDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/by/prostrmk/model/util/HashUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/picsaver-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/picsaver-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/picsaver-1.0-SNAPSHOT/WEB-INF/classes/by/prostrmk/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/picsaver-1.0-SNAPSHOT/WEB-INF/classes/by/prostrmk/controller/AuthController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/picsaver-1.0-SNAPSHOT/WEB-INF/classes/by/prostrmk/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/picsaver-1.0-SNAPSHOT/WEB-INF/classes/by/prostrmk/controller/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/picsaver-1.0-SNAPSHOT/WEB-INF/classes/by/prostrmk/model/dao/Dao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/picsaver-1.0-SNAPSHOT/WEB-INF/classes/by/prostrmk/model/dao/Dao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/picsaver-1.0-SNAPSHOT/WEB-INF/classes/by/prostrmk/model/dao/PostDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/picsaver-1.0-SNAPSHOT/WEB-INF/classes/by/prostrmk/model/dao/PostDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/picsaver-1.0-SNAPSHOT/WEB-INF/classes/by/prostrmk/model/util/HashUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/picsaver-1.0-SNAPSHOT/photos.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/picsaver-1.0-SNAPSHOT/photos.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/picsaver-1.0-SNAPSHOT/resources/pics/Roman/CheckFile.jpg" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -88,30 +60,30 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="13" />
-          <entry key="jpg" value="5" />
-          <entry key="jsp" value="4" />
+          <entry key="java" value="14" />
+          <entry key="jpg" value="6" />
+          <entry key="jsp" value="5" />
           <entry key="post" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Database Element" value="1" />
-          <entry key="Image" value="5" />
-          <entry key="JAVA" value="13" />
-          <entry key="JSP" value="4" />
+          <entry key="Image" value="6" />
+          <entry key="JAVA" value="14" />
+          <entry key="JSP" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="7" />
-          <entry key="java" value="1066" />
+          <entry key="java" value="1324" />
           <entry key="jsp" value="159" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1066" />
+          <entry key="JAVA" value="1324" />
           <entry key="JSP" value="159" />
           <entry key="PLAIN_TEXT" value="7" />
         </counts>
@@ -124,8 +96,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/by/prostrmk/controller/DeleteController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="574">
-              <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+            <state relative-caret-position="317">
+              <caret line="44" column="29" selection-start-line="44" selection-start-column="29" selection-end-line="44" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -134,9 +106,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/by/prostrmk/controller/MainController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="191">
+              <caret line="65" column="59" selection-start-line="65" selection-start-column="59" selection-end-line="65" selection-end-column="59" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#getNewName#0;class#MainController#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/photos.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
+            <state relative-caret-position="173">
               <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
             </state>
           </provider>
@@ -191,12 +176,12 @@
         <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/by/prostrmk/controller/LogoutController.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/prostrmk/model/util/CommonUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/prostrmk/controller/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/delete.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/by/prostrmk/model/dao/PostDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/by/prostrmk/model/dao/Dao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/by/prostrmk/controller/DeleteController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/photos.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/by/prostrmk/controller/DeleteController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/by/prostrmk/controller/MainController.java" />
       </list>
     </option>
   </component>
@@ -252,6 +237,74 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="SecondTask" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SecondTask" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SecondTask" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SecondTask" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="by" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SecondTask" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SecondTask" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="by" type="462c0819:PsiDirectoryNode" />
+              <item name="prostrmk" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SecondTask" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SecondTask" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="by" type="462c0819:PsiDirectoryNode" />
+              <item name="prostrmk" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SecondTask" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SecondTask" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SecondTask" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SecondTask" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SecondTask" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SecondTask" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="pics" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SecondTask" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SecondTask" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="pics" type="462c0819:PsiDirectoryNode" />
+              <item name="Roman" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -262,7 +315,7 @@
     <property name="SearchEverywhereHistoryKey" value="pom&#9;FILE&#9;file:///home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Pre-Cource-Tasks/SecondTask/pom.xml" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1532778725235" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1532782721726" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -392,15 +445,16 @@
       <workItem from="1532595603176" duration="7344000" />
       <workItem from="1532634495215" duration="6874000" />
       <workItem from="1532724637597" duration="1464000" />
-      <workItem from="1532775276419" duration="3437000" />
+      <workItem from="1532775276419" duration="5219000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19119000" />
+    <option name="totallyTimeSpent" value="20901000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1016" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4989059" visible="true" weight="0.18249734" />
       <window_info id="Structure" order="1" sideWeight="0.5010941" side_tool="true" weight="0.17864583" />
@@ -538,13 +592,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/auth.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
@@ -588,19 +635,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/by/prostrmk/controller/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="38" column="113" lean-forward="true" selection-start-line="38" selection-start-column="113" selection-end-line="38" selection-end-column="113" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#doGet#0;class#MainController#0" />
-            <element signature="method#doPost#0;class#MainController#0" />
-            <element signature="method#getNewName#0;class#MainController#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/delete.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -629,9 +663,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/pics/Roman/ASdsaf.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/pics/Roman/Lala.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/prostrmk/model/dao/PostDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
@@ -645,6 +676,16 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/pics/Roman/.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/pics/Roman/Lala.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="das://8c3599db-4242-4f61-9e0a-ec945232545d/schema/testBase/table/post">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -652,20 +693,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/photos.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/prostrmk/controller/DeleteController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+        <state relative-caret-position="317">
+          <caret line="44" column="29" selection-start-line="44" selection-start-column="29" selection-end-line="44" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/photos.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/by/prostrmk/controller/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+        <state relative-caret-position="191">
+          <caret line="65" column="59" selection-start-line="65" selection-start-column="59" selection-end-line="65" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getNewName#0;class#MainController#0" />
+          </folding>
         </state>
       </provider>
     </entry>

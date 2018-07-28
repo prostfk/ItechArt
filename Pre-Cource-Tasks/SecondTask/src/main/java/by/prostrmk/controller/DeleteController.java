@@ -38,10 +38,12 @@ public class DeleteController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String s = req.getPathInfo().split("/")[1];
         Post byId = postDao.findById(Long.parseLong(s));
-        boolean delete = new File("/home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Pre-Cource-Tasks/SecondTask/src/main/webapp" + byId.getPathToPhoto()).delete();
-        if (delete){
+        boolean delete = new File(req.getSession().getServletContext().getRealPath(byId.getPathToPhoto())).delete();
+        boolean delete1 = new File("/home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Pre-Cource-Tasks/SecondTask/src/main/webapp" + byId.getPathToPhoto()).delete();
+        if (delete && delete1){
             postDao.delete(byId.getId());
         }
-        req.getRequestDispatcher("/photos.jsp").forward(req, resp);
+        resp.sendRedirect("/photos");
+
     }
 }
