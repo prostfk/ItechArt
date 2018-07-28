@@ -2,7 +2,7 @@ package by.prostrmk.controller;
 
 import by.prostrmk.model.dao.UserDao;
 import by.prostrmk.model.entity.User;
-import by.prostrmk.model.util.HashUtil;
+import by.prostrmk.model.util.CommonUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +26,7 @@ public class AuthController extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         User userByUsername = new UserDao().findUserByUsername(username);
-        User user = new User(userByUsername.getId(),username,HashUtil.hash(password));
+        User user = new User(userByUsername.getId(),username, CommonUtil.hash(password));
         if (userByUsername.equals(user)){
             req.getSession().setAttribute("user", user);
             resp.sendRedirect("/photos");

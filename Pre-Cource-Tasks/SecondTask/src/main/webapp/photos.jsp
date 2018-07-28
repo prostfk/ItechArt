@@ -13,6 +13,16 @@
 <head>
     <title>Photo</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
+    <style>
+        .row{
+            display: flex;
+            width: 80%;
+            margin: 0;
+        }
+        .col{
+            flex: auto;
+        }
+    </style>
 </head>
 <body>
 <div class="row">
@@ -23,6 +33,7 @@
             <div class="card-body">
                 <h5 class="card-title">${user.username}</h5>
                 <p class="card-text">${post.description}</p>
+                <a href="/delete/${post.id}" class="btn btn-danger">Delete</a>
                 <a href="/" class="btn btn-primary">Go home</a>
             </div>
         </div>

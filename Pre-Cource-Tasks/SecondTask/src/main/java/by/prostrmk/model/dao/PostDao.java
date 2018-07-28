@@ -18,6 +18,7 @@ public class PostDao implements Dao{
 
     public PostDao() {
         connection = init();
+        System.out.println("OBJECT INITIALIZED");
     }
 
     public void save(Post post){
@@ -29,12 +30,12 @@ public class PostDao implements Dao{
         }
     }
 
-    public Post findById(String description){
+    public Post findById(long innerId){
         try {
-            ResultSet resultSet = connection.createStatement().executeQuery(String.format("SELECT * FROM post WHERE id='%s'", description));
+            ResultSet resultSet = connection.createStatement().executeQuery(String.format("SELECT * FROM post WHERE id='%d'", innerId));
             if (resultSet.next()){
                 long id = resultSet.getLong("id");
-                String description1 = resultSet.getString("description");
+                String description = resultSet.getString("description");
                 String path = resultSet.getString("path");
                 return new Post(id,description,path);
             }
@@ -59,6 +60,14 @@ public class PostDao implements Dao{
             e.printStackTrace();
         }
         return posts;
+    }
+
+    public void delete(long id){
+        try {
+            connection.createStatement().execute("DELETE FROM post WHERE id='" + id + "'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -56,7 +56,6 @@ public class MainController extends HttpServlet {
             List<FileItem> fileItems = upload.parseRequest(req);
             fileItems.forEach(fileItem -> {
                 if (!fileItem.isFormField()){
-//                    String path = processUploadedFile(fileItem, file);
                     String path = getNewName("/home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Pre-Cource-Tasks/SecondTask/src/main/webapp/resources/pics/" + user.getUsername() + "/",post.getDescription(),fileItem, user.getUsername());
                     post.setPathToPhoto(path);
                 }else{

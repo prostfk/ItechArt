@@ -18,6 +18,9 @@ public interface Dao {
             String url = properties.getProperty("db.url");
             return DriverManager.getConnection(url,user,password);
         } catch (Exception e) {
+            for (int i = 0; i < 10; i++) {
+                System.out.println("EXCEPTION!!!");
+            }
             e.printStackTrace();
         }
         return null;
