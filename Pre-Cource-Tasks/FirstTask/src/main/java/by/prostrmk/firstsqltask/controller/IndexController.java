@@ -17,47 +17,47 @@ public class IndexController {
     @Autowired
     StudentsDao studentsDao;
 
-    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @RequestMapping(value = "/1",method = RequestMethod.GET)
     public ModelAndView getIndexPage(){
         List<Student> all = studentsDao.findAll();
         return new ModelAndView("index","users", all);
     }
 
-    @RequestMapping(value = "/passed", method = RequestMethod.GET)
+    @RequestMapping(value = "/2", method = RequestMethod.GET)
     public ModelAndView passedStudents(){
         List<String> studentsWhoPassedExams = studentsDao.findStudentsWhoPassedExams();
         return new ModelAndView("index", "users", studentsWhoPassedExams);
     }
 
-    @RequestMapping(value = "/good",method = RequestMethod.GET)
+    @RequestMapping(value = "/3",method = RequestMethod.GET)
     @ResponseBody
     public String goodStudents(){
         return "Count of good students: " + studentsDao.findCountOfGoodStudents();
     }
 
-    @RequestMapping(value = "/auto",method = RequestMethod.GET)
+    @RequestMapping(value = "/4",method = RequestMethod.GET)
     @ResponseBody
     public String studentsWhoPassedAutomatically(){
         return "Count of good students: " + studentsDao.findCountOfStudentWhoPassedExamAutomatically();
     }
 
-    @RequestMapping(value = "/middle",method = RequestMethod.GET)
+    @RequestMapping(value = "/5",method = RequestMethod.GET)
     @ResponseBody
     public String middleValueOfDBManagement(){
         return "Middle value: " + studentsDao.findMiddleValueOfDataBaseManagement();
     }
 
-    @RequestMapping(value = "/losers",method = RequestMethod.GET)
+    @RequestMapping(value = "/6",method = RequestMethod.GET)
     public ModelAndView studentsWhoDidNotPass(){
         return new ModelAndView("index", "users",studentsDao.findStudentsWhoDidNotPassTheExam());
     }
 
-    @RequestMapping(value = "/coolTeacher", method = RequestMethod.GET)
+    @RequestMapping(value = "/7", method = RequestMethod.GET)
     public ModelAndView smartTeacher(){
         return new ModelAndView("index", "users", studentsDao.findTeacherWhoProfessMoreThanOneCourse());
     }
 
-    @RequestMapping(value = "/retried", method = RequestMethod.GET)
+    @RequestMapping(value = "/8", method = RequestMethod.GET)
     public ModelAndView personsThoRetried(){
         return new ModelAndView("index", "users", studentsDao.findPeopleWhoRetriedToPassExam());
     }
@@ -65,6 +65,11 @@ public class IndexController {
     @RequestMapping(value = "/topFive", method = RequestMethod.GET)
     public ModelAndView fiveSmartest(){
         return new ModelAndView("index", "users", studentsDao.findFiveSmartest());
+    }
+
+    @RequestMapping(value = "/10", method = RequestMethod.GET)
+    public ModelAndView topOnMath(){
+        return new ModelAndView("index", "users", studentsDao.findSmartestInMath());
     }
 
 

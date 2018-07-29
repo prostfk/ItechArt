@@ -21,6 +21,7 @@ public class Student {
     private boolean hostelLive;
 
 
+
     @Override
     public String toString() {
         return "Student{" +

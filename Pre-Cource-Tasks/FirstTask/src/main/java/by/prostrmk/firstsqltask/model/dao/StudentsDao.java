@@ -159,5 +159,21 @@ public class StudentsDao {
     }
 
 //    9
+    public List<String> findBestTeachers(){
+        return null;
+    }
+
+    public List<String> findSmartestInMath(){
+        List<String> list = new ArrayList<>();
+        try {
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT first_name, last_name, date, training_course.name from students.student JOIN students.exam_result on student.id = exam_result.student_id JOIN students.training_course on exam_id = training_course.id JOIN students.exam on exam_result.exam_id = exam.id WHERE training_course.name = 'MATH' order by students.exam.date");
+            while(resultSet.next()){
+                list.add(String.format("Name: %s, Last name: %s, Date: %s, Subject: %s", resultSet.getString("first_name"), resultSet.getString("last_name"), resultSet.getString("date"), resultSet.getString("name")));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return list;
+    }
 
 }
