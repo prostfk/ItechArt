@@ -159,8 +159,17 @@ public class StudentsDao {
     }
 
 //    9
-    public List<String> findBestTeachers(){
-        return null;
+    public List<String> findBestTeacher(){
+        List<String> list = new ArrayList<>();
+        try {
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT DISTINCT MAX(s.maxres), s.last_name, id FROM (SELECT AVG(result) as maxres, last_name, t.id from students.student_result JOIN students.exam e on student_result.exam_id = e.id JOIN students.techer t on e.teacher_id = t.id group by last_name) as s group by id LIMIT 1");
+            if (resultSet.next()){
+                list.add(String.format("Id:%d, Last name: %s, Average result: %f", resultSet.getInt("id"), resultSet.getString("last_name"),resultSet.getDouble("MAX(s.maxres)")));
+            }
+        }catch (Throwable e){
+            e.printStackTrace();
+        }
+        return list;
     }
 
     public List<String> findSmartestInMath(){

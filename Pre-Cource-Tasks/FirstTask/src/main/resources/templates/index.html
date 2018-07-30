@@ -3,12 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Index</title>
+    <style>
+        body{
+            background-color: darkslategray;
+        }
+        .container{
+            margin: auto;
+            padding: 1%;
+        }
+        .row{
+            color: cornsilk;
+            border-radius: 10px;
+            border: solid dimgray;
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body>
 
-<div th:each="user : ${users}">
+<div class="container" th:each="user : ${users}">
 
-    <p th:text="${user}"></p>
+    <p class="row" th:text="${user}"></p>
 
 </div>
 

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -30,21 +32,18 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/3",method = RequestMethod.GET)
-    @ResponseBody
-    public String goodStudents(){
-        return "Count of good students: " + studentsDao.findCountOfGoodStudents();
+    public ModelAndView goodStudents(){
+        return new ModelAndView("index", "users", new ArrayList<String>(Collections.singleton("Count of good students: " + studentsDao.findCountOfGoodStudents())));
     }
 
     @RequestMapping(value = "/4",method = RequestMethod.GET)
-    @ResponseBody
-    public String studentsWhoPassedAutomatically(){
-        return "Count of good students: " + studentsDao.findCountOfStudentWhoPassedExamAutomatically();
+    public ModelAndView studentsWhoPassedAutomatically(){
+        return new ModelAndView("index", "users", new ArrayList<String>(Collections.singleton("Count of good students: " + studentsDao.findCountOfStudentWhoPassedExamAutomatically())));
     }
 
     @RequestMapping(value = "/5",method = RequestMethod.GET)
-    @ResponseBody
-    public String middleValueOfDBManagement(){
-        return "Middle value: " + studentsDao.findMiddleValueOfDataBaseManagement();
+    public ModelAndView middleValueOfDBManagement(){
+        return new ModelAndView("index", "users", new ArrayList<String>(Collections.singleton("Middle value: " + studentsDao.findMiddleValueOfDataBaseManagement())));
     }
 
     @RequestMapping(value = "/6",method = RequestMethod.GET)
@@ -70,6 +69,11 @@ public class IndexController {
     @RequestMapping(value = "/10", method = RequestMethod.GET)
     public ModelAndView topOnMath(){
         return new ModelAndView("index", "users", studentsDao.findSmartestInMath());
+    }
+
+    @RequestMapping(value = "/9", method = RequestMethod.GET)
+    public ModelAndView topTeacher(){
+        return new ModelAndView("index", "users", studentsDao.findBestTeacher());
     }
 
 
