@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 <head>
     <meta charset="UTF-8">
     <title>Index</title>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular.min.js"></script>
+    <script src="app.js"></script>
 </head>
-<body>
+<body ng-controller="MainController">
 
-    <my-app>
-        Loading
-    </my-app>
-    <script src="public/polyfills.js"></script>
-    <script src="public/app.js"></script>
+    <div>
+        <input placeholder="task" type="text" ng-model="current">
+        <button ng-click="addNewTask()">Add</button>
+    </div>
+
+    <p ng-repeat="task in tasks">{{task}} <button ng-click="deleteTask(task)">Delete</button></p>
 
 </body>
 </html>
