@@ -10,6 +10,7 @@ export class HomePageComponent implements OnInit {
   constructor() { }
 
   title = 'AngularLearning';
+  searchString = '';
 
   users = [
     {name: "Roman", age: 20, surname: "Medvedev", image: "https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png"},

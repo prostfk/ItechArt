@@ -6,6 +6,8 @@ import {UserComponent} from "./user/user.component";
 import {HomePageComponent} from './home-page/home-page.component';
 import {SetupPageComponent} from './setup-page/setup-page.component';
 import {RouterModule} from "@angular/router";
+import {SearchPipe} from "./search.pipe";
+import {FormsModule} from "@angular/forms";
 
 
 const routes = [
@@ -18,10 +20,12 @@ const routes = [
     AppComponent,
     UserComponent,
     HomePageComponent,
-    SetupPageComponent
+    SetupPageComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
