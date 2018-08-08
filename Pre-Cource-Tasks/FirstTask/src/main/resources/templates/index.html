@@ -3,30 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Index</title>
-    <style>
-        body{
-            background-color: darkslategray;
-        }
-        .container{
-            margin: auto;
-            padding: 1%;
-        }
-        .row{
-            color: cornsilk;
-            border-radius: 10px;
-            border: solid dimgray;
-            text-align: center;
-        }
-
-    </style>
+    <link rel="stylesheet" th:href="@{resources/index.css}">
 </head>
 <body>
 
-<div class="container" th:each="user : ${users}">
-
-    <p class="row" th:text="${user}"></p>
-
+<div class="item-list">
+    <ul class="pager">
+        <li class="pager-item"><a href="/1" title="На страницу номер 1">1</a></li>
+        <li class="pager-item"><a href="/2" title="На страницу номер 2">2</a></li>
+        <li class="pager-item"><a href="/3" title="На страницу номер 3">3</a></li>
+        <li class="pager-item"><a href="/4" title="На страницу номер 4">4</a></li>
+        <li class="pager-item"><a href="/5" title="На страницу номер 5">5</a></li>
+        <li class="pager-item"><a href="/6" title="На страницу номер 6">6</a></li>
+        <li class="pager-item"><a href="/7" title="На страницу номер 7">7</a></li>
+        <li class="pager-item"><a href="/8" title="На страницу номер 8">8</a></li>
+        <li class="pager-item"><a href="/9" title="На страницу номер 9">9</a></li>
+        <li class="pager-item"><a href="/10" title="На страницу номер 10">10</a></li>
+    </ul>
 </div>
+
+<ol class="rounded">
+    <li th:each="user : ${users}"><a href="#" th:text="${user}"></a></li>
+</ol>
+
+<!--<div class="container" th:each="user : ${users}">-->
+
+    <!--<p class="row" th:text="${user}"></p>-->
+
+<!--</div>-->
 
 </body>
 </html>
