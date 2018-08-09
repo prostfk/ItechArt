@@ -19,7 +19,7 @@ public class IndexController {
     @Autowired
     StudentsDao studentsDao;
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = {"/all", "/"}, method = RequestMethod.GET)
     public ModelAndView getAllStudents(){
         List<Student> all = studentsDao.findAll();
         return new ModelAndView("index", "users",all);

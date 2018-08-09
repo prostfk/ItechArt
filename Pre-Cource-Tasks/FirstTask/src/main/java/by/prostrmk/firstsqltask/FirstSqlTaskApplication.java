@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FirstsqltaskApplication {
+public class FirstSqlTaskApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FirstsqltaskApplication.class, args);
+        SpringApplication.run(FirstSqlTaskApplication.class, args);
     }
 }
