@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
 import by.prostrmk.model.entity.Post;
 import by.prostrmk.model.dao.PostDao;
 import by.prostrmk.model.entity.User;
@@ -44,7 +43,7 @@ public class MainController extends HttpServlet {
         }
         DiskFileItemFactory factory = new DiskFileItemFactory();
         factory.setSizeThreshold(1024*1024);
-        File file = new File("/home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Pre-Cource-Tasks/SecondTask/src/main/webapp/resources/pics/" + user.getUsername()+"/");
+        File file = new File("/home/prostrmk/Документы/Programs/Java/Java EE/ITechArt/Pre-Cource-Tasks/SecondTask/src/main/webapp/resources/pics/" + user.getUsername()+"/");
         File file2 = new File(req.getSession().getServletContext().getRealPath("resources") + "/pics/" + user.getUsername() + "/");
         if (!file.exists()){
             file.mkdir();
@@ -61,7 +60,7 @@ public class MainController extends HttpServlet {
             List<FileItem> fileItems = upload.parseRequest(req);
             fileItems.forEach(fileItem -> {
                 if (!fileItem.isFormField()){
-                    String path = getNewName("/home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Pre-Cource-Tasks/SecondTask/src/main/webapp/resources/pics/" + user.getUsername() + "/",post.getDescription(),fileItem, user.getUsername());
+                    String path = getNewName("/home/prostrmk/Документы/Programs/Java/Java EE/ITechArt/Pre-Cource-Tasks/SecondTask/src/main/webapp/resources/pics/" + user.getUsername() + "/",post.getDescription(),fileItem, user.getUsername());
                     post.setPathToPhoto(path);
                     getNewName(file2.getAbsolutePath() + "/",post.getDescription(),fileItem, user.getUsername());
                 }else{

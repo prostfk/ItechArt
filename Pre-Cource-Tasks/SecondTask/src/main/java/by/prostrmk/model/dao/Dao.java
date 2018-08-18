@@ -12,7 +12,7 @@ public interface Dao {
         Properties properties = new Properties();
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            properties.load(new FileInputStream("/home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Pre-Cource-Tasks/SecondTask/src/main/resources/db.properties"));
+            properties.load(new FileInputStream("/home/prostrmk/Документы/Programs/Java/Java EE/ITechArt/Pre-Cource-Tasks/SecondTask/src/main/resources/db.properties"));
             String user = properties.getProperty("db.user");
             String password = properties.getProperty("db.password");
             String url = properties.getProperty("db.url");

@@ -16,14 +16,15 @@ public class UserDao implements Dao{
 
     public void save(User user){
         try {
-            connection.createStatement().execute(String.format("INSERT INTO users(username, password) VALUES('%s','%s')", user.getUsername(),user.getPassword()));
+            //language=SQL
+            connection.createStatement().execute(String.format("INSERT INTO user(username, password) VALUES('%s','%s')", user.getUsername(),user.getPassword()));
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     public User findUserByUsername(String username){
-        try (ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM users WHERE username='" + username + "'")) {
+        try (ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM user WHERE username='" + username + "'")) {
             if (resultSet.next()){
                 long id = resultSet.getLong("id");
                 String password = resultSet.getString("password");

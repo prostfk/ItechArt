@@ -23,6 +23,7 @@
         <input id="password" class="form-control" type="password" placeholder="password" name="password">
     </div>
     <input type="submit" class="btn btn-primary">
+    <a href="/registration" class="btn btn-success">Registration</a>
 </form>
 
 </body>
