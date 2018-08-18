@@ -1,5 +1,6 @@
 package by.prostrmk.controller;
 
+import by.prostrmk.model.dao.TestDao;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -29,6 +30,7 @@ public class TestServlet extends HttpServlet {
         if (!ServletFileUpload.isMultipartContent(req)){
             resp.getWriter().print("ERROR");
         }
+        String filename;
         DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
         try {
@@ -41,6 +43,10 @@ public class TestServlet extends HttpServlet {
                         item.write(file);
                     } catch (Exception e) {
                         e.printStackTrace();
+                    }
+                }else{
+                    if (item.getFieldName().equals("username")){
+//                        new TestDao().save(item.getName(),rootPath + );
                     }
                 }
             });
