@@ -6,35 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="610458bb-fc46-405f-89d7-acb919ebd635" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../SecondTask/src/main/java/by/prostrmk/controller/TestViewServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../SecondTask/src/main/webapp/testview.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/warnik.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/by/prostrmk/controller/AddPostServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/by/prostrmk/controller/AuthServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/by/prostrmk/controller/IndexServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/by/prostrmk/controller/MeServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/by/prostrmk/controller/RegistrationServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/by/prostrmk/dao/Dao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/by/prostrmk/dao/PostDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/by/prostrmk/dao/UserDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/by/prostrmk/model/entity/Post.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/by/prostrmk/model/entity/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/by/prostrmk/model/util/CommonUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/addPost.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/auth.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/me.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/registration.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/spring.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SecondTask/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SecondTask/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SecondTask/src/main/java/by/prostrmk/controller/TestServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SecondTask/src/main/java/by/prostrmk/controller/TestServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SecondTask/target/picsaver-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../SecondTask/target/picsaver-1.0-SNAPSHOT.war" afterDir="false" />
-    </list>
+    <list default="true" id="610458bb-fc46-405f-89d7-acb919ebd635" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -132,6 +104,7 @@
     <session id="368519562">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -216,7 +189,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/by/prostrmk/controller/AddPostServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
+            <state relative-caret-position="250">
               <caret line="50" column="139" selection-start-line="50" selection-start-column="139" selection-end-line="50" selection-end-column="139" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -415,7 +388,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534610646321" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1534610951531" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -602,19 +575,18 @@
       <option name="presentableId" value="Default" />
       <updated>1534592918531</updated>
       <workItem from="1534592919777" duration="2717000" />
-      <workItem from="1534596501617" duration="8920000" />
+      <workItem from="1534596501617" duration="9865000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11637000" />
+    <option name="totallyTimeSpent" value="12582000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="45" y="27" width="1875" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.77324265" visible="true" weight="0.2520503" />
-      <window_info id="Structure" order="1" sideWeight="0.22675736" side_tool="true" visible="true" weight="0.2520503" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.77361566" visible="true" weight="0.2520503" />
+      <window_info id="Structure" order="1" sideWeight="0.22638437" side_tool="true" visible="true" weight="0.2520503" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
@@ -623,14 +595,14 @@
       <window_info id="Web" order="7" sideWeight="0.5018182" side_tool="true" weight="0.2520503" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32969433" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.518559" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.518559" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.5262009" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Application Servers" order="7" weight="0.32969433" />
       <window_info anchor="bottom" id="Database Console" order="8" weight="0.32969433" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32969433" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
@@ -857,7 +829,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/by/prostrmk/controller/AddPostServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
+        <state relative-caret-position="250">
           <caret line="50" column="139" selection-start-line="50" selection-start-column="139" selection-end-line="50" selection-end-column="139" />
           <folding>
             <element signature="imports" expanded="true" />
