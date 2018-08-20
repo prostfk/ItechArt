@@ -8,11 +8,13 @@ import {SetupPageComponent} from './setup-page/setup-page.component';
 import {RouterModule} from "@angular/router";
 import {SearchPipe} from "./search.pipe";
 import {FormsModule} from "@angular/forms";
+import { RegistrationComponent } from './registration/registration.component';
 
 
 const routes = [
   {path: '', component: HomePageComponent},
-  {path: 'setup', component: SetupPageComponent}
+  {path: 'setup', component: SetupPageComponent},
+  {path: 'registration', component: RegistrationComponent}
 ];
 
 @NgModule({
@@ -21,7 +23,8 @@ const routes = [
     UserComponent,
     HomePageComponent,
     SetupPageComponent,
-    SearchPipe
+    SearchPipe,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
