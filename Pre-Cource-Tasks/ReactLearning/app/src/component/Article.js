@@ -4,27 +4,34 @@ import {Component} from 'react'
 
 class Article extends Component {
     state = {
-        isOpen:true
+        isOpen: false
     };
 
     render() {
         const {article} = this.props;
         console.log(this.props);
         let body = <div></div>;
-        if (this.state.isOpen){
-            body = <div><h1>{article.title}</h1><h5>{article.content}</h5></div>
+        if (this.state.isOpen) {
+            body = <div>
+                <li>{article.id}</li>
+                <li>{article.title}</li>
+                <li>{article.content}</li>
+            </div>
         }
         return (
             <div>
-                <button onClick={this.buttonListener}>{this.state.isOpen ? 'close' : 'open'}</button>
-                {body}
-                <small>{article.id}</small>
+                <div>
+                    <button className={this.state.isOpen ? 'btn btn-warning' : 'btn btn-success'} onClick={this.buttonListener}>{this.state.isOpen ? 'close' : 'open'}</button>
+                    <ul>
+                        {body}
+                    </ul>
+                </div>
 
             </div>
         );
     }
 
-    buttonListener = () =>{
+    buttonListener = () => {
         this.setState({
             isOpen: !this.state.isOpen
         })
