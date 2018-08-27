@@ -1,3 +1,6 @@
+// let mysql = require('mysql-json');
+
+
 export default [
     {
         id:1,
@@ -15,3 +18,18 @@ export default [
         content: ' Oracle wants to deprecate the Nashorn JavaScript Engine and remove it from all future Java Development Kits. The details emerged as part of a JDK Enhancement Proposal.  The Nashorn JavaScript engine was introduced with Java 8 to replace the previous JavaScript scripting engine based on Mozilla Rhino. Nashorn is based on JSR 292, which adds support for dynamically typed languages on the Java platform; and on invokedynamic. Its aim was to provide better compliance with the ECMA normalized JavaScript specification and better runtime performance through invokedynamic-bound call sites.  Nashorn provides a way to invoke Java code from JavaScript, or to invoke JavaScript functions from Java code. Nashorn can be embedded in JavaScript applications as an interpreter, and its command-line tool, jjs, can be used to run JavaScript from the command line.  Nashorn  was a complete implementation of the ECMAScript-262 5.1 standard when it was released, but is now lagging behind due to the rapid pace at which ECMAScript language constructs, along with APIs, are adapted and modified.   Oracle says the only choices are either to deprecate the Nashorn JavaScript script engine and APIs, and the jjs tool, with the intent to remove them in a future release; or for  "a set of credible developers to express a clear desire to maintain Nashorn going forward. If that happens before this JEP is integrated then this JEP can be withdrawn. If that happens after this JEP is integrated, but before Nashorn is removed, then a follow-on JEP can revert the deprecation."  The problem with removing Nashorn is that certain applications will no longer run because of the expectation that JavaScript is present. Oracle says that:  "the breadth of Nashorn usage has not been easy to track. It is hoped that feedback for this JEP might provide better insight into actual Nashorn usage."  Responding to a tweet about the proposal,  Thomas Wuerthinger, Senior Research Director at Oracle Labs,said:  "The JavaScript implementation based on #GraalVM will be production-ready on all relevant platforms before Nashorn is deprecated. It will give you better performance and is fully compliant to the latest ECMAScript standard."  GraalVM is a virtual machine for running applications written in JavaScript, Python, Ruby, R, JVM-based languages like Java, Scala, Kotlin, and LLVM-based languages such as C and C++.'
     }
 ]
+
+// let con = new MysqlJson({
+//     host: "localhost",
+//     user: "prostrmk",
+//     password: "0",
+//     database: "ItNews"
+// });
+// export default function (sql) {
+//     con.connect(function (err) {
+//         if (err) console.log(err.toString());
+//         con.query(sql, function (err, response) {
+//             console.log(response)
+//         })
+//     })
+// }

@@ -8,11 +8,12 @@ class App extends Component {
 
     render() {
         return (
-            <div>
-                <h1>App from class</h1>
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-                      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-                      crossOrigin="anonymous"/>
+            <div className="container ">
+                <div className="jumbotron">
+
+                    <h1 className="display-3" style={{width:'100%'}}>App from class</h1>
+                </div>
+
 
                 <ArticlesList articles={articles}/>
 

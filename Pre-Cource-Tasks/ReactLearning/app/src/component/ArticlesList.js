@@ -3,11 +3,11 @@ import React from 'react'
 export default function ArticlesList({articles}) {
 
     const articleElements = articles.map(article =>
-        <Article article={article}/>
+        <Article key={article.id} article={article}/>
     );
 
     return (
-        <ul>{articleElements}</ul>
+        <ul style={{width:'100%'}}>{articleElements}</ul>
     )
 
 }
