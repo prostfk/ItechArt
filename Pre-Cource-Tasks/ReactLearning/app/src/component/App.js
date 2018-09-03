@@ -3,6 +3,7 @@ import {Component} from 'react'
 import articles from '../data'
 import ArticlesList from "./ArticlesList";
 import Time from './Time'
+import LogUser from "./LogUser/LogUser";
 
 class App extends Component {
 
@@ -15,7 +16,7 @@ class App extends Component {
                 </div>
 
                 <ArticlesList articles={articles}/>
-
+                <LogUser/>
             </div>
         );
     }
