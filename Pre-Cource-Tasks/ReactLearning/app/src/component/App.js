@@ -14,9 +14,9 @@ class App extends Component {
                 <div className="jumbotron" id="time-element">
                     <Time />
                 </div>
+                <LogUser/>
 
                 <ArticlesList articles={articles}/>
-                <LogUser/>
             </div>
         );
     }

@@ -1,6 +1,7 @@
 import {Component} from "react";
 import React from 'react';
 import LogUserStyle from './LogUserStyle.css'
+
 class LogUser extends Component {
 
     constructor() {
@@ -24,26 +25,23 @@ class LogUser extends Component {
                             <label htmlFor="password">Password</label>
                             <input placeholder="password" id="password" type="password" className="form-control"/>
                         </div>
-                        <input type="submit" className="btn btn-primary" onClick={this.onClicker} value="Submit"/>
+                        <input type="button" className="btn btn-primary" onClick={this.onClicker} value="Submit"/>
                     </form>
                 </div> : <h3>Thanks</h3>
         );
         return (
             <div>
-                {body}
                 <div id="snackbar">Some text some message..</div>
+                {body}
             </div>
         )
     }
 
 
-
-
     onClicker = () => {
-        if ()
-        this.setState({
-            status: false
-        });
+        // this.setState({
+        //     status: false
+        // });
         LogUser.startPush();
     };
 
@@ -51,20 +49,32 @@ class LogUser extends Component {
         let password = document.getElementById('password').value;
         let username = document.getElementById('username').value;
         let x = document.getElementById("snackbar");
-        let result = function(){
-          if (password.length < 4 || username.length < 5){
-              return 0;
-          }else if (password.length > 3 && password.length < 6){
-              return 1;
-          }else if (password.length > 5 && password.length < 15 && username.length > 5){
-              return 2;
-          }
+        let result = function () {
+            if (password.length < 4 || username.length < 5) {
+                return 0;
+            } else if (password.length > 3 && password.length < 6 && username.length > 5 && username.length < 15) {
+                return 1;
+            } else {
+                return 2;
+            }
         };
         switch (result()) {
-
+            case 0:
+                x.className = "show error";
+                x.innerHTML = "Not safety data";
+                break;
+            case 1:
+                x.className = "show warning";
+                x.innerHTML = "Ok but not so safety data";
+                break;
+            case 2:
+                x.className = "show success";
+                x.innerHTML = "Safety data";
+                break;
         }
-        x.className = "show";
-        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        setTimeout(function () {
+            x.className = x.className.replace("show", "");
+        }, 3000);
     }
 
 }
