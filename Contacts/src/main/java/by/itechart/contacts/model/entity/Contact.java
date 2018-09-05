@@ -22,6 +22,9 @@ public class Contact {
     private String surname;
     private String email;
 
+    public Contact() {
+    }
+
     public Contact(String name, String surname, String email) {
         this.name = name;
         this.surname = surname;
