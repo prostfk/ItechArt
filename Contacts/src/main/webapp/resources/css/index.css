@@ -216,11 +216,27 @@ footer{
 }
 
 .reg-form{
+    margin-top: 2%;
     background-color: #161616;
     padding: 2%;
+    align-content: center;
 }
 .red{
     color: red;
+}
+
+.reg-element{
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    padding-bottom:2%;
+}
+
+.reg-form select{
+    background-color: #161616;
+    color: silver;
+    border:none;
+    outline: 0 !important;
 }
 
 .reg-input{
@@ -228,6 +244,17 @@ footer{
     border-bottom: 1px solid red;
     background-color: #161616;
     color:white;
+    padding: 10px 5px;
     outline: 0 !important;
     box-sizing: border-box;
+}
+
+.reg-button{
+    background-color: #161616;
+    border: none;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
 }

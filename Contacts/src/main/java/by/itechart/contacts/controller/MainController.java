@@ -1,5 +1,6 @@
 package by.itechart.contacts.controller;
 
+import by.itechart.contacts.dao.ContactDao;
 import by.itechart.contacts.model.entity.Contact;
 import by.itechart.contacts.model.entity.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-//@Controller
+@Controller
 public class MainController {
 
+    private ContactDao contactDao;
 
+    public MainController() {
+        contactDao = new ContactDao();
+    }
+
+    @GetMapping(value = "/all")
+    @ResponseBody
+    public List findAll(){
+        return contactDao.findAll();
+    }
 
 
 

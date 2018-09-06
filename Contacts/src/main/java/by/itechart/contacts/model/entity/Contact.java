@@ -62,6 +62,20 @@ public class Contact {
         this.address = address;
     }
 
+    public Contact(Long id, String name, String surname, String patronymic, String date, Gender gender, String citizenship, FamilyStatus familyStatus, String site, String email, String job) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.patronymic = patronymic;
+        setDate(date);
+        this.gender = gender;
+        this.citizenship = citizenship;
+        this.familyStatus = familyStatus;
+        this.site = site;
+        this.email = email;
+        this.job = job;
+    }
+
     public String getDate() {
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.format(date);

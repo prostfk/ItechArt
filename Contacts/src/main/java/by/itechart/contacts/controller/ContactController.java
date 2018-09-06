@@ -23,6 +23,7 @@ public class ContactController {
 
     @PostMapping(value = "/registration")
     public String processRegistration(Contact contact){
+        contactDao.save(contact);//todo create validator
         return "redirect:/all";
     }
 
