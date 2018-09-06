@@ -3,19 +3,13 @@ package by.itechart.contacts.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import javax.persistence.*;
 
-@Entity
 @Data
 @AllArgsConstructor
 public class Document {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String path;
-    @OneToOne
-    @JoinColumn(name = "contact_id", referencedColumnName = "id")
     private Contact contact;
     private String name;
 
