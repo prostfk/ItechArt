@@ -1,21 +1,10 @@
 package by.itechart.contacts.controller;
 
-import by.itechart.contacts.dao.ContactDao;
-import by.itechart.contacts.model.entity.Contact;
-import by.itechart.contacts.model.entity.Document;
-import org.springframework.beans.factory.annotation.Autowired;
+import dao.ContactDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.List;
 
 @Controller

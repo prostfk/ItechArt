@@ -1,4 +1,4 @@
-package by.itechart.contacts.model.entity;
+package entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

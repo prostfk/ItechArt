@@ -1,7 +1,7 @@
 package by.itechart.contacts.controller;
 
-import by.itechart.contacts.dao.ContactDao;
-import by.itechart.contacts.model.entity.Contact;
+import dao.ContactDao;
+import entity.Contact;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

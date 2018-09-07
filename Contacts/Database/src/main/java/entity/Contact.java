@@ -1,4 +1,4 @@
-package by.itechart.contacts.model.entity;
+package entity;
 
 import lombok.Data;
 
@@ -8,8 +8,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Data
-//@AllArgsConstructor
-//@NoArgsConstructor
 public class Contact {
 
     private Long id;

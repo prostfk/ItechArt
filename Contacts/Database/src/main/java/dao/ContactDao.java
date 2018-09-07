@@ -1,9 +1,7 @@
-package by.itechart.contacts.dao;
-
-import by.itechart.contacts.model.entity.Address;
-import by.itechart.contacts.model.entity.Contact;
-import by.itechart.contacts.model.entity.FamilyStatus;
-import by.itechart.contacts.model.entity.Gender;
+package dao;
+import entity.Contact;
+import entity.FamilyStatus;
+import entity.Gender;
 
 import java.sql.ResultSet;
 import java.util.LinkedList;
@@ -44,6 +42,12 @@ public class ContactDao extends Dao<Contact> {
             System.err.println(e);
         }
         return contacts;
+    }
+
+    @Override
+    public void delete(Long id) {
+        //language=SQL
+        execute(String.format("DELETE * FROM contact WHERE id='%d'", id));
     }
 
 

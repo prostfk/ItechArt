@@ -1,7 +1,6 @@
-package by.itechart.contacts.dao;
+package dao;
 
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -46,5 +45,7 @@ public abstract class Dao<T> {
     public abstract void save(T t);
 
     public abstract List<T> findAll();
+
+    public abstract void delete(Long id);
 
 }
