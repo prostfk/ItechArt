@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+    <link rel="stylesheet" href="/resources/css/index.css">
+
+
+</head>
+<body>
+
+<div th:include="~{registration.html::navbar}"></div>
+
+<div class="container gap-bottom">
+
+    <form class="reg-form" onsubmit="return submitRegistration()" th:object="${contact}" th:action="'/edit/' + ${contact.id}" method="post">
+        <div class="reg-element">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" th:field="*{name}" placeholder="Name" class="reg-input">
+        </div>
+        <div class="reg-element">
+            <label for="surname">Surname</label>
+            <input type="text" id="surname" name="surname" th:field="*{surname}" placeholder="Surname" class="reg-input">
+        </div>
+        <div class="reg-element">
+            <label for="patronymic">Patronymic</label>
+            <input type="text" id="patronymic" name="patronymic" th:field="*{patronymic}" placeholder="Patronymic" class="reg-input">
+        </div>
+        <div class="reg-element">
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" placeholder="Date" value="2000-01-01" class="reg-input">
+        </div>
+        <div class="reg-element">
+            <label for="gender">Gender</label>
+            <select name="gender" id="gender">
+                <option th:each="gender : ${T(by.itechart.contacts.model.entity.Gender).values()}"
+                        th:value="${gender.name()}" th:text="${gender.name()}"></option>
+            </select>
+        </div>
+        <div class="reg-element">
+            <label for="citizenship">Citizenship</label>
+            <input type="text" id="citizenship" th:field="*{citizenship}" name="citizenship" placeholder="Citizenship" class="reg-input">
+        </div>
+        <div class="reg-element">
+            <label for="familyStatus">Family Status</label>
+            <select name="familyStatus" id="familyStatus">
+                <option th:each="status : ${T(by.itechart.contacts.model.entity.FamilyStatus).values()}"
+                        th:value="${status.name()}" th:text="${status.name()}"></option>
+            </select>
+        </div>
+        <div class="reg-element">
+            <label for="site">Site</label>
+            <input type="text" id="site" th:field="*{site}" name="site" placeholder="Site" class="reg-input">
+        </div>
+        <div class="reg-element">
+            <label for="email">Email</label>
+            <input type="email" id="email" th:field="*{email}" name="email" placeholder="Email" class="reg-input">
+        </div>
+        <div class="reg-element">
+            <label for="job">Job</label>
+            <input type="text" id="job" th:field="*{job}" name="job" placeholder="Job" class="reg-input">
+        </div>
+
+        <div class="reg-element">
+            <input type="submit" value="Submit" class="reg-button">
+        </div>
+
+    </form>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+<script src="/resources/js/index.js"></script>
+
+</body>
+</html>

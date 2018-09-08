@@ -1,4 +1,4 @@
-package entity;
+package by.itechart.contacts.model.entity;
 
 public enum FamilyStatus {
 

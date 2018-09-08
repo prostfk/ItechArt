@@ -27,7 +27,7 @@ public class ContactsApplication {
     public SpringResourceTemplateResolver thymeleafTemplateResolver() {
         SpringResourceTemplateResolver templateResolver
                 = new SpringResourceTemplateResolver();
-        templateResolver.setPrefix("/resources/templates");
+        templateResolver.setPrefix("/resources/views/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode("HTML5");
         return templateResolver;

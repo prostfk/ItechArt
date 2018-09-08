@@ -1,8 +1,11 @@
 package by.itechart.contacts.controller;
 
-import dao.ContactDao;
+import by.itechart.contacts.dao.ContactDao;
+import by.itechart.contacts.model.entity.Contact;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -22,8 +25,17 @@ public class MainController {
         return contactDao.findAll();
     }
 
+    @GetMapping (value = "/get/{id}")
+    @ResponseBody
+    public Contact getContact(@PathVariable("id")Long id){
+        return contactDao.findContactById(id);
+    }
 
-
+    @PutMapping(value = "/edit/{id}")
+    @ResponseBody
+    public Contact editContact(@PathVariable Long id, Contact contact){
+        return contactDao.update(id, contact);
+    }
 
 //    @PostMapping(value = "/upload/{id}")
 //    public String uploadPost(@PathVariable Long id, MultipartFile file){

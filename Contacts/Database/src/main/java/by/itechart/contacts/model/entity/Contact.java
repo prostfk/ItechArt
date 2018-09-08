@@ -1,4 +1,4 @@
-package entity;
+package by.itechart.contacts.model.entity;
 
 import lombok.Data;
 
@@ -87,19 +87,9 @@ public class Contact {
             e.printStackTrace();
         }
 
-
     }
 
-//    public enum Gender {
-//        Male,
-//        Female
-//    }
 
-//    public enum FamilyStatus {
-//        Single,
-//        Married,
-//        ActivelyLooking,
-//        InARelationShip
-//    }
+
 
 }

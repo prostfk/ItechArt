@@ -1,6 +1,6 @@
 package by.itechart.contacts.controller;
 
-import dao.ContactDao;
+import by.itechart.contacts.dao.ContactDao;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;

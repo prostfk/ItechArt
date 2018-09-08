@@ -15,7 +15,7 @@
     <description>ITechArt task</description>
 
     <!--<modules>-->
-        <!--<module>src/main/java/by/itechart/contacts/dao</module>-->
+        <!--<module>src/main/java/by/itechart/contacts/by.itechart.contacts.dao</module>-->
     <!--</modules>-->
 
     <parent>

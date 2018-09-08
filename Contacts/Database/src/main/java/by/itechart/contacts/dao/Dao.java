@@ -1,4 +1,4 @@
-package dao;
+package by.itechart.contacts.dao;
 
 import java.io.FileInputStream;
 import java.sql.Connection;
@@ -47,5 +47,8 @@ public abstract class Dao<T> {
     public abstract List<T> findAll();
 
     public abstract void delete(Long id);
+
+    public abstract T update(Long id, T t);
+
 
 }
