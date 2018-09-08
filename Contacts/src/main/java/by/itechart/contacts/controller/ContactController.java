@@ -2,12 +2,12 @@ package by.itechart.contacts.controller;
 
 import by.itechart.contacts.dao.ContactDao;
 import by.itechart.contacts.model.entity.Contact;
+import by.itechart.contacts.model.entity.ContactField;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class ContactController {
@@ -38,6 +38,12 @@ public class ContactController {
     @ResponseBody
     public Contact processEditing(@PathVariable Long id, Contact contact){
         return contactDao.update(id, contact);
+    }
+
+    @GetMapping(value = "/searchContact")
+    @ResponseBody
+    public List<Contact> searchContacts(@RequestParam("type")String type, @RequestParam("value") String value){
+        return contactDao.findContactsByFiled(ContactField.valueOf(type),value);
     }
 
 }

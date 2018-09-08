@@ -1,5 +1,6 @@
 package by.itechart.contacts.dao;
 import by.itechart.contacts.model.entity.Contact;
+import by.itechart.contacts.model.entity.ContactField;
 import by.itechart.contacts.model.entity.FamilyStatus;
 import by.itechart.contacts.model.entity.Gender;
 
@@ -77,6 +78,25 @@ public class ContactDao extends Dao<Contact> {
             System.err.println(e);
         }
         return null;
+    }
+
+    public List<Contact> findContactsByFiled(ContactField field, String value){
+        //language=SQL
+        ResultSet resultSet = executeQuery(String.format("SELECT * FROM contact WHERE %s LIKE '%%%s%%'", field.name(), value));
+        List<Contact> contacts = new LinkedList<>();
+        try{
+            while (resultSet.next()){
+                contacts.add(new Contact(
+                        resultSet.getLong("id"),resultSet.getString("name"),resultSet.getString("surname"),
+                        resultSet.getString("patronymic"),resultSet.getString("date_of_birth"),Gender.valueOf(resultSet.getString("gender")),
+                        resultSet.getString("citizenship"), FamilyStatus.valueOf(resultSet.getString("family_status")),resultSet.getString("site"),
+                        resultSet.getString("email"),resultSet.getString("job"),null
+                ));
+            }
+        }catch (Exception e){
+            System.err.println(e);
+        }
+        return contacts;
     }
 
 
