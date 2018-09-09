@@ -1,6 +1,7 @@
 package by.itechart.contacts.controller;
 
 import by.itechart.contacts.dao.ContactDao;
+import by.itechart.contacts.model.entity.Address;
 import by.itechart.contacts.model.entity.Contact;
 import by.itechart.contacts.model.entity.ContactField;
 import org.springframework.stereotype.Controller;
@@ -45,5 +46,8 @@ public class ContactController {
     public List<Contact> searchContacts(@RequestParam("type")String type, @RequestParam("value") String value){
         return contactDao.findContactsByFiled(ContactField.valueOf(type),value);
     }
+
+
+
 
 }

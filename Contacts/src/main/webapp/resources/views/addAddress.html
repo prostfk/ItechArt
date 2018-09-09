@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add address</title>
+    <link rel="stylesheet" href="/resources/css/index.css">
+</head>
+<body>
+
+
+<div th:include="~{registration.html::navbar}"></div>
+
+<div class="container gap-bottom">
+
+    <form class="reg-form" th:object="${address}" th:action="'/addAddress/' + ${id}" method="post">
+        <div class="reg-element">
+            <label for="country">Country</label>
+            <input type="text" id="country" name="country" th:field="*{country}" placeholder="Country" class="reg-input">
+        </div>
+        <div class="reg-element">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" th:field="*{city}" placeholder="City" class="reg-input">
+        </div>
+        <div class="reg-element">
+            <label for="street">Street</label>
+            <input type="text" id="street" name="street" th:field="*{street}" placeholder="Street" class="reg-input">
+        </div>
+        <div class="reg-element">
+            <label for="house">House</label>
+            <input type="number" id="house" name="house" th:field="*{house}" placeholder="House" class="reg-input">
+        </div>
+        <div class="reg-element">
+            <label for="flat">Flat</label>
+            <input type="number" id="flat" name="flat" th:field="*{flat}" placeholder="Flat" class="reg-input">
+        </div>
+        <div class="reg-element">
+            <label for="postIndex">Post Index</label>
+            <input type="number" id="postIndex" name="postIndex" th:field="*{postIndex}" placeholder="Post Index" class="reg-input">
+        </div>
+
+
+
+        <div class="reg-element">
+            <input type="submit" value="Submit" class="reg-button">
+        </div>
+
+    </form>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+<script src="/resources/js/index.js"></script>
+
+
+</body>
+</html>

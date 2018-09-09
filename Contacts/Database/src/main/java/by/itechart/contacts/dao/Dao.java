@@ -1,5 +1,7 @@
 package by.itechart.contacts.dao;
 
+import org.apache.log4j.Logger;
+
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,6 +13,7 @@ import java.util.Properties;
 public abstract class Dao<T> {
 
     protected Connection connection;
+    private static final Logger LOGGER = Logger.getLogger(Dao.class);
 
     public Dao() {
         Properties properties = new Properties();
@@ -22,6 +25,7 @@ public abstract class Dao<T> {
             connection = DriverManager.getConnection(url,username,password);
         } catch (Exception e) {
             e.printStackTrace();
+            LOGGER.error("Connection error: " + e.getMessage());
         }
     }
 
@@ -30,6 +34,7 @@ public abstract class Dao<T> {
             connection.createStatement().execute(sql);
         } catch (SQLException e) {
             e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
     }
 
@@ -38,6 +43,7 @@ public abstract class Dao<T> {
             return connection.createStatement().executeQuery(sql);
         } catch (SQLException e) {
             e.printStackTrace();
+            LOGGER.error(e.getMessage());
             return null;
         }
     }

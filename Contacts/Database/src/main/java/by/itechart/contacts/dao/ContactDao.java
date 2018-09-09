@@ -1,8 +1,6 @@
 package by.itechart.contacts.dao;
-import by.itechart.contacts.model.entity.Contact;
-import by.itechart.contacts.model.entity.ContactField;
-import by.itechart.contacts.model.entity.FamilyStatus;
-import by.itechart.contacts.model.entity.Gender;
+import by.itechart.contacts.model.entity.*;
+import org.apache.log4j.Logger;
 
 import java.sql.ResultSet;
 import java.util.LinkedList;
@@ -10,6 +8,7 @@ import java.util.List;
 
 public class ContactDao extends Dao<Contact> {
 
+    private static final Logger LOGGER = Logger.getLogger(ContactDao.class);
 
     @Override
     public void save(Contact contact) {
@@ -38,9 +37,9 @@ public class ContactDao extends Dao<Contact> {
                         resultSet.getString("email"),resultSet.getString("job")
                 ));
             }
-
         }catch (Exception e){
-            System.err.println(e);
+            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
         return contacts;
     }
@@ -54,10 +53,10 @@ public class ContactDao extends Dao<Contact> {
     @Override
     public Contact update(Long id, Contact contact) {
         //language=SQL
-        execute(String.format("UPDATE contact SET name='%s', surname='%s', patronymic='%s', date_of_birth='%s', gender='%s', citizenship='%s', family_status='%s', site='%s',email='%s',job='%s' WHERE id='%d'",
+        execute(String.format("UPDATE contact SET name='%s', surname='%s', patronymic='%s', date_of_birth='%s', gender='%s', citizenship='%s', family_status='%s', site='%s',email='%s',job='%s',address_id='%d' WHERE id='%d'",
                 contact.getName(), contact.getSurname(), contact.getPatronymic(),contact.getDate(), contact.getGender(),
                 contact.getCitizenship(), contact.getFamilyStatus(), contact.getSite(), contact.getEmail(),
-                contact.getJob(), id));
+                contact.getJob(), contact.getAddress().getId(), id));
         return contact;
 
     }
@@ -75,7 +74,8 @@ public class ContactDao extends Dao<Contact> {
                 );
             }
         }catch (Exception e){
-            System.err.println(e);
+            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
         return null;
     }
@@ -94,9 +94,15 @@ public class ContactDao extends Dao<Contact> {
                 ));
             }
         }catch (Exception e){
-            System.err.println(e);
+            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
         return contacts;
+    }
+
+    public void addAddressToContact(Long contactId, Long addressId){
+        //language=SQL
+        execute(String.format("UPDATE contact SET address_id='%d' WHERE id='%d'", addressId, contactId));
     }
 
 

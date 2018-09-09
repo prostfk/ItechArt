@@ -50,7 +50,7 @@ public class MainController {
 //            stream.close();
 //            documentRepository.save(new Document(
 //                    "/resources/pics/" + file.getOriginalFilename(),
-//                    contactRepository.findContactById(id),
+//                    contactRepository.findAddressById(id),
 //                    file.getOriginalFilename()
 //            ));
 //            return "redirect:/docs";
