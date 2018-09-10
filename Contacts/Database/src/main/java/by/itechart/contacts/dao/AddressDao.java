@@ -39,7 +39,7 @@ public class AddressDao extends Dao<Address> {
     @Override
     public void delete(Long id) {
         //language=SQL
-        execute(String.format("DELETE * FROM address WHERE id='%d'", id));
+        execute(String.format("DELETE FROM address WHERE id='%d'", id));
     }
 
     @Override

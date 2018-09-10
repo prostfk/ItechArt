@@ -65,7 +65,7 @@ p, h1{
 
 .container{
   width: 100%;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 .container div{
   display: table;
@@ -257,4 +257,8 @@ footer{
     text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;
+}
+.reg-button :hover{
+    background-color: black;
+    outline: 0 !important;
 }

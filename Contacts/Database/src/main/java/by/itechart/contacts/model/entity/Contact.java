@@ -21,7 +21,7 @@ public class Contact {
     private String site;
     private String email;
     private String job;
-    private Address address;
+    private Long address;
 
     public Contact() {
     }
@@ -31,7 +31,7 @@ public class Contact {
         this.surname = surname;
     }
 
-    public Contact(String name, String surname, String patronymic, String date, Gender gender, String citizenship, FamilyStatus familyStatus, String site, String email, String job, Address address) {
+    public Contact(String name, String surname, String patronymic, String date, Gender gender, String citizenship, FamilyStatus familyStatus, String site, String email, String job, Long address) {
         this.name = name;
         this.surname = surname;
         this.patronymic = patronymic;
@@ -45,7 +45,7 @@ public class Contact {
         this.address = address;
     }
 
-    public Contact(Long id,String name, String surname, String patronymic, String date, Gender gender, String citizenship, FamilyStatus familyStatus, String site, String email, String job, Address address) {
+    public Contact(Long id,String name, String surname, String patronymic, String date, Gender gender, String citizenship, FamilyStatus familyStatus, String site, String email, String job, Long address) {
         this.id = id;
         this.name = name;
         this.surname = surname;

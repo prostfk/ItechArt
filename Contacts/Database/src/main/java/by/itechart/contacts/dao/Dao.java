@@ -33,8 +33,10 @@ public abstract class Dao<T> {
         try {
             connection.createStatement().execute(sql);
         } catch (SQLException e) {
+            System.out.println(String.format("Exception during '%s'", sql));
             e.printStackTrace();
             LOGGER.error(e.getMessage());
+            LOGGER.error(String.format("Exception during '%s'", sql));
         }
     }
 
@@ -42,8 +44,10 @@ public abstract class Dao<T> {
         try {
             return connection.createStatement().executeQuery(sql);
         } catch (SQLException e) {
+            System.out.println(String.format("Exception during '%s'", sql));
             e.printStackTrace();
             LOGGER.error(e.getMessage());
+            LOGGER.error(String.format("Exception during '%s'", sql));
             return null;
         }
     }

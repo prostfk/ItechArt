@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contacts</title>
+    <link rel="stylesheet" href="/resources/css/index.css">
+    <style>
+        table{
+            align-items: center;
+            background-color: #161616;
+            margin-left:auto;
+            margin-right:auto;
+            margin-top: 2%;
+        }
+        table th{
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div th:include="~{registration.html::navbar}"></div>
+
+<div class="container">
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Patronymic</th>
+            <th>DateOfBirth</th>
+            <th>Gender</th>
+            <th>Citizenship</th>
+            <th>FamilyStatus</th>
+            <th>Site</th>
+            <th>Email</th>
+            <th>Job</th>
+            <th>Address</th>
+            <th>Delete</th>
+            <th>Edit</th>
+        </tr>
+        <tr th:each="contact : ${contacts}">
+            <th th:text="${contact.name}"></th>
+            <th th:text="${contact.surname}"></th>
+            <th th:text="${contact.patronymic}"></th>
+            <th th:text="${contact.date}"></th>
+            <th th:text="${contact.gender}"></th>
+            <th th:text="${contact.citizenship}"></th>
+            <th th:text="${contact.familyStatus}"></th>
+            <th th:text="${contact.site}"></th>
+            <th th:text="${contact.email}"></th>
+            <th th:text="${contact.job}"></th>
+            <th th:text="${contact.address}!=0 ? 'yes' : 'no'"></th>
+            <th><a th:href="'/deleteContact/' + ${contact.id}" style="color: white;text-decoration: none">Delete</a></th>
+            <th><a th:href="'/editContact/' + ${contact.id}" style="color: white;text-decoration: none">Edit</a></th>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

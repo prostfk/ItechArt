@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error page</title>
+    <link rel="stylesheet" href="/resources/css/index.css">
+</head>
+<body>
+
+<div th:include="~{registration.html::navbar}"></div>
+
+<div class="reg-form" style="margin: 2% 30% 2% 30%;overflow: hidden;">
+    <h1>An error occurred</h1>
+    <h1 th:text="${message}"></h1>
+</div>
+
+
+</body>
+</html>

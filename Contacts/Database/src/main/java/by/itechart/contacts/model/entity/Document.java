@@ -10,15 +10,15 @@ public class Document {
 
     private Long id;
     private String path;
-    private Contact contact;
+    private Long contactId;
     private String name;
 
     public Document() {
     }
 
-    public Document(String path, Contact contact, String name) {
+    public Document(String path, Long contactId, String name) {
         this.path = path;
-        this.contact = contact;
+        this.contactId = contactId;
         this.name = name;
     }
 
@@ -46,11 +46,11 @@ public class Document {
         this.path = path;
     }
 
-    public Contact getContact() {
-        return contact;
+    public Long getContactId() {
+        return contactId;
     }
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
+    public void setContactId(Long contactId) {
+        this.contactId = contactId;
     }
 }

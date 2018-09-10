@@ -3,39 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Add contact</title>
-    <style>
-        .form-input{
-            border: none;
-            border-bottom: 1px solid red;
-            background-color: white;
-            color:black;
-            outline: 0 !important;
-            box-sizing: border-box;
-        }
-        .form-button{
-            border: none;
-            /*border-bottom: 1px solid red;*/
-            background-color: #161616;
-            color:white;
-            outline: 0 !important;
-            box-sizing: border-box;
-        }
-        .form-button :hover{
-            background-color: black;
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
-            outline: 0 !important;
-        }
-        .container{
-            width: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="/resources/css/index.css">
 
 </head>
 <body>
 
 <div class="container">
 
-    <div class="container gap-bottom">
+    <div class="gap-bottom">
 
         <form class="reg-form" onsubmit="return submitRegistration()" th:object="${contact}" th:action="'/edit/' + ${contact.id}" method="post">
             <div class="reg-element">

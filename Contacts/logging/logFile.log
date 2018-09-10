@@ -1,0 +1,4 @@
+2018-09-10 20:35:18 ERROR Dao:37 - Cannot add or update a child row: a foreign key constraint fails (`Contact`.`document`, CONSTRAINT `document_ibfk_1` FOREIGN KEY (`contact_id`) REFERENCES `contact` (`id`))
+2018-09-10 20:39:30 ERROR Dao:37 - Cannot add or update a child row: a foreign key constraint fails (`Contact`.`document`, CONSTRAINT `document_ibfk_1` FOREIGN KEY (`contact_id`) REFERENCES `contact` (`id`))
+2018-09-10 20:41:27 ERROR Dao:38 - Cannot add or update a child row: a foreign key constraint fails (`Contact`.`document`, CONSTRAINT `document_ibfk_1` FOREIGN KEY (`contact_id`) REFERENCES `contact` (`id`))
+2018-09-10 20:41:27 ERROR Dao:39 - Exception during 'INSERT INTO document(path, contact_id, name) VALUES ('/resources/pics/python-yamusic-master.zip','1','python-yamusic-master.zip')'

@@ -30,19 +30,26 @@ public class ContactController {
         return "redirect:/all";
     }
 
-    @GetMapping(value = "/edit/{id}")
+    @GetMapping(value = "/editContact/{id}")
     public ModelAndView edit(@PathVariable Long id){
         return new ModelAndView("editContact", "contact", contactDao.findContactById(id));
     }
 
-    @PostMapping(value = "/edit/{id}")
+    @PostMapping(value = "/editContact/{id}")
     @ResponseBody
     public Contact processEditing(@PathVariable Long id, Contact contact){
         return contactDao.update(id, contact);
     }
 
+    @GetMapping(value = "/allContacts")
+    public ModelAndView findContacts(){
+        return new ModelAndView("contactViewer", "contacts", contactDao.findAll());
+    }
 
-
+    @GetMapping(value = "/allContacts/{id}")
+    public ModelAndView managePages(@PathVariable Long id){
+        return new ModelAndView("contactViewer" , "contacts", contactDao.findContactsFromIdAndWithLimit(id * 2, 2L));
+    }
 
 
 

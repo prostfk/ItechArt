@@ -19,7 +19,7 @@ public class RestContactController {
         contactDao = new ContactDao();
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/deleteContact/{id}")
     public String deleteContact(@PathVariable Long id){
         contactDao.delete(id);
         return JSONObject.quote("Status: ok");
