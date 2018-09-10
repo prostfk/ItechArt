@@ -41,11 +41,7 @@ public class ContactController {
         return contactDao.update(id, contact);
     }
 
-    @GetMapping(value = "/searchContact")
-    @ResponseBody
-    public List<Contact> searchContacts(@RequestParam("type")String type, @RequestParam("value") String value){
-        return contactDao.findContactsByFiled(ContactField.valueOf(type),value);
-    }
+
 
 
 

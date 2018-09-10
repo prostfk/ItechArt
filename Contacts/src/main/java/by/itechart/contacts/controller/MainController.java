@@ -3,10 +3,8 @@ package by.itechart.contacts.controller;
 import by.itechart.contacts.dao.ContactDao;
 import by.itechart.contacts.model.entity.Contact;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -19,22 +17,26 @@ public class MainController {
         contactDao = new ContactDao();
     }
 
-    @GetMapping(value = "/all")
-    @ResponseBody
-    public List findAll(){
-        return contactDao.findAll();
+    @GetMapping(value = "/addContact")
+    public ModelAndView addNewContact(){
+        return new ModelAndView("addContact", "contact", new Contact());
     }
 
-    @GetMapping (value = "/get/{id}")
-    @ResponseBody
-    public Contact getContact(@PathVariable("id")Long id){
-        return contactDao.findContactById(id);
+    @PostMapping(value = "/addContact")
+    public String processAdding(Contact contact){
+        contactDao.save(contact);
+        return "redirect:/";
     }
 
     @PutMapping(value = "/edit/{id}")
     @ResponseBody
     public Contact editContact(@PathVariable Long id, Contact contact){
         return contactDao.update(id, contact);
+    }
+
+    @GetMapping(value = "/upload/{id}")
+    public ModelAndView uploadDocument(@PathVariable Long id){
+        return new ModelAndView("uploadDocument", "id", id);
     }
 
 //    @PostMapping(value = "/upload/{id}")
