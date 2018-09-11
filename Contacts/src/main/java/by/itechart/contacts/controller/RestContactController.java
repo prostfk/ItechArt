@@ -4,9 +4,11 @@ import by.itechart.contacts.dao.ContactDao;
 import by.itechart.contacts.model.entity.Contact;
 import by.itechart.contacts.model.entity.ContactField;
 import org.json.JSONObject;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RequestMapping(value = "/rest")
@@ -35,10 +37,20 @@ public class RestContactController {
         return contactDao.findContactsByFiled(ContactField.valueOf(type),value);
     }
 
-    @GetMapping(value = "/allContacts")
+    @GetMapping(value = "/allContacts", produces = MediaType.APPLICATION_JSON_VALUE)
     public List findAll(){
         return contactDao.findAll();
     }
+
+    @GetMapping(value = "/allContacts")
+    public List<Contact> findContactsFromTo( HttpServletRequest request){
+        System.out.println(request.getHeader("referer"));
+        String[] referers = request.getHeader("referer").split("/");
+        long from = Long.parseLong(referers[referers.length-1]);
+        return contactDao.findContactsFromIdAndWithLimit(from, 3L);
+    }
+
+
 
 
 

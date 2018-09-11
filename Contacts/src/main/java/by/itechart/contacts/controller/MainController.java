@@ -4,11 +4,13 @@ import by.itechart.contacts.dao.ContactDao;
 import by.itechart.contacts.dao.DocumentDao;
 import by.itechart.contacts.model.entity.Contact;
 import by.itechart.contacts.model.entity.Document;
+import by.itechart.contacts.model.util.EmailUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -78,6 +80,24 @@ public class MainController {
         return "redirect:/all";
     }
 
+    @GetMapping(value = "/sendEmail")
+    public String sendEmailPage(){
+        return "sendEmail";
+    }
+
+    @PostMapping(value = "/sendEmail")
+    @ResponseBody
+    public String sendEmail(@RequestParam String subject, @RequestParam String message, @RequestParam String email){
+        EmailUtil.sendMail(email, subject, message);
+        return String.format("%s/%s/%s",email,subject,message);
+    }
+
+    @GetMapping(value = "/getNumberOfPage")
+    @ResponseBody
+    public String number(HttpServletRequest request){
+        char[] chars = request.getRequestURL().toString().toCharArray();
+        return chars[chars.length-1] + "";
+    }
 
 
 }

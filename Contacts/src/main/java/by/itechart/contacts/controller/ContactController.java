@@ -41,14 +41,15 @@ public class ContactController {
         return contactDao.update(id, contact);
     }
 
-    @GetMapping(value = "/allContacts")
-    public ModelAndView findContacts(){
-        return new ModelAndView("contactViewer", "contacts", contactDao.findAll());
+    @GetMapping(value = "/allContacts/")
+    public String checkAll(){
+        return "redirect:/allContacts/1";
     }
 
     @GetMapping(value = "/allContacts/{id}")
-    public ModelAndView managePages(@PathVariable Long id){
-        return new ModelAndView("contactViewer" , "contacts", contactDao.findContactsFromIdAndWithLimit(id * 2, 2L));
+    public String managePages(@PathVariable Long id){
+        return "restContactViewer";
+//        return new ModelAndView("contactViewer" , "contacts", contactDao.findContactsFromIdAndWithLimit(id * 2, 2L));
     }
 
 

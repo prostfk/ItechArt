@@ -3,3 +3,4 @@ function submitRegistration() {
     var surname = document.getElementById('surname').value;
     return name.length > 2 && surname.length > 3;
 }
+
