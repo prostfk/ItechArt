@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div th:include="~{registration.html::navbar}"></div>
+<div th:include="~{navbar.html::navbar}"></div>
 
 <div class="container gap-bottom">
 
@@ -59,6 +59,28 @@
         <div class="reg-element">
             <label for="job">Job</label>
             <input type="text" id="job" th:field="*{job}" name="job" placeholder="Job" class="reg-input">
+        </div>
+
+        <div th:object="${phone}">
+            <div class="reg-element">
+                <label for="number">Number</label>
+                <input type="tel" width="40px" pattern="+[0-9]{3}" id="countryCode" th:field="*{countryCode}" name="countryCode" placeholder="Country code" class="reg-input">
+            </div>
+            <div class="reg-element">
+                <input type="tel" pattern="[0-9]{9}" id="number" th:field="*{number}" name="number" placeholder="Number" class="reg-input">
+            </div>
+            <div class="reg-element">
+                <label for="type">Type</label>
+                <select name="type" id="type" th:field="*{type}">
+                    <option value="mobile">Mobile</option>
+                    <option value="home">Home</option>
+                    <option value="work">Work</option>
+                </select>
+            </div>
+            <div class="reg-element">
+                <label for="comment">Comment</label>
+                <input type="text" id="comment" th:field="*{comment}" name="comment" placeholder="Comment" class="reg-input">
+            </div>
         </div>
 
         <div class="reg-element">

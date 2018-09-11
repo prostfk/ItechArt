@@ -52,13 +52,26 @@ public class ContactController {
 
     @GetMapping(value = "/editContact/{id}")
     public ModelAndView edit(@PathVariable Long id){
-        return new ModelAndView("editContact", "contact", contactDao.findContactById(id));
+        Contact contactById = contactDao.findContactById(id);
+        ModelAndView modelAndView = new ModelAndView("editContact", "contact", contactDao.findContactById(id));
+        Phone phoneByContactId = phoneDao.findPhoneByContactId(contactById.getId());
+        if (phoneByContactId == null){
+            phoneByContactId = new Phone();
+        }
+        System.out.println(phoneByContactId.getId());
+        modelAndView.addObject("phone", phoneByContactId);
+        return modelAndView;
     }
 
-    @PostMapping(value = "/editContact/{id}")
+    @PostMapping(value = "/editContact/{contactId}")
     @ResponseBody
-    public Contact processEditing(@PathVariable Long id, Contact contact){
-        return contactDao.update(id, contact);
+    public Contact processEditing(@PathVariable Long contactId, Contact contact, Phone phone){
+        if (phone.getId()!=null){
+            phoneDao.update(phone.getId(),phone);
+        }else{
+            phoneDao.save(phone);
+        }
+        return contactDao.update(contactId, contact);
     }
 
     @GetMapping(value = "/allContacts/")

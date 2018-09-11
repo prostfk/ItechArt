@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div th:include="~{registration.html :: navbar}"></div>
+<div th:include="~{navbar.html :: navbar}"></div>
 
 <form class="reg-form" th:action="'/upload/' + ${id}" enctype="multipart/form-data" method="post">
     <div class="reg-element" style="margin: 2% 30% 2% 30%;overflow: hidden;">

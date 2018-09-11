@@ -38,10 +38,17 @@ public class ContactDao extends Dao<Contact> {
     @Override
     public Contact update(Long id, Contact contact) {
         //language=SQL
-        execute(String.format("UPDATE contact SET name='%s', surname='%s', patronymic='%s', date_of_birth='%s', gender='%s', citizenship='%s', family_status='%s', site='%s',email='%s',job='%s',address_id='%d' WHERE id='%d'",
-                contact.getName(), contact.getSurname(), contact.getPatronymic(),contact.getDate(), contact.getGender(),
-                contact.getCitizenship(), contact.getFamilyStatus(), contact.getSite(), contact.getEmail(),
-                contact.getJob(), contact.getAddress(), id));
+        if (contact.getAddress()!=null){
+            execute(String.format("UPDATE contact SET name='%s', surname='%s', patronymic='%s', date_of_birth='%s', gender='%s', citizenship='%s', family_status='%s', site='%s',email='%s',job='%s',address_id='%s' WHERE id='%d'",
+                    contact.getName(), contact.getSurname(), contact.getPatronymic(),contact.getDate(), contact.getGender(),
+                    contact.getCitizenship(), contact.getFamilyStatus(), contact.getSite(), contact.getEmail(),
+                    contact.getJob(), contact.getAddress(), id));
+        }else{
+            execute(String.format("UPDATE contact SET name='%s', surname='%s', patronymic='%s', date_of_birth='%s', gender='%s', citizenship='%s', family_status='%s', site='%s',email='%s',job='%s' WHERE id='%d'",
+                    contact.getName(), contact.getSurname(), contact.getPatronymic(),contact.getDate(), contact.getGender(),
+                    contact.getCitizenship(), contact.getFamilyStatus(), contact.getSite(), contact.getEmail(),
+                    contact.getJob(), id));
+        }
         return contact;
 
     }

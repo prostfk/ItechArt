@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<div th:include="~{navbar.html::navbar}"></div>
+
 <div class="container">
 
     <div class="gap-bottom">
@@ -66,7 +68,7 @@
                     <input type="tel" width="40px" pattern="+[0-9]{3}" id="countryCode" th:field="*{countryCode}" name="countryCode" placeholder="Country code" class="reg-input">
                 </div>
                 <div class="reg-element">
-                    <input type="tel" pattern="[0-9]{10}" id="number" th:field="*{number}" name="number" placeholder="Number" class="reg-input">
+                    <input type="tel" pattern="[0-9]{9}" id="number" th:field="*{number}" name="number" placeholder="Number" class="reg-input">
                 </div>
                 <div class="reg-element">
                     <label for="type">Type</label>
@@ -80,7 +82,6 @@
                     <label for="comment">Comment</label>
                     <input type="text" id="comment" th:field="*{comment}" name="comment" placeholder="Comment" class="reg-input">
                 </div>
-
             </div>
 
             <div class="reg-element">
