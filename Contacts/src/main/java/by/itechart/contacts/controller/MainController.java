@@ -28,17 +28,6 @@ public class MainController {
         documentDao = new DocumentDao();
     }
 
-    @GetMapping(value = "/addContact")
-    public ModelAndView addNewContact(){
-        return new ModelAndView("addContact", "contact", new Contact());
-    }
-
-    @PostMapping(value = "/addContact")
-    public String processAdding(Contact contact){
-        contactDao.save(contact);
-        return "redirect:/";
-    }
-
     @PutMapping(value = "/editContact/{id}")
     @ResponseBody
     public Contact editContact(@PathVariable Long id, Contact contact){

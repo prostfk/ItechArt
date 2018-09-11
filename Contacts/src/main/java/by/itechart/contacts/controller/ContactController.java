@@ -1,9 +1,11 @@
 package by.itechart.contacts.controller;
 
 import by.itechart.contacts.dao.ContactDao;
+import by.itechart.contacts.dao.PhoneDao;
 import by.itechart.contacts.model.entity.Address;
 import by.itechart.contacts.model.entity.Contact;
 import by.itechart.contacts.model.entity.ContactField;
+import by.itechart.contacts.model.entity.Phone;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,8 +16,10 @@ import java.util.List;
 public class ContactController {
 
     private ContactDao contactDao;
+    private PhoneDao phoneDao;
 
     public ContactController() {
+        phoneDao = new PhoneDao();
         contactDao = new ContactDao();
     }
 
@@ -28,6 +32,22 @@ public class ContactController {
     public String processRegistration(Contact contact){
         contactDao.save(contact);//todo create validator
         return "redirect:/all";
+    }
+
+    @GetMapping(value = "/addContact")
+    public ModelAndView addNewContact(){
+        ModelAndView modelAndView = new ModelAndView("addContact", "contact", new Contact());
+        modelAndView.addObject("phone", new Phone());
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/addContact")
+    public String processAdding(Contact contact, Phone phone){
+        contactDao.save(contact);
+        Long lastId = contactDao.findLastId();
+        phone.setContactId(lastId);
+        phoneDao.save(phone);
+        return "redirect:/rest/allContacts/1";
     }
 
     @GetMapping(value = "/editContact/{id}")

@@ -100,4 +100,17 @@ public class ContactDao extends Dao<Contact> {
         return contacts;
     }
 
+    public Long findLastId(){
+        ResultSet resultSet = executeQuery("SELECT MAX(id) from contact");
+        try{
+            if (resultSet.next()){
+                return resultSet.getLong("MAX(id)");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            LOGGER.error(e.getMessage());
+        }
+        return 0L;
+    }
+
 }
