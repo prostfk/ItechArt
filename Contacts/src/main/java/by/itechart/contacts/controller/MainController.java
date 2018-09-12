@@ -88,5 +88,10 @@ public class MainController {
         return chars[chars.length-1] + "";
     }
 
+    @GetMapping(value = "/searchContact")
+    public String getSearchPage(){
+        return "searchForm";
+    }
+
 
 }
