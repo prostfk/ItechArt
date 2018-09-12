@@ -33,6 +33,7 @@ public class DocumentDao extends Dao<Document> {
             e.printStackTrace();
             LOGGER.error(e.getMessage());
         }
+        System.out.println(documents);
         return documents;
     }
 

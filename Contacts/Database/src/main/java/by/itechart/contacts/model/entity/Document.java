@@ -3,6 +3,8 @@ package by.itechart.contacts.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.Objects;
+
 
 @Data
 @AllArgsConstructor
@@ -53,4 +55,5 @@ public class Document {
     public void setContactId(Long contactId) {
         this.contactId = contactId;
     }
+
 }

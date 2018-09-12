@@ -1,6 +1,7 @@
 package by.itechart.contacts.controller;
 
 import by.itechart.contacts.dao.ContactDao;
+import by.itechart.contacts.dao.DocumentDao;
 import by.itechart.contacts.model.entity.Contact;
 import by.itechart.contacts.model.entity.ContactField;
 import org.json.JSONObject;
@@ -13,12 +14,14 @@ import java.util.List;
 
 @RequestMapping(value = "/rest")
 @RestController
-public class RestContactController {
+public class RestApiController {
 
     private ContactDao contactDao;
+    private DocumentDao documentDao;
 
-    public RestContactController() {
+    public RestApiController() {
         contactDao = new ContactDao();
+        documentDao = new DocumentDao();
     }
 
     @DeleteMapping(value = "/deleteContact/{id}")
@@ -48,6 +51,11 @@ public class RestContactController {
         String[] referers = request.getHeader("referer").split("/");
         long from = Long.parseLong(referers[referers.length-1]);
         return contactDao.findContactsFromIdAndWithLimit(from, 3L);
+    }
+
+    @GetMapping(value = "/documents")
+    public List findDocuments(){
+        return documentDao.findAll();
     }
 
 

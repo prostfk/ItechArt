@@ -93,5 +93,10 @@ public class MainController {
         return "searchForm";
     }
 
+    @GetMapping(value = "/documents")
+    public String getDocuments(){
+        return "documents";
+    }
+
 
 }

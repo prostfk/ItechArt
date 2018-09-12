@@ -4,6 +4,29 @@
     <meta charset="UTF-8">
     <title>Find contact</title>
     <link rel="stylesheet" href="/resources/css/index.css">
+    <style>
+        table {
+            align-items: center;
+            background-color: #161616;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 2%;
+        }
+
+        table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        a{
+            color: white;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
 
@@ -12,15 +35,14 @@
 <div class="container">
 
 
-    <div class="reg-form">
+    <div class="reg-form" style="margin-top: 2%">
         <div class="reg-element">
             <label for="parameter">Chose filed</label>
             <select name="parameter" id="parameter">
                 <option th:each="filed : ${T(by.itechart.contacts.model.entity.ContactField).values()}"
                         th:value="${filed.name()}" th:text="${filed.name()}"></option>
             </select>
-            <input type="text" id="value" placeholder="Value" class="reg-input">
-            <input type="submit" class="reg-button" value="Submit" onclick="search()">
+            <input type="text" id="value" placeholder="Value" class="reg-input" onkeyup="search()">
         </div>
     </div>
 
@@ -41,25 +63,38 @@
             <th>Delete</th>
             <th>Edit</th>
         </tr>
-        <tr id="content-pane"></tr>
+        <tbody id="content-pane">
+
+        </tbody>
+        <!--<tr id="content-pane"></tr>-->
     </table>
+
 
 </div>
 
 <script>
     function search() {
+        document.getElementById('table').style.display = "none";
+        document.getElementById('content-pane').innerText = "";
         var type = document.getElementById('parameter').value;
         var value = document.getElementById('value').value;
-        fetch('/rest/searchContact?type=' + type + "&value=" + value).then(function (response) {
-            response.json().then(function (data) {
-                if (data.length > 0) {
-                    document.getElementById('table').style.display = "table";
-                    for (var i = 0; i < data.length; i++) {
-                        document.getElementById("content-pane").insertAdjacentHTML('afterend', "<tr>" + "<th>" + data[i].name + "</th>" + "<th>" + data[i].surname + "</th>" + "<th>" + data[i].patronymic + "</th>" + "<th>" + data[i].date + "</th>" + "<th>" + data[i].gender + "</th>" + "<th>" + data[i].citizenship + "</th>" + "<th>" + data[i].familyStatus + "</th>" + "<th>" + data[i].site + "</th>" + "<th>" + data[i].email + "</th>" + "<th>" + data[i].job + "</th>" + "</tr>");
+        if (value!==""){
+            fetch('/rest/searchContact?type=' + type + "&value=" + value).then(function (response) {
+                response.json().then(function (data) {
+                    if (data.length > 0) {
+                        document.getElementById('table').style.display = "table";
+                        var str = "";
+                        for (var i = 0; i < data.length; i++) {
+                            console.log(data[i]);
+                            str += "<tr>" + "<td>" + data[i].name + "</td>" + "<td>" + data[i].surname + "</td>" + "<td>" + data[i].patronymic + "</td>" + "<td>" + data[i].date + "</td>" + "<td>" + data[i].gender + "</td>" + "<td>" + data[i].citizenship + "</td>" + "<td>" + data[i].familyStatus + "</td>" + "<td>" + data[i].site + "</td>" + "<td>" + data[i].email + "</td>" + "<td>" + data[i].job + "</td>" + "<td><a href='/address/" + data[i].address + "'>Address</a>" + "<td><a href='/deleteContact/" + data[i].id + "'>" + "Delete</a></td>" + "<td><a href='/editContact/" + data[i].id + "'>" + "Edit</a></td>"  + "  </td>" + "</tr>";
+                        }
+                        document.getElementById("content-pane").innerHTML = str;
                     }
-                }
+                })
             })
-        })
+        }else{
+            document.getElementById('content-pane').innerText = "";
+        }
     }
 </script>
 

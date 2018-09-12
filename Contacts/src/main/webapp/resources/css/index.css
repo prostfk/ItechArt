@@ -262,3 +262,25 @@ footer{
     background-color: black;
     outline: 0 !important;
 }
+
+table {
+    align-items: center;
+    background-color: #161616;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+}
+a{
+    color: white;
+    text-decoration: none;
+}

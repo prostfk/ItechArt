@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
 public class AddressController {
 
@@ -35,6 +37,12 @@ public class AddressController {
         Long addressId = addressDao.findLastId();
         contactDao.addAddressToContact(id,addressId);
         return address;
+    }
+
+    @GetMapping(value = "/address/{id}")
+    @ResponseBody
+    public Address findAddress(@PathVariable Long id){
+        return addressDao.findAddressById(id);
     }
 
     @GetMapping(value = "/check")

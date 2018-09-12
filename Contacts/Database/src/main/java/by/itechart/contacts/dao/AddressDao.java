@@ -53,11 +53,13 @@ public class AddressDao extends Dao<Address> {
         //language=SQL
         ResultSet resultSet = executeQuery(String.format("SELECT * FROM address WHERE id='%d'", id));
         try{
-            return new Address(
-                    resultSet.getLong("id"),resultSet.getString("country"),resultSet.getString("city"),
-                    resultSet.getString("street"),resultSet.getInt("house"),resultSet.getInt("flat"),
-                    resultSet.getInt("post_index")
-            );
+            if (resultSet.next()){
+                return new Address(
+                        resultSet.getLong("id"),resultSet.getString("country"),resultSet.getString("city"),
+                        resultSet.getString("street"),resultSet.getInt("house"),resultSet.getInt("flat"),
+                        resultSet.getInt("post_index")
+                );
+            }
         }catch (Exception e){
             e.printStackTrace();
             LOGGER.error(e.getMessage());
