@@ -11,7 +11,7 @@ public class Address {
     private String street;
     private Integer house;
     private Integer flat;
-    private Integer postIndex;
+    private Integer postIndex;//str
 
     public Address() {
     }

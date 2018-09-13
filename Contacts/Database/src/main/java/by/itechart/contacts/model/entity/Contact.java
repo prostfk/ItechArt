@@ -1,5 +1,6 @@
 package by.itechart.contacts.model.entity;
 
+
 import lombok.Data;
 
 import java.text.DateFormat;
@@ -21,7 +22,7 @@ public class Contact {
     private String site;
     private String email;
     private String job;
-    private Long address;
+    private Long address;//AddressId
 
     public Contact() {
     }

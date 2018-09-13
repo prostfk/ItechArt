@@ -3,10 +3,7 @@ package by.itechart.contacts.dao;
 import org.apache.log4j.Logger;
 
 import java.io.FileInputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 import java.util.Properties;
 
@@ -18,7 +15,7 @@ public abstract class Dao<T> {
     public Dao() {
         Properties properties = new Properties();
         try {
-            properties.load(new FileInputStream("src/main/resources/application.properties"));
+            properties.load(new FileInputStream("Database/src/main/resources/database.properties"));
             String url = properties.getProperty("spring.datasource.url");
             String username = properties.getProperty("spring.datasource.username");
             String password = properties.getProperty("spring.datasource.password");
@@ -51,6 +48,7 @@ public abstract class Dao<T> {
             return null;
         }
     }
+
 
     public abstract void save(T t);
 

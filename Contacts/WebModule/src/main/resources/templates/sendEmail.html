@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Send email</title>
+    <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+
+<div th:include="~{navbar.html :: navbar}"></div>
+
+<form action="/sendEmail" method="post">
+
+    <div class="reg-element">
+        <label for="email">Your friend email</label>
+        <input type="email" id="email" name="email" placeholder="Email" class="reg-input">
+    </div>
+
+    <div class="reg-element">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" placeholder="Subject" class="reg-input">
+    </div>
+    <div class="reg-element">
+        <label for="message">Message</label>
+        <input type="text" id="message" name="message" placeholder="Message" class="reg-input">
+    </div>
+    <input type="submit" value="Send" class="reg-button">
+
+</form>
+
+</body>
+</html>

@@ -1,11 +1,24 @@
-2018-09-10 20:35:18 ERROR Dao:37 - Cannot add or update a child row: a foreign key constraint fails (`Contact`.`document`, CONSTRAINT `document_ibfk_1` FOREIGN KEY (`contact_id`) REFERENCES `contact` (`id`))
-2018-09-10 20:39:30 ERROR Dao:37 - Cannot add or update a child row: a foreign key constraint fails (`Contact`.`document`, CONSTRAINT `document_ibfk_1` FOREIGN KEY (`contact_id`) REFERENCES `contact` (`id`))
-2018-09-10 20:41:27 ERROR Dao:38 - Cannot add or update a child row: a foreign key constraint fails (`Contact`.`document`, CONSTRAINT `document_ibfk_1` FOREIGN KEY (`contact_id`) REFERENCES `contact` (`id`))
-2018-09-10 20:41:27 ERROR Dao:39 - Exception during 'INSERT INTO document(path, contact_id, name) VALUES ('/resources/pics/python-yamusic-master.zip','1','python-yamusic-master.zip')'
-2018-09-11 21:29:28 ERROR Dao:38 - Incorrect integer value: 'null' for column 'address_id' at row 1
-2018-09-11 21:29:28 ERROR Dao:39 - Exception during 'UPDATE contact SET name='Roman', surname='Medvedev', patronymic='Sergeevich', date_of_birth='2000-01-01', gender='Male', citizenship='Belarus', family_status='Single', site='vk.com/prostrmk',email='prostrmk@gmail.com',job='none',address_id='null' WHERE id='2''
-2018-09-11 21:32:31 ERROR Dao:38 - Incorrect integer value: 'NULL' for column 'address_id' at row 1
-2018-09-11 21:32:31 ERROR Dao:39 - Exception during 'UPDATE contact SET name='Roman', surname='Medvedev', patronymic='Sergeevich', date_of_birth='2000-01-01', gender='Male', citizenship='Belarus', family_status='Single', site='vk.com/prostrmk',email='prostrmk@gmail.com',job='none',address_id='NULL' WHERE id='2''
-2018-09-11 21:33:47 ERROR Dao:38 - Incorrect integer value: '' for column 'address_id' at row 1
-2018-09-11 21:33:47 ERROR Dao:39 - Exception during 'UPDATE contact SET name='Roman', surname='Medvedev', patronymic='Sergeevich', date_of_birth='2000-01-01', gender='Male', citizenship='Belarus', family_status='Single', site='vk.com/prostrmk',email='prostrmk@gmail.com',job='none',address_id='' WHERE id='2''
-2018-09-12 22:15:45 ERROR AddressDao:63 - Before start of result set
+2018-09-13 14:21:17 ERROR Dao:25 - Connection error: src/main/resources/application.properties (No such file or directory)
+2018-09-13 14:21:17 ERROR Dao:25 - Connection error: src/main/resources/application.properties (No such file or directory)
+2018-09-13 14:21:17 ERROR Dao:25 - Connection error: src/main/resources/application.properties (No such file or directory)
+2018-09-13 14:21:17 ERROR Dao:25 - Connection error: src/main/resources/application.properties (No such file or directory)
+2018-09-13 14:21:17 ERROR Dao:25 - Connection error: src/main/resources/application.properties (No such file or directory)
+2018-09-13 14:21:17 ERROR Dao:25 - Connection error: src/main/resources/application.properties (No such file or directory)
+2018-09-13 14:21:17 ERROR Dao:25 - Connection error: src/main/resources/application.properties (No such file or directory)
+2018-09-13 14:21:17 ERROR Dao:25 - Connection error: src/main/resources/application.properties (No such file or directory)
+2018-09-13 14:23:17 ERROR Dao:25 - Connection error: src/main/resources/database.properties (No such file or directory)
+2018-09-13 14:23:17 ERROR Dao:25 - Connection error: src/main/resources/database.properties (No such file or directory)
+2018-09-13 14:23:17 ERROR Dao:25 - Connection error: src/main/resources/database.properties (No such file or directory)
+2018-09-13 14:23:17 ERROR Dao:25 - Connection error: src/main/resources/database.properties (No such file or directory)
+2018-09-13 14:23:17 ERROR Dao:25 - Connection error: src/main/resources/database.properties (No such file or directory)
+2018-09-13 14:23:17 ERROR Dao:25 - Connection error: src/main/resources/database.properties (No such file or directory)
+2018-09-13 14:23:17 ERROR Dao:25 - Connection error: src/main/resources/database.properties (No such file or directory)
+2018-09-13 14:23:17 ERROR Dao:25 - Connection error: src/main/resources/database.properties (No such file or directory)
+2018-09-13 14:23:58 ERROR Dao:25 - Connection error: No suitable driver found for jdbc:mysql://localhost:3306/Contact
+2018-09-13 14:23:58 ERROR Dao:25 - Connection error: No suitable driver found for jdbc:mysql://localhost:3306/Contact
+2018-09-13 14:23:58 ERROR Dao:25 - Connection error: No suitable driver found for jdbc:mysql://localhost:3306/Contact
+2018-09-13 14:23:58 ERROR Dao:25 - Connection error: No suitable driver found for jdbc:mysql://localhost:3306/Contact
+2018-09-13 14:23:58 ERROR Dao:25 - Connection error: No suitable driver found for jdbc:mysql://localhost:3306/Contact
+2018-09-13 14:23:58 ERROR Dao:25 - Connection error: No suitable driver found for jdbc:mysql://localhost:3306/Contact
+2018-09-13 14:23:58 ERROR Dao:25 - Connection error: No suitable driver found for jdbc:mysql://localhost:3306/Contact
+2018-09-13 14:23:58 ERROR Dao:25 - Connection error: No suitable driver found for jdbc:mysql://localhost:3306/Contact

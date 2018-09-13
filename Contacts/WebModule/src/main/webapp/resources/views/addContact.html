@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add contact</title>
+    <link rel="stylesheet" href="/resources/css/index.css">
+
+</head>
+<body>
+
+<template></template>
+
+<div th:include="~{navbar.html::navbar}"></div>
+
+<div class="container">
+
+    <div class="gap-bottom">
+
+        <form class="reg-form" onsubmit="return submitRegistration()" th:object="${contact}" th:action="'/addContact/'" method="post">
+            <div class="reg-element">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" th:field="*{name}" placeholder="Name" class="reg-input">
+            </div>
+            <div class="reg-element">
+                <label for="surname">Surname</label>
+                <input type="text" id="surname" name="surname" th:field="*{surname}" placeholder="Surname" class="reg-input">
+            </div>
+            <div class="reg-element">
+                <label for="patronymic">Patronymic</label>
+                <input type="text" id="patronymic" name="patronymic" th:field="*{patronymic}" placeholder="Patronymic" class="reg-input">
+            </div>
+            <div class="reg-element">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" placeholder="Date" value="2000-01-01" class="reg-input">
+            </div>
+            <div class="reg-element">
+                <label for="gender">Gender</label>
+                <select name="gender" id="gender">
+                    <option th:each="gender : ${T(by.itechart.contacts.model.entity.Gender).values()}"
+                            th:value="${gender.name()}" th:text="${gender.name()}"></option>
+                </select>
+            </div>
+            <div class="reg-element">
+                <label for="citizenship">Citizenship</label>
+                <input type="text" id="citizenship" th:field="*{citizenship}" name="citizenship" placeholder="Citizenship" class="reg-input">
+            </div>
+            <div class="reg-element">
+                <label for="familyStatus">Family Status</label>
+                <select name="familyStatus" id="familyStatus">
+                    <option th:each="status : ${T(by.itechart.contacts.model.entity.FamilyStatus).values()}"
+                            th:value="${status.name()}" th:text="${status.name()}"></option>
+                </select>
+            </div>
+            <div class="reg-element">
+                <label for="site">Site</label>
+                <input type="text" id="site" th:field="*{site}" name="site" placeholder="Site" class="reg-input">
+            </div>
+            <div class="reg-element">
+                <label for="email">Email</label>
+                <input type="email" id="email" th:field="*{email}" name="email" placeholder="Email" class="reg-input">
+            </div>
+            <div class="reg-element">
+                <label for="job">Job</label>
+                <input type="text" id="job" th:field="*{job}" name="job" placeholder="Job" class="reg-input">
+            </div>
+
+            <div th:object="${phone}">
+                <div class="reg-element">
+                    <label for="number">Number</label>
+                    <input type="tel" width="40px" pattern="+[0-9]{3}" id="countryCode" th:field="*{countryCode}" name="countryCode" placeholder="Country code" class="reg-input">
+                </div>
+                <div class="reg-element">
+                    <input type="tel" pattern="[0-9]{9}" id="number" th:field="*{number}" name="number" placeholder="Number" class="reg-input">
+                </div>
+                <div class="reg-element">
+                    <label for="type">Type</label>
+                    <select name="type" id="type" th:field="*{type}">
+                        <option value="mobile">Mobile</option>
+                        <option value="home">Home</option>
+                        <option value="work">Work</option>
+                    </select>
+                </div>
+                <div class="reg-element">
+                    <label for="comment">Comment</label>
+                    <input type="text" id="comment" th:field="*{comment}" name="comment" placeholder="Comment" class="reg-input">
+                </div>
+            </div>
+
+            <div class="reg-element">
+                <input type="submit" value="Submit" class="reg-button">
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

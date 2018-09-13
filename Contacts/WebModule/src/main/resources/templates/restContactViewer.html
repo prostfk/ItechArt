@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contacts</title>
+    <link rel="stylesheet" href="/index.css">
+    <style>
+        table {
+            align-items: center;
+            background-color: #161616;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 2%;
+        }
+
+        table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div th:include="~{navbar.html::navbar}"></div>
+
+<div>
+
+    <button class="reg-button" onclick="click()">Click</button>
+
+    <table id="table">
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Patronymic</th>
+            <th>DateOfBirth</th>
+            <th>Gender</th>
+            <th>Citizenship</th>
+            <th>FamilyStatus</th>
+            <th>Site</th>
+            <th>Email</th>
+            <th>Job</th>
+            <th>Address</th>
+            <th>Delete</th>
+            <th>Edit</th>
+        </tr>
+        <tr id="content-pane"></tr>
+
+    </table>
+
+
+</div>
+
+
+<script>
+    onload = function loadContacts() {
+    fetch('/rest/allContacts').then(function (response) {
+        response.json()
+            .then(function (data) {
+                console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    document.getElementById("content-pane").insertAdjacentHTML('afterend', "<tr>" + "<th>" + data[i].name + "</th>" + "<th>" + data[i].surname + "</th>" + "<th>" + data[i].patronymic + "</th>" + "<th>" + data[i].date + "</th>" + "<th>" + data[i].gender + "</th>" + "<th>" + data[i].citizenship + "</th>" + "<th>" + data[i].familyStatus + "</th>" + "<th>" + data[i].site + "</th>" + "<th>" + data[i].email + "</th>" + "<th>" + data[i].job + "</th>" + "</tr>");
+                }
+            })
+    })}
+</script>
+<script src="/resources/js/index.js"></script>
+
+</body>
+</html>

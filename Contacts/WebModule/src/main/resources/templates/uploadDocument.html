@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload document</title>
+    <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+
+<div th:include="~{navbar.html :: navbar}"></div>
+
+<form class="reg-form" th:action="'/upload/' + ${id}" enctype="multipart/form-data" method="post">
+    <div class="reg-element" style="margin: 2% 30% 2% 30%;overflow: hidden;">
+        <label for="file">Upload your file here</label>
+        <input id="file" type="file" min="1" max="999999" name="file">
+    </div>
+    <input type="submit" class="reg-button" value="submit">
+</form>
+
+</body>
+</html>
