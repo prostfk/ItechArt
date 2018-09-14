@@ -9,14 +9,14 @@ public class Address {
     private String country;
     private String city;
     private String street;
-    private Integer house;
-    private Integer flat;
-    private Integer postIndex;//str
+    private String house;
+    private String flat;
+    private String postIndex;//str
 
     public Address() {
     }
 
-    public Address(String country, String city, String street, Integer house, Integer flat, Integer postIndex) {
+    public Address(String country, String city, String street, String house, String flat, String postIndex) {
         this.country = country;
         this.city = city;
         this.street = street;
@@ -25,7 +25,7 @@ public class Address {
         this.postIndex = postIndex;
     }
 
-    public Address(Long id, String country, String city, String street, Integer house, Integer flat, Integer postIndex) {
+    public Address(Long id, String country, String city, String street, String house, String flat, String postIndex) {
         this.id = id;
         this.country = country;
         this.city = city;
@@ -67,27 +67,27 @@ public class Address {
         this.street = street;
     }
 
-    public Integer getHouse() {
+    public String getHouse() {
         return house;
     }
 
-    public void setHouse(Integer house) {
+    public void setHouse(String house) {
         this.house = house;
     }
 
-    public Integer getFlat() {
+    public String getFlat() {
         return flat;
     }
 
-    public void setFlat(Integer flat) {
+    public void setFlat(String flat) {
         this.flat = flat;
     }
 
-    public Integer getPostIndex() {
+    public String getPostIndex() {
         return postIndex;
     }
 
-    public void setPostIndex(Integer postIndex) {
+    public void setPostIndex(String postIndex) {
         this.postIndex = postIndex;
     }
 }

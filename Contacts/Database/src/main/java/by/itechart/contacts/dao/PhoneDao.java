@@ -3,47 +3,63 @@ package by.itechart.contacts.dao;
 import by.itechart.contacts.model.entity.Phone;
 import org.apache.log4j.Logger;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Collections;
 import java.util.List;
 
-public class PhoneDao extends Dao<Phone> {
+public class PhoneDao extends AbstractDao<Phone> {
 
     private static final Logger LOGGER = Logger.getLogger(PhoneDao.class);
 
     @Override
-    public void save(Phone phone) {
+    public Phone save(Phone phone) {
         //language=SQL
-        execute(String.format("INSERT INTO phone(contact_id, country_code, number, type, comment) VALUES ('%d','%s','%s','%s','%s')",phone.getContactId(), phone.getCountryCode(), phone.getNumber(), phone.getType(), phone.getComment()));
+        try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO phone(contact_id, country_code, number, type, comment) VALUES (?,?,?,?,?)")) {
+            executeQuery(preparedStatement,phone.getContactId(), phone.getCountryCode(), phone.getNumber(), phone.getType(), phone.getComment());
+        }catch (Exception e){
+            e.printStackTrace();
+            LOGGER.error(e.getMessage());
+        }
+        return phone;
     }
 
     @Override
-    public List<Phone> findAll() {
+    public Phone findById(Long id) {
+        try (ResultSet resultSet = connection.createStatement().executeQuery(String.format("SELECT * FROM phone WHERE id='%s'", id))) {
+            return createEntity(resultSet);
+        }catch (Exception e){
+            e.printStackTrace();
+            LOGGER.error(e.getMessage());
+        }
         return null;
     }
 
     @Override
-    public void delete(Long id) {
-        execute(String.format("DELETE FROM phone WHERE id='%d'", id));
+    public List<Phone> findAll() {
+        try (ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM phone")) {
+            return createList(resultSet);
+        }catch (Exception e){
+            e.printStackTrace();
+            LOGGER.error(e.getMessage());
+        }
+        return Collections.emptyList();
     }
 
     @Override
     public Phone update(Long id, Phone phone) {
         //language=SQL
-        execute(String.format("UPDATE phone SET country_code='%s', number='%s',type='%s',comment='%s'", phone.getCountryCode(),phone.getNumber(),phone.getType(),phone.getComment()));
+        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE phone SET country_code=?, number=?,type=?,comment=?")) {
+            execute(preparedStatement,phone.getCountryCode(),phone.getNumber(),phone.getType(),phone.getComment());
+        }catch (Exception e){
+            e.printStackTrace();
+            LOGGER.error(e.getMessage());
+        }
         return phone;
     }
 
-    public Phone findPhoneById(Long id){
-        ResultSet resultSet = executeQuery(String.format("SELECT * FROM phone WHERE id='%d'", id));
-        return phoneFromResultSet(resultSet);
-    }
-
-    public Phone findPhoneByContactId(Long id){
-        ResultSet resultSet = executeQuery(String.format("SELECT * FROM phone WHERE contact_id='%d'", id));
-        return phoneFromResultSet(resultSet);
-    }
-
-    private Phone phoneFromResultSet(ResultSet resultSet){
+    @Override
+    public Phone createEntity(ResultSet resultSet) {
         try {
             if (resultSet.next()){
                 return new Phone(
@@ -57,5 +73,12 @@ public class PhoneDao extends Dao<Phone> {
         }
         return null;
     }
+
+
+    public Phone findPhoneByContactId(Long id){
+        ResultSet resultSet = executeQuery(String.format("SELECT * FROM phone WHERE contact_id='%d'", id));
+        return createEntity(resultSet);
+    }
+
 
 }
