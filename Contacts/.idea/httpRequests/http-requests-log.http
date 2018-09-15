@@ -1,0 +1,230 @@
+GET http://localhost:8080/rest/allContacts
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T032534.200.json
+
+###
+
+GET http://localhost:8080/rest/contact/7
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T032525.200.json
+
+###
+
+GET http://localhost:8080/rest/contact/8
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/rest/contact/7
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T032522.200.json
+
+###
+
+GET http://localhost:8080/rest/contact/6
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T032520.200.json
+
+###
+
+GET http://localhost:8080/rest/contact/5
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T032519.200.json
+
+###
+
+GET http://localhost:8080/rest/contact/4
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T032518.200.json
+
+###
+
+GET http://localhost:8080/rest/contact/3
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T032515.200.json
+
+###
+
+GET http://localhost:8080/rest/contact/3
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/rest/contact/2
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/rest/allContacts
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T032157.200.json
+
+###
+
+GET http://localhost:8080/rest/allContacts
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T032007.200.json
+
+###
+
+GET http://localhost:8080/rest/contact/4
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T032001.200.json
+
+###
+
+GET http://localhost:8080/rest/contact/3
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T032000.200.json
+
+###
+
+GET http://localhost:8080/rest/contact/2
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T031958.200.json
+
+###
+
+GET http://localhost:8080/rest/contact/1
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/rest/allContacts
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T031947.200.json
+
+###
+
+GET http://localhost:8080/rest/allContacts
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T031943.200.json
+
+###
+
+GET http://localhost:8080/rest/allContacts
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T031633.200.json
+
+###
+
+GET http://localhost:8080/rest/allContacts
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T031400.200.json
+
+###
+
+GET http://localhost:8080/rest/contact/2
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T031137.200.json
+
+###
+
+GET http://localhost:8080/contact/2
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T031024.404.json
+
+###
+
+GET http://localhost:8080/contact/1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T031021.404.json
+
+###
+
+GET http://localhost:8080/rest/contact/1
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/rest/allContacts
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T030955.200.json
+
+###
+
+GET http://localhost:8080
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T030943-1.200.html
+
+###
+
+GET http://localhost:8080
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T030943.200.html
+
+###
+
+GET http://localhost:8080/allContacts
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T030846.404.json
+
+###
+
+GET http://localhost:8080/allContacts
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T030839.404.json
+
+###
+
+GET http://localhost:8080/allContacts
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T030753.404.json
+
+###
+

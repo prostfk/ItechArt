@@ -1,0 +1,14 @@
+{
+  "id": 6,
+  "name": "Alesya",
+  "surname": "Skvortsova",
+  "patronymic": "Alexandrovna",
+  "date": "1999-01-24",
+  "gender": "Female",
+  "citizenship": "Belarus",
+  "familyStatus": "InARelationShip",
+  "site": "vk.com/skvortsoova",
+  "email": "skvortsoova@mail.ru",
+  "job": "none",
+  "address": 0
+}

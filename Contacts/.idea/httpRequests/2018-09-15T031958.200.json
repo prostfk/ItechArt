@@ -1,0 +1,14 @@
+{
+  "id": 2,
+  "name": "Roman",
+  "surname": "Medvedev",
+  "patronymic": "Sergeevich",
+  "date": "2000-01-01",
+  "gender": "Male",
+  "citizenship": "Belarus",
+  "familyStatus": "Single",
+  "site": "vk.com/prostrmk",
+  "email": "prostrmk@gmail.com",
+  "job": "none",
+  "address": 0
+}

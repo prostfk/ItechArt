@@ -16,8 +16,8 @@ public abstract class AbstractDao<T> {
     AbstractDao() {
         Properties properties = new Properties();
         try {
-//            properties.load(new FileInputStream("Database/src/main/resources/database.properties"));//war style
-            properties.load(new FileInputStream("src/main/resources/database.properties"));//for tests
+            properties.load(new FileInputStream("Database/src/main/resources/database.properties"));//war style
+//            properties.load(new FileInputStream("src/main/resources/database.properties"));//for tests
             String url = properties.getProperty("spring.datasource.url");
             String username = properties.getProperty("spring.datasource.username");
             String password = properties.getProperty("spring.datasource.password");

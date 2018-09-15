@@ -42,7 +42,7 @@ public class AddressController {
     @GetMapping(value = "/address/{id}")
     @ResponseBody
     public Address findAddress(@PathVariable Long id){
-        return addressDao.findAddressById(id);
+        return addressDao.findById(id);
     }
 
     @GetMapping(value = "/check")

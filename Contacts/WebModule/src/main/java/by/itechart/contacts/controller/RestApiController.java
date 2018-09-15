@@ -24,11 +24,11 @@ public class RestApiController {
         documentDao = new DocumentDao();
     }
 
-    @DeleteMapping(value = "/deleteContact/{id}")
-    public String deleteContact(@PathVariable Long id){
-        contactDao.delete(id);
-        return JSONObject.quote("Status: ok");
-    }
+//    @DeleteMapping(value = "/deleteContact/{id}")
+//    public String deleteContact(@PathVariable Long id){
+//        contactDao.delete(id);
+//        return JSONObject.quote("Status: ok");
+//    }
 
     @GetMapping(value = "/contact/{id}")
     public Contact findContact(@PathVariable Long id){
@@ -43,14 +43,6 @@ public class RestApiController {
     @GetMapping(value = "/allContacts", produces = MediaType.APPLICATION_JSON_VALUE)
     public List findAll(){
         return contactDao.findAll();
-    }
-
-    @GetMapping(value = "/allContacts")
-    public List<Contact> findContactsFromTo( HttpServletRequest request){
-        System.out.println(request.getHeader("referer"));
-        String[] referers = request.getHeader("referer").split("/");
-        long from = Long.parseLong(referers[referers.length-1]);
-        return contactDao.findContactsFromIdAndWithLimit(from, 3L);
     }
 
     @GetMapping(value = "/documents")

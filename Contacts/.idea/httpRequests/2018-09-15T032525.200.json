@@ -1,0 +1,14 @@
+{
+  "id": 7,
+  "name": "Alexey",
+  "surname": "Solovey",
+  "patronymic": "Andreevich",
+  "date": "1995-03-12",
+  "gender": "Male",
+  "citizenship": "Ukraine",
+  "familyStatus": "Married",
+  "site": "facebook.com/alex123321",
+  "email": "a666lex@mail.ru",
+  "job": "freelance",
+  "address": 0
+}

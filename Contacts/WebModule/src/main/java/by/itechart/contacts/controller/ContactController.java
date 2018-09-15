@@ -85,16 +85,16 @@ public class ContactController {
 //        return new ModelAndView("contactViewer" , "contacts", contactDao.findContactsFromIdAndWithLimit(id * 2, 2L));
     }
 
-    @GetMapping(value = "/deleteContact/{id}")
-    @ResponseBody
-    public Contact deleteContact(@PathVariable Long id) {
-        Contact contactById = contactDao.findContactById(id);
-        if (contactById != null) {
-            contactDao.delete(id);
-            return contactById;
-        }
-        return null;
-    }
+//    @GetMapping(value = "/deleteContact/{id}")
+//    @ResponseBody
+//    public Contact deleteContact(@PathVariable Long id) {
+//        Contact contactById = contactDao.findContactById(id);
+//        if (contactById != null) {
+//            contactDao.delete(id);
+//            return contactById;
+//        }
+//        return null;
+//    }
 
 
 }

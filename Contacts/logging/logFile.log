@@ -22,3 +22,13 @@
 2018-09-13 14:23:58 ERROR Dao:25 - Connection error: No suitable driver found for jdbc:mysql://localhost:3306/Contact
 2018-09-13 14:23:58 ERROR Dao:25 - Connection error: No suitable driver found for jdbc:mysql://localhost:3306/Contact
 2018-09-13 14:23:58 ERROR Dao:25 - Connection error: No suitable driver found for jdbc:mysql://localhost:3306/Contact
+2018-09-14 17:42:19 ERROR AbstractDao:27 - Connection error: src/main/resources/database.properties (No such file or directory)
+2018-09-14 17:42:19 ERROR AbstractDao:27 - Connection error: src/main/resources/database.properties (No such file or directory)
+2018-09-14 17:42:19 ERROR AbstractDao:27 - Connection error: src/main/resources/database.properties (No such file or directory)
+2018-09-14 17:42:19 ERROR AbstractDao:27 - Connection error: src/main/resources/database.properties (No such file or directory)
+2018-09-14 17:42:19 ERROR AbstractDao:27 - Connection error: src/main/resources/database.properties (No such file or directory)
+2018-09-14 17:42:19 ERROR AbstractDao:27 - Connection error: src/main/resources/database.properties (No such file or directory)
+2018-09-14 17:42:19 ERROR AbstractDao:27 - Connection error: src/main/resources/database.properties (No such file or directory)
+2018-09-14 17:42:19 ERROR AbstractDao:27 - Connection error: src/main/resources/database.properties (No such file or directory)
+2018-09-15 15:24:30 ERROR ContactDao:89 - Before start of result set
+2018-09-15 15:24:32 ERROR ContactDao:89 - Before start of result set

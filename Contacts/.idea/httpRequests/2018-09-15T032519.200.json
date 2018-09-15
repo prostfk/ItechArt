@@ -1,0 +1,14 @@
+{
+  "id": 5,
+  "name": "Anton",
+  "surname": "Bortnik",
+  "patronymic": "Alexandrovich",
+  "date": "1997-05-13",
+  "gender": "Male",
+  "citizenship": "Belarus",
+  "familyStatus": "Single",
+  "site": "vk.com/bortnikanton",
+  "email": "bortnikanton@gmail.com",
+  "job": "none",
+  "address": 0
+}
