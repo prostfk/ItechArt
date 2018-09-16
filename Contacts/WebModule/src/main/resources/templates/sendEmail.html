@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <title>Send email</title>
     <link rel="stylesheet" href="/index.css">
+    <link rel="import" href="/navbar.html">
+
 </head>
 <body>
 
-<div th:include="~{navbar.html :: navbar}"></div>
 
-<form action="/sendEmail" method="post">
+<form action="/sendEmail" method="post" id="container">
 
     <div class="reg-element">
         <label for="email">Your friend email</label>
@@ -27,6 +28,14 @@
     <input type="submit" value="Send" class="reg-button">
 
 </form>
+
+<script>
+    onload = function show() {
+        var link = document.querySelector('link[rel=import]');
+        var content = link.import.querySelector('#nav');
+        document.body.insertBefore(content.cloneNode(true),document.getElementById('container'))
+    };
+</script>
 
 </body>
 </html>

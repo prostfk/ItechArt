@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <title>Add contact</title>
     <link rel="stylesheet" href="/index.css">
+    <link rel="import" href="/navbar.html">
+
 
 </head>
 <body>
 
-<template></template>
 
-<div th:include="~{navbar.html::navbar}"></div>
 
-<div class="container">
+<div class="container" id="container">
 
     <div class="gap-bottom">
 
@@ -95,6 +95,13 @@
     </div>
 
 </div>
+<script>
+    onload = function show() {
+        var link = document.querySelector('link[rel=import]');
+        var content = link.import.querySelector('#nav');
+        document.body.insertBefore(content.cloneNode(true),document.getElementById('container'))
+    };
+</script>
 
 </body>
 </html>

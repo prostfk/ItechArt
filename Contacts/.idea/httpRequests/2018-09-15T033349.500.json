@@ -1,0 +1,7 @@
+{
+  "timestamp": "2018-09-15T12:33:49.724+0000",
+  "status": 500,
+  "error": "Internal Server Error",
+  "message": "No enum constant by.itechart.contacts.model.entity.ContactField.name,name",
+  "path": "/rest/searchContact"
+}

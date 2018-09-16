@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Contacts</title>
     <link rel="stylesheet" href="/index.css">
+    <link rel="import" href="/navbar.html">
+
     <style>
         table {
             align-items: center;
@@ -27,9 +29,8 @@
 </head>
 <body>
 
-<div th:include="~{navbar.html::navbar}"></div>
 
-<div>
+<div id="container">
 
     <button class="reg-button" onclick="click()">Click</button>
 
@@ -70,6 +71,12 @@
     })}
 </script>
 <script src="/resources/js/index.js"></script>
-
+<script>
+    onload = function show() {
+        var link = document.querySelector('link[rel=import]');
+        var content = link.import.querySelector('#nav');
+        document.body.insertBefore(content.cloneNode(true),document.getElementById('container'))
+    };
+</script>
 </body>
 </html>

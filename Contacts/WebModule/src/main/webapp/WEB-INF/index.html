@@ -32,9 +32,9 @@
 </head>
 <body>
 
+    <div w3-include-html="navbar.html"></div>
 
-
-    <table id="table">
+    <table>
         <tr>
             <th>Description</th>
             <th>Link</th>
@@ -68,12 +68,6 @@
     </table>
 
 
-    <script>
-        onload = function show() {
-            var link = document.querySelector('link[rel=import]');
-            var content = link.import.querySelector('#nav');
-            document.body.insertBefore(content.cloneNode(true),document.getElementById('table'))
-        };
-    </script>
+
 </body>
 </html>

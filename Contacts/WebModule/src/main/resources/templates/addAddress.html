@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <title>Add address</title>
     <link rel="stylesheet" href="/index.css">
+    <link rel="import" href="/navbar.html">
+
 </head>
 <body>
 
 
-<div th:include="~{navbar.html::navbar}"></div>
-
-<div class="container gap-bottom">
+<div class="container gap-bottom" id="container">
 
     <form class="reg-form" th:object="${address}" th:action="'/addAddress/' + ${id}" method="post">
         <div class="reg-element">
@@ -48,9 +48,16 @@
 
 </div>
 
+
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
-<script src="/resources/js/index.js"></script>
+<script>
+    onload = function show() {
+        var link = document.querySelector('link[rel=import]');
+        var content = link.import.querySelector('#nav');
+        document.body.insertBefore(content.cloneNode(true),document.getElementById('container'))
+    };
+</script>
 
 
 </body>

@@ -5,10 +5,12 @@ import by.itechart.contacts.dao.DocumentDao;
 import by.itechart.contacts.model.entity.Contact;
 import by.itechart.contacts.model.entity.Document;
 import by.itechart.contacts.model.util.EmailUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ViewResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedOutputStream;
@@ -29,28 +31,30 @@ public class MainController {
     }
 
     @GetMapping(value = "/")
-    public String getIndexPage(){return "index.html";}
+    public String getIndexPage() {
+        return "index";
+    }
 
     @PutMapping(value = "/editContact/{id}")
     @ResponseBody
-    public Contact editContact(@PathVariable Long id, Contact contact){
+    public Contact editContact(@PathVariable Long id, Contact contact) {
         return contactDao.update(id, contact);
     }
 
     @GetMapping(value = "/upload/{id}")
-    public ModelAndView uploadDocument(@PathVariable Long id){
-        if (contactDao.findContactById(id)!=null){
+    public ModelAndView uploadDocument(@PathVariable Long id) {
+        if (contactDao.findContactById(id) != null) {
             return new ModelAndView("uploadDocument", "id", id);
-        }else{
+        } else {
             return new ModelAndView("/error", "message", "No such user! Check the link");
         }
     }
 
     @PostMapping(value = "/upload/{id}")
-    public String uploadPost(@PathVariable Long id, MultipartFile file){
+    public String uploadPost(@PathVariable Long id, MultipartFile file) {
         String filePath = String.format("src/main/webapp/resources/pics/%d/", id);
         File dir = new File(filePath);
-        if (!dir.exists()){
+        if (!dir.exists()) {
             dir.mkdir();
         }
         File fileObj = new File(filePath + file.getOriginalFilename());
@@ -73,31 +77,31 @@ public class MainController {
     }
 
     @GetMapping(value = "/sendEmail")
-    public String sendEmailPage(){
+    public String sendEmailPage() {
         return "sendEmail";
     }
 
     @PostMapping(value = "/sendEmail")
     @ResponseBody
-    public String sendEmail(@RequestParam String subject, @RequestParam String message, @RequestParam String email){
+    public String sendEmail(@RequestParam String subject, @RequestParam String message, @RequestParam String email) {
         EmailUtil.sendMail(email, subject, message);
-        return String.format("%s/%s/%s",email,subject,message);
+        return String.format("%s/%s/%s", email, subject, message);
     }
 
     @GetMapping(value = "/getNumberOfPage")
     @ResponseBody
-    public String number(HttpServletRequest request){
+    public String number(HttpServletRequest request) {
         char[] chars = request.getRequestURL().toString().toCharArray();
-        return chars[chars.length-1] + "";
+        return chars[chars.length - 1] + "";
     }
 
     @GetMapping(value = "/searchContact")
-    public String getSearchPage(){
+    public String getSearchPage() {
         return "searchForm";
     }
 
     @GetMapping(value = "/documents")
-    public String getDocuments(){
+    public String getDocuments() {
         return "documents";
     }
 

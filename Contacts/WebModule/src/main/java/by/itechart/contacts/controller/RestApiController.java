@@ -37,7 +37,8 @@ public class RestApiController {
 
     @GetMapping(value = "/searchContact")
     public List<Contact> searchContacts(@RequestParam("type")String type, @RequestParam("value") String value){
-        return contactDao.findContactsByFiled(ContactField.valueOf(type),value);
+//        return contactDao.findContactsByFiled(ContactField.valueOf(type),value);
+        return contactDao.search(type,value);
     }
 
     @GetMapping(value = "/allContacts", produces = MediaType.APPLICATION_JSON_VALUE)

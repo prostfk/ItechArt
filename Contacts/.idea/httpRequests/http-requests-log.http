@@ -1,3 +1,65 @@
+GET http://localhost:8080/rest/searchContact?type=name&value=roman&type=name&value=Rom&type=name&value=roma&type=name&value=a&type=name&value=A
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T055209.200.json
+
+###
+
+GET http://localhost:8080/rest/searchContact?type=name&value=roman&type=name&value=Rom&type=name&value=roma&type=name&value=a
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T055151.200.json
+
+###
+
+GET http://localhost:8080?type=name&value=roman&type=name&value=Rom&type=name&value=roma
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T051059.404.json
+
+###
+
+GET http://localhost:8080?type=name&value=roman&type=name&value=Rom&type=name&value=roma
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T050504.200.html
+
+###
+
+GET http://localhost:8080/rest/searchContact?type=name&value=roman&type=name&value=Rom&type=name&value=roma
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T043948.200.json
+
+###
+
+GET http://localhost:8080/rest/searchContact?type=name&value=roman&type=name&value=Rom
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:8080/rest/searchContact?type=name&value=roman&type=name&value=Rom
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T033349.500.json
+
+###
+
+GET http://localhost:8080/rest/searchContact?type=name&value=roman
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-09-15T033246.200.json
+
+###
+
 GET http://localhost:8080/rest/allContacts
 Accept: */*
 Cache-Control: no-cache

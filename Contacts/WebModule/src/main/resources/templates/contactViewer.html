@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Contacts</title>
     <link rel="stylesheet" href="/index.css">
+    <link rel="import" href="/navbar.html">
+
     <style>
         table{
             align-items: center;
@@ -24,9 +26,8 @@
 </head>
 <body>
 
-<div th:include="~{navbar.html::navbar}"></div>
 
-<div class="container">
+<div class="container" id="container">
 
     <table>
         <tr>
@@ -62,6 +63,14 @@
     </table>
 
 </div>
+
+<script>
+    onload = function show() {
+        var link = document.querySelector('link[rel=import]');
+        var content = link.import.querySelector('#nav');
+        document.body.insertBefore(content.cloneNode(true),document.getElementById('container'))
+    };
+</script>
 
 </body>
 </html>

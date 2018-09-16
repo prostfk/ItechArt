@@ -111,17 +111,33 @@ public class ContactDao extends AbstractDao<Contact> {
         return null;
     }
 
-    public List<Contact> findContactsByFiled(ContactField field, String value) {
+    public List<Contact> search(String param, String value){
+        List<Contact> list = new LinkedList<>();
         //language=SQL
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact WHERE ? LIKE ?");
-            ResultSet resultSet = executeQuery(preparedStatement, field, "%" + value + "%");
+        value = "%" + value + "%";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(String.format("SELECT * FROM contact WHERE ? LIKE ?"))) {
+            ResultSet resultSet = executeQuery(preparedStatement, param, value);
             return createList(resultSet);
-        } catch (SQLException e) {
+        }catch (Exception e){
             e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
-        return null;
+        return list;
+
+
     }
+
+//    public List<Contact> findContactsByFiled(ContactField field, String value) {
+//        //language=SQL
+//        try {
+//            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact WHERE ? LIKE ?");
+//            ResultSet resultSet = executeQuery(preparedStatement, field, "%" + value + "%");
+//            return createList(resultSet);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     public void addAddressToContact(Long contactId, Long addressId) {
         //language=SQL
