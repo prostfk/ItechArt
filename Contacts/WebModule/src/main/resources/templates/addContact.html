@@ -16,7 +16,7 @@
 
     <div class="gap-bottom">
 
-        <form class="reg-form" onsubmit="return submitRegistration()" th:object="${contact}" th:action="'/addContact/'" method="post">
+        <form class="reg-form"  th:object="${contact}" action="/addContact" method="post">
             <div class="reg-element">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" th:field="*{name}" placeholder="Name" class="reg-input">

@@ -17,25 +17,32 @@ public class ContactDao extends AbstractDao<Contact> {
     @Override
     public Contact findById(Long id) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact WHERE id=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact WHERE id=? AND status!=1");
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             return createEntity(resultSet);
         } catch (Exception e) {
-            e.printStackTrace();
-            LOGGER.error(e.getMessage());
+            log(e, LOGGER);
             return null;
         }
+    }
+
+    public Contact delete(Long id) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE contact SET status=1 WHERE id=?")) {
+            execute(preparedStatement, id);
+        } catch (Exception e) {
+            log(e, LOGGER);
+        }
+        return findContactById(id);
     }
 
     @Override
     public List<Contact> findAll() {
         //language=SQL
-        try (ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM contact")) {
+        try (ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM contact WHERE status!=1")) {
             return createList(resultSet);
         } catch (Exception e) {
-            e.printStackTrace();
-            LOGGER.error(e.getMessage());
+            log(e, LOGGER);
             return null;
         }
     }
@@ -44,9 +51,9 @@ public class ContactDao extends AbstractDao<Contact> {
     public Contact save(Contact contact) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO contact(name, surname, patronymic, date_of_birth, gender, citizenship, family_status, site, email, job, address_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-            execute(preparedStatement, contact.getName(), contact.getSurname(), contact.getPatronymic(), contact.getDate(), contact.getGender(), contact.getCitizenship(), contact.getFamilyStatus(), contact.getSite(), contact.getEmail(), contact.getJob());
+            execute(preparedStatement, contact.getName(), contact.getSurname(), contact.getPatronymic(), contact.getDate(), contact.getGender(), contact.getCitizenship(), contact.getFamilyStatus(), contact.getSite(), contact.getEmail(), contact.getJob(),contact.getAddressId());
         } catch (SQLException e) {
-            e.printStackTrace();
+            log(e, LOGGER);
         }
         return contact;
     }
@@ -56,11 +63,11 @@ public class ContactDao extends AbstractDao<Contact> {
     public Contact update(Long id, Contact contact) {
         //language=SQL
         try {
-            if (contact.getAddress() != null) {
+            if (contact.getAddressId() != null) {
                 PreparedStatement preparedStatement = connection.prepareStatement("UPDATE contact SET name=?, surname=?, patronymic=?, date_of_birth=?, gender=?, citizenship=?, family_status=?, site=?,email=?,job=?,address_id=? WHERE id=?");
                 execute(preparedStatement, contact.getName(), contact.getSurname(), contact.getPatronymic(), contact.getDate(), contact.getGender(),
                         contact.getCitizenship(), contact.getFamilyStatus(), contact.getSite(), contact.getEmail(),
-                        contact.getJob(), contact.getAddress(), id);
+                        contact.getJob(), contact.getAddressId(), id);
             } else {
                 PreparedStatement preparedStatement = connection.prepareStatement("UPDATE contact SET name=?, surname=?, patronymic=?, date_of_birth=?, gender=?, citizenship=?, family_status=?, site=?,email=?,job=? WHERE id=?");
                 execute(preparedStatement, contact.getName(), contact.getSurname(), contact.getPatronymic(), contact.getDate(), contact.getGender(),
@@ -68,8 +75,7 @@ public class ContactDao extends AbstractDao<Contact> {
                         contact.getJob(), id);
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            LOGGER.error(e.getMessage());
+            log(e, LOGGER);
         }
         return contact;
 
@@ -85,8 +91,7 @@ public class ContactDao extends AbstractDao<Contact> {
                     resultSet.getString("email"), resultSet.getString("job"), resultSet.getLong("address_id")
             );
         } catch (Exception e) {
-            e.printStackTrace();
-            LOGGER.error(e.getMessage());
+            log(e, LOGGER);
         }
         return null;
     }
@@ -101,43 +106,30 @@ public class ContactDao extends AbstractDao<Contact> {
         //language=SQL
         ResultSet resultSet = executeQuery(String.format("SELECT * FROM contact WHERE id='%d'", id));
         try {
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 return createEntity(resultSet);
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            LOGGER.error(e.getMessage());
+            log(e, LOGGER);
         }
         return null;
     }
 
-    public List<Contact> search(String param, String value){
+    public List<Contact> search(String param, String value) {
         List<Contact> list = new LinkedList<>();
         //language=SQL
         value = "%" + value + "%";
         try (PreparedStatement preparedStatement = connection.prepareStatement(String.format("SELECT * FROM contact WHERE ? LIKE ?"))) {
             ResultSet resultSet = executeQuery(preparedStatement, param, value);
             return createList(resultSet);
-        }catch (Exception e){
-            e.printStackTrace();
-            LOGGER.error(e.getMessage());
+        } catch (Exception e) {
+            log(e, LOGGER);
         }
         return list;
 
 
     }
 
-//    public List<Contact> findContactsByFiled(ContactField field, String value) {
-//        //language=SQL
-//        try {
-//            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact WHERE ? LIKE ?");
-//            ResultSet resultSet = executeQuery(preparedStatement, field, "%" + value + "%");
-//            return createList(resultSet);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
 
     public void addAddressToContact(Long contactId, Long addressId) {
         //language=SQL
@@ -152,8 +144,7 @@ public class ContactDao extends AbstractDao<Contact> {
                 return resultSet.getLong("MAX(id)");
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            LOGGER.error(e.getMessage());
+            log(e, LOGGER);
         }
         return 0L;
     }

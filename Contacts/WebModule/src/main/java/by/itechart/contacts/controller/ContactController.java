@@ -7,9 +7,11 @@ import by.itechart.contacts.model.entity.Contact;
 import by.itechart.contacts.model.entity.ContactField;
 import by.itechart.contacts.model.entity.Phone;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -42,7 +44,12 @@ public class ContactController {
     }
 
     @PostMapping(value = "/addContact")
-    public String processAdding(Contact contact, Phone phone) {
+    public String processAdding(@Valid Contact contact, Phone phone, BindingResult result) {
+        System.out.println(contact);
+        if (result.hasErrors()){
+            System.out.println("ERROR");
+            return "error";
+        }
         contactDao.save(contact);
         Long lastId = contactDao.findLastId();
         phone.setContactId(lastId);

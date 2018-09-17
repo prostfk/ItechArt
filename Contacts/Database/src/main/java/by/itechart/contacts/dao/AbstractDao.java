@@ -102,5 +102,11 @@ public abstract class AbstractDao<T> {
 
     public abstract T update(Long id, T t);
 
-    public abstract T createEntity(ResultSet resultSet);
+    protected abstract T createEntity(ResultSet resultSet);
+
+    protected void log(Exception e, Logger logger){
+        e.printStackTrace();
+        logger.error(e.getMessage());
+    }
+
 }

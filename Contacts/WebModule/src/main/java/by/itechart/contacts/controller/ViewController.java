@@ -20,12 +20,12 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
-public class MainController {
+public class ViewController {
 
     private ContactDao contactDao;
     private DocumentDao documentDao;
 
-    public MainController() {
+    public ViewController() {
         contactDao = new ContactDao();
         documentDao = new DocumentDao();
     }
@@ -33,12 +33,6 @@ public class MainController {
     @GetMapping(value = "/")
     public String getIndexPage() {
         return "index";
-    }
-
-    @PutMapping(value = "/editContact/{id}")
-    @ResponseBody
-    public Contact editContact(@PathVariable Long id, Contact contact) {
-        return contactDao.update(id, contact);
     }
 
     @GetMapping(value = "/upload/{id}")
@@ -79,20 +73,6 @@ public class MainController {
     @GetMapping(value = "/sendEmail")
     public String sendEmailPage() {
         return "sendEmail";
-    }
-
-    @PostMapping(value = "/sendEmail")
-    @ResponseBody
-    public String sendEmail(@RequestParam String subject, @RequestParam String message, @RequestParam String email) {
-        EmailUtil.sendMail(email, subject, message);
-        return String.format("%s/%s/%s", email, subject, message);
-    }
-
-    @GetMapping(value = "/getNumberOfPage")
-    @ResponseBody
-    public String number(HttpServletRequest request) {
-        char[] chars = request.getRequestURL().toString().toCharArray();
-        return chars[chars.length - 1] + "";
     }
 
     @GetMapping(value = "/searchContact")

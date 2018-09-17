@@ -1,5 +1,8 @@
 package by.itechart.contacts.model.entity;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.Data;
 
@@ -12,7 +15,11 @@ import java.util.Date;
 public class Contact {
 
     private Long id;
+    @NotNull
+    @Size(min = 3, max = 30)
     private String name;
+    @NotNull
+    @Size(min = 3, max = 40)
     private String surname;
     private String patronymic;
     private Date date;
@@ -22,7 +29,8 @@ public class Contact {
     private String site;
     private String email;
     private String job;
-    private Long address;//AddressId
+    private Long addressId;
+    private boolean status;
 
     public Contact() {
     }
@@ -43,7 +51,7 @@ public class Contact {
         this.site = site;
         this.email = email;
         this.job = job;
-        this.address = address;
+        this.addressId = address;
     }
 
     public Contact(Long id,String name, String surname, String patronymic, String date, Gender gender, String citizenship, FamilyStatus familyStatus, String site, String email, String job, Long address) {
@@ -58,7 +66,7 @@ public class Contact {
         this.site = site;
         this.email = email;
         this.job = job;
-        this.address = address;
+        this.addressId = address;
     }
 
     public Contact(Long id, String name, String surname, String patronymic, String date, Gender gender, String citizenship, FamilyStatus familyStatus, String site, String email, String job) {
@@ -73,6 +81,22 @@ public class Contact {
         this.site = site;
         this.email = email;
         this.job = job;
+    }
+
+    public Contact(Long id, String name, String surname, String patronymic, String date, Gender gender, String citizenship, FamilyStatus familyStatus, String site, String email, String job, Long addressId, boolean status) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.patronymic = patronymic;
+        setDate(date);
+        this.gender = gender;
+        this.citizenship = citizenship;
+        this.familyStatus = familyStatus;
+        this.site = site;
+        this.email = email;
+        this.job = job;
+        this.addressId = addressId;
+        this.status = status;
     }
 
     public String getDate() {

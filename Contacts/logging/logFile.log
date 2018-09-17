@@ -36,3 +36,11 @@
 2018-09-15 16:09:30 ERROR AbstractDao:63 - 
 2018-09-15 16:11:27 ERROR AbstractDao:91 - Parameter index out of range (2 > number of parameters, which is 1).
 2018-09-15 16:11:27 ERROR AbstractDao:63 - 
+2018-09-17 20:10:18 ERROR AbstractDao:78 - No value specified for parameter 11
+2018-09-17 20:10:18 ERROR AbstractDao:91 - Can not issue data manipulation statements with executeQuery().
+2018-09-17 20:12:15 ERROR AbstractDao:78 - Incorrect string value: '\xAC\xED\x00\x05~r...' for column 'gender' at row 1
+2018-09-17 20:12:15 ERROR AbstractDao:91 - Can not issue data manipulation statements with executeQuery().
+2018-09-17 20:13:14 ERROR AbstractDao:78 - Incorrect string value: '\xAC\xED\x00\x05~r...' for column 'gender' at row 1
+2018-09-17 20:13:14 ERROR AbstractDao:91 - Can not issue data manipulation statements with executeQuery().
+2018-09-17 20:20:25 ERROR AbstractDao:78 - Incorrect string value: '\xAC\xED\x00\x05~r...' for column 'gender' at row 1
+2018-09-17 20:20:25 ERROR AbstractDao:91 - Can not issue data manipulation statements with executeQuery().

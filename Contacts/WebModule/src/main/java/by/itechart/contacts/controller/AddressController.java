@@ -30,26 +30,5 @@ public class AddressController {
         return modelAndView;
     }
 
-    @PostMapping(value = "/addAddress/{id}")
-    @ResponseBody
-    public Address submit(@PathVariable Long id, Address address){
-        addressDao.save(address);
-        Long addressId = addressDao.findLastId();
-        contactDao.addAddressToContact(id,addressId);
-        return address;
-    }
-
-    @GetMapping(value = "/address/{id}")
-    @ResponseBody
-    public Address findAddress(@PathVariable Long id){
-        return addressDao.findById(id);
-    }
-
-    @GetMapping(value = "/check")
-    @ResponseBody
-    public Long checkId(){
-        return addressDao.findLastId();
-    }
-
 
 }
