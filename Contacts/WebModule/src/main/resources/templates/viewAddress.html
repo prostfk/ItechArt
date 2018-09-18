@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Address</title>
+    <link rel="stylesheet" href="/index.css">
+    <link rel="import" href="/navbar.html">
+    <style>
+        .container{
+            text-align: center;
+            background-color: #161616;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container" class="container">
+
+    <h1 style="color: red;">YOU ALREADY HAVE AN ADDRESS</h1>
+    <h1><a th:href="'/contact/' + ${contactId} + '/edit'">CLICK HERE TO EDIT</a></h1>
+
+    <h1 id="address" th:class="${id}">INFO</h1>
+    <h2 id="country"></h2>
+    <h3 id="city"></h3>
+    <h2 id="addressInfo"></h2>
+
+</div>
+
+
+<script>
+
+    "use strict";
+    onload = function show() {
+        var link = document.querySelector('link[rel=import]');
+        var content = link.import.querySelector('#nav');
+        document.body.insertBefore(content.cloneNode(true),document.getElementById('container'))
+        initAddress();
+    };
+    function initAddress() {
+        var id = document.getElementById('address');
+        id = id.getAttribute('class');
+        fetch('/rest/address/' + id).then(function (response) {
+            response.json().then(function (data) {
+                console.log(data);
+                document.getElementById('country').innerText = data.country;
+                document.getElementById('city').innerText = data.city;
+                document.getElementById('addressInfo').innerHTML = 'Street: ' + data.street + '<br/>House: ' + data.house + '<br/>Flat: ' + data.flat + '<br/>Post Index: ' + data.postIndex;
+
+            })
+        })
+    }
+</script>
+</body>
+</html>

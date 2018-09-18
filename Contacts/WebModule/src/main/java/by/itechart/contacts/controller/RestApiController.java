@@ -115,6 +115,16 @@ public class RestApiController {
         return contact;
     }
 
+    @PostMapping(value = "/editAddress")
+    public Address editAddress(Address address){
+        if (address.getId()!=0){
+            addressDao.update(address.getId(),address);
+        }else{
+            addressDao.save(address);
+        }
+        return address;
+    }
+
     @PostMapping(value = "/contact/{id}/document/upload")
     public Document uploadPost(@PathVariable Long id, MultipartFile file) {
         String filePath = String.format("src/main/webapp/resources/pics/%d/", id);

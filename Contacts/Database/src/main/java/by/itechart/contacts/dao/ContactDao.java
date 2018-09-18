@@ -20,11 +20,13 @@ public class ContactDao extends AbstractDao<Contact> {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact WHERE id=? AND status!=1");
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            return createEntity(resultSet);
+            if (resultSet.next()){
+                return createEntity(resultSet);
+            }
         } catch (Exception e) {
             log(e, LOGGER);
-            return null;
         }
+        return null;
     }
 
     public Contact delete(Long id) {

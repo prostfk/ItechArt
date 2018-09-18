@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit address</title>
+    <link rel="stylesheet" href="/index.css">
+    <link rel="import" href="/navbar.html">
+    <style>
+        .container {
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+
+
+<div id="container" class="container">
+
+    <h1 th:class="${id}" id="edit">EDIT ADDRESS</h1>
+
+    <form action="/rest/editAddress" method="post" class="reg-form">
+        <div class="reg-element">
+            <label for="country">Country</label>
+            <input type="text" id="country" name="country" placeholder="Country" class="reg-input">
+        </div>
+        <div class="reg-element">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="City" class="reg-input">
+        </div>
+        <div class="reg-element">
+            <label for="street">Street</label>
+            <input type="text" id="street" name="street" placeholder="Street" class="reg-input">
+        </div>
+        <div class="reg-element">
+            <label for="house">House</label>
+            <input type="number" id="house" name="house" placeholder="House" class="reg-input">
+        </div>
+        <div class="reg-element">
+            <label for="flat">Flat</label>
+            <input type="number" id="flat" name="flat" placeholder="Flat" class="reg-input">
+        </div>
+        <div class="reg-element">
+            <label for="postIndex">Post Index</label>
+            <input type="number" id="postIndex" name="postIndex" placeholder="Post Index" class="reg-input">
+        </div>
+
+        <div class="reg-element">
+            <input type="submit" value="Submit" class="reg-button">
+        </div>
+
+    </form>
+    
+</div>
+
+<script>
+    onload = function show() {
+        var link = document.querySelector('link[rel=import]');
+        var content = link.import.querySelector('#nav');
+        document.body.insertBefore(content.cloneNode(true), document.getElementById('container'))
+        send();
+    };
+
+    function send() {
+        var id = document.getElementById('edit').getAttribute('class');
+        fetch('/rest/address/' + id).then(function (response) {
+            response.json().then(function (data) {
+                console.log(data);
+                document.getElementById('country').value = data.country;
+                document.getElementById('city').value = data.city;
+                document.getElementById('street').value = data.street;
+                document.getElementById('house').value = data.house;
+                document.getElementById('flat').value = data.flat;
+                document.getElementById('postIndex').value = data.postIndex;
+            })
+        })
+    };
+</script>
+</body>
+</html>

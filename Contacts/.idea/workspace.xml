@@ -2,23 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bce5a31f-19e2-4474-9748-0525e18c00fe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7ab3df17-9bb5-4f87-a06d-182644e76759.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7ab3df17-9bb5-4f87-a06d-182644e76759.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/editAddress.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/viewAddress.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/dao/AbstractDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/dao/AbstractDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/dao/PhoneDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/dao/PhoneDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/src/main/resources/database.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Database/src/main/resources/database.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/target/classes/by/itechart/contacts/dao/AbstractDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/Database/target/classes/by/itechart/contacts/dao/AbstractDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/target/classes/by/itechart/contacts/dao/PhoneDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/Database/target/classes/by/itechart/contacts/dao/PhoneDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/target/classes/database.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Database/target/classes/database.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/AddressController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/ContactController.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/dao/ContactDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/dao/ContactDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/target/classes/by/itechart/contacts/dao/ContactDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/Database/target/classes/by/itechart/contacts/dao/ContactDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/RestApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/RestApiController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/ViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/templates/addContact.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/addContact.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/templates/editContact.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/editContact.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/templates/sendEmail.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/sendEmail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/webapp/WEB-INF/index.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/logging/logFile.log" beforeDir="false" afterPath="$PROJECT_DIR$/logging/logFile.log" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -63,6 +54,13 @@
         <item name="Contact@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="Contact: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="address: table" type="98d5ac3d:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="Contact@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="Contact: schema" type="c314c289:MysqlImplModel$Schema" />
         <item name="phone: table" type="98d5ac3d:MysqlImplModel$Table" />
       </path>
     </expand>
@@ -88,18 +86,19 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="contact" value="10" />
+          <entry key="address" value="1" />
+          <entry key="contact" value="14" />
           <entry key="css" value="3" />
-          <entry key="html" value="74" />
+          <entry key="html" value="80" />
           <entry key="iml" value="4" />
-          <entry key="java" value="81" />
-          <entry key="js" value="1" />
+          <entry key="java" value="84" />
+          <entry key="js" value="4" />
           <entry key="json" value="1" />
           <entry key="log" value="2" />
           <entry key="name" value="1" />
           <entry key="phone" value="2" />
           <entry key="properties" value="7" />
-          <entry key="sql" value="10" />
+          <entry key="sql" value="11" />
           <entry key="ts" value="1" />
           <entry key="xml" value="13" />
         </counts>
@@ -107,16 +106,16 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="3" />
-          <entry key="Database Element" value="12" />
-          <entry key="HTML" value="74" />
+          <entry key="Database Element" value="17" />
+          <entry key="HTML" value="80" />
           <entry key="IDEA_MODULE" value="4" />
-          <entry key="JAVA" value="81" />
+          <entry key="JAVA" value="84" />
           <entry key="JSON" value="1" />
-          <entry key="JavaScript" value="1" />
+          <entry key="JavaScript" value="4" />
           <entry key="Log" value="2" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Properties" value="7" />
-          <entry key="Scratch" value="10" />
+          <entry key="Scratch" value="11" />
           <entry key="TypeScript" value="1" />
           <entry key="XML" value="13" />
         </counts>
@@ -125,24 +124,25 @@
         <counts>
           <entry key="cell" value="2" />
           <entry key="dummy" value="38" />
-          <entry key="html" value="833" />
-          <entry key="java" value="4946" />
-          <entry key="js" value="8" />
+          <entry key="html" value="2276" />
+          <entry key="java" value="5684" />
+          <entry key="js" value="42" />
           <entry key="properties" value="70" />
-          <entry key="sql" value="350" />
+          <entry key="sql" value="383" />
           <entry key="txt" value="18" />
           <entry key="xml" value="410" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="833" />
-          <entry key="JAVA" value="4946" />
-          <entry key="JavaScript" value="8" />
+          <entry key="HTML" value="2275" />
+          <entry key="JAVA" value="5684" />
+          <entry key="JavaScript" value="42" />
           <entry key="PLAIN_TEXT" value="56" />
           <entry key="Properties" value="70" />
           <entry key="SQL" value="35" />
-          <entry key="Scratch" value="317" />
+          <entry key="Scratch" value="350" />
+          <entry key="ThymeleafExpressions" value="1" />
           <entry key="XML" value="410" />
         </counts>
       </usages-collector>
@@ -154,25 +154,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/RestApiController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="117" column="55" lean-forward="true" selection-start-line="117" selection-start-column="55" selection-end-line="117" selection-end-column="55" />
-              <folding>
-                <element signature="method#RestApiController#0;class#RestApiController#0" />
-                <element signature="method#searchContacts#0;class#RestApiController#0" />
-                <element signature="method#submit#0;class#RestApiController#0" />
-                <element signature="method#sendEmail#0;class#RestApiController#0" />
-                <element signature="method#number#0;class#RestApiController#0" />
-                <element signature="method#processEditing#0;class#RestApiController#0" />
-                <element signature="method#processAdding#0;class#RestApiController#0" />
-                <element signature="method#uploadPost#0;class#RestApiController#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/uploadDocument.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -186,26 +167,72 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/sendEmail.html">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7ab3df17-9bb5-4f87-a06d-182644e76759/console.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="12" column="32" lean-forward="true" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+            <state relative-caret-position="120">
+              <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/restContactViewer.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1420">
+              <caret line="76" column="16" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/ViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="97" selection-start-line="97" selection-end-line="97" />
+            <state relative-caret-position="186">
+              <caret line="76" column="50" selection-start-line="76" selection-start-column="50" selection-end-line="76" selection-end-column="50" />
               <folding>
                 <element signature="method#ViewController#0;class#ViewController#0" />
                 <element signature="method#uploadDocument#0;class#ViewController#0" />
                 <element signature="method#addNewContact#0;class#ViewController#0" />
                 <element signature="method#edit#0;class#ViewController#0" />
-                <element signature="method#addNewAddress#0;class#ViewController#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://7ab3df17-9bb5-4f87-a06d-182644e76759/schema/Contact/table/contact">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/RestApiController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="246">
+              <caret line="118" column="31" selection-start-line="118" selection-start-column="31" selection-end-line="118" selection-end-column="31" />
+              <folding>
+                <element signature="method#RestApiController#0;class#RestApiController#0" />
+                <element signature="method#searchContacts#0;class#RestApiController#0" />
+                <element signature="method#submit#0;class#RestApiController#0" />
+                <element signature="method#sendEmail#0;class#RestApiController#0" />
+                <element signature="method#number#0;class#RestApiController#0" />
+                <element signature="method#processEditing#0;class#RestApiController#0" />
+                <element signature="method#processAdding#0;class#RestApiController#0" />
+                <element signature="method#uploadPost#0;class#RestApiController#0" />
+                <element signature="method#findPhones#0;class#RestApiController#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/editAddress.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="69" column="49" selection-start-line="69" selection-start-column="49" selection-end-line="69" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -213,17 +240,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/addAddress.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="280">
+              <caret line="44" column="14" lean-forward="true" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/addContact.html">
+        <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/editContact.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
-              <caret line="18" column="79" selection-start-line="18" selection-start-column="79" selection-end-line="18" selection-end-column="79" />
+              <caret line="15" column="115" selection-start-line="15" selection-start-column="115" selection-end-line="15" selection-end-column="115" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/viewAddress.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
+              <folding>
+                <element signature="n#style#0;n#h1#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -236,6 +275,7 @@
         <option value="Class" />
         <option value="Interface" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -260,7 +300,6 @@
         <option value="$PROJECT_DIR$/Database/src/test/java/by/itechart/test/dao/ContactDaoTest.java" />
         <option value="$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/dao/Dao.java" />
         <option value="$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/model/entity/Address.java" />
-        <option value="$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/dao/AddressDao.java" />
         <option value="$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/dao/DocumentDao.java" />
         <option value="$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/ContactsApplication.java" />
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/application.properties" />
@@ -282,15 +321,20 @@
         <option value="$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/AddressController.java" />
         <option value="$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/TestController.java" />
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/searchPhone.html" />
-        <option value="$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/dao/ContactDao.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7ab3df17-9bb5-4f87-a06d-182644e76759/console.sql" />
         <option value="$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/dao/PhoneDao.java" />
-        <option value="$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/ViewController.java" />
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/addContact.html" />
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/editContact.html" />
-        <option value="$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/RestApiController.java" />
-        <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/sendEmail.html" />
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/uploadDocument.html" />
+        <option value="$PROJECT_DIR$/WebModule/src/main/resources/static/init.js" />
+        <option value="$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/dao/AddressDao.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7ab3df17-9bb5-4f87-a06d-182644e76759/console.sql" />
+        <option value="$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/dao/ContactDao.java" />
+        <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/sendEmail.html" />
+        <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/viewAddress.html" />
+        <option value="$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/ViewController.java" />
+        <option value="$PROJECT_DIR$/WebModule/src/main/resources/static/fetchApi.js" />
+        <option value="$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/RestApiController.java" />
+        <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/editAddress.html" />
       </list>
     </option>
   </component>
@@ -456,6 +500,14 @@
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="resources" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="static" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Unknown" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="web" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="resources" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="templates" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
@@ -475,7 +527,7 @@
     <property name="SearchEverywhereHistoryKey" value="pom&#9;FILE&#9;file:///home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Contacts/WebModule/pom.xml" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537212670921" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537301870549" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -1153,7 +1205,7 @@
       <workItem from="1537092427214" duration="3572000" />
       <workItem from="1537201374256" duration="5400000" />
       <workItem from="1537209557996" duration="3709000" />
-      <workItem from="1537288842968" duration="2014000" />
+      <workItem from="1537288842968" duration="10424000" />
     </task>
     <servers />
   </component>
@@ -1172,7 +1224,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39789000" />
+    <option name="totallyTimeSpent" value="48199000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1187,7 +1239,7 @@
     <frame x="45" y="27" width="1875" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info x="752" y="95" width="461" height="916" id="Project" order="0" visible="true" weight="0.13395298" />
+      <window_info x="752" y="95" width="461" height="916" id="Project" order="0" weight="0.13340624" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1197,7 +1249,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32969433" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3973799" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.16266376" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3242358" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1210,7 +1262,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.32969433" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
       <window_info anchor="bottom" id="Version Control" order="14" />
-      <window_info active="true" anchor="bottom" id="Database Console" order="15" visible="true" weight="0.23908296" />
+      <window_info anchor="bottom" id="Database Console" order="15" weight="0.23908296" />
       <window_info anchor="bottom" id="REST Client" order="16" weight="0.45087337" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1231,27 +1283,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Database/Database.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1736" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebModule/src/main/webapp/resources/database.properties" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="26" column="12" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Database/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/index.css" />
     <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/static/index.css" />
     <entry file="file://$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/dao/Dao.java" />
     <entry file="file://$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/model/entity/Address.java">
@@ -1294,13 +1325,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="843" selection-start-line="843" selection-end-line="843" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/dao/AddressDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1404,13 +1428,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://7ab3df17-9bb5-4f87-a06d-182644e76759/schema/Contact/table/contact">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/AddressController.java" />
     <entry file="file://$PROJECT_DIR$/WebModule/logging/logFile.log">
       <provider selected="true" editor-type-id="LogFileEditorProvider">
@@ -1421,13 +1438,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-134">
           <caret line="46" column="89" selection-start-line="46" selection-start-column="89" selection-end-line="46" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/dao/ContactDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="122" column="80" selection-start-line="122" selection-start-column="80" selection-end-line="122" selection-end-column="80" />
         </state>
       </provider>
     </entry>
@@ -1445,13 +1455,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7ab3df17-9bb5-4f87-a06d-182644e76759/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Database/src/main/resources/database.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
@@ -1463,20 +1466,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/addAddress.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/contactViewer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -1494,20 +1483,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/editContact.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="15" column="115" selection-start-line="15" selection-start-column="115" selection-end-line="15" selection-end-column="115" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/restContactViewer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="955">
-          <caret line="79" column="9" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/searchForm.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="303">
@@ -1518,27 +1493,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/RestApiController.java">
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/contactViewer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="117" column="55" lean-forward="true" selection-start-line="117" selection-start-column="55" selection-end-line="117" selection-end-column="55" />
+        <state relative-caret-position="364">
+          <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/dao/AddressDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
           <folding>
-            <element signature="method#RestApiController#0;class#RestApiController#0" />
-            <element signature="method#searchContacts#0;class#RestApiController#0" />
-            <element signature="method#submit#0;class#RestApiController#0" />
-            <element signature="method#sendEmail#0;class#RestApiController#0" />
-            <element signature="method#number#0;class#RestApiController#0" />
-            <element signature="method#processEditing#0;class#RestApiController#0" />
-            <element signature="method#processAdding#0;class#RestApiController#0" />
-            <element signature="method#uploadPost#0;class#RestApiController#0" />
+            <element signature="method#findLastId#0;class#AddressDao#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/sendEmail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="32" lean-forward="true" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+    <entry file="das://7ab3df17-9bb5-4f87-a06d-182644e76759/schema/Contact/table/address">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -1552,17 +1527,110 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7ab3df17-9bb5-4f87-a06d-182644e76759/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/restContactViewer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1420">
+          <caret line="76" column="16" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/sendEmail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/static/init.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Database/src/main/java/by/itechart/contacts/dao/ContactDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/static/fetchApi.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/viewAddress.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
+          <folding>
+            <element signature="n#style#0;n#h1#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://7ab3df17-9bb5-4f87-a06d-182644e76759/schema/Contact/table/contact">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/ViewController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="97" selection-start-line="97" selection-end-line="97" />
+        <state relative-caret-position="186">
+          <caret line="76" column="50" selection-start-line="76" selection-start-column="50" selection-end-line="76" selection-end-column="50" />
           <folding>
             <element signature="method#ViewController#0;class#ViewController#0" />
             <element signature="method#uploadDocument#0;class#ViewController#0" />
             <element signature="method#addNewContact#0;class#ViewController#0" />
             <element signature="method#edit#0;class#ViewController#0" />
-            <element signature="method#addNewAddress#0;class#ViewController#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/RestApiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="118" column="31" selection-start-line="118" selection-start-column="31" selection-end-line="118" selection-end-column="31" />
+          <folding>
+            <element signature="method#RestApiController#0;class#RestApiController#0" />
+            <element signature="method#searchContacts#0;class#RestApiController#0" />
+            <element signature="method#submit#0;class#RestApiController#0" />
+            <element signature="method#sendEmail#0;class#RestApiController#0" />
+            <element signature="method#number#0;class#RestApiController#0" />
+            <element signature="method#processEditing#0;class#RestApiController#0" />
+            <element signature="method#processAdding#0;class#RestApiController#0" />
+            <element signature="method#uploadPost#0;class#RestApiController#0" />
+            <element signature="method#findPhones#0;class#RestApiController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/editContact.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="15" column="115" selection-start-line="15" selection-start-column="115" selection-end-line="15" selection-end-column="115" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/addAddress.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="44" column="14" lean-forward="true" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/editAddress.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="69" column="49" selection-start-line="69" selection-start-column="49" selection-end-line="69" selection-end-column="49" />
         </state>
       </provider>
     </entry>

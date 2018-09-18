@@ -74,6 +74,15 @@ public class ViewController {
         return modelAndView;
     }
 
+    @GetMapping(value = "/contact/{id}/editAddress")
+    public ModelAndView editAddress(@PathVariable Long id){
+        Contact byId = contactDao.findById(id);
+        if (byId!=null | byId.getAddressId()!=0){
+            return new ModelAndView("editAddress", "id",byId.getAddressId());
+        }
+        System.out.println(byId);
+        return new ModelAndView("error");
+    }
 
     @GetMapping(value = "/contact/{id}/edit")
     public ModelAndView edit(@PathVariable Long id) {
@@ -90,9 +99,16 @@ public class ViewController {
 
     @GetMapping(value = "/contact/{id}/addAddress")
     public ModelAndView addNewAddress(@PathVariable Long id){
-        ModelAndView modelAndView = new ModelAndView("addAddress", "address", new Address());
-        modelAndView.addObject("id", id);
-        return modelAndView;
+        Contact byId = contactDao.findById(id);
+        if (byId.getAddressId()!=0){
+            ModelAndView modelAndView = new ModelAndView("viewAddress", "id", byId.getAddressId());
+            modelAndView.addObject("contactId",byId.getId());
+            return modelAndView;
+        }else{
+            ModelAndView modelAndView = new ModelAndView("addAddress", "id", id);
+            modelAndView.addObject("address", new Address());
+            return modelAndView;
+        }
     }
 
 
