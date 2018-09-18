@@ -62,3 +62,4 @@
 2018-09-18 20:15:33 ERROR AbstractDao:79 - Incorrect string value: '\xAC\xED\x00\x05~r...' for column 'gender' at row 1
 2018-09-18 20:15:33 ERROR AbstractDao:92 - Can not issue data manipulation statements with executeQuery().
 2018-09-18 22:20:27 ERROR ContactDao:110 - Before start of result set
+2018-09-18 23:38:51 ERROR AbstractDao:79 - No value specified for parameter 7

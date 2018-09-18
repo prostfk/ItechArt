@@ -20,6 +20,7 @@
     <h1 th:class="${id}" id="edit">EDIT ADDRESS</h1>
 
     <form action="/rest/editAddress" method="post" class="reg-form">
+        <input type="text" th:value="${id}" name="id" style="visibility: hidden">
         <div class="reg-element">
             <label for="country">Country</label>
             <input type="text" id="country" name="country" placeholder="Country" class="reg-input">

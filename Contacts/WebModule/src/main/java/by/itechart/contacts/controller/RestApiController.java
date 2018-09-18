@@ -116,10 +116,11 @@ public class RestApiController {
     }
 
     @PostMapping(value = "/editAddress")
-    public Address editAddress(Address address){
-        if (address.getId()!=0){
+    public Address editAddress(@ModelAttribute Address address){
+        System.out.println(address);
+        try{
             addressDao.update(address.getId(),address);
-        }else{
+        }catch (Exception e){
             addressDao.save(address);
         }
         return address;
@@ -154,6 +155,11 @@ public class RestApiController {
         List<Phone> phonesByParameter = phoneDao.findPhonesByParameter(type, value);
         System.out.println("phonesByParameter = " + phonesByParameter);
         return phonesByParameter;
+    }
+
+    @GetMapping(value = "/contact/{id}/phone")
+    public Phone findPhoneByContact(@PathVariable Long id){
+        return phoneDao.findPhoneByContactId(id);
     }
 
 }

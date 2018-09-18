@@ -64,7 +64,7 @@ public class AddressDao extends AbstractDao<Address> {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE address SET country=?, city=?,street=?,house=?,flat=?,post_index=? WHERE id=?");
             execute(preparedStatement,
                     address.getCountry(), address.getCity(),address.getStreet(),
-                    address.getHouse(),address.getFlat(),address.getPostIndex()
+                    address.getHouse(),address.getFlat(),address.getPostIndex(),id
             );
         }catch (Exception e){
             e.printStackTrace();
@@ -107,9 +107,3 @@ public class AddressDao extends AbstractDao<Address> {
 
 
 }
-//preparedStatement.setString(1, address.getCountry());
-//        preparedStatement.setString(2, address.getCity());
-//        preparedStatement.setString(3, address.getStreet());
-//        preparedStatement.setString(4, address.getHouse());
-//        preparedStatement.setString(5, address.getFlat());
-//        preparedStatement.setString(6, address.getPostIndex());

@@ -70,7 +70,6 @@ public abstract class AbstractDao<T> {
         int index = 1;
         try{
             for (int i = 0; i < args.length; i++) {
-                System.out.println(args[i]);
                 preparedStatement.setObject(index++, args[i]);
             }
             preparedStatement.execute();

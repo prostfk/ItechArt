@@ -14,6 +14,7 @@
 <div class="container gap-bottom" id="container">
 
     <form class="reg-form" onsubmit="return submitRegistration()" th:object="${contact}" th:action="'/rest/contact/' + ${contact.id} + '/edit'" method="post">
+        <input type="text" th:value="${contact.id}" id="contact-id" name="id" style="visibility: hidden">
         <div class="reg-element">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" th:field="*{name}" placeholder="Name" class="reg-input">
@@ -33,8 +34,8 @@
         <div class="reg-element">
             <label for="gender">Gender</label>
             <select name="gender" id="gender">
-                <option th:each="gender : ${T(by.itechart.contacts.model.entity.Gender).values()}"
-                        th:value="${gender.name()}" th:text="${gender.name()}"></option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
             </select>
         </div>
         <div class="reg-element">
@@ -100,7 +101,50 @@
         var link = document.querySelector('link[rel=import]');
         var content = link.import.querySelector('#nav');
         document.body.insertBefore(content.cloneNode(true),document.getElementById('container'))
+        initForm();
     };
+    function initForm() {
+        var id = document.getElementById('contact-id').getAttribute('value');
+        fetch('/rest/contact/' + id).then(function (response) {
+            response.json().then(function (data) {
+                console.log(data);
+                document.getElementById('name').value = data.name;
+                document.getElementById('surname').value = data.surname;
+                document.getElementById('patronymic').value = data.patronymic;
+                document.getElementById('date').value = data.date;
+                selectOption(document.getElementById('gender'), data.gender);
+                document.getElementById('citizenship').value = data.citizenship;
+                selectOption(document.getElementById('familyStatus'), data.familyStatus);
+                document.getElementById('site').value = data.site;
+                document.getElementById('email').value = data.email;
+                document.getElementById('job').value = data.job;
+
+            })
+        });
+        fetch('/rest/contact/' + id + '/phone').then(function (response) {
+            response.json().then(function (data) {
+                console.log(data);
+                document.getElementById('countryCode').value = data.countryCode;
+                document.getElementById('number').value = data.number;
+                selectOption(document.getElementById('type'), data.type);
+                document.getElementById('comment').value = data.comment;
+
+
+            })
+        });
+
+    }
+    
+    function selectOption(element, value) {
+        var opts = element.options;
+        for (var opt, j = 0; opt = opts[j]; j++) {
+            if (opt.value === value) {
+                element.selectedIndex = j;
+                break;
+            }
+        }
+    }
+
 </script>
 
 </body>
