@@ -1,9 +1,13 @@
 package by.itechart.contacts.controller;
 
+import by.itechart.contacts.dao.AddressDao;
 import by.itechart.contacts.dao.ContactDao;
 import by.itechart.contacts.dao.DocumentDao;
+import by.itechart.contacts.dao.PhoneDao;
+import by.itechart.contacts.model.entity.Address;
 import by.itechart.contacts.model.entity.Contact;
 import by.itechart.contacts.model.entity.Document;
+import by.itechart.contacts.model.entity.Phone;
 import by.itechart.contacts.model.util.EmailUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,10 +28,14 @@ public class ViewController {
 
     private ContactDao contactDao;
     private DocumentDao documentDao;
+    private AddressDao addressDao;
+    private PhoneDao phoneDao;
 
     public ViewController() {
         contactDao = new ContactDao();
         documentDao = new DocumentDao();
+        addressDao = new AddressDao();
+        phoneDao = new PhoneDao();
     }
 
     @GetMapping(value = "/")
@@ -35,7 +43,7 @@ public class ViewController {
         return "index";
     }
 
-    @GetMapping(value = "/upload/{id}")
+    @GetMapping(value = "/contact/{id}/uploadDocument")
     public ModelAndView uploadDocument(@PathVariable Long id) {
         if (contactDao.findContactById(id) != null) {
             return new ModelAndView("uploadDocument", "id", id);
@@ -44,38 +52,12 @@ public class ViewController {
         }
     }
 
-    @PostMapping(value = "/upload/{id}")
-    public String uploadPost(@PathVariable Long id, MultipartFile file) {
-        String filePath = String.format("src/main/webapp/resources/pics/%d/", id);
-        File dir = new File(filePath);
-        if (!dir.exists()) {
-            dir.mkdir();
-        }
-        File fileObj = new File(filePath + file.getOriginalFilename());
-        try {
-            byte[] bytes = file.getBytes();
-//            fileObj = new File(fileObj.getAbsolutePath());
-            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(fileObj));
-            stream.write(bytes);
-            stream.flush();
-            stream.close();
-            documentDao.save(new Document(
-                    "/resources/pics/" + file.getOriginalFilename(),
-                    id, file.getOriginalFilename()
-            ));
-            return "redirect:/docs";
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "redirect:/all";
-    }
-
-    @GetMapping(value = "/sendEmail")
+    @GetMapping(value = "/contact/sendEmail")
     public String sendEmailPage() {
         return "sendEmail";
     }
 
-    @GetMapping(value = "/searchContact")
+    @GetMapping(value = "/contact/search")
     public String getSearchPage() {
         return "searchForm";
     }
@@ -84,6 +66,35 @@ public class ViewController {
     public String getDocuments() {
         return "documents";
     }
+
+    @GetMapping(value = "/contact/addContact")
+    public ModelAndView addNewContact() {
+        ModelAndView modelAndView = new ModelAndView("addContact", "contact", new Contact());
+        modelAndView.addObject("phone", new Phone());
+        return modelAndView;
+    }
+
+
+    @GetMapping(value = "/contact/{id}/edit")
+    public ModelAndView edit(@PathVariable Long id) {
+        Contact contactById = contactDao.findContactById(id);
+        ModelAndView modelAndView = new ModelAndView("editContact", "contact", contactDao.findContactById(id));
+        Phone phoneByContactId = phoneDao.findPhoneByContactId(contactById.getId());
+        if (phoneByContactId == null) {
+            phoneByContactId = new Phone();
+        }
+        System.out.println(phoneByContactId.getId());
+        modelAndView.addObject("phone", phoneByContactId);
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/contact/{id}/addAddress")
+    public ModelAndView addNewAddress(@PathVariable Long id){
+        ModelAndView modelAndView = new ModelAndView("addAddress", "address", new Address());
+        modelAndView.addObject("id", id);
+        return modelAndView;
+    }
+
 
 
 }

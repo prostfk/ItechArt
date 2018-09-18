@@ -74,6 +74,17 @@ public class PhoneDao extends AbstractDao<Phone> {
         return null;
     }
 
+    public List<Phone> findPhonesByParameter(String parameter, String value){
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM phone WHERE ? LIKE ?")) {
+            value = String.format("%%%s%%", value);
+            ResultSet resultSet = executeQuery(preparedStatement, parameter, value);
+            System.out.println(preparedStatement.toString());
+            return createList(resultSet);
+        }catch (Exception e){
+            log(e,LOGGER);
+            return Collections.emptyList();
+        }
+    }
 
     public Phone findPhoneByContactId(Long id){
         ResultSet resultSet = executeQuery(String.format("SELECT * FROM phone WHERE contact_id='%d'", id));

@@ -44,3 +44,20 @@
 2018-09-17 20:13:14 ERROR AbstractDao:91 - Can not issue data manipulation statements with executeQuery().
 2018-09-17 20:20:25 ERROR AbstractDao:78 - Incorrect string value: '\xAC\xED\x00\x05~r...' for column 'gender' at row 1
 2018-09-17 20:20:25 ERROR AbstractDao:91 - Can not issue data manipulation statements with executeQuery().
+2018-09-17 20:24:16 ERROR AbstractDao:79 - Incorrect string value: '\xAC\xED\x00\x05~r...' for column 'gender' at row 1
+2018-09-17 20:24:16 ERROR AbstractDao:92 - Can not issue data manipulation statements with executeQuery().
+2018-09-17 20:27:40 ERROR AbstractDao:79 - Incorrect string value: '\xAC\xED\x00\x05~r...' for column 'gender' at row 1
+2018-09-17 20:27:40 ERROR AbstractDao:92 - Can not issue data manipulation statements with executeQuery().
+2018-09-17 20:29:20 ERROR AbstractDao:79 - Incorrect string value: '\xAC\xED\x00\x05~r...' for column 'gender' at row 1
+2018-09-17 20:29:20 ERROR AbstractDao:92 - Can not issue data manipulation statements with executeQuery().
+2018-09-17 20:34:34 ERROR AbstractDao:79 - Incorrect string value: '\xAC\xED\x00\x05~r...' for column 'gender' at row 1
+2018-09-17 20:34:34 ERROR AbstractDao:92 - Can not issue data manipulation statements with executeQuery().
+2018-09-17 20:41:21 ERROR ContactDao:110 - No enum constant by.itechart.contacts.model.entity.FamilyStatus.single
+2018-09-17 22:23:28 ERROR AbstractDao:92 - Parameter index out of range (2 > number of parameters, which is 1).
+2018-09-17 22:23:28 ERROR AbstractDao:63 - 
+2018-09-17 22:23:28 ERROR AbstractDao:92 - Parameter index out of range (2 > number of parameters, which is 1).
+2018-09-17 22:23:28 ERROR AbstractDao:63 - 
+2018-09-17 22:23:28 ERROR AbstractDao:92 - Parameter index out of range (2 > number of parameters, which is 1).
+2018-09-17 22:23:28 ERROR AbstractDao:63 - 
+2018-09-18 20:15:33 ERROR AbstractDao:79 - Incorrect string value: '\xAC\xED\x00\x05~r...' for column 'gender' at row 1
+2018-09-18 20:15:33 ERROR AbstractDao:92 - Can not issue data manipulation statements with executeQuery().
