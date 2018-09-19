@@ -9,7 +9,10 @@ import by.itechart.contacts.model.entity.Contact;
 import by.itechart.contacts.model.entity.Document;
 import by.itechart.contacts.model.entity.Phone;
 import by.itechart.contacts.model.util.EmailUtil;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,10 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ViewResolver;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -111,6 +113,24 @@ public class ViewController {
         }
     }
 
+    @GetMapping(value = "/{view}.html")
+    public String returnView(@PathVariable String view){
+        return view;
+    }
+
+    @GetMapping(value = "/{name}.{format}")
+    public ResponseEntity<Void> getCss(HttpServletResponse response, @PathVariable String name, @PathVariable String format){
+        response.setContentType(String.format("text/%s", format));
+        File path = new File(String.format("WebModule/src/main/resources/static/%s.%s", name, format));
+        try {
+            InputStream inputStream = new FileInputStream(path);
+            IOUtils.copy(inputStream, response.getOutputStream());
+            IOUtils.closeQuietly(inputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity(HttpStatus.OK);
+    }
 
 
 }

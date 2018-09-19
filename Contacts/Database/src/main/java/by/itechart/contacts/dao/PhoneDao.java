@@ -16,7 +16,7 @@ public class PhoneDao extends AbstractDao<Phone> {
     public Phone save(Phone phone) {
         //language=SQL
         try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO phone(contact_id, country_code, number, type, comment) VALUES (?,?,?,?,?)")) {
-            executeQuery(preparedStatement,phone.getContactId(), phone.getCountryCode(), phone.getNumber(), phone.getType(), phone.getComment());
+            execute(preparedStatement, phone.getContactId(), phone.getCountryCode(), phone.getNumber(), phone.getType(), phone.getComment());
         }catch (Exception e){
             e.printStackTrace();
             LOGGER.error(e.getMessage());

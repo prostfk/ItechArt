@@ -53,7 +53,7 @@ public class ContactDao extends AbstractDao<Contact> {
     public Contact save(Contact contact) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO contact(name, surname, patronymic, date_of_birth, gender, citizenship, family_status, site, email, job, address_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-            execute(preparedStatement, contact.getName(), contact.getSurname(), contact.getPatronymic(), contact.getDate(), contact.getGender(), contact.getCitizenship(), contact.getFamilyStatus(), contact.getSite(), contact.getEmail(), contact.getJob(),contact.getAddressId());
+            execute(preparedStatement, contact.getName(), contact.getSurname(), contact.getPatronymic(), contact.getDate(), contact.getGender() + "", contact.getCitizenship(), contact.getFamilyStatus() + "", contact.getSite(), contact.getEmail(), contact.getJob(),contact.getAddressId());
         } catch (SQLException e) {
             log(e, LOGGER);
         }
@@ -67,13 +67,13 @@ public class ContactDao extends AbstractDao<Contact> {
         try {
             if (contact.getAddressId() != null) {
                 PreparedStatement preparedStatement = connection.prepareStatement("UPDATE contact SET name=?, surname=?, patronymic=?, date_of_birth=?, gender=?, citizenship=?, family_status=?, site=?,email=?,job=?,address_id=? WHERE id=?");
-                execute(preparedStatement, contact.getName(), contact.getSurname(), contact.getPatronymic(), contact.getDate(), contact.getGender(),
-                        contact.getCitizenship(), contact.getFamilyStatus(), contact.getSite(), contact.getEmail(),
+                execute(preparedStatement, contact.getName(), contact.getSurname(), contact.getPatronymic(), contact.getDate(), contact.getGender() + "",
+                        contact.getCitizenship(), contact.getFamilyStatus() + "", contact.getSite(), contact.getEmail(),
                         contact.getJob(), contact.getAddressId(), id);
             } else {
                 PreparedStatement preparedStatement = connection.prepareStatement("UPDATE contact SET name=?, surname=?, patronymic=?, date_of_birth=?, gender=?, citizenship=?, family_status=?, site=?,email=?,job=? WHERE id=?");
-                execute(preparedStatement, contact.getName(), contact.getSurname(), contact.getPatronymic(), contact.getDate(), contact.getGender(),
-                        contact.getCitizenship(), contact.getFamilyStatus(), contact.getSite(), contact.getEmail(),
+                execute(preparedStatement, contact.getName(), contact.getSurname(), contact.getPatronymic(), contact.getDate(), contact.getGender() + "",
+                        contact.getCitizenship(), contact.getFamilyStatus() + "", contact.getSite(), contact.getEmail(),
                         contact.getJob(), id);
             }
         } catch (Exception e) {
@@ -121,8 +121,9 @@ public class ContactDao extends AbstractDao<Contact> {
         List<Contact> list = new LinkedList<>();
         //language=SQL
         value = "%" + value + "%";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(String.format("SELECT * FROM contact WHERE ? LIKE ?"))) {
-            ResultSet resultSet = executeQuery(preparedStatement, param, value);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(String.format("SELECT * FROM contact WHERE %s LIKE ?", param))) {
+            ResultSet resultSet = executeQuery(preparedStatement, value);
+            System.out.println(preparedStatement);
             return createList(resultSet);
         } catch (Exception e) {
             log(e, LOGGER);

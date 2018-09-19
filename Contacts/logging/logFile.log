@@ -63,3 +63,15 @@
 2018-09-18 20:15:33 ERROR AbstractDao:92 - Can not issue data manipulation statements with executeQuery().
 2018-09-18 22:20:27 ERROR ContactDao:110 - Before start of result set
 2018-09-18 23:38:51 ERROR AbstractDao:79 - No value specified for parameter 7
+2018-09-19 11:07:59 ERROR AbstractDao:78 - Incorrect string value: '\xAC\xED\x00\x05~r...' for column 'gender' at row 1
+2018-09-19 11:07:59 ERROR AbstractDao:91 - Can not issue data manipulation statements with executeQuery().
+2018-09-19 11:09:09 ERROR AbstractDao:78 - Incorrect string value: '\xAC\xED\x00\x05~r...' for column 'gender' at row 1
+2018-09-19 11:09:09 ERROR AbstractDao:91 - Can not issue data manipulation statements with executeQuery().
+2018-09-19 11:09:21 ERROR AbstractDao:78 - Incorrect string value: '\xAC\xED\x00\x05~r...' for column 'gender' at row 1
+2018-09-19 11:09:21 ERROR AbstractDao:91 - Can not issue data manipulation statements with executeQuery().
+2018-09-19 11:12:40 ERROR AbstractDao:78 - Incorrect string value: '\xAC\xED\x00\x05~r...' for column 'gender' at row 1
+2018-09-19 11:12:40 ERROR AbstractDao:91 - Can not issue data manipulation statements with executeQuery().
+2018-09-19 11:13:55 ERROR AbstractDao:78 - Incorrect string value: '\xAC\xED\x00\x05~r...' for column 'family_status' at row 1
+2018-09-19 11:13:55 ERROR AbstractDao:91 - Can not issue data manipulation statements with executeQuery().
+2018-09-19 11:39:59 ERROR AbstractDao:91 - Can not issue data manipulation statements with executeQuery().
+2018-09-19 11:43:07 ERROR AbstractDao:78 - Incorrect string value: '\xAC\xED\x00\x05~r...' for column 'gender' at row 1

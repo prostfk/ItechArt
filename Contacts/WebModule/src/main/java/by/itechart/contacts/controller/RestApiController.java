@@ -4,11 +4,12 @@ import by.itechart.contacts.dao.AddressDao;
 import by.itechart.contacts.dao.ContactDao;
 import by.itechart.contacts.dao.DocumentDao;
 import by.itechart.contacts.dao.PhoneDao;
-import by.itechart.contacts.model.entity.*;
+import by.itechart.contacts.model.entity.Address;
+import by.itechart.contacts.model.entity.Contact;
+import by.itechart.contacts.model.entity.Document;
+import by.itechart.contacts.model.entity.Phone;
 import by.itechart.contacts.model.util.EmailUtil;
-import org.json.JSONObject;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,45 +39,45 @@ public class RestApiController {
     }
 
     @GetMapping(value = "/contact/{id}/delete")
-    public Contact deleteContact(@PathVariable Long id){
+    public Contact deleteContact(@PathVariable Long id) {
         return contactDao.delete(id);
     }
 
     @GetMapping(value = "/contact/{id}")
-    public Contact findContact(@PathVariable Long id){
+    public Contact findContact(@PathVariable Long id) {
         return contactDao.findContactById(id);
     }
 
     @GetMapping(value = "/searchContact")
-    public List<Contact> searchContacts(@RequestParam("type")String type, @RequestParam("value") String value){
-        return contactDao.search(type,value);
+    public List<Contact> searchContacts(@RequestParam("type") String type, @RequestParam("value") String value) {
+        return contactDao.search(type, value);
     }
 
     @GetMapping(value = "/allContacts", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List findAll(){
+    public List findAll() {
         return contactDao.findAll();
     }
 
     @GetMapping(value = "/documents")
-    public List findDocuments(){
+    public List findDocuments() {
         return documentDao.findAll();
     }
 
     @PostMapping(value = "/contact/{id}/addAddress")
-    public Address submit(@PathVariable Long id, Address address){
+    public Address submit(@PathVariable Long id, Address address) {
         addressDao.save(address);
         Long addressId = addressDao.findLastId();
-        contactDao.addAddressToContact(id,addressId);
+        contactDao.addAddressToContact(id, addressId);
         return address;
     }
 
     @GetMapping(value = "/address/{id}")
-    public Address findAddress(@PathVariable Long id){
+    public Address findAddress(@PathVariable Long id) {
         return addressDao.findById(id);
     }
 
     @GetMapping(value = "/check")
-    public Long checkId(){
+    public Long checkId() {
         return addressDao.findLastId();
     }
 
@@ -104,7 +105,7 @@ public class RestApiController {
 
     @PostMapping(value = "/addContact")
     public Contact processAdding(@Valid Contact contact, Phone phone, BindingResult result) {
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             System.out.println("ERROR");
             return null;
         }
@@ -116,11 +117,11 @@ public class RestApiController {
     }
 
     @PostMapping(value = "/editAddress")
-    public Address editAddress(@ModelAttribute Address address){
+    public Address editAddress(@ModelAttribute Address address) {
         System.out.println(address);
-        try{
-            addressDao.update(address.getId(),address);
-        }catch (Exception e){
+        try {
+            addressDao.update(address.getId(), address);
+        } catch (Exception e) {
             addressDao.save(address);
         }
         return address;
@@ -151,14 +152,14 @@ public class RestApiController {
     }
 
     @GetMapping(value = "/searchPhone")
-    public List findPhones(@RequestParam("type")String type, @RequestParam("value") String value){
+    public List findPhones(@RequestParam("type") String type, @RequestParam("value") String value) {
         List<Phone> phonesByParameter = phoneDao.findPhonesByParameter(type, value);
         System.out.println("phonesByParameter = " + phonesByParameter);
         return phonesByParameter;
     }
 
     @GetMapping(value = "/contact/{id}/phone")
-    public Phone findPhoneByContact(@PathVariable Long id){
+    public Phone findPhoneByContact(@PathVariable Long id) {
         return phoneDao.findPhoneByContactId(id);
     }
 

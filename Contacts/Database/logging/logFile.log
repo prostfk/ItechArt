@@ -1,1 +1,2 @@
 2018-09-13 18:24:46 ERROR Dao:25 - Connection error: Database/src/main/resources/database.properties (No such file or directory)
+2018-09-19 11:19:31 ERROR AbstractDao:27 - Connection error: Database/src/main/resources/database.properties (No such file or directory)

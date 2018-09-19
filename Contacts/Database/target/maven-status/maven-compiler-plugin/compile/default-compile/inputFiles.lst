@@ -7,6 +7,6 @@
 /home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Contacts/Database/src/main/java/by/itechart/contacts/dao/DocumentDao.java
 /home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Contacts/Database/src/main/java/by/itechart/contacts/model/entity/Address.java
 /home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Contacts/Database/src/main/java/by/itechart/contacts/model/entity/ContactField.java
-/home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Contacts/Database/src/main/java/by/itechart/contacts/dao/Dao.java
 /home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Contacts/Database/src/main/java/by/itechart/contacts/dao/PhoneDao.java
+/home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Contacts/Database/src/main/java/by/itechart/contacts/dao/AbstractDao.java
 /home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Contacts/Database/src/main/java/by/itechart/contacts/model/entity/Document.java
