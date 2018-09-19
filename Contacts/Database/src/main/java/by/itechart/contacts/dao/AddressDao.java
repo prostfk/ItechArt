@@ -15,7 +15,22 @@ public class AddressDao extends AbstractDao<Address> {
 
     public void delete(Long id) {
         //language=SQL
-        execute(String.format("DELETE FROM address WHERE id='%d'", id));
+//        execute(String.format("DELETE FROM address WHERE id='%d'", id));
+    }
+
+    public Address findAddressByUserId(Long id){
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact JOIN address a on contact.address_id = a.id WHERE contact.id = ?")) {
+            ResultSet resultSet = executeQuery(preparedStatement, id);
+            if (resultSet.next()){
+                return new Address(
+                        resultSet.getLong("address_id"), resultSet.getString("country"), resultSet.getString("city"),
+                        resultSet.getString("street"), resultSet.getString("house"), resultSet.getString("flat"),
+                        resultSet.getString("post_index"));
+            }
+        }catch (Exception e){
+            log(e,LOGGER);
+        }
+        return null;
     }
 
     @Override

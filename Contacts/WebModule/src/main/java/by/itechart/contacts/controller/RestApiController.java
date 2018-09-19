@@ -71,6 +71,11 @@ public class RestApiController {
         return address;
     }
 
+    @GetMapping(value = "/contact/{id}/address")
+    public Address findAddressByUser(@PathVariable Long id){
+        return addressDao.findAddressByUserId(id);
+    }
+
     @GetMapping(value = "/address/{id}")
     public Address findAddress(@PathVariable Long id) {
         return addressDao.findById(id);

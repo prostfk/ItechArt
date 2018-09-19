@@ -81,6 +81,12 @@ p, h1{
   font-family: monospace;
 }
 
+/*.navbar{*/
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*flex-wrap: wrap;*/
+/*}*/
+
 .navbar ul {
     list-style-type: none;
     margin: 0;

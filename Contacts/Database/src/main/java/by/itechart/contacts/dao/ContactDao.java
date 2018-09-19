@@ -121,9 +121,8 @@ public class ContactDao extends AbstractDao<Contact> {
         List<Contact> list = new LinkedList<>();
         //language=SQL
         value = "%" + value + "%";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(String.format("SELECT * FROM contact WHERE %s LIKE ?", param))) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(String.format("SELECT * FROM contact WHERE %s LIKE ? AND status!=1", param))) {
             ResultSet resultSet = executeQuery(preparedStatement, value);
-            System.out.println(preparedStatement);
             return createList(resultSet);
         } catch (Exception e) {
             log(e, LOGGER);

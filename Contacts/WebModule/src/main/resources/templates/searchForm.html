@@ -24,7 +24,8 @@
             border: 1px solid black;
             padding: 8px;
         }
-        a{
+
+        a {
             color: white;
             text-decoration: none;
         }
@@ -79,7 +80,7 @@
         document.getElementById('content-pane').innerText = "";
         var type = document.getElementById('parameter').value;
         var value = document.getElementById('value').value;
-        if (value!==""){
+        if (value !== "") {
             fetch('/rest/searchContact?type=' + type + "&value=" + value).then(function (response) {
                 response.json().then(function (data) {
                     if (data.length > 0) {
@@ -87,13 +88,13 @@
                         var str = "";
                         for (var i = 0; i < data.length; i++) {
                             console.log(data[i]);
-                            str += "<tr>" + "<td>" + data[i].name + "</td>" + "<td>" + data[i].surname + "</td>" + "<td>" + data[i].patronymic + "</td>" + "<td>" + data[i].date + "</td>" + "<td>" + data[i].gender + "</td>" + "<td>" + data[i].citizenship + "</td>" + "<td>" + data[i].familyStatus + "</td>" + "<td>" + data[i].site + "</td>" + "<td>" + data[i].email + "</td>" + "<td>" + data[i].job + "</td>" + "<td><a href='/address/" + data[i].address + "'>Address</a>" + "<td><a href='/deleteContact/" + data[i].id + "'>" + "Delete</a></td>" + "<td><a href='/editContact/" + data[i].id + "'>" + "Edit</a></td>"  + "  </td>" + "</tr>";
+                            str += "<tr><td>" + data[i].name + "</td><td>" + data[i].surname + "</td><td>" + data[i].patronymic + "</td><td>" + data[i].date + "</td><td>" + data[i].gender + "</td><td>" + data[i].citizenship + "</td><td>" + data[i].familyStatus + "</td><td>" + data[i].site + "</td><td>" + data[i].email + "</td><td>" + data[i].job + "</td><td><a href='/rest/address/" + data[i].addressId + "'>" + (data[i].addressId != 0 ? 'Address' : 'None') + "</a><td><a href='/rest/contact/" + data[i].id + "/delete/'>Delete</a></td><td><a href='/contact/" + data[i].id + "/edit'>Edit</a></td></td></tr>";
                         }
                         document.getElementById("content-pane").innerHTML = str;
                     }
                 })
             })
-        }else{
+        } else {
             document.getElementById('content-pane').innerText = "";
         }
     }
@@ -102,7 +103,7 @@
     onload = function show() {
         var link = document.querySelector('link[rel=import]');
         var content = link.import.querySelector('#nav');
-        document.body.insertBefore(content.cloneNode(true),document.getElementById('container'))
+        document.body.insertBefore(content.cloneNode(true), document.getElementById('container'))
     };
 </script>
 </body>
