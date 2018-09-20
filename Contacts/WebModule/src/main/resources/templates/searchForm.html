@@ -40,7 +40,7 @@
     <div class="reg-form" style="margin-top: 2%">
         <div class="reg-element">
             <label for="parameter">Chose filed</label>
-            <select name="parameter" id="parameter">
+            <select name="parameter" id="parameter" onchange="addInfoToSelect()">
                 <option th:each="filed : ${T(by.itechart.contacts.model.entity.ContactField).values()}"
                         th:value="${filed.name()}" th:text="${filed.name()}"></option>
             </select>
@@ -75,11 +75,12 @@
 </div>
 
 <script>
+
     function search() {
-        document.getElementById('table').style.display = "none";
-        document.getElementById('content-pane').innerText = "";
         var type = document.getElementById('parameter').value;
         var value = document.getElementById('value').value;
+        document.getElementById('table').style.display = "none";
+        document.getElementById('content-pane').innerText = "";
         if (value !== "") {
             fetch('/rest/searchContact?type=' + type + "&value=" + value).then(function (response) {
                 response.json().then(function (data) {
@@ -98,6 +99,16 @@
             document.getElementById('content-pane').innerText = "";
         }
     }
+
+    function addInfoToSelect() {
+        var type = document.getElementById('parameter').value;
+
+        if (type==='date_of_birth'){
+            //todo create range of dates by selecting date of birth
+            document.getElementById('reg-element').innerHTML = "<input type='date'><input type='date'>"
+        }
+    }
+
 </script>
 <script>
     onload = function show() {

@@ -1,10 +1,10 @@
 -------------------------------------------------------------------------------
 Test set: by.itechart.test.dao.ContactDaoTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.241 sec <<< FAILURE!
-findByIdTest(by.itechart.test.dao.ContactDaoTest)  Time elapsed: 0.194 sec  <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.258 sec <<< FAILURE!
+findByIdTest(by.itechart.test.dao.ContactDaoTest)  Time elapsed: 0.206 sec  <<< ERROR!
 java.lang.NullPointerException
-	at by.itechart.contacts.dao.AbstractDao.executeQuery(AbstractDao.java:44)
+	at by.itechart.contacts.dao.AbstractDao.executeQuery(AbstractDao.java:54)
 	at by.itechart.contacts.dao.ContactDao.findContactById(ContactDao.java:109)
 	at by.itechart.test.dao.ContactDaoTest.findByIdTest(ContactDaoTest.java:26)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)

@@ -3,6 +3,8 @@ package by.itechart.contacts.dao;
 import org.apache.log4j.Logger;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,18 +16,21 @@ public abstract class AbstractDao<T> {
     private static final Logger LOGGER = Logger.getLogger(AbstractDao.class);
 
     AbstractDao() {
+        try{
+            initDao("Database/src/main/resources/database.properties");
+//            initDao("src/main/resources/database.properties");
+        }catch (Exception e){
+            log(e, LOGGER);
+        }
+    }
+
+    private void initDao(String path) throws SQLException, IOException {
         Properties properties = new Properties();
-        try {
-            properties.load(new FileInputStream("Database/src/main/resources/database.properties"));//war style
-//            properties.load(new FileInputStream("src/main/resources/database.properties"));//for tests
+            properties.load(new FileInputStream(path));//war style
             String url = properties.getProperty("spring.datasource.url");
             String username = properties.getProperty("spring.datasource.username");
             String password = properties.getProperty("spring.datasource.password");
             connection = DriverManager.getConnection(url,username,password);
-        } catch (Exception e) {
-            e.printStackTrace();
-            LOGGER.error("Connection error: " + e.getMessage());
-        }
     }
 
     void execute(String sql){
