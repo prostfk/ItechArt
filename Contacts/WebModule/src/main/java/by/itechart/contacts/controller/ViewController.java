@@ -86,6 +86,15 @@ public class ViewController {
         return new ModelAndView("error");
     }
 
+    @GetMapping(value = "/editAddress/{id}")
+    public ModelAndView redirectToEditAddressPage(@PathVariable Long id){
+        Contact contactByAddressId = contactDao.findContactByAddressId(id);
+        if (contactByAddressId!=null){
+            return new ModelAndView(String.format("redirect:/contact/%d/editAddress", contactByAddressId.getId()));
+        }
+        return new ModelAndView("error", "message", "check url");
+    }
+
     @GetMapping(value = "/contact/{id}/edit")
     public ModelAndView edit(@PathVariable Long id) {
         Contact contactById = contactDao.findContactById(id);
@@ -118,6 +127,11 @@ public class ViewController {
         return view;
     }
 
+    @GetMapping(value = "/error")
+    public ModelAndView sendError(@RequestParam String message){
+        return new ModelAndView("error", "message", message);
+    }
+
     @GetMapping(value = "/{name}.{format}")
     public ResponseEntity<Void> getCss(HttpServletResponse response, @PathVariable String name, @PathVariable String format){
         response.setContentType(String.format("text/%s", format));
@@ -131,6 +145,5 @@ public class ViewController {
         }
         return new ResponseEntity(HttpStatus.OK);
     }
-
 
 }

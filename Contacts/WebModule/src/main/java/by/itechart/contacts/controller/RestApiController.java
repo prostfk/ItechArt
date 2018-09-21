@@ -9,6 +9,7 @@ import by.itechart.contacts.model.entity.Contact;
 import by.itechart.contacts.model.entity.Document;
 import by.itechart.contacts.model.entity.Phone;
 import by.itechart.contacts.model.util.EmailUtil;
+import org.json.JSONObject;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 @RequestMapping(value = "/rest")
@@ -39,13 +41,13 @@ public class RestApiController {
     }
 
     @GetMapping(value = "/contact/{id}/delete")
-    public Contact deleteContact(@PathVariable Long id) {
-        return contactDao.delete(id);
+    public Object deleteContact(@PathVariable Long id) {
+        return validate(contactDao.delete(id), "no such contact");
     }
 
     @GetMapping(value = "/contact/{id}")
-    public Contact findContact(@PathVariable Long id) {
-        return contactDao.findContactById(id);
+    public Object findContact(@PathVariable Long id) {
+        return validate(contactDao.findById(id), "no such contact");
     }
 
     @GetMapping(value = "/searchContact")
@@ -72,13 +74,13 @@ public class RestApiController {
     }
 
     @GetMapping(value = "/contact/{id}/address")
-    public Address findAddressByUser(@PathVariable Long id){
-        return addressDao.findAddressByUserId(id);
+    public Object findAddressByUser(@PathVariable Long id) {
+        return validate(addressDao.findAddressByUserId(id), "no data. Check url");
     }
 
     @GetMapping(value = "/address/{id}")
-    public Address findAddress(@PathVariable Long id) {
-        return addressDao.findById(id);
+    public Object findAddress(@PathVariable Long id) {
+        return validate(addressDao.findById(id), "no such address");
     }
 
     @GetMapping(value = "/check")
@@ -99,17 +101,17 @@ public class RestApiController {
     }
 
     @PostMapping(value = "/contact/{contactId}/edit")
-    public Contact processEditing(@PathVariable Long contactId, Contact contact, Phone phone) {
+    public Object processEditing(@PathVariable Long contactId, Contact contact, Phone phone) {
         if (phone.getId() != null) {
             phoneDao.update(phone.getId(), phone);
         } else {
             phoneDao.save(phone);
         }
-        return contactDao.update(contactId, contact);
+        return validate(contactDao.update(contactId, contact), "check your data");
     }
 
     @PostMapping(value = "/addContact")
-    public Contact processAdding(@Valid Contact contact, Phone phone, BindingResult result) {
+    public Object processAddingContact(@Valid Contact contact, Phone phone, BindingResult result) {
         if (result.hasErrors()) {
             System.out.println("ERROR");
             return null;
@@ -117,19 +119,17 @@ public class RestApiController {
         contactDao.save(contact);
         Long lastId = contactDao.findLastId();
         phone.setContactId(lastId);
-        phoneDao.save(phone);
-        return contact;
+        return validate(phoneDao.save(phone), "check your data");
     }
 
     @PostMapping(value = "/editAddress")
-    public Address editAddress(@ModelAttribute Address address) {
-        System.out.println(address);
-        try {
-            addressDao.update(address.getId(), address);
-        } catch (Exception e) {
-            addressDao.save(address);
+    public Object editAddress(@ModelAttribute Address address) {
+        Address update = addressDao.update(address.getId(), address);
+        if (update != null) {
+            return update;
+        } else {
+            return validate(addressDao.save(address), "server error");
         }
-        return address;
     }
 
     @PostMapping(value = "/contact/{id}/document/upload")
@@ -164,8 +164,17 @@ public class RestApiController {
     }
 
     @GetMapping(value = "/contact/{id}/phone")
-    public Phone findPhoneByContact(@PathVariable Long id) {
-        return phoneDao.findPhoneByContactId(id);
+    public Object findPhoneByContact(@PathVariable Long id) {
+        return validate(phoneDao.findPhoneByContactId(id), "no such data");
+    }
+
+    private Object validate(Object object, String message) {
+        if (object != null) {
+            return object;
+        }
+        HashMap<String, String> stringStringHashMap = new HashMap<>();
+        stringStringHashMap.put("error", message);
+        return stringStringHashMap;
     }
 
 }

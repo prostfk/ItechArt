@@ -76,11 +76,11 @@ public class ContactDao extends AbstractDao<Contact> {
                         contact.getCitizenship(), contact.getFamilyStatus() + "", contact.getSite(), contact.getEmail(),
                         contact.getJob(), id);
             }
+            return contact;
         } catch (Exception e) {
             log(e, LOGGER);
+            return null;
         }
-        return contact;
-
     }
 
     @Override
@@ -102,6 +102,18 @@ public class ContactDao extends AbstractDao<Contact> {
         //language=SQL
         ResultSet resultSet = executeQuery(String.format("SELECT * FROM contact WHERE id >= '%d' LIMIT %d ", firstId, limit));
         return createList(resultSet);
+    }
+
+    public Contact findContactByAddressId(Long addressId){
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact WHERE address_id=?")) {
+            ResultSet resultSet = executeQuery(preparedStatement, addressId);
+            if (resultSet.next()){
+                return createEntity(resultSet);
+            }
+        }catch (Exception e){
+            log(e, LOGGER);
+        }
+        return null;
     }
 
     public Contact findContactById(Long id) {

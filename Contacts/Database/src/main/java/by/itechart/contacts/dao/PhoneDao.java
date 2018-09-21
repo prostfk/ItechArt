@@ -17,11 +17,12 @@ public class PhoneDao extends AbstractDao<Phone> {
         //language=SQL
         try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO phone(contact_id, country_code, number, type, comment) VALUES (?,?,?,?,?)")) {
             execute(preparedStatement, phone.getContactId(), phone.getCountryCode(), phone.getNumber(), phone.getType(), phone.getComment());
+            return phone;
         }catch (Exception e){
             e.printStackTrace();
             LOGGER.error(e.getMessage());
+            return null;
         }
-        return phone;
     }
 
     @Override

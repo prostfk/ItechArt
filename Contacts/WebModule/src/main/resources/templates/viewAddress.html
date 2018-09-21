@@ -23,6 +23,7 @@
     <h2 id="country"></h2>
     <h3 id="city"></h3>
     <h2 id="addressInfo"></h2>
+    <a id="href-to-edit">Edit</a>
 
 </div>
 
@@ -37,15 +38,14 @@
         initAddress();
     };
     function initAddress() {
-        var id = document.getElementById('address');
-        id = id.getAttribute('class');
+        var id = document.getElementById('address').getAttribute('class');
         fetch('/rest/address/' + id).then(function (response) {
             response.json().then(function (data) {
                 console.log(data);
                 document.getElementById('country').innerText = data.country;
                 document.getElementById('city').innerText = data.city;
                 document.getElementById('addressInfo').innerHTML = 'Street: ' + data.street + '<br/>House: ' + data.house + '<br/>Flat: ' + data.flat + '<br/>Post Index: ' + data.postIndex;
-
+                document.getElementById('href-to-edit').setAttribute('href', '/editAddress/' + id)
             })
         })
     }

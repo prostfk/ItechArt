@@ -65,11 +65,12 @@ public class AddressDao extends AbstractDao<Address> {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO address(country, city, street, house, flat, post_index) VALUES (?,?,?,?,?,?)");
             execute(preparedStatement, address.getCountry(), address.getCity(),address.getStreet(),address.getHouse(),address.getFlat(),address.getPostIndex());
+            return address;
         } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());
+            return null;
         }
-        return address;
 
     }
 
@@ -81,11 +82,12 @@ public class AddressDao extends AbstractDao<Address> {
                     address.getCountry(), address.getCity(),address.getStreet(),
                     address.getHouse(),address.getFlat(),address.getPostIndex(),id
             );
+            return address;
         }catch (Exception e){
             e.printStackTrace();
             LOGGER.error(e.getMessage());
+            return null;
         }
-        return address;
     }
 
 

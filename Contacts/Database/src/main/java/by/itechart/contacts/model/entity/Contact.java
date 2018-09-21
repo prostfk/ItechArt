@@ -115,6 +115,22 @@ public class Contact {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", patronymic='" + patronymic + '\'' +
+                ", date=" + date +
+                ", gender=" + gender +
+                ", citizenship='" + citizenship + '\'' +
+                ", familyStatus=" + familyStatus +
+                ", site='" + site + '\'' +
+                ", email='" + email + '\'' +
+                ", job='" + job + '\'' +
+                ", addressId=" + addressId +
+                ", status=" + status +
+                '}';
+    }
 }
