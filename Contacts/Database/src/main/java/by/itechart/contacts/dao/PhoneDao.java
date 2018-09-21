@@ -18,7 +18,7 @@ public class PhoneDao extends AbstractDao<Phone> {
         try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO phone(contact_id, country_code, number, type, comment) VALUES (?,?,?,?,?)")) {
             execute(preparedStatement, phone.getContactId(), phone.getCountryCode(), phone.getNumber(), phone.getType(), phone.getComment());
             return phone;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());
             return null;
@@ -28,8 +28,10 @@ public class PhoneDao extends AbstractDao<Phone> {
     @Override
     public Phone findById(Long id) {
         try (ResultSet resultSet = connection.createStatement().executeQuery(String.format("SELECT * FROM phone WHERE id='%s'", id))) {
-            return createEntity(resultSet);
-        }catch (Exception e){
+            if(resultSet.next()){
+                return createEntity(resultSet);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());
         }
@@ -40,7 +42,7 @@ public class PhoneDao extends AbstractDao<Phone> {
     public List<Phone> findAll() {
         try (ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM phone")) {
             return createList(resultSet);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());
         }
@@ -51,45 +53,51 @@ public class PhoneDao extends AbstractDao<Phone> {
     public Phone update(Long id, Phone phone) {
         //language=SQL
         try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE phone SET country_code=?, number=?,type=?,comment=?")) {
-            execute(preparedStatement,phone.getCountryCode(),phone.getNumber(),phone.getType(),phone.getComment());
-        }catch (Exception e){
-            e.printStackTrace();
-            LOGGER.error(e.getMessage());
-        }
-        return phone;
-    }
-
-    @Override
-    public Phone createEntity(ResultSet resultSet) {
-        try {
-            if (resultSet.next()){
-                return new Phone(
-                        resultSet.getLong("id"),resultSet.getLong("contact_id"),resultSet.getString("country_code"),
-                        resultSet.getString("number"),resultSet.getString("type"),resultSet.getString("comment")
-                );
-            }
-        }catch (Exception e){
+            execute(preparedStatement, phone.getCountryCode(), phone.getNumber(), phone.getType(), phone.getComment());
+            return phone;
+        } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());
         }
         return null;
     }
 
-    public List<Phone> findPhonesByParameter(String parameter, String value){
+    @Override
+    public Phone createEntity(ResultSet resultSet) {
+        try {
+            return new Phone(
+                    resultSet.getLong("id"), resultSet.getLong("contact_id"), resultSet.getString("country_code"),
+                    resultSet.getString("number"), resultSet.getString("type"), resultSet.getString("comment")
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.error(e.getMessage());
+        }
+        return null;
+    }
+
+    public List<Phone> findPhonesByParameter(String parameter, String value) {
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM phone WHERE ? LIKE ?")) {
             value = String.format("%%%s%%", value);
             ResultSet resultSet = executeQuery(preparedStatement, parameter, value);
             System.out.println(preparedStatement.toString());
             return createList(resultSet);
-        }catch (Exception e){
-            log(e,LOGGER);
+        } catch (Exception e) {
+            log(e, LOGGER);
             return Collections.emptyList();
         }
     }
 
-    public Phone findPhoneByContactId(Long id){
+    public Phone findPhoneByContactId(Long id) {
         ResultSet resultSet = executeQuery(String.format("SELECT * FROM phone WHERE contact_id='%d'", id));
-        return createEntity(resultSet);
+        try {
+            if (resultSet.next()){
+                return createEntity(resultSet);
+            }
+        }catch (Exception e){
+            log(e,LOGGER);
+        }
+        return null;
     }
 
 

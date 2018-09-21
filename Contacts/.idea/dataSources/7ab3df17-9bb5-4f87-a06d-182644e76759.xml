@@ -1094,67 +1094,73 @@
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <index id="268" parent="238" name="contact_id">
+    <column id="268" parent="238" name="upload_date">
+      <Position>5</Position>
+      <DataType>datetime|0s</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="269" parent="238" name="contact_id">
       <ColNames>contact_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="269" parent="238" name="PRIMARY">
+    <key id="270" parent="238" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="270" parent="238" name="document_ibfk_1">
+    <foreign-key id="271" parent="238" name="document_ibfk_1">
       <ColNames>contact_id</ColNames>
       <RefSchemaName>Contact</RefSchemaName>
       <RefTableName>contact</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="271" parent="239" name="id">
+    <column id="272" parent="239" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="272" parent="239" name="contact_id">
+    <column id="273" parent="239" name="contact_id">
       <Position>2</Position>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="273" parent="239" name="country_code">
+    <column id="274" parent="239" name="country_code">
       <Position>3</Position>
       <DataType>varchar(4)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="274" parent="239" name="number">
+    <column id="275" parent="239" name="number">
       <Position>4</Position>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="275" parent="239" name="type">
+    <column id="276" parent="239" name="type">
       <Position>5</Position>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="276" parent="239" name="comment">
+    <column id="277" parent="239" name="comment">
       <Position>6</Position>
       <DataType>varchar(150)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <index id="277" parent="239" name="contact_id">
+    <index id="278" parent="239" name="contact_id">
       <ColNames>contact_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="278" parent="239" name="PRIMARY">
+    <key id="279" parent="239" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="279" parent="239" name="phone_ibfk_1">
+    <foreign-key id="280" parent="239" name="phone_ibfk_1">
       <ColNames>contact_id</ColNames>
       <RefSchemaName>Contact</RefSchemaName>
       <RefTableName>contact</RefTableName>

@@ -106,6 +106,19 @@ public class ContactDao extends AbstractDao<Contact> {
         return createList(resultSet);
     }
 
+    public Contact findContactByNameAndSurname(String name, String surname){
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact WHERE name=? AND surname=?")) {
+            ResultSet resultSet = executeQuery(preparedStatement, name, surname);
+            if (resultSet.next()){
+                return createEntity(resultSet);
+            }
+        }catch (Exception e){
+            log(e,LOGGER);
+        }
+        return null;
+
+    }
+
     public Map<String, String> findContactWithAddressById(Long id){
         HashMap<String, String> json = new HashMap<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT contact.id,name,surname,patronymic,date_of_birth,gender,citizenship,family_status,site,email,job,address_id,country,city,street,house,flat,post_index FROM contact LEFT JOIN address a on contact.address_id = a.id WHERE contact.id = ? AND status!=1;")) {

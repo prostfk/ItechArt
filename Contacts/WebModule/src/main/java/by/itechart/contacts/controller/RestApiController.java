@@ -24,6 +24,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping(value = "/rest")
 @RestController
@@ -69,7 +70,7 @@ public class RestApiController {
 
     @GetMapping(value = "/contact/{id}/full")
     public Object fullInfo(@PathVariable Long id){
-        return contactDao.findContactWithAddressById(id);
+        return validate(contactDao.findContactWithAddressById(id), "no such data");
     }
 
     @PostMapping(value = "/contact/{id}/addAddress")
@@ -109,6 +110,7 @@ public class RestApiController {
 
     @PostMapping(value = "/contact/{contactId}/edit")
     public Object processEditing(@PathVariable Long contactId, Contact contact, Phone phone) {
+        phone.setContactId(contactId);
         if (phone.getId() != null) {
             phoneDao.update(phone.getId(), phone);
         } else {
@@ -121,12 +123,15 @@ public class RestApiController {
     public Object processAddingContact(@Valid Contact contact, Phone phone, BindingResult result) {
         if (result.hasErrors()) {
             System.out.println("ERROR");
-            return null;
+            return validate(null, "Your data did't pass the validator. Check your data!");
         }
         contactDao.save(contact);
-        Long lastId = contactDao.findLastId();
-        phone.setContactId(lastId);
-        return validate(phoneDao.save(phone), "check your data");
+        Contact baseContact = contactDao.findContactByNameAndSurname(contact.getName(), contact.getSurname());
+        phone.setContactId(baseContact.getId());
+        Map<String, Object> data = new HashMap<>();
+        data.put("contact", contact);
+        data.put("phone", phone);
+        return data;
     }
 
     @PostMapping(value = "/editAddress")
@@ -145,7 +150,6 @@ public class RestApiController {
         File dir = new File(filePath);
         if (!dir.exists()) {
             boolean mkdir = dir.mkdir();
-            System.out.println(mkdir);
         }
         File fileObj = new File(filePath + file.getOriginalFilename());
         try {

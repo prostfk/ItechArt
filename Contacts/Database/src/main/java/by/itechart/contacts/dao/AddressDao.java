@@ -18,17 +18,17 @@ public class AddressDao extends AbstractDao<Address> {
 //        execute(String.format("DELETE FROM address WHERE id='%d'", id));
     }
 
-    public Address findAddressByUserId(Long id){
+    public Address findAddressByUserId(Long id) {
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact JOIN address a on contact.address_id = a.id WHERE contact.id = ?")) {
             ResultSet resultSet = executeQuery(preparedStatement, id);
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 return new Address(
                         resultSet.getLong("address_id"), resultSet.getString("country"), resultSet.getString("city"),
                         resultSet.getString("street"), resultSet.getString("house"), resultSet.getString("flat"),
                         resultSet.getString("post_index"));
             }
-        }catch (Exception e){
-            log(e,LOGGER);
+        } catch (Exception e) {
+            log(e, LOGGER);
         }
         return null;
     }
@@ -40,12 +40,14 @@ public class AddressDao extends AbstractDao<Address> {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM address WHERE id=?");
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            return createEntity(resultSet);
+            if (resultSet.next()) {
+                return createEntity(resultSet);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());
-            return null;
         }
+        return null;
     }
 
     @Override
@@ -53,7 +55,7 @@ public class AddressDao extends AbstractDao<Address> {
         try {
             ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM address");
             return createList(resultSet);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());
             return null;
@@ -64,7 +66,7 @@ public class AddressDao extends AbstractDao<Address> {
     public Address save(Address address) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO address(country, city, street, house, flat, post_index) VALUES (?,?,?,?,?,?)");
-            execute(preparedStatement, address.getCountry(), address.getCity(),address.getStreet(),address.getHouse(),address.getFlat(),address.getPostIndex());
+            execute(preparedStatement, address.getCountry(), address.getCity(), address.getStreet(), address.getHouse(), address.getFlat(), address.getPostIndex());
             return address;
         } catch (Exception e) {
             e.printStackTrace();
@@ -79,11 +81,11 @@ public class AddressDao extends AbstractDao<Address> {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE address SET country=?, city=?,street=?,house=?,flat=?,post_index=? WHERE id=?");
             execute(preparedStatement,
-                    address.getCountry(), address.getCity(),address.getStreet(),
-                    address.getHouse(),address.getFlat(),address.getPostIndex(),id
+                    address.getCountry(), address.getCity(), address.getStreet(),
+                    address.getHouse(), address.getFlat(), address.getPostIndex(), id
             );
             return address;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());
             return null;
@@ -108,13 +110,11 @@ public class AddressDao extends AbstractDao<Address> {
     @Override
     public Address createEntity(ResultSet resultSet) {
         try {
-            if (resultSet.next()) {
-                return new Address(
-                        resultSet.getLong("id"), resultSet.getString("country"), resultSet.getString("city"),
-                        resultSet.getString("street"), resultSet.getString("house"), resultSet.getString("flat"),
-                        resultSet.getString("post_index")
-                );
-            }
+            return new Address(
+                    resultSet.getLong("id"), resultSet.getString("country"), resultSet.getString("city"),
+                    resultSet.getString("street"), resultSet.getString("house"), resultSet.getString("flat"),
+                    resultSet.getString("post_index")
+            );
         } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());

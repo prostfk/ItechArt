@@ -15,8 +15,8 @@ public class DocumentDao extends AbstractDao<Document> {
     @Override
     public Document save(Document document) {
         try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO document(path, contact_id, name) VALUES (?,?,?)")) {
-            execute(preparedStatement,document.getPath(),document.getContactId(),document.getName());
-        }catch (Exception e){
+            execute(preparedStatement, document.getPath(), document.getContactId(), document.getName());
+        } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());
         }
@@ -26,12 +26,15 @@ public class DocumentDao extends AbstractDao<Document> {
     @Override
     public Document findById(Long id) {
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM document WHERE id=?")) {
-            return createEntity(executeQuery(preparedStatement,id));
-        }catch (Exception e){
+            ResultSet resultSet = executeQuery(preparedStatement, id);
+            if (resultSet.next()){
+                return createEntity(executeQuery(preparedStatement, id));
+            }
+        } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());
-            return null;
         }
+        return null;
     }
 
     @Override
@@ -41,7 +44,7 @@ public class DocumentDao extends AbstractDao<Document> {
         List<Document> documents = new LinkedList<>();
         try {
             documents = createList(resultSet);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());
         }
@@ -52,20 +55,20 @@ public class DocumentDao extends AbstractDao<Document> {
     @Override
     public Document update(Long id, Document document) {
         //language=SQL
-        execute(String.format("UPDATE document SET path='%s', contact_id='%d', name='%s' WHERE id='%d'",document.getPath(),document.getContactId(),document.getName(), id));
+        execute(String.format("UPDATE document SET path='%s', contact_id='%d', name='%s' WHERE id='%d'", document.getPath(), document.getContactId(), document.getName(), id));
         return document;
     }
 
     @Override
     public Document createEntity(ResultSet resultSet) {
         try {
-            if (resultSet.next()){
-                new Document(
-                        resultSet.getLong("id"),resultSet.getString("path"),
-                        resultSet.getLong("contact_id"), resultSet.getString("name")
-                );
-            }
-        }catch (Exception e){
+            Document document = new Document(
+                    resultSet.getLong("id"), resultSet.getString("path"),
+                    resultSet.getLong("contact_id"), resultSet.getString("name"),
+                    resultSet.getString("upload_date")
+            );
+            return document;
+        } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());
         }
