@@ -9,6 +9,7 @@ import by.itechart.contacts.model.entity.Contact;
 import by.itechart.contacts.model.entity.Document;
 import by.itechart.contacts.model.entity.Phone;
 import by.itechart.contacts.model.util.EmailUtil;
+import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
@@ -32,6 +33,7 @@ public class RestApiController {
     private DocumentDao documentDao;
     private AddressDao addressDao;
     private PhoneDao phoneDao;
+    private static final Logger LOGGER = Logger.getLogger(RestApiController.class);
 
     public RestApiController() {
         contactDao = new ContactDao();
@@ -63,6 +65,11 @@ public class RestApiController {
     @GetMapping(value = "/documents")
     public List findDocuments() {
         return documentDao.findAll();
+    }
+
+    @GetMapping(value = "/contact/{id}/full")
+    public Object fullInfo(@PathVariable Long id){
+        return contactDao.findContactWithAddressById(id);
     }
 
     @PostMapping(value = "/contact/{id}/addAddress")
@@ -134,10 +141,11 @@ public class RestApiController {
 
     @PostMapping(value = "/contact/{id}/document/upload")
     public Document uploadPost(@PathVariable Long id, MultipartFile file) {
-        String filePath = String.format("src/main/webapp/resources/pics/%d/", id);
+        String filePath = String.format("WebModule/src/main/resources/static/userFiles/%d/", id);
         File dir = new File(filePath);
         if (!dir.exists()) {
-            dir.mkdir();
+            boolean mkdir = dir.mkdir();
+            System.out.println(mkdir);
         }
         File fileObj = new File(filePath + file.getOriginalFilename());
         try {
@@ -147,11 +155,12 @@ public class RestApiController {
             stream.write(bytes);
             stream.flush();
             stream.close();
-            Document document = new Document("/resources/pics/" + file.getOriginalFilename(), id, file.getOriginalFilename());
+            Document document = new Document(String.format("/userFiles/%d/%s",id,file.getOriginalFilename()), id, file.getOriginalFilename());
             documentDao.save(document);
             return document;
         } catch (IOException e) {
             e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
         return null;
     }

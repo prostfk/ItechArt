@@ -75,3 +75,7 @@
 2018-09-19 11:13:55 ERROR AbstractDao:91 - Can not issue data manipulation statements with executeQuery().
 2018-09-19 11:39:59 ERROR AbstractDao:91 - Can not issue data manipulation statements with executeQuery().
 2018-09-19 11:43:07 ERROR AbstractDao:78 - Incorrect string value: '\xAC\xED\x00\x05~r...' for column 'gender' at row 1
+2018-09-21 13:17:39 ERROR RestApiController:157 - src/main/resources/static/userFiles/4/burger.png (No such file or directory)
+2018-09-21 13:18:06 ERROR RestApiController:158 - src/main/resources/static/userFiles/4/burger.png (No such file or directory)
+2018-09-21 13:19:42 ERROR RestApiController:159 - src/main/resources/static/userFiles/4/burger.png (No such file or directory)
+2018-09-21 20:24:00 ERROR ContactDao:114 - Column 'date' not found.

@@ -45,6 +45,15 @@ public class ViewController {
         return "index";
     }
 
+    @GetMapping(value = "/contact/{id}")
+    public ModelAndView getContactPage(@PathVariable Long id){
+        if (contactDao.findContactById(id)!=null){
+            return new ModelAndView("contactInfo", "id",id);
+        }else{
+            return new ModelAndView("error", "message", "No such user");
+        }
+    }
+
     @GetMapping(value = "/contact/{id}/uploadDocument")
     public ModelAndView uploadDocument(@PathVariable Long id) {
         if (contactDao.findContactById(id) != null) {
@@ -77,19 +86,19 @@ public class ViewController {
     }
 
     @GetMapping(value = "/contact/{id}/editAddress")
-    public ModelAndView editAddress(@PathVariable Long id){
+    public ModelAndView editAddress(@PathVariable Long id) {
         Contact byId = contactDao.findById(id);
-        if (byId!=null | byId.getAddressId()!=0){
-            return new ModelAndView("editAddress", "id",byId.getAddressId());
+        if (byId != null | byId.getAddressId() != 0) {
+            return new ModelAndView("editAddress", "id", byId.getAddressId());
         }
         System.out.println(byId);
         return new ModelAndView("error");
     }
 
     @GetMapping(value = "/editAddress/{id}")
-    public ModelAndView redirectToEditAddressPage(@PathVariable Long id){
+    public ModelAndView redirectToEditAddressPage(@PathVariable Long id) {
         Contact contactByAddressId = contactDao.findContactByAddressId(id);
-        if (contactByAddressId!=null){
+        if (contactByAddressId != null) {
             return new ModelAndView(String.format("redirect:/contact/%d/editAddress", contactByAddressId.getId()));
         }
         return new ModelAndView("error", "message", "check url");
@@ -109,13 +118,13 @@ public class ViewController {
     }
 
     @GetMapping(value = "/contact/{id}/addAddress")
-    public ModelAndView addNewAddress(@PathVariable Long id){
+    public ModelAndView addNewAddress(@PathVariable Long id) {
         Contact byId = contactDao.findById(id);
-        if (byId.getAddressId()!=0){
+        if (byId.getAddressId() != 0) {
             ModelAndView modelAndView = new ModelAndView("viewAddress", "id", byId.getAddressId());
-            modelAndView.addObject("contactId",byId.getId());
+            modelAndView.addObject("contactId", byId.getId());
             return modelAndView;
-        }else{
+        } else {
             ModelAndView modelAndView = new ModelAndView("addAddress", "id", id);
             modelAndView.addObject("address", new Address());
             return modelAndView;
@@ -123,17 +132,26 @@ public class ViewController {
     }
 
     @GetMapping(value = "/{view}.html")
-    public String returnView(@PathVariable String view){
+    public String returnView(@PathVariable String view) {
         return view;
     }
 
     @GetMapping(value = "/error")
-    public ModelAndView sendError(@RequestParam String message){
+    public ModelAndView sendError(@RequestParam("message") String message) {
         return new ModelAndView("error", "message", message);
     }
 
+    @GetMapping(value = "/userFiles/{id}/{filename}")
+    public ModelAndView sendFile(@PathVariable String id, String filename) {
+        File file = new File(String.format("WebModule/src/main/resources/static/userFiles/%s/%s", id, filename));
+        if (file.exists()) {
+            new ModelAndView("fileViewer", "src", String.format("/userFiles/%s/%s", id, filename));
+        }
+        return new ModelAndView("error", "message", "no file");
+    }
+
     @GetMapping(value = "/{name}.{format}")
-    public ResponseEntity<Void> getCss(HttpServletResponse response, @PathVariable String name, @PathVariable String format){
+    public ResponseEntity<Void> getCss(HttpServletResponse response, @PathVariable String name, @PathVariable String format) {
         response.setContentType(String.format("text/%s", format));
         File path = new File(String.format("WebModule/src/main/resources/static/%s.%s", name, format));
         try {

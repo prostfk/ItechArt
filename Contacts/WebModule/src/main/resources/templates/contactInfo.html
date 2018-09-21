@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact info</title>
+    <link rel="stylesheet" href="/index.css">
+    <link rel="import" href="/navbar.html">
+</head>
+<body>
+
+<div class="container" id="container" style="background-color: #161616;margin-top: 1%">
+    <input type="text" id="id" th:value="${id}" style="visibility: hidden;" readonly>
+    <div id="info">
+
+    </div>
+</div>
+
+
+<script>
+    onload = function show() {
+        var link = document.querySelector('link[rel=import]');
+        var content = link.import.querySelector('#nav');
+        document.body.insertBefore(content.cloneNode(true), document.getElementById('container'));
+        initContact();
+    };
+    function initContact() {
+        var id = document.getElementById('id').value;
+        fetch('/rest/contact/' + id + '/full').then(function (response) {
+            response.json().then(function (data) {
+                document.getElementById('info').innerHTML = '<h1><strong>' + checkForNull(data.name) + '</strong></h1><h2>' +
+                    checkForNull(data.surname) + '</h2><h2>' + checkForNull(data.patronymic) + '</h2><h2>' + checkForNull(data.date) + '</h2><h2>' +
+                    checkForNull(data.gender) + '</h2><h2>' + checkForNull(data.citizenship) + '</h2><h2>' + checkForNull(data.familyStatus) + '</h2><h2>' +
+                    checkForNull(data.site) + '</h2><h2>' + checkForNull(data.email) + '</h2><h2>' + checkForNull(data.job) + '</h2><h2>' +
+                    checkForNull(data.country) + '</h2><h2>' + checkForNull(data.city) + '</h2><h2>'+ checkForNull(data.street) + '</h2><h2>' +
+                    checkForNull(data.house) + '</h2><h2>' + checkForNull(data.flat) + '</h2><h2>' + checkForNull(data.postIndex) +'</h2>'
+            })
+        })
+    }
+    function checkForNull(value) {
+        return value == null ? '' : value;
+    }
+
+</script>
+</body>
+</html>

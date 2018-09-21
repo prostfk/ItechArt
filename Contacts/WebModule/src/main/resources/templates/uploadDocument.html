@@ -10,7 +10,7 @@
 <body>
 
 
-<form class="reg-form" th:action="'/upload/' + ${id}" id="container" enctype="multipart/form-data" method="post">
+<form class="reg-form" th:action="'/rest/contact/'+ ${id} +'/document/upload' " id="container" enctype="multipart/form-data" method="post">
     <div class="reg-element" style="margin: 2% 30% 2% 30%;overflow: hidden;">
         <label for="file">Upload your file here</label>
         <input id="file" type="file" min="1" max="999999" name="file">

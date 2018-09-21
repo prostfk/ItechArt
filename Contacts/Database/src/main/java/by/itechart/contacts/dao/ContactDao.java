@@ -6,8 +6,10 @@ import org.apache.log4j.Logger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class ContactDao extends AbstractDao<Contact> {
 
@@ -102,6 +104,36 @@ public class ContactDao extends AbstractDao<Contact> {
         //language=SQL
         ResultSet resultSet = executeQuery(String.format("SELECT * FROM contact WHERE id >= '%d' LIMIT %d ", firstId, limit));
         return createList(resultSet);
+    }
+
+    public Map<String, String> findContactWithAddressById(Long id){
+        HashMap<String, String> json = new HashMap<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT contact.id,name,surname,patronymic,date_of_birth,gender,citizenship,family_status,site,email,job,address_id,country,city,street,house,flat,post_index FROM contact LEFT JOIN address a on contact.address_id = a.id WHERE contact.id = ? AND status!=1;")) {
+            ResultSet resultSet = executeQuery(preparedStatement, id);
+            if (resultSet.next()){
+                json.put("id",id.toString());
+                json.put("name",resultSet.getString("name"));
+                json.put("surname",resultSet.getString("surname"));
+                json.put("patronymic",resultSet.getString("patronymic"));
+                json.put("date",resultSet.getString("date_of_birth"));
+                json.put("gender",resultSet.getString("gender"));
+                json.put("citizenship",resultSet.getString("citizenship"));
+                json.put("familyStatus",resultSet.getString("family_status"));
+                json.put("site",resultSet.getString("site"));
+                json.put("email",resultSet.getString("email"));
+                json.put("job",resultSet.getString("job"));
+                json.put("addressId",resultSet.getString("address_id"));
+                json.put("country",resultSet.getString("country"));
+                json.put("city",resultSet.getString("city"));
+                json.put("street",resultSet.getString("street"));
+                json.put("house",resultSet.getString("house"));
+                json.put("flat",resultSet.getString("flat"));
+                json.put("postIndex",resultSet.getString("post_index"));
+            }
+        }catch (Exception e){
+            log(e,LOGGER);
+        }
+        return json;
     }
 
     public Contact findContactByAddressId(Long addressId){
