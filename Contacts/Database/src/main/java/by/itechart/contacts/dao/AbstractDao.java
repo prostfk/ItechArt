@@ -6,9 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 public abstract class AbstractDao<T> {
 
@@ -98,6 +96,25 @@ public abstract class AbstractDao<T> {
         return null;
     }
 
+    public static Map<String,String> getPrivateData(){
+        Connection connection = new PhoneDao().connection;
+        Map<String, String> map = new HashMap<>();
+        try (ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM private_data")) {
+            while (resultSet.next()){
+                if (resultSet.getLong("id")==1){
+                    map.put("login", resultSet.getString("value"));
+                }else if(resultSet.getLong("id")==2){
+                    map.put("password", resultSet.getString("value"));
+                }else{
+                    break;
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            LOGGER.error(e.getMessage());
+        }
+        return map;
+    }
 
     public abstract T findById(Long id);
 
