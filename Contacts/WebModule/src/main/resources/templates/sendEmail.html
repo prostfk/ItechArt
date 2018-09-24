@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Send email</title>
@@ -10,13 +10,15 @@
 <body>
 
 
-<form action="/rest/contact/sendEmail" method="post" id="container">
+<form action="/rest/contact/sendEmail" method="post" id="container" class="container gap-bottom reg-form">
 
     <div class="reg-element">
         <label for="email">Your friend email</label>
         <input type="email" id="email" name="email" placeholder="Email" class="reg-input">
     </div>
-
+    <div class="reg-element">
+        <span id="error-mail-span" style="color: red;"></span>
+    </div>
     <div class="reg-element">
         <label for="subject">Subject</label>
         <input type="text" id="subject" name="subject" placeholder="Subject" class="reg-input">
@@ -25,9 +27,28 @@
         <label for="message">Message</label>
         <input type="text" id="message" name="message" placeholder="Message" class="reg-input">
     </div>
-    <input type="submit" value="Send" class="reg-button">
+    <div class="reg-element">
+        <input type="submit" value="Send" class="reg-button">
+    </div>
 
 </form>
+
+<script>
+    document.getElementById('container').onsubmit = function validateEmail() {
+        var email = document.getElementById('email').value;
+        fetch('/rest/contact/findContactByEmail?email=' + email).then(function (response) {
+            response.json().then(function (data) {
+                var status = data.email !== undefined;
+                if (!status){
+                    document.getElementById('error-mail-span').innerHTML = "No such email in base";
+                    return false;
+                }else{
+                    return true;
+                }
+            })
+        });
+    }
+</script>
 
 <script>
     onload = function show() {

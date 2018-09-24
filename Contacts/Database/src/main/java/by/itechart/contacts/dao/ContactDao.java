@@ -189,6 +189,17 @@ public class ContactDao extends AbstractDao<Contact> {
 
     }
 
+    public Contact findContactByEmail(String email){
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact WHERE email=?")) {
+            ResultSet resultSet = executeQuery(preparedStatement, email);
+            if (resultSet.next()){
+                return createEntity(resultSet);
+            }
+        }catch (Exception e){
+            log(e,LOGGER);
+        }
+        return null;
+    }
 
     public void addAddressToContact(Long contactId, Long addressId) {
         //language=SQL

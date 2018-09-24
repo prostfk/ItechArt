@@ -22,18 +22,7 @@ public class EmailUtil {
         password = privateData.get("password");
     }
 
-    public static void sendMail(String toMail, String subject, String messageText) {
-
-        try {
-            send(toMail, subject, messageText);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-
-    private static void send(String toMail, String subject, String messageText) throws Exception {
+    public static void sendMail(String toMail, String subject, String messageText) throws Exception {
         Properties props = System.getProperties();
         props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.port", 587);
@@ -50,7 +39,6 @@ public class EmailUtil {
         try {
             transport.connect("smtp.mail.ru", login, password);
             transport.sendMessage(msg, msg.getAllRecipients());
-        } catch (Exception e) {e.printStackTrace();
         } finally {
             transport.close();
         }
