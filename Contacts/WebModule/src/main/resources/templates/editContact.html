@@ -123,13 +123,13 @@
         });
         fetch('/rest/contact/' + id + '/phone').then(function (response) {
             response.json().then(function (data) {
-                console.log(data);
-                document.getElementById('countryCode').value = data.countryCode;
-                document.getElementById('number').value = data.number;
-                selectOption(document.getElementById('type'), data.type);
-                document.getElementById('comment').value = data.comment;
-
-
+                if (data.error===undefined){
+                    console.log(data);
+                    document.getElementById('countryCode').value = data.countryCode;
+                    document.getElementById('number').value = data.number;
+                    selectOption(document.getElementById('type'), data.type);
+                    document.getElementById('comment').value = data.comment;
+                }
             })
         });
 
