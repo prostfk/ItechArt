@@ -12,19 +12,15 @@ import by.itechart.contacts.model.util.EmailUtil;
 import by.itechart.contacts.model.util.JsonUtil;
 import org.apache.log4j.Logger;
 import org.springframework.http.MediaType;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RequestMapping(value = "/rest")
 @RestController
@@ -74,11 +70,14 @@ public class RestApiController {
     }
 
     @PostMapping(value = "/contact/{id}/addAddress")
-    public Address submit(@PathVariable Long id, Address address) {
-        addressDao.save(address);
-        Long addressId = addressDao.findLastId();
-        contactDao.addAddressToContact(id, addressId);
-        return address;
+    public Object submit(@PathVariable Long id, Address address) {
+        if (!address.getHouse().equals("") && !address.getCountry().equals("") && !address.getCity().equals("")) {
+            addressDao.save(address);
+            Long addressId = addressDao.findLastId();
+            contactDao.addAddressToContact(id, addressId);
+            return address;
+        }
+        return notNullValidation(null, "Check your data!");
     }
 
     @GetMapping(value = "/contact/{id}/address")
@@ -118,8 +117,8 @@ public class RestApiController {
     public Object processEditing(@PathVariable Long contactId, Contact contact, Phone phone) {
         phone.setContactId(contactId);
         Phone phoneByContactId = phoneDao.findPhoneByContactId(contactId);
-        if (phoneByContactId!=null) {
-            phoneDao.update(phone.getId(), phone);
+        if (phoneByContactId != null && !phone.getNumber().equals("")&&!phone.getCountryCode().equals("")) {
+            phoneDao.update(phoneByContactId.getContactId(), phone);
         } else {
             phoneDao.save(phone);
         }
@@ -127,20 +126,17 @@ public class RestApiController {
     }
 
     @PostMapping(value = "/addContact")
-    public Object processAddingContact(@Valid Contact contact, Phone phone, BindingResult result) {
-        if (result.hasErrors()) {
-            return notNullValidation(null, "Your data did't pass the validator. Check your data!");
+    public Object postAddContact(Contact contact, Phone phone) {
+        if (contact != null & contact.getName() != null & contact.getSurname() != null & !contact.getSurname().equals("") & !contact.getName().equals("")) {
+            contactDao.save(contact);
+            Contact base = contactDao.findContactByNameAndSurname(contact.getName(), contact.getSurname());
+            if (phone != null & !phone.getCountryCode().equals("") & !phone.getNumber().equals("")){
+                phone.setContactId(base.getId());
+                phoneDao.save(phone);
+            }
+            return base;
         }
-        contactDao.save(contact);
-        Contact baseContact = contactDao.findContactByNameAndSurname(contact.getName(), contact.getSurname());
-        phone.setContactId(baseContact.getId());
-        if (phone.getNumber()!=null && phone.getCountryCode()!=null){
-            phoneDao.save(phone);
-        }
-        Map<String, Object> data = new HashMap<>();
-        data.put("contact", contact);
-        data.put("phone", phone);
-        return data;
+        return notNullValidation(null, "You did't pass the validator");
     }
 
     @PostMapping(value = "/editAddress")
@@ -196,7 +192,7 @@ public class RestApiController {
     }
 
     @GetMapping(value = "/contacts")
-    public List<Contact> getContacts(@RequestParam Long current, @RequestParam Long count){
+    public List<Contact> getContacts(@RequestParam Long current, @RequestParam Long count) {
         return contactDao.findContactsFromIdAndWithLimit(current * count - count, count);
     }
 

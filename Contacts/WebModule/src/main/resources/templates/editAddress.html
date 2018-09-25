@@ -15,12 +15,10 @@
 <body>
 
 
-<div id="container" class="container">
+<div id="container" class="container-main">
 
-    <h1 th:class="${id}" id="edit">EDIT ADDRESS</h1>
 
     <form action="/rest/editAddress" method="post" class="reg-form">
-        <input type="text" th:value="${id}" name="id" style="visibility: hidden">
         <div class="reg-element">
             <label for="country">Country</label>
             <input type="text" id="country" name="country" placeholder="Country" class="reg-input">
@@ -51,7 +49,7 @@
         </div>
 
     </form>
-    
+
 </div>
 
 <script>
@@ -63,8 +61,9 @@
     };
 
     function send() {
-        var id = document.getElementById('edit').getAttribute('class');
-        fetch('/rest/address/' + id).then(function (response) {
+        var link = window.location.href.split("/");
+        var id = link[link.length - 2];
+        fetch('/rest/contact/' + id + '/address').then(function (response) {
             response.json().then(function (data) {
                 console.log(data);
                 document.getElementById('country').value = data.country;
@@ -75,7 +74,7 @@
                 document.getElementById('postIndex').value = data.postIndex;
             })
         })
-    };
+    }
 </script>
 </body>
 </html>

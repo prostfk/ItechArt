@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Edit</title>
@@ -17,19 +17,19 @@
 
     <div class="gap-bottom">
 
-
-        <form class="reg-form" onsubmit="return submitRegistration()" id="contact-form" action="" method="post">
+        <span id="message-span"></span>
+        <form class="reg-form" id="contact-form">
             <div class="reg-element">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" placeholder="Name" class="reg-input">
             </div>
             <div class="reg-element">
                 <label for="surname">Surname</label>
-                <input type="text" id="surname" name="surname"  placeholder="Surname" class="reg-input">
+                <input type="text" id="surname" name="surname" placeholder="Surname" class="reg-input">
             </div>
             <div class="reg-element">
                 <label for="patronymic">Patronymic</label>
-                <input type="text" id="patronymic" name="patronymic"  placeholder="Patronymic" class="reg-input">
+                <input type="text" id="patronymic" name="patronymic" placeholder="Patronymic" class="reg-input">
             </div>
             <div class="reg-element">
                 <label for="date">Date</label>
@@ -61,24 +61,26 @@
             </div>
             <div class="reg-element">
                 <label for="email">Email</label>
-                <input type="email" id="email"  name="email" placeholder="Email" class="reg-input">
+                <input type="email" id="email" name="email" placeholder="Email" class="reg-input">
             </div>
             <div class="reg-element">
                 <label for="job">Job</label>
-                <input type="text" id="job"  name="job" placeholder="Job" class="reg-input">
+                <input type="text" id="job" name="job" placeholder="Job" class="reg-input">
             </div>
 
             <div>
                 <div class="reg-element">
                     <label for="number">Number</label>
-                    <input type="tel" width="40px" pattern="+[0-9]{3}" id="countryCode" name="countryCode" placeholder="Country code" class="reg-input">
+                    <input type="tel" width="40px" pattern="+[0-9]{3}" id="countryCode" name="countryCode"
+                           placeholder="Country code" class="reg-input">
                 </div>
                 <div class="reg-element">
-                    <input type="tel" pattern="[0-9]{9}" id="number"  name="number" placeholder="Number" class="reg-input">
+                    <input type="tel" pattern="[0-9]{9}" id="number" name="number" placeholder="Number"
+                           class="reg-input">
                 </div>
                 <div class="reg-element">
                     <label for="type">Type</label>
-                    <select name="type" id="type" >
+                    <select name="type" id="type">
                         <option value="mobile">Mobile</option>
                         <option value="home">Home</option>
                         <option value="work">Work</option>
@@ -89,31 +91,28 @@
                     <input type="text" id="comment" name="comment" placeholder="Comment" class="reg-input">
                 </div>
             </div>
-
             <div class="reg-element">
-                <input type="submit" value="Submit" class="reg-button">
+                <button type="button" onclick="sendOnServer()" class="reg-button">Submit</button>
             </div>
 
         </form>
 
+
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous"></script>
-<script src="/resources/js/index.js"></script>
 
 <script>
     var url = window.location.href.split('/');
-    var id = url[url.length-2];
+    var id = url[url.length - 2];
     onload = function show() {
         var link = document.querySelector('link[rel=import]');
         var content = link.import.querySelector('#nav');
-        document.body.insertBefore(content.cloneNode(true),document.getElementById('container'))
+        document.body.insertBefore(content.cloneNode(true), document.getElementById('container'))
         initForm();
     };
-    function initForm() {
 
+    function initForm() {
         fetch('/rest/contact/' + id).then(function (response) {
             response.json().then(function (data) {
                 console.log(data);
@@ -132,7 +131,7 @@
         });
         fetch('/rest/contact/' + id + '/phone').then(function (response) {
             response.json().then(function (data) {
-                if (data.error===undefined){
+                if (data.error === undefined) {
                     console.log(data);
                     document.getElementById('countryCode').value = data.countryCode;
                     document.getElementById('number').value = data.number;
@@ -141,9 +140,10 @@
                 }
             })
         });
-        document.getElementById('contact-form').action='/rest/contact/' + id + '/edit';
+        document.getElementById('contact-form').action = '/rest/contact/' + id + '/edit';
 
     }
+
     function selectOption(element, value) {
         var opts = element.options;
         for (var opt, j = 0; opt = opts[j]; j++) {
@@ -152,6 +152,41 @@
                 break;
             }
         }
+    }
+
+    function sendOnServer() {
+        var link = window.location.href.split('/');
+        var id = link[link.length - 2];
+        var formData = new FormData();
+        formData.append('name', document.getElementById('name').value);
+        formData.append('surname', document.getElementById('surname').value);
+        formData.append('patronymic', document.getElementById('patronymic').value);
+        formData.append('date', document.getElementById('date').value);
+        formData.append('gender', document.getElementById('gender').value);
+        formData.append('citizenship', document.getElementById('citizenship').value);
+        formData.append('familyStatus', document.getElementById('familyStatus').value);
+        formData.append('site', document.getElementById('site').value);
+        formData.append('email', document.getElementById('email').value);
+        formData.append('job', document.getElementById('job').value);
+        formData.append('countryCode', document.getElementById('countryCode').value);
+        formData.append('number', document.getElementById('number').value);
+        formData.append('type', document.getElementById('type').value);
+        formData.append('comment', document.getElementById('comment').value);
+        fetch('/rest/contact/' + id + '/edit', {
+            method: 'POST',
+            body: formData
+        }).then(function (response) {
+            response.json().then(function (data) {
+                if (data.error === undefined) {
+                    document.getElementById('contact-form').style.visibility = 'hidden';
+                    document.getElementById('message-span').style.color = 'green';
+                    document.getElementById('message-span').innerText = "Your contact was edited";
+                }else{
+                    document.getElementById('message-span').style.color = 'red';
+                    document.getElementById('message-span').innerText = "Please, check your data!";
+                }
+            })
+        })
     }
 
 </script>

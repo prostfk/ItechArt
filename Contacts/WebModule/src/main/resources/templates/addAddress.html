@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Add address</title>
@@ -11,54 +11,78 @@
 
 <div class="container" id="container">
     <div class=" gap-bottom">
+        <span id="message-span"></span>
+        <div id="form-div" style="visibility: visible;">
+            <form class="reg-form" id="add-form">
+                <div class="reg-element">
+                    <label for="country">Country</label>
+                    <input type="text" id="country" name="country" placeholder="Country" class="reg-input">
+                </div>
+                <div class="reg-element">
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" placeholder="City" class="reg-input">
+                </div>
+                <div class="reg-element">
+                    <label for="street">Street</label>
+                    <input type="text" id="street" name="street" placeholder="Street" class="reg-input">
+                </div>
+                <div class="reg-element">
+                    <label for="house">House</label>
+                    <input type="number" id="house" name="house" placeholder="House" class="reg-input">
+                </div>
+                <div class="reg-element">
+                    <label for="flat">Flat</label>
+                    <input type="number" id="flat" name="flat" placeholder="Flat" class="reg-input">
+                </div>
+                <div class="reg-element">
+                    <label for="postIndex">Post Index</label>
+                    <input type="number" id="postIndex" name="postIndex" placeholder="Post Index" class="reg-input">
+                </div>
 
 
-        <form class="reg-form" th:object="${address}" th:action="'/addAddress/' + ${id}" method="post">
-            <div class="reg-element">
-                <label for="country">Country</label>
-                <input type="text" id="country" name="country" th:field="*{country}" placeholder="Country" class="reg-input">
-            </div>
-            <div class="reg-element">
-                <label for="city">City</label>
-                <input type="text" id="city" name="city" th:field="*{city}" placeholder="City" class="reg-input">
-            </div>
-            <div class="reg-element">
-                <label for="street">Street</label>
-                <input type="text" id="street" name="street" th:field="*{street}" placeholder="Street" class="reg-input">
-            </div>
-            <div class="reg-element">
-                <label for="house">House</label>
-                <input type="number" id="house" name="house" th:field="*{house}" placeholder="House" class="reg-input">
-            </div>
-            <div class="reg-element">
-                <label for="flat">Flat</label>
-                <input type="number" id="flat" name="flat" th:field="*{flat}" placeholder="Flat" class="reg-input">
-            </div>
-            <div class="reg-element">
-                <label for="postIndex">Post Index</label>
-                <input type="number" id="postIndex" name="postIndex" th:field="*{postIndex}" placeholder="Post Index" class="reg-input">
-            </div>
+                <div class="reg-element">
+                    <button type="button" id="sub-button" class="reg-button">Submit</button>
+                </div>
 
+            </form>
+        </div>
 
-
-            <div class="reg-element">
-                <input type="submit" value="Submit" class="reg-button">
-            </div>
-
-        </form>
 
     </div>
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous"></script>
 <script>
     onload = function show() {
         var link = document.querySelector('link[rel=import]');
         var content = link.import.querySelector('#nav');
-        document.body.insertBefore(content.cloneNode(true),document.getElementById('container'))
+        document.body.insertBefore(content.cloneNode(true), document.getElementById('container'))
     };
+
+    document.getElementById('sub-button').onclick = function sendForm() {
+        var link = window.location.href.split("/");
+        var id = link[link.length - 2];
+        var formData = new FormData();
+        formData.append('country', document.getElementById('country').value);
+        formData.append('city', document.getElementById('city').value);
+        formData.append('street', document.getElementById('street').value);
+        formData.append('house', document.getElementById('house').value);
+        formData.append('flat', document.getElementById('flat').value);
+        formData.append('postIndex', document.getElementById('postIndex').value);
+        fetch("/rest/contact/" + id + "/addAddress", {method: "post", body: formData}).then(function (response) {
+            response.json().then(function (data) {
+                console.log(data);
+                if (data.id !== undefined) {
+                    document.getElementById('form-div').style.visibility = "hidden";
+                    document.getElementById('message-span').style.color = 'green';
+                    document.getElementById('message-span').innerText = "Your address added";
+                } else {
+                    document.getElementById('message-span').innerText = "Something went wrong";
+                    document.getElementById('message-span').style.color = 'red';
+                }
+            })
+        })
+    }
 </script>
 
 

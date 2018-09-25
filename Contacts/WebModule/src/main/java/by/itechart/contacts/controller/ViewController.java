@@ -86,12 +86,13 @@ public class ViewController {
     }
 
     @GetMapping(value = "/contact/{id}/editAddress")
-    public ModelAndView editAddress(@PathVariable Long id) {
+    public String editAddress(@PathVariable Long id) {
         Contact byId = contactDao.findById(id);
+        addressDao.findAddressByUserId(id);
         if (byId != null | byId.getAddressId() != 0) {
-            return new ModelAndView("editAddress", "id", byId.getAddressId());
+            return "editAddress";
         }
-        return new ModelAndView("error");
+        return "error";
     }
 
     @GetMapping(value = "/editAddress/{id}")
