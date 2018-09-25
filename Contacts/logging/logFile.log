@@ -81,3 +81,4 @@
 2018-09-21 20:24:00 ERROR ContactDao:114 - Column 'date' not found.
 2018-09-24 20:51:13 ERROR RestApiController:105 - 550 Message was not accepted -- invalid mailbox.  Local mailbox a666lex@mail.ru is unavailable: user is terminated
 
+2018-09-25 22:58:25 ERROR RestApiController:173 - /home/Documents/Soft/StaticData/Contacts/2/wall.jpg (No such file or directory)

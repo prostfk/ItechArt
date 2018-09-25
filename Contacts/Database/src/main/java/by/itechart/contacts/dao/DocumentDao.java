@@ -51,6 +51,17 @@ public class DocumentDao extends AbstractDao<Document> {
         return documents;
     }
 
+    public Document findDocumentByNameAndContactId(String name, Long contactId){
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM document WHERE contact_id=? AND name=?")) {
+            ResultSet resultSet = executeQuery(preparedStatement, contactId, name);
+            if (resultSet.next()){
+                return createEntity(resultSet);
+            }
+        }catch (Exception e){
+            log(e,LOGGER);
+        }
+        return null;
+    }
 
     @Override
     public Document update(Long id, Document document) {

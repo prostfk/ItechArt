@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Upload document</title>
@@ -10,19 +10,49 @@
 <body>
 
 
-<form class="reg-form" th:action="'/rest/contact/'+ ${id} +'/document/upload' " id="container" enctype="multipart/form-data" method="post">
-    <div class="reg-element" style="margin: 2% 30% 2% 30%;overflow: hidden;">
-        <label for="file">Upload your file here</label>
-        <input id="file" type="file" min="1" max="999999" name="file">
+<div class="container" id="container">
+    <div class="gap-bottom">
+        <span id="message-span"></span>
+        <form class="reg-form" id="file-form">
+            <div class="reg-element" style="margin: 2% 30% 2% 30%;overflow: hidden;">
+                <label for="file">Upload your file here</label>
+                <input id="file" type="file" min="1" max="999999" name="file">
+            </div>
+            <button type="button" onclick="sendFrom()" class="reg-button">Upload</button>
+        </form>
     </div>
-    <input type="submit" class="reg-button" value="submit">
-</form>
+</div>
+
 <script>
     onload = function show() {
         var link = document.querySelector('link[rel=import]');
         var content = link.import.querySelector('#nav');
-        document.body.insertBefore(content.cloneNode(true),document.getElementById('container'))
+        document.body.insertBefore(content.cloneNode(true), document.getElementById('container'))
     };
+
+    function sendFrom() {
+        var link = window.location.href.split('/');
+        var id = link[link.length - 2];
+        var formData = new FormData();
+        formData.append('file', document.getElementById('file').files[0]);
+        fetch('/rest/contact/' + id + '/document/upload', {
+            method: 'post',
+            body: formData
+        }).then(function (response) {
+            response.json().then(function (data) {
+                console.log(data);
+                if (data.error === undefined) {
+                    document.getElementById('file-form').style.visibility = 'hidden';
+                    document.getElementById('message-span').style.color = 'green';
+                    document.getElementById('message-span').innerText = "Your file has been uploaded";
+                } else {
+                    document.getElementById('message-span').style.color = 'red';
+                    document.getElementById('message-span').innerText = "Something went wrong, try to upload another file";
+                }
+            })
+        })
+    }
+
 </script>
 </body>
 </html>

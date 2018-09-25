@@ -11,6 +11,7 @@ import by.itechart.contacts.model.entity.Phone;
 import by.itechart.contacts.model.util.EmailUtil;
 import by.itechart.contacts.model.util.JsonUtil;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -150,8 +151,8 @@ public class RestApiController {
     }
 
     @PostMapping(value = "/contact/{id}/document/upload")
-    public Document uploadPost(@PathVariable Long id, MultipartFile file) {
-        String filePath = String.format("WebModule/src/main/resources/static/userFiles/%d/", id);
+    public Object uploadPost(@PathVariable Long id, MultipartFile file,@Value("${user.files.path}") String startPath) {
+        String filePath = String.format("%s/userFiles/%d/",startPath, id);
         File dir = new File(filePath);
         if (!dir.exists()) {
             boolean mkdir = dir.mkdir();
@@ -166,12 +167,12 @@ public class RestApiController {
             stream.close();
             Document document = new Document(String.format("/userFiles/%d/%s", id, file.getOriginalFilename()), id, file.getOriginalFilename());
             documentDao.save(document);
-            return document;
+            return documentDao.findDocumentByNameAndContactId(file.getOriginalFilename(),id);
         } catch (IOException e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());
         }
-        return null;
+        return notNullValidation(null,"Something went wrong");
     }
 
     @GetMapping(value = "/contact/findContactByEmail")

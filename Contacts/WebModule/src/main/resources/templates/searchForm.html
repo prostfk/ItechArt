@@ -41,8 +41,16 @@
         <div class="reg-element">
             <label for="parameter">Chose filed</label>
             <select name="parameter" id="parameter" onchange="addInfoToSelect()">
-                <option th:each="filed : ${T(by.itechart.contacts.model.entity.ContactField).values()}"
-                        th:value="${filed.name()}" th:text="${filed.name()}"></option>
+                <option value="name">Name</option>
+                <option value="surname">Surname</option>
+                <option value="patronymic">Patronymic</option>
+                <option value="date_of_birth">Date Of Birth</option>
+                <option value="gender">Gender</option>
+                <option value="citizenship">Citizenship</option>
+                <option value="family_status">Family Status</option>
+                <option value="site">Site</option>
+                <option value="email">Email</option>
+                <option value="job">Job</option>
             </select>
             <input type="text" id="value" placeholder="Value" class="reg-input" onkeyup="search()">
         </div>
@@ -89,7 +97,7 @@
                         var str = "";
                         for (var i = 0; i < data.length; i++) {
                             console.log(data[i]);
-                            str += "<tr><td>" + data[i].name + "</td><td>" + data[i].surname + "</td><td>" + data[i].patronymic + "</td><td>" + data[i].date + "</td><td>" + data[i].gender + "</td><td>" + data[i].citizenship + "</td><td>" + data[i].familyStatus + "</td><td>" + data[i].site + "</td><td>" + data[i].email + "</td><td>" + data[i].job + "</td><td><a href='/rest/address/" + data[i].addressId + "'>" + (data[i].addressId != 0 ? 'Address' : 'None') + "</a><td><a href='/rest/contact/" + data[i].id + "/delete/'>Delete</a></td><td><a href='/contact/" + data[i].id + "/edit'>Edit</a></td></td></tr>";
+                            str += "<tr><td><a href='/contact/" + data[i].id + "'>" + data[i].name + "</a></td><td>" + data[i].surname + "</td><td>" + data[i].patronymic + "</td><td>" + data[i].date + "</td><td>" + data[i].gender + "</td><td>" + data[i].citizenship + "</td><td>" + data[i].familyStatus + "</td><td>" + data[i].site + "</td><td>" + data[i].email + "</td><td>" + data[i].job + "</td><td><a href='/rest/address/" + data[i].addressId + "'>" + (data[i].addressId !== 0 ? 'Address' : 'None') + "</a><td><a href='/rest/contact/" + data[i].id + "/delete/'>Delete</a></td><td><a href='/contact/" + data[i].id + "/edit'>Edit</a></td></td></tr>";
                         }
                         document.getElementById("content-pane").innerHTML = str;
                     }
