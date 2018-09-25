@@ -6,90 +6,97 @@
     <link rel="stylesheet" href="/index.css">
     <link rel="import" href="/navbar.html">
 
+    <style>
+
+    </style>
 
 </head>
 <body>
 
+<div class="container" id="container">
 
-<div class="container gap-bottom" id="container">
+    <div class="gap-bottom">
 
-    <form class="reg-form" onsubmit="return submitRegistration()" th:object="${contact}" th:action="'/rest/contact/' + ${contact.id} + '/edit'" method="post">
-        <input type="text" th:value="${contact.id}" id="contact-id" name="id" style="visibility: hidden">
-        <div class="reg-element">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" th:field="*{name}" placeholder="Name" class="reg-input">
-        </div>
-        <div class="reg-element">
-            <label for="surname">Surname</label>
-            <input type="text" id="surname" name="surname" th:field="*{surname}" placeholder="Surname" class="reg-input">
-        </div>
-        <div class="reg-element">
-            <label for="patronymic">Patronymic</label>
-            <input type="text" id="patronymic" name="patronymic" th:field="*{patronymic}" placeholder="Patronymic" class="reg-input">
-        </div>
-        <div class="reg-element">
-            <label for="date">Date</label>
-            <input type="date" id="date" name="date" placeholder="Date" value="2000-01-01" class="reg-input">
-        </div>
-        <div class="reg-element">
-            <label for="gender">Gender</label>
-            <select name="gender" id="gender">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select>
-        </div>
-        <div class="reg-element">
-            <label for="citizenship">Citizenship</label>
-            <input type="text" id="citizenship" th:field="*{citizenship}" name="citizenship" placeholder="Citizenship" class="reg-input">
-        </div>
-        <div class="reg-element">
-            <label for="familyStatus">Family Status</label>
-            <select name="familyStatus" id="familyStatus">
-                <option th:each="status : ${T(by.itechart.contacts.model.entity.FamilyStatus).values()}"
-                        th:value="${status.name()}" th:text="${status.name()}"></option>
-            </select>
-        </div>
-        <div class="reg-element">
-            <label for="site">Site</label>
-            <input type="text" id="site" th:field="*{site}" name="site" placeholder="Site" class="reg-input">
-        </div>
-        <div class="reg-element">
-            <label for="email">Email</label>
-            <input type="email" id="email" th:field="*{email}" name="email" placeholder="Email" class="reg-input">
-        </div>
-        <div class="reg-element">
-            <label for="job">Job</label>
-            <input type="text" id="job" th:field="*{job}" name="job" placeholder="Job" class="reg-input">
-        </div>
 
-        <div th:object="${phone}">
+        <form class="reg-form" onsubmit="return submitRegistration()" id="contact-form" action="" method="post">
             <div class="reg-element">
-                <label for="number">Number</label>
-                <input type="tel" width="40px" pattern="+[0-9]{3}" id="countryCode" th:field="*{countryCode}" name="countryCode" placeholder="Country code" class="reg-input">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Name" class="reg-input">
             </div>
             <div class="reg-element">
-                <input type="tel" pattern="[0-9]{9}" id="number" th:field="*{number}" name="number" placeholder="Number" class="reg-input">
+                <label for="surname">Surname</label>
+                <input type="text" id="surname" name="surname"  placeholder="Surname" class="reg-input">
             </div>
             <div class="reg-element">
-                <label for="type">Type</label>
-                <select name="type" id="type" th:field="*{type}">
-                    <option value="mobile">Mobile</option>
-                    <option value="home">Home</option>
-                    <option value="work">Work</option>
+                <label for="patronymic">Patronymic</label>
+                <input type="text" id="patronymic" name="patronymic"  placeholder="Patronymic" class="reg-input">
+            </div>
+            <div class="reg-element">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" placeholder="Date" value="2000-01-01" class="reg-input">
+            </div>
+            <div class="reg-element">
+                <label for="gender">Gender</label>
+                <select name="gender" id="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
                 </select>
             </div>
             <div class="reg-element">
-                <label for="comment">Comment</label>
-                <input type="text" id="comment" th:field="*{comment}" name="comment" placeholder="Comment" class="reg-input">
+                <label for="citizenship">Citizenship</label>
+                <input type="text" id="citizenship" name="citizenship" placeholder="Citizenship" class="reg-input">
             </div>
-        </div>
+            <div class="reg-element">
+                <label for="familyStatus">Family Status</label>
+                <select name="familyStatus" id="familyStatus">
+                    <option value="Single">Single</option>
+                    <option value="Married">Married</option>
+                    <option value="ActivelyLooking">ActivelyLooking</option>
+                    <option value="InARelationShip">InARelationShip</option>
+                </select>
+            </div>
+            <div class="reg-element">
+                <label for="site">Site</label>
+                <input type="text" id="site" name="site" placeholder="Site" class="reg-input">
+            </div>
+            <div class="reg-element">
+                <label for="email">Email</label>
+                <input type="email" id="email"  name="email" placeholder="Email" class="reg-input">
+            </div>
+            <div class="reg-element">
+                <label for="job">Job</label>
+                <input type="text" id="job"  name="job" placeholder="Job" class="reg-input">
+            </div>
 
-        <div class="reg-element">
-            <input type="submit" value="Submit" class="reg-button">
-        </div>
+            <div>
+                <div class="reg-element">
+                    <label for="number">Number</label>
+                    <input type="tel" width="40px" pattern="+[0-9]{3}" id="countryCode" name="countryCode" placeholder="Country code" class="reg-input">
+                </div>
+                <div class="reg-element">
+                    <input type="tel" pattern="[0-9]{9}" id="number"  name="number" placeholder="Number" class="reg-input">
+                </div>
+                <div class="reg-element">
+                    <label for="type">Type</label>
+                    <select name="type" id="type" >
+                        <option value="mobile">Mobile</option>
+                        <option value="home">Home</option>
+                        <option value="work">Work</option>
+                    </select>
+                </div>
+                <div class="reg-element">
+                    <label for="comment">Comment</label>
+                    <input type="text" id="comment" name="comment" placeholder="Comment" class="reg-input">
+                </div>
+            </div>
 
-    </form>
+            <div class="reg-element">
+                <input type="submit" value="Submit" class="reg-button">
+            </div>
 
+        </form>
+
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -97,6 +104,8 @@
 <script src="/resources/js/index.js"></script>
 
 <script>
+    var url = window.location.href.split('/');
+    var id = url[url.length-2];
     onload = function show() {
         var link = document.querySelector('link[rel=import]');
         var content = link.import.querySelector('#nav');
@@ -104,7 +113,7 @@
         initForm();
     };
     function initForm() {
-        var id = document.getElementById('contact-id').getAttribute('value');
+
         fetch('/rest/contact/' + id).then(function (response) {
             response.json().then(function (data) {
                 console.log(data);
@@ -132,9 +141,9 @@
                 }
             })
         });
+        document.getElementById('contact-form').action='/rest/contact/' + id + '/edit';
 
     }
-    
     function selectOption(element, value) {
         var opts = element.options;
         for (var opt, j = 0; opt = opts[j]; j++) {

@@ -30,52 +30,64 @@
 <body>
 
 
-<div id="container">
+<div id="container" class="container">
 
-    <button class="reg-button" onclick="click()">Click</button>
-
-    <table id="table">
-        <tr>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>Patronymic</th>
-            <th>DateOfBirth</th>
-            <th>Gender</th>
-            <th>Citizenship</th>
-            <th>FamilyStatus</th>
-            <th>Site</th>
-            <th>Email</th>
-            <th>Job</th>
-            <th>Address</th>
-            <th>Delete</th>
-            <th>Edit</th>
-        </tr>
-        <tr id="content-pane"></tr>
-
-    </table>
-
+    <div class="gap-bottom">
+        <div class="reg-form">
+            <div class="reg-element">
+                <label for="count">Count of items</label>
+                <input type="number" class="reg-input" id="count" value="5">
+            </div>
+        </div>
+        <table id="table">
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Patronymic</th>
+                <th>DateOfBirth</th>
+                <th>Gender</th>
+                <th>Citizenship</th>
+                <th>FamilyStatus</th>
+                <th>Site</th>
+                <th>Email</th>
+                <th>Job</th>
+                <th>Address</th>
+                <th>Delete</th>
+                <th>Edit</th>
+            </tr>
+            <tr id="content-pane"></tr>
+        </table>
+    </div>
 
 </div>
 
 
 <script>
+    var strings = window.location.href.split('/');
+    var number = strings[strings.length - 1];
+
     onload = function loadContacts() {
-    fetch('/rest/allContacts').then(function (response) {
-        response.json()
-            .then(function (data) {
-                console.log(data);
-                for (var i = 0; i < data.length; i++) {
-                    document.getElementById("content-pane").insertAdjacentHTML('afterend', "<tr>" + "<th>" + data[i].name + "</th>" + "<th>" + data[i].surname + "</th>" + "<th>" + data[i].patronymic + "</th>" + "<th>" + data[i].date + "</th>" + "<th>" + data[i].gender + "</th>" + "<th>" + data[i].citizenship + "</th>" + "<th>" + data[i].familyStatus + "</th>" + "<th>" + data[i].site + "</th>" + "<th>" + data[i].email + "</th>" + "<th>" + data[i].job + "</th>" + "</tr>");
-                }
+        var count = document.getElementById('count').value;
+        if (!number > 0) {
+            fetch('/rest/contacts?current=' + number + '&count=' + count).then(function (response) {
+                response.json()
+                    .then(function (data) {
+                        console.log(data);
+                        for (var i = 0; i < data.length; i++) {
+                            document.getElementById("content-pane").insertAdjacentHTML('afterend', "<tr>" + "<th>" + data[i].name + "</th>" + "<th>" + data[i].surname + "</th>" + "<th>" + data[i].patronymic + "</th>" + "<th>" + data[i].date + "</th>" + "<th>" + data[i].gender + "</th>" + "<th>" + data[i].citizenship + "</th>" + "<th>" + data[i].familyStatus + "</th>" + "<th>" + data[i].site + "</th>" + "<th>" + data[i].email + "</th>" + "<th>" + data[i].job + "</th>" + "</tr>");
+                        }
+                    })
             })
-    })}
+        }
+
+    }
 </script>
 <script src="/resources/js/index.js"></script>
 <script>
     onload = function show() {
         var link = document.querySelector('link[rel=import]');
         var content = link.import.querySelector('#nav');
-        document.body.insertBefore(content.cloneNode(true),document.getElementById('container'))
+        document.body.insertBefore(content.cloneNode(true), document.getElementById('container'))
     };
 </script>
 </body>

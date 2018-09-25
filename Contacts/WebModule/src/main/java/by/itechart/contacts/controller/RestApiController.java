@@ -117,7 +117,8 @@ public class RestApiController {
     @PostMapping(value = "/contact/{contactId}/edit")
     public Object processEditing(@PathVariable Long contactId, Contact contact, Phone phone) {
         phone.setContactId(contactId);
-        if (phone.getId() != null) {
+        Phone phoneByContactId = phoneDao.findPhoneByContactId(contactId);
+        if (phoneByContactId!=null) {
             phoneDao.update(phone.getId(), phone);
         } else {
             phoneDao.save(phone);
@@ -128,12 +129,14 @@ public class RestApiController {
     @PostMapping(value = "/addContact")
     public Object processAddingContact(@Valid Contact contact, Phone phone, BindingResult result) {
         if (result.hasErrors()) {
-            System.out.println("ERROR");
             return notNullValidation(null, "Your data did't pass the validator. Check your data!");
         }
         contactDao.save(contact);
         Contact baseContact = contactDao.findContactByNameAndSurname(contact.getName(), contact.getSurname());
         phone.setContactId(baseContact.getId());
+        if (phone.getNumber()!=null && phone.getCountryCode()!=null){
+            phoneDao.save(phone);
+        }
         Map<String, Object> data = new HashMap<>();
         data.put("contact", contact);
         data.put("phone", phone);
@@ -190,6 +193,11 @@ public class RestApiController {
     @GetMapping(value = "/contact/{id}/phone")
     public Object findPhoneByContact(@PathVariable Long id) {
         return notNullValidation(phoneDao.findPhoneByContactId(id), "no such data");
+    }
+
+    @GetMapping(value = "/contacts")
+    public List<Contact> getContacts(@RequestParam Long current, @RequestParam Long count){
+        return contactDao.findContactsFromIdAndWithLimit(current * count - count, count);
     }
 
     private Object notNullValidation(Object object, String message) {

@@ -11,23 +11,24 @@
 <body>
 
 
-
 <div class="container" id="container">
 
     <div class="gap-bottom">
 
-        <form class="reg-form"  th:object="${contact}" action="/rest/addContact" method="post">
+
+        <!--<form class="reg-form" id="add-form">-->
+        <div class="reg-form" id="add-form">
             <div class="reg-element">
                 <label for="name">Name</label>
-                <input type="text" id="name" name="name" th:field="*{name}" placeholder="Name" class="reg-input">
+                <input type="text" id="name" name="name" placeholder="Name" class="reg-input">
             </div>
             <div class="reg-element">
                 <label for="surname">Surname</label>
-                <input type="text" id="surname" name="surname" th:field="*{surname}" placeholder="Surname" class="reg-input">
+                <input type="text" id="surname" name="surname"  placeholder="Surname" class="reg-input">
             </div>
             <div class="reg-element">
                 <label for="patronymic">Patronymic</label>
-                <input type="text" id="patronymic" name="patronymic" th:field="*{patronymic}" placeholder="Patronymic" class="reg-input">
+                <input type="text" id="patronymic" name="patronymic"  placeholder="Patronymic" class="reg-input">
             </div>
             <div class="reg-element">
                 <label for="date">Date</label>
@@ -42,7 +43,7 @@
             </div>
             <div class="reg-element">
                 <label for="citizenship">Citizenship</label>
-                <input type="text" id="citizenship" th:field="*{citizenship}" name="citizenship" placeholder="Citizenship" class="reg-input">
+                <input type="text" id="citizenship"  name="citizenship" placeholder="Citizenship" class="reg-input">
             </div>
             <div class="reg-element">
                 <label for="familyStatus">Family Status</label>
@@ -53,28 +54,28 @@
             </div>
             <div class="reg-element">
                 <label for="site">Site</label>
-                <input type="text" id="site" th:field="*{site}" name="site" placeholder="Site" class="reg-input">
+                <input type="text" id="site" name="site" placeholder="Site" class="reg-input">
             </div>
             <div class="reg-element">
                 <label for="email">Email</label>
-                <input type="email" id="email" th:field="*{email}" name="email" placeholder="Email" class="reg-input">
+                <input type="email" id="email" name="email" placeholder="Email" class="reg-input">
             </div>
             <div class="reg-element">
                 <label for="job">Job</label>
-                <input type="text" id="job" th:field="*{job}" name="job" placeholder="Job" class="reg-input">
+                <input type="text" id="job" name="job" placeholder="Job" class="reg-input">
             </div>
 
-            <div th:object="${phone}">
+            <div>
                 <div class="reg-element">
                     <label for="number">Number</label>
-                    <input type="tel" width="40px" pattern="+[0-9]{3}" id="countryCode" th:field="*{countryCode}" name="countryCode" placeholder="Country code" class="reg-input">
+                    <input type="tel" width="40px" pattern="+[0-9]{3}" id="countryCode" name="countryCode" placeholder="Country code" class="reg-input">
                 </div>
                 <div class="reg-element">
-                    <input type="tel" pattern="[0-9]{9}" id="number" th:field="*{number}" name="number" placeholder="Number" class="reg-input">
+                    <input type="tel" pattern="[0-9]{9}" id="number" name="number" placeholder="Number" class="reg-input">
                 </div>
                 <div class="reg-element">
                     <label for="type">Type</label>
-                    <select name="type" id="type" th:field="*{type}">
+                    <select name="type" id="type">
                         <option value="mobile">Mobile</option>
                         <option value="home">Home</option>
                         <option value="work">Work</option>
@@ -82,15 +83,17 @@
                 </div>
                 <div class="reg-element">
                     <label for="comment">Comment</label>
-                    <input type="text" id="comment" th:field="*{comment}" name="comment" placeholder="Comment" class="reg-input">
+                    <input type="text" id="comment" name="comment" placeholder="Comment" class="reg-input">
                 </div>
             </div>
 
             <div class="reg-element">
-                <input type="submit" value="Submit" class="reg-button">
+                <input type="submit" value="button" onclick="sendData()" class="reg-button">
             </div>
+        </div>
 
-        </form>
+        <!--</form>-->
+        <span id="message-span"></span>
 
     </div>
 
@@ -99,7 +102,39 @@
     onload = function show() {
         var link = document.querySelector('link[rel=import]');
         var content = link.import.querySelector('#nav');
-        document.body.insertBefore(content.cloneNode(true),document.getElementById('container'))
+        document.body.insertBefore(content.cloneNode(true), document.getElementById('container'))
+    };
+
+    function sendData() {
+        var dataJson = new FormData();
+        dataJson.append("name", document.getElementById('name').value);
+        dataJson.append("surname", document.getElementById('surname').value);
+        dataJson.append("patronymic", document.getElementById('patronymic').value);
+        dataJson.append("date", document.getElementById('date').value);
+        dataJson.append("gender", document.getElementById('gender').value);
+        dataJson.append("citizenship", document.getElementById('citizenship').value);
+        dataJson.append("familyStatus", document.getElementById('familyStatus').value);
+        dataJson.append("site", document.getElementById('site').value);
+        dataJson.append("email", document.getElementById('email').value);
+        dataJson.append("job", document.getElementById('job').value);
+
+        fetch('/rest/addContact', {
+            method: 'POST',
+            body: dataJson
+        }).then(function (response) {
+            response.json().then(function (data) {
+                console.log(dataJson);
+                console.log(data.contact);
+                if (data.contact.name !== undefined) {
+                    document.getElementById('add-form').style.visibility = 'none';
+                    document.getElementById('message-span').innerText = "Your contact has been added";
+                } else {
+                    alert("ERROR")
+                }
+            })
+        })
+
+
     };
 </script>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Contact info</title>
@@ -9,7 +9,6 @@
 <body>
 
 <div class="container" id="container" style="background-color: #161616;margin-top: 1%">
-    <input type="text" id="id" th:value="${id}" style="visibility: hidden;" readonly>
     <div id="info">
 
     </div>
@@ -24,7 +23,9 @@
         initContact();
     };
     function initContact() {
-        var id = document.getElementById('id').value;
+
+        var link = window.location.href.split("/");
+        var id = link[link.length-1];
         fetch('/rest/contact/' + id + '/full').then(function (response) {
             response.json().then(function (data) {
                 document.getElementById('info').innerHTML = '<h1><strong>' + checkForNull(data.name) + '</strong></h1><h2>' +

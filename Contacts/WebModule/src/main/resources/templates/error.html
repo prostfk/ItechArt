@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Error page</title>
@@ -12,12 +12,6 @@
 
 <div class="reg-form" id="container" style="margin: 2% 30% 2% 30%;overflow: hidden;">
     <h1>An error occurred</h1>
-    <div th:if="${message}!=null">
-        <h1 th:text="${message}"></h1>
-    </div>
-    <div th:unless="${message}!=null">
-        <h1>404 not found</h1>
-    </div>
 </div>
 <script>
     onload = function show() {

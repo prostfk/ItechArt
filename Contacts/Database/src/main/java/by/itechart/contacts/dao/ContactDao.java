@@ -6,10 +6,7 @@ import org.apache.log4j.Logger;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ContactDao extends AbstractDao<Contact> {
 
@@ -102,8 +99,14 @@ public class ContactDao extends AbstractDao<Contact> {
 
     public List<Contact> findContactsFromIdAndWithLimit(Long firstId, Long limit) {
         //language=SQL
-        ResultSet resultSet = executeQuery(String.format("SELECT * FROM contact WHERE id >= '%d' LIMIT %d ", firstId, limit));
-        return createList(resultSet);
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact WHERE id >= ? LIMIT ?")) {
+            ResultSet resultSet = executeQuery(preparedStatement, firstId, limit);
+            List<Contact> list = createList(resultSet);
+            return list;
+        }catch (Exception e){
+            log(e,LOGGER);
+        }
+        return Collections.emptyList();
     }
 
     public Contact findContactByNameAndSurname(String name, String surname){

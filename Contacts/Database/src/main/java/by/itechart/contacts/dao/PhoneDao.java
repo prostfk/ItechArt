@@ -52,8 +52,8 @@ public class PhoneDao extends AbstractDao<Phone> {
     @Override
     public Phone update(Long id, Phone phone) {
         //language=SQL
-        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE phone SET country_code=?, number=?,type=?,comment=?")) {
-            execute(preparedStatement, phone.getCountryCode(), phone.getNumber(), phone.getType(), phone.getComment());
+        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE phone SET country_code=?, number=?,type=?,comment=? WHERE contact_id=?")) {
+            execute(preparedStatement, phone.getCountryCode(), phone.getNumber(), phone.getType(), phone.getComment(), id);
             return phone;
         } catch (Exception e) {
             e.printStackTrace();

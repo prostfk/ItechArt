@@ -48,7 +48,7 @@ public class ViewController {
     @GetMapping(value = "/contact/{id}")
     public ModelAndView getContactPage(@PathVariable Long id){
         if (contactDao.findContactById(id)!=null){
-            return new ModelAndView("contactInfo", "id",id);
+            return new ModelAndView("contactInfo");
         }else{
             return new ModelAndView("error", "message", "No such user");
         }
@@ -91,7 +91,6 @@ public class ViewController {
         if (byId != null | byId.getAddressId() != 0) {
             return new ModelAndView("editAddress", "id", byId.getAddressId());
         }
-        System.out.println(byId);
         return new ModelAndView("error");
     }
 
@@ -148,6 +147,11 @@ public class ViewController {
             new ModelAndView("fileViewer", "src", String.format("/userFiles/%s/%s", id, filename));
         }
         return new ModelAndView("error", "message", "no file");
+    }
+
+    @GetMapping(value = "/contacts/{id}")
+    public String getContacts(){
+        return "restContactViewer";
     }
 
     @GetMapping(value = "/{name}.{format}")
