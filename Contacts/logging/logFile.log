@@ -82,3 +82,7 @@
 2018-09-24 20:51:13 ERROR RestApiController:105 - 550 Message was not accepted -- invalid mailbox.  Local mailbox a666lex@mail.ru is unavailable: user is terminated
 
 2018-09-25 22:58:25 ERROR RestApiController:173 - /home/Documents/Soft/StaticData/Contacts/2/wall.jpg (No such file or directory)
+2018-09-26 22:37:01 ERROR AbstractDao:94 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-2,2' at line 1
+2018-09-26 22:37:01 ERROR AbstractDao:66 - 
+2018-09-26 22:38:18 ERROR AbstractDao:94 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-5,5' at line 1
+2018-09-26 22:38:18 ERROR AbstractDao:66 - 

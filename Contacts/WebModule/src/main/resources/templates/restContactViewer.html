@@ -35,8 +35,9 @@
     <div class="gap-bottom">
         <div class="reg-form">
             <div class="reg-element">
-                <label for="count">Count of items</label>
-                <input type="number" class="reg-input" id="count" value="5">
+                <!--<label for="count">Count of items</label>-->
+                <!--<input type="number" class="reg-input" id="count" value="5">-->
+                <!--<button class="reg-button" onclick="loadContacts()">Get contacts</button>-->
             </div>
         </div>
         <table id="table">
@@ -55,7 +56,9 @@
                 <th>Delete</th>
                 <th>Edit</th>
             </tr>
-            <tr id="content-pane"></tr>
+            <tbody id="content-pane">
+                <tr></tr>
+            </tbody>
         </table>
     </div>
 
@@ -64,30 +67,41 @@
 
 <script>
     var strings = window.location.href.split('/');
-    var number = strings[strings.length - 1];
-
-    onload = function loadContacts() {
-        var count = document.getElementById('count').value;
-        if (!number > 0) {
+    var number = strings[strings.length - 1] - 1;
+    console.log(number);
+    function loadContacts() {
+        var contentPane = document.getElementById('content-pane');
+        while (contentPane.firstChild){
+            contentPane.removeChild(contentPane.firstChild);
+        }
+        var count = 2;
+        if (number!==0){
+            number+=count;
+        }
+        // var count = document.getElementById('count').value;
+        console.log(count);
+        if (count > 0 && count < 50) {
             fetch('/rest/contacts?current=' + number + '&count=' + count).then(function (response) {
                 response.json()
                     .then(function (data) {
                         console.log(data);
                         for (var i = 0; i < data.length; i++) {
-                            document.getElementById("content-pane").insertAdjacentHTML('afterend', "<tr>" + "<th>" + data[i].name + "</th>" + "<th>" + data[i].surname + "</th>" + "<th>" + data[i].patronymic + "</th>" + "<th>" + data[i].date + "</th>" + "<th>" + data[i].gender + "</th>" + "<th>" + data[i].citizenship + "</th>" + "<th>" + data[i].familyStatus + "</th>" + "<th>" + data[i].site + "</th>" + "<th>" + data[i].email + "</th>" + "<th>" + data[i].job + "</th>" + "</tr>");
+                            document.getElementById("content-pane").insertAdjacentHTML('afterend', "<tr><th>" + data[i].name + "</th><th>" + data[i].surname + "</th><th>" + data[i].patronymic + "</th><th>" + data[i].date + "</th>" + "<th>" + data[i].gender + "</th>" + "<th>" + data[i].citizenship + "</th>" + "<th>" + data[i].familyStatus + "</th>" + "<th>" + data[i].site + "</th>" + "<th>" + data[i].email + "</th>" + "<th>" + data[i].job + "</th>" + "</tr>");
                         }
                     })
             })
+        }else{
+            alert(number)
         }
 
     }
 </script>
-<script src="/resources/js/index.js"></script>
 <script>
     onload = function show() {
         var link = document.querySelector('link[rel=import]');
         var content = link.import.querySelector('#nav');
         document.body.insertBefore(content.cloneNode(true), document.getElementById('container'))
+        loadContacts();
     };
 </script>
 </body>

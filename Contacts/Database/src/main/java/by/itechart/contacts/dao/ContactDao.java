@@ -99,8 +99,9 @@ public class ContactDao extends AbstractDao<Contact> {
 
     public List<Contact> findContactsFromIdAndWithLimit(Long firstId, Long limit) {
         //language=SQL
-        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact WHERE id >= ? LIMIT ?")) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact LIMIT ?,?")) {
             ResultSet resultSet = executeQuery(preparedStatement, firstId, limit);
+            System.out.println(preparedStatement);
             List<Contact> list = createList(resultSet);
             return list;
         }catch (Exception e){

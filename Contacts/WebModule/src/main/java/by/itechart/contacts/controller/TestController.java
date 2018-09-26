@@ -26,15 +26,9 @@ public class TestController {
     }
 
 
-    @GetMapping(value = "/allContacts/")
-    public String checkAll() {
-        return "redirect:/allContacts/1";
+    @GetMapping(value = "/test")
+    public String testPage(){
+        return "newStyle";
     }
-
-    @GetMapping(value = "/allContacts/{id}")
-    public String managePages(@PathVariable Long id) {
-        return "restContactViewer";
-    }
-
 
 }

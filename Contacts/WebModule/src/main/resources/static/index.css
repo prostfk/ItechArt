@@ -344,9 +344,12 @@ a {
     background-color: black;
 }
 
-
 .content-center{
     width: 40%;
     margin: 0 auto;
     overflow-wrap: normal;
+}
+
+.nav-element :hover{
+    background-color: #161616;
 }

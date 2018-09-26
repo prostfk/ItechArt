@@ -194,7 +194,7 @@ public class RestApiController {
 
     @GetMapping(value = "/contacts")
     public List<Contact> getContacts(@RequestParam Long current, @RequestParam Long count) {
-        return contactDao.findContactsFromIdAndWithLimit(current * count - count, count);
+        return contactDao.findContactsFromIdAndWithLimit(current, count);
     }
 
     private Object notNullValidation(Object object, String message) {
