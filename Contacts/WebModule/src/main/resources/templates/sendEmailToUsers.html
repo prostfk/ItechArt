@@ -38,13 +38,12 @@
         var link = document.querySelector('link[rel=import]');
         var content = link.import.querySelector('#nav');
         document.body.insertBefore(content.cloneNode(true), document.getElementById('container'));
-        loadContacts();
     };
     function sendEmails() {
         var message = document.getElementById('message-input').value;
         var item = localStorage.getItem('usersForEmail');
         var span = document.getElementById('message-span');
-        fetch('/rest/sendEmails?To=' + item).then(function (response) {
+        fetch('/rest/sendEmails?To=' + item + "&message=" + message).then(function (response) {
             response.json().then(function (data) {
                 console.log(data);
                 if (data.status==='okay'){

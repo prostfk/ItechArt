@@ -5,7 +5,6 @@
     <title>Contacts</title>
     <link rel="stylesheet" href="/index.css">
     <link rel="import" href="/navbar.html">
-
     <style>
         table {
             align-items: center;
@@ -35,6 +34,14 @@
     <div class="gap-bottom">
         <button class="reg-button" style="visibility: hidden;" id="send-emails-button" onclick="sendEmailsRedirect()">Send Emails</button>
         <span id="message-span" style="color: red;"></span>
+        <label for="countOfContacts"></label>
+        <select name="count" onchange="loadContacts()" id="countOfContacts">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+        </select>
         <table id="table">
             <tr>
                 <th>Name</th>
@@ -68,7 +75,15 @@
     var checkBoxes = [];
 
     function loadContacts() {
-        var count = 3;
+        var count;
+        if (localStorage.getItem('countOfContacts')===null){
+            count = document.getElementById('countOfContacts').value;
+            localStorage.setItem('countOfContacts', count);
+        }else{
+            count = localStorage.getItem('countOfContacts');
+            setSelect(document.getElementById('countOfContacts'), count);
+        }
+        console.log(count);
         if (number !== 0) {
             number *= count;
         }
@@ -77,9 +92,12 @@
                 response.json()
                     .then(function (data) {
                         console.log(data);
+                        var str = '';
                         for (var i = 0; i < data.length; i++) {
-                            document.getElementById("content-pane").insertAdjacentHTML('afterend', "<tr><th><a href='/contact/" + data[i].id + "'>" + data[i].name + "</a></th><th>" + data[i].surname + "</th><th>" + data[i].patronymic + "</th><th>" + data[i].date + "</th>" + "<th>" + data[i].gender + "</th>" + "<th>" + data[i].citizenship + "</th>" + "<th>" + data[i].familyStatus + "</th>" + "<th>" + data[i].site + "</th>" + "<th>" + data[i].email + "</th>" + "<th>" + data[i].job + "</th>" + "<th><a href='" + (data[i].addressId !== 0 ? ("/contact/" + data[i].id) : ("/contact/" + data[i].id + "/addAddress")) + "'>Address</a></th><th><button style='background-color: red;' onclick='deleteUser(" + data[i].id + ")'>Delete</button>" + "</th><th><a href='/contact/" + data[i].id + "/edit'>Edit</a></th><th><input id='" + data[i].id + "' type='checkbox' onchange='plusCheck(this)' style='background-color: black;'> </th>" + "</tr>");
+                            str +="<tr><th><a href='/contact/" + data[i].id + "'>" + data[i].name + "</a></th><th>" + data[i].surname + "</th><th>" + data[i].patronymic + "</th><th>" + data[i].date + "</th>" + "<th>" + data[i].gender + "</th>" + "<th>" + data[i].citizenship + "</th>" + "<th>" + data[i].familyStatus + "</th>" + "<th>" + data[i].site + "</th>" + "<th>" + data[i].email + "</th>" + "<th>" + data[i].job + "</th>" + "<th><a href='" + (data[i].addressId !== 0 ? ("/contact/" + data[i].id) : ("/contact/" + data[i].id + "/addAddress")) + "'>Address</a></th><th><button style='background-color: red;' onclick='deleteUser(" + data[i].id + ")'>Delete</button>" + "</th><th><a href='/contact/" + data[i].id + "/edit'>Edit</a></th><th><input id='" + data[i].id + "' type='checkbox' onchange='plusCheck(this)' style='background-color: black;'> </th>" + "</tr>";
+                            // document.getElementById("content-pane").insertAdjacentHTML('afterend', "<tr><th><a href='/contact/" + data[i].id + "'>" + data[i].name + "</a></th><th>" + data[i].surname + "</th><th>" + data[i].patronymic + "</th><th>" + data[i].date + "</th>" + "<th>" + data[i].gender + "</th>" + "<th>" + data[i].citizenship + "</th>" + "<th>" + data[i].familyStatus + "</th>" + "<th>" + data[i].site + "</th>" + "<th>" + data[i].email + "</th>" + "<th>" + data[i].job + "</th>" + "<th><a href='" + (data[i].addressId !== 0 ? ("/contact/" + data[i].id) : ("/contact/" + data[i].id + "/addAddress")) + "'>Address</a></th><th><button style='background-color: red;' onclick='deleteUser(" + data[i].id + ")'>Delete</button>" + "</th><th><a href='/contact/" + data[i].id + "/edit'>Edit</a></th><th><input id='" + data[i].id + "' type='checkbox' onchange='plusCheck(this)' style='background-color: black;'> </th>" + "</tr>");
                         }
+                        document.getElementById('content-pane').innerHTML = str;
                     })
             })
         } else {
@@ -135,6 +153,16 @@
         localStorage.setItem('usersForEmail', checkBoxes.join(","));
         window.location.href = '/contact/email/sendEmailToUsers';
         // window.location.replace("http://localhost:8080/contact/sendEmailToUsers");
+    }
+
+    function setSelect(element, value) {
+        var opts = element.options;
+        for (var opt, j = 0; opt = opts[j]; j++) {
+            if (opt.value === value) {
+                element.selectedIndex = j;
+                break;
+            }
+        }
     }
 
 </script>

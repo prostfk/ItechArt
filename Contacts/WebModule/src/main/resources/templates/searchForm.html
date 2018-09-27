@@ -38,9 +38,17 @@
 
 
     <div class="reg-form" style="margin-top: 2%">
+        <h1>Chose field</h1>
         <div class="reg-element">
-            <label for="parameter">Chose filed</label>
-            <select name="parameter" id="parameter" onchange="addInfoToSelect()">
+            <button class="reg-button" onclick="addInputWithSelect()" style="border: 1px solid green;">Add field
+            </button>
+            <button class="reg-button" onclick="deleteInputWithSelect()" style="border: 1px solid red;">Remove field
+            </button>
+            <button class="reg-button" onclick="search()" style="border: 1px solid blue;">Search</button>
+        </div>
+        <div class="reg-element" id="element-1">
+
+            <select name="parameter" id="parameter1">
                 <option value="name">Name</option>
                 <option value="surname">Surname</option>
                 <option value="patronymic">Patronymic</option>
@@ -52,8 +60,9 @@
                 <option value="email">Email</option>
                 <option value="job">Job</option>
             </select>
-            <input type="text" id="value" placeholder="Value" class="reg-input" onkeyup="search()">
+            <input type="text" id="value1" placeholder="Value" class="reg-input"><br/>
         </div>
+
     </div>
 
 
@@ -76,7 +85,6 @@
         <tbody id="content-pane">
 
         </tbody>
-        <!--<tr id="content-pane"></tr>-->
     </table>
 
 
@@ -84,20 +92,30 @@
 
 <script>
 
+    var paramCount = 1;
+
     function search() {
-        var type = document.getElementById('parameter').value;
-        var value = document.getElementById('value').value;
+        var type = '';
+        var value = '';
+        for (var i = 1; i <= paramCount; i++) {
+            var tmpType = document.getElementById('parameter' + i).value;
+            type += (tmpType === "" ? ' ' : tmpType) + ",";
+            var tmpValue = document.getElementById('value' + i).value;
+            value += (tmpValue === "" ? ' ' : tmpValue) + ",";
+        }
+        console.log(type);
+        console.log(value);
         document.getElementById('table').style.display = "none";
         document.getElementById('content-pane').innerText = "";
         if (value !== "") {
-            fetch('/rest/searchContact?type=' + type + "&value=" + value).then(function (response) {
+            fetch('/rest/updatedSearch?param=' + type + "&value=" + value).then(function (response) {
                 response.json().then(function (data) {
                     if (data.length > 0) {
                         document.getElementById('table').style.display = "table";
                         var str = "";
                         for (var i = 0; i < data.length; i++) {
                             console.log(data[i]);
-                            str += "<tr><td><a href='/contact/" + data[i].id + "'>" + data[i].name + "</a></td><td>" + data[i].surname + "</td><td>" + data[i].patronymic + "</td><td>" + data[i].date + "</td><td>" + data[i].gender + "</td><td>" + data[i].citizenship + "</td><td>" + data[i].familyStatus + "</td><td>" + data[i].site + "</td><td>" + data[i].email + "</td><td>" + data[i].job + "</td><td><a href='/contact/" + data[i].id  + (data[i].addressId===0 ? '/addAddress' : '') + "'>" + (data[i].addressId !== 0 ? 'Address' : 'None') + "</a><td><a href='/rest/contact/" + data[i].id + "/delete/'>Delete</a></td><td><a href='/contact/" + data[i].id + "/edit'>Edit</a></td></td><td><input type='checkbox'></td></tr>";
+                            str += "<tr><td><a href='/contact/" + data[i].id + "'>" + data[i].name + "</a></td><td>" + data[i].surname + "</td><td>" + data[i].patronymic + "</td><td>" + data[i].date + "</td><td>" + data[i].gender + "</td><td>" + data[i].citizenship + "</td><td>" + data[i].familyStatus + "</td><td>" + data[i].site + "</td><td>" + data[i].email + "</td><td>" + data[i].job + "</td><td><a href='/contact/" + data[i].id + (data[i].addressId === 0 ? '/addAddress' : '') + "'>" + (data[i].addressId !== 0 ? 'Address' : 'None') + "</a><td><a href='/rest/contact/" + data[i].id + "/delete/'>Delete</a></td><td><a href='/contact/" + data[i].id + "/edit'>Edit</a></td></td><td><input type='checkbox'></td></tr>";
                         }
                         document.getElementById("content-pane").innerHTML = str;
                     }
@@ -108,16 +126,45 @@
         }
     }
 
-    function addInfoToSelect() {
-        var type = document.getElementById('parameter').value;
-        if (type==='date_of_birth'){
-            //todo create range of dates by selecting date of birth
-            document.getElementById('reg-element').innerHTML = "<input type='date'><input type='date'>"
-        }
-    }
-
     function sendEmailRequest() {
         document.get
+    }
+
+
+    function addInputWithSelect() {
+        var html = '<div class="reg-element" id="element-' + Number(paramCount + 1) + '"><select name="parameter" id="parameter' + Number(paramCount + 1) + '">' +
+            '                <option value="name">Name</option>' +
+            '                <option value="surname">Surname</option>' +
+            '                <option value="patronymic">Patronymic</option>' +
+            '                <option value="date_of_birth">Date Of Birth</option>' +
+            '                <option value="gender">Gender</option>' +
+            '                <option value="citizenship">Citizenship</option>' +
+            '                <option value="family_status">Family Status</option>' +
+            '                <option value="site">Site</option>' +
+            '                <option value="email">Email</option>' +
+            '                <option value="job">Job</option>' +
+            '            </select>' +
+            '            <input type="text" id="value' + Number(paramCount + 1) + '" placeholder="Value" class="reg-input"><br/></div>';
+        document.getElementById('value' + paramCount++).insertAdjacentHTML('afterend', html);
+    }
+
+    function showData() {
+        var par = '';
+        var val = '';
+        for (var i = 1; i <= paramCount; i++) {
+            par += document.getElementById('parameter' + i).value + " ";
+            val += document.getElementById('value' + i).value + " ";
+        }
+        console.log(par);
+        console.log(val);
+    }
+
+    function deleteInputWithSelect() {
+        if (paramCount > 1) {
+            var elem = document.getElementById('element-' + paramCount--);
+            console.log(elem.getAttribute('id'));
+            elem.parentNode.removeChild(elem);
+        }
     }
 
 </script>

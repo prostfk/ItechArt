@@ -8,10 +8,20 @@
 </head>
 <body>
 
-<div class="container" id="container" style="background-color: #161616;margin-top: 1%">
-    <div id="info">
+<div class="container" id="container" style="margin-top: 3%">
 
+    <div id="tabs">
+        <div class="tab">Info</div>
+        <div class="tab">Address</div>
+        <div class="tab">Phone</div>
+        <div class="tabContent" id="contact-info"></div>
+        <div class="tabContent" id="contact-address"></div>
+        <div class="tabContent" id="contact-phone"></div>
     </div>
+
+    <!--<div id="info">-->
+
+    <!--</div>-->
 </div>
 
 
@@ -20,26 +30,85 @@
         var link = document.querySelector('link[rel=import]');
         var content = link.import.querySelector('#nav');
         document.body.insertBefore(content.cloneNode(true), document.getElementById('container'));
+        initTabs();
         initContact();
     };
+
     function initContact() {
         var link = window.location.href.split("/");
-        var id = link[link.length-1];
+        var id = link[link.length - 1];
         fetch('/rest/contact/' + id + '/full').then(function (response) {
             response.json().then(function (data) {
-                document.getElementById('info').innerHTML = '<h1><strong>' + checkForNull(data.name) + '<a href="/contact/ ' + data.id +  '/edit"> Edit</a></strong></h1><h1><a href="/contact/' + data.id + '/uploadDocument">Upload document</a></h1><h1><a href="/contact/ ' + data.id  + '/phone">Phone</a></h1><h1><a href="/contact/' + data.id + '/documents">Files</a></h1><h2>' +
-                    checkForNull(data.surname) + '</h2><h2>' + checkForNull(data.patronymic) + '</h2><h2>' + checkForNull(data.date) + '</h2><h2>' +
-                    checkForNull(data.gender) + '</h2><h2>' + checkForNull(data.citizenship) + '</h2><h2>' + checkForNull(data.familyStatus) + '</h2><h2>' +
-                    checkForNull(data.site) + '</h2><h2>' + checkForNull(data.email) + '</h2><h2>' + checkForNull(data.job) + '</h2><h2>' +
-                    checkForNull(data.country) + '</h2><h2>' + checkForNull(data.city) + '</h2><h2>'+ checkForNull(data.street) + '</h2><h2>' +
-                    checkForNull(data.house) + '</h2><h2>' + checkForNull(data.flat) + '</h2><h2>' + checkForNull(data.postIndex) +'</h2>'
+                console.log(data);
+                document.getElementById('contact-info').innerHTML = '<h1><strong>' + checkForNull(data.name, "Name") + '<a href="/contact/ ' + data.id + '/edit"> Edit</a></strong></h1><h1><a href="/contact/' + data.id + '/uploadDocument">Upload document</a></h1><h1><a href="/contact/ ' + data.id + '/phone">Phone</a></h1><h1><a href="/contact/' + data.id + '/documents">Files</a></h1><h2>' +
+                    checkForNull(data.surname, "Surname") + '</h2><h2>' + checkForNull(data.patronymic, "Patronymic") + '</h2><h2>' + checkForNull(data.date, "Date") + '</h2><h2>' +
+                    checkForNull(data.gender, "Gender") + '</h2><h2>' + checkForNull(data.citizenship, "Citizenship") + '</h2><h2>' + checkForNull(data.familyStatus, "Family status") + '</h2><h2>' +
+                    checkForNull(data.site, "Site") + '</h2><h2>' + checkForNull(data.email, "Email") + '</h2><h2>' + checkForNull(data.job, "Job") + '</h2><h2>';
+                if (data.country===null){
+                    document.getElementById('contact-address').innerHTML = '<a class="reg-button" href="/contact/' + id + '/addAddress">Add address</a>'
+                }else{
+                    document.getElementById('contact-address').innerHTML = checkForNull(data.country, 'Country') + '</h2><h2>' + checkForNull(data.city, 'City') + '</h2><h2>' + checkForNull(data.street, 'Street') + '</h2><h2>' +
+                        checkForNull(data.house, 'House') + '</h2><h2>' + checkForNull(data.flat, 'Flat') + '</h2><h2>' + checkForNull(data.postIndex, 'Post index') + '</h2>'
+                }
+            })
+        });
+        fetch('/rest/contact/' + id + '/phone').then(function (response) {
+            response.json().then(function (data) {
+                if (data.error === undefined) {
+                    document.getElementById('contact-phone').innerHTML = '<div><h2>' + checkForNull(data.countryCode, 'Country code') + '</h2><h2>' + checkForNull(data.number, 'Number') + '</h2><h2>' +
+                        checkForNull(data.type, 'Type') + '</h2>' + checkForNull(data.comment, 'Comment') + '</div>'
+                } else {
+                    document.getElementById('contact-phone').innerHTML = '<a class="reg-button" href="/contact/' + id + '/edit">Add phone</a>'
+                }
             })
         })
     }
-    function checkForNull(value) {
-        return value == null ? '' : value;
+
+    function checkForNull(value, message) {
+        return value === null ? '' : (message + ": " + value);
     }
 
 </script>
+
+<script>
+    var tab; // заголовок вкладки
+    var tabContent; // блок содержащий контент вкладки
+
+    function initTabs() {
+        tabContent = document.getElementsByClassName('tabContent');
+        tab = document.getElementsByClassName('tab');
+        hideTabsContent(1);
+    }
+
+    function hideTabsContent(a) {
+        for (var i = a; i < tabContent.length; i++) {
+            tabContent[i].classList.remove('show');
+            tabContent[i].classList.add("hide");
+            tab[i].classList.remove('whiteborder');
+        }
+    }
+
+    document.getElementById('tabs').onclick = function (event) {
+        var target = event.target;
+        if (target.className === 'tab') {
+            for (var i = 0; i < tab.length; i++) {
+                if (target === tab[i]) {
+                    showTabsContent(i);
+                    break;
+                }
+            }
+        }
+    };
+
+    function showTabsContent(b) {
+        if (tabContent[b].classList.contains('hide')) {
+            hideTabsContent(0);
+            tab[b].classList.add('whiteborder');
+            tabContent[b].classList.remove('hide');
+            tabContent[b].classList.add('show');
+        }
+    }
+</script>
+
 </body>
 </html>

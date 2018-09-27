@@ -19,7 +19,7 @@ public class ContactDao extends AbstractDao<Contact> {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact WHERE id=? AND status!=1");
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 return createEntity(resultSet);
             }
         } catch (Exception e) {
@@ -52,7 +52,7 @@ public class ContactDao extends AbstractDao<Contact> {
     public Contact save(Contact contact) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO contact(name, surname, patronymic, date_of_birth, gender, citizenship, family_status, site, email, job, address_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
-            execute(preparedStatement, contact.getName(), contact.getSurname(), contact.getPatronymic(), contact.getDate(), contact.getGender() + "", contact.getCitizenship(), contact.getFamilyStatus() + "", contact.getSite(), contact.getEmail(), contact.getJob(),contact.getAddressId());
+            execute(preparedStatement, contact.getName(), contact.getSurname(), contact.getPatronymic(), contact.getDate(), contact.getGender() + "", contact.getCitizenship(), contact.getFamilyStatus() + "", contact.getSite(), contact.getEmail(), contact.getJob(), contact.getAddressId());
         } catch (SQLException e) {
             log(e, LOGGER);
         }
@@ -104,76 +104,96 @@ public class ContactDao extends AbstractDao<Contact> {
             System.out.println(preparedStatement);
             List<Contact> list = createList(resultSet);
             return list;
-        }catch (Exception e){
-            log(e,LOGGER);
+        } catch (Exception e) {
+            log(e, LOGGER);
         }
         return Collections.emptyList();
     }
 
-    public Contact findContactByNameAndSurname(String name, String surname){
+    public Contact findContactByNameAndSurname(String name, String surname) {
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact WHERE name=? AND surname=?")) {
             ResultSet resultSet = executeQuery(preparedStatement, name, surname);
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 return createEntity(resultSet);
             }
-        }catch (Exception e){
-            log(e,LOGGER);
+        } catch (Exception e) {
+            log(e, LOGGER);
         }
         return null;
     }
 
-    public List<Contact> findContactsByIdList(String...ids){
+    //    TESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTESTTEST
+    public List<Contact> findContactsByIdList(String... ids) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < ids.length-1; i++) {
+        for (int i = 0; i < ids.length - 1; i++) {
             sb.append("?,");
         }
         sb.append("?");
         try (PreparedStatement preparedStatement = connection.prepareStatement(String.format("SELECT * FROM contact WHERE id IN(%s)", sb.toString()))) {
             ResultSet resultSet = executeQuery(preparedStatement, ids);
             return createList(resultSet);
-        }catch (Exception e){
-            log(e,LOGGER);
+        } catch (Exception e) {
+            log(e, LOGGER);
         }
         return null;
     }
 
-    public Map<String, String> findContactWithAddressById(Long id){
+    public List<Contact> findContactsByFieldsAndValues(String[] params, String[] values) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < params.length; i++) {
+            if (i != params.length - 1) {
+                sb.append(String.format("%s LIKE '%%%s%%' AND ", params[i], values[i]));
+            } else {
+                sb.append(String.format("%s LIKE '%%%s%%'", params[i], values[i]));
+            }
+        }
+        System.out.println(sb);
+        try (ResultSet resultSet = connection.createStatement().executeQuery(String.format("SELECT * FROM contact WHERE %s", sb.toString()))) {
+            return createList(resultSet);
+        } catch (Exception e) {
+            log(e, LOGGER);
+        }
+        return null;
+    }
+
+    public Map<String, String> findContactWithAddressById(Long id) {
         HashMap<String, String> json = new HashMap<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT contact.id,name,surname,patronymic,date_of_birth,gender,citizenship,family_status,site,email,job,address_id,country,city,street,house,flat,post_index FROM contact LEFT JOIN address a on contact.address_id = a.id WHERE contact.id = ? AND status!=1;")) {
             ResultSet resultSet = executeQuery(preparedStatement, id);
-            if (resultSet.next()){
-                json.put("id",id.toString());
-                json.put("name",resultSet.getString("name"));
-                json.put("surname",resultSet.getString("surname"));
-                json.put("patronymic",resultSet.getString("patronymic"));
-                json.put("date",resultSet.getString("date_of_birth"));
-                json.put("gender",resultSet.getString("gender"));
-                json.put("citizenship",resultSet.getString("citizenship"));
-                json.put("familyStatus",resultSet.getString("family_status"));
-                json.put("site",resultSet.getString("site"));
-                json.put("email",resultSet.getString("email"));
-                json.put("job",resultSet.getString("job"));
-                json.put("addressId",resultSet.getString("address_id"));
-                json.put("country",resultSet.getString("country"));
-                json.put("city",resultSet.getString("city"));
-                json.put("street",resultSet.getString("street"));
-                json.put("house",resultSet.getString("house"));
-                json.put("flat",resultSet.getString("flat"));
-                json.put("postIndex",resultSet.getString("post_index"));
+            if (resultSet.next()) {
+                json.put("id", id.toString());
+                json.put("name", resultSet.getString("name"));
+                json.put("surname", resultSet.getString("surname"));
+                json.put("patronymic", resultSet.getString("patronymic"));
+                json.put("date", resultSet.getString("date_of_birth"));
+                json.put("gender", resultSet.getString("gender"));
+                json.put("citizenship", resultSet.getString("citizenship"));
+                json.put("familyStatus", resultSet.getString("family_status"));
+                json.put("site", resultSet.getString("site"));
+                json.put("email", resultSet.getString("email"));
+                json.put("job", resultSet.getString("job"));
+                json.put("addressId", resultSet.getString("address_id"));
+                json.put("country", resultSet.getString("country"));
+                json.put("city", resultSet.getString("city"));
+                json.put("street", resultSet.getString("street"));
+                json.put("house", resultSet.getString("house"));
+                json.put("flat", resultSet.getString("flat"));
+                json.put("postIndex", resultSet.getString("post_index"));
             }
-        }catch (Exception e){
-            log(e,LOGGER);
+        } catch (Exception e) {
+            log(e, LOGGER);
         }
         return json;
     }
 
-    public Contact findContactByAddressId(Long addressId){
+    public Contact findContactByAddressId(Long addressId) {
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact WHERE address_id=?")) {
             ResultSet resultSet = executeQuery(preparedStatement, addressId);
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 return createEntity(resultSet);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             log(e, LOGGER);
         }
         return null;
@@ -207,14 +227,14 @@ public class ContactDao extends AbstractDao<Contact> {
 
     }
 
-    public Contact findContactByEmail(String email){
+    public Contact findContactByEmail(String email) {
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact WHERE email=?")) {
             ResultSet resultSet = executeQuery(preparedStatement, email);
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 return createEntity(resultSet);
             }
-        }catch (Exception e){
-            log(e,LOGGER);
+        } catch (Exception e) {
+            log(e, LOGGER);
         }
         return null;
     }

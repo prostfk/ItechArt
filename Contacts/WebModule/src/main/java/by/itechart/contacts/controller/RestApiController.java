@@ -11,6 +11,7 @@ import by.itechart.contacts.model.entity.Phone;
 import by.itechart.contacts.model.util.EmailUtil;
 import by.itechart.contacts.model.util.JsonUtil;
 import org.apache.log4j.Logger;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,7 @@ import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -211,13 +213,34 @@ public class RestApiController {
 
 //  TEST METHOD
     @GetMapping(value = "/sendEmails")
-    public Object sendEmailsTo(@RequestParam("To") String to){
+    public Object sendEmailsTo(@RequestParam("To") String to, @RequestParam String message){
         String[] split = to.split(",");
-        return contactDao.findContactsByIdList(split);
+        List<Contact> contactsByIdList = contactDao.findContactsByIdList(split);
+        int successMails = 0;
+        for (int i = 0; i < split.length; i++) {
+            try {
+                EmailUtil.sendMail(contactsByIdList.get(i).getEmail(), "Subject", message);
+                successMails++;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        JSONObject json = new JSONObject();
+        json.put("successEmails", successMails);
+        return json.toString();
+    }
+
+    @GetMapping(value = "/updatedSearch")
+    public Object updatedSearch(@RequestParam String param, @RequestParam String value){
+        System.out.println(param);
+        System.out.println(value);
+        String[] params = param.split(",");
+        String[] values = value.split(",");
+        return notNullValidation(contactDao.findContactsByFieldsAndValues(params,values), "Something went wrong");
     }
 
     @GetMapping(value = "/download")
-    public void download(@RequestParam String path, HttpServletRequest request, HttpServletResponse response){
+    public void download(@RequestParam String path, HttpServletResponse response){
         String dataDirectory = String.format("%s/%s", staticPath, path);
         String filename = path.split("/")[path.split("/").length-1];
             Path file = Paths.get(dataDirectory);
