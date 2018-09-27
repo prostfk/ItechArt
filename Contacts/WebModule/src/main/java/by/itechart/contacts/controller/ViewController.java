@@ -6,24 +6,16 @@ import by.itechart.contacts.dao.DocumentDao;
 import by.itechart.contacts.dao.PhoneDao;
 import by.itechart.contacts.model.entity.Address;
 import by.itechart.contacts.model.entity.Contact;
-import by.itechart.contacts.model.entity.Document;
 import by.itechart.contacts.model.entity.Phone;
-import by.itechart.contacts.model.util.EmailUtil;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.ViewResolver;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.Arrays;
-import java.util.List;
 
 @Controller
 public class ViewController {
@@ -105,16 +97,8 @@ public class ViewController {
     }
 
     @GetMapping(value = "/contact/{id}/edit")
-    public ModelAndView edit(@PathVariable Long id) {
-        Contact contactById = contactDao.findContactById(id);
-        ModelAndView modelAndView = new ModelAndView("editContact", "contact", contactDao.findContactById(id));
-        Phone phoneByContactId = phoneDao.findPhoneByContactId(contactById.getId());
-        if (phoneByContactId == null) {
-            phoneByContactId = new Phone();
-        }
-        System.out.println(phoneByContactId.getId());
-        modelAndView.addObject("phone", phoneByContactId);
-        return modelAndView;
+    public String edit(@PathVariable Long id) {
+        return "editContact";
     }
 
     @GetMapping(value = "/contact/{id}/addAddress")
@@ -141,13 +125,29 @@ public class ViewController {
         return new ModelAndView("error", "message", message);
     }
 
-    @GetMapping(value = "/userFiles/{id}/{filename}")
-    public ModelAndView sendFile(@PathVariable String id, String filename) {
-        File file = new File(String.format("WebModule/src/main/resources/static/userFiles/%s/%s", id, filename));
-        if (file.exists()) {
-            new ModelAndView("fileViewer", "src", String.format("/userFiles/%s/%s", id, filename));
+    @GetMapping(value = "/contact/{id}/phone")
+    public String getPhone(@PathVariable Long id){
+        Phone phoneByContactId = phoneDao.findPhoneByContactId(id);
+        if (phoneByContactId!=null){
+            return "phoneView";
+        }else{
+            return String.format("redirect:/contact/%d/edit",id);
         }
-        return new ModelAndView("error", "message", "no file");
+    }
+
+    @GetMapping(value = "/contact/{id}/documents")
+    public String getFiles(@PathVariable Long id){
+        Contact byId = contactDao.findById(id);
+        if (byId!=null){
+            return "userFiles";
+        }else{
+            return String.format("redirect:/contact/%d/uploadDocument", id);
+        }
+    }
+
+    @GetMapping(value = "/contacts")
+    public String redirectToContacts(){
+        return "redirect:/contacts/1";
     }
 
     @GetMapping(value = "/contacts/{id}")
@@ -155,18 +155,24 @@ public class ViewController {
         return "restContactViewer";
     }
 
+    @GetMapping(value = "/contact/email/sendEmailToUsers")
+    public String sendEmailToUsers(){
+        return "sendEmailToUsers";
+    }
+
     @GetMapping(value = "/{name}.{format}")
-    public ResponseEntity<Void> getCss(HttpServletResponse response, @PathVariable String name, @PathVariable String format) {
+    public ResponseEntity getCss(HttpServletResponse response, @PathVariable String name, @PathVariable String format) {
         response.setContentType(String.format("text/%s", format));
         File path = new File(String.format("WebModule/src/main/resources/static/%s.%s", name, format));
         try {
             InputStream inputStream = new FileInputStream(path);
             IOUtils.copy(inputStream, response.getOutputStream());
             IOUtils.closeQuietly(inputStream);
+            return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity(HttpStatus.OK);
     }
 
 }

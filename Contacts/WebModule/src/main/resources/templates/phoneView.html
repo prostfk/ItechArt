@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phone</title>
+    <link rel="stylesheet" href="/index.css">
+    <link rel="import" href="/navbar.html">
+</head>
+<body>
+
+<div id="container" class="container">
+
+    <div class="gap-bottom">
+
+        <table id="table">
+            <tr>
+                <th>Code</th>
+                <th>Number</th>
+                <th>Type</th>
+                <th>Comment</th>
+            </tr>
+            <tbody id="content-pane">
+
+            </tbody>
+        </table>
+
+
+    </div>
+
+</div>
+
+
+<script>
+    onload = function show() {
+        var link = document.querySelector('link[rel=import]');
+        var content = link.import.querySelector('#nav');
+        document.body.insertBefore(content.cloneNode(true), document.getElementById('container'));
+        getPhone();
+    };
+
+    function getPhone() {
+        var link = window.location.href.split("/");
+        var id = link[link.length-2];
+        fetch('/rest/contact/' + id + '/phone').then(function (response) {
+            response.json().then(function (data) {
+                document.getElementById('content-pane').insertAdjacentHTML('afterend',
+                '<tr><th>' + data.countryCode + '</th><th>' + data.number + '</th><th>' + data.type + '</th><th>'+ data.comment + '</th></tr>')
+            })
+        })
+    }
+
+</script>
+</body>
+</html>

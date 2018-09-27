@@ -16,10 +16,15 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URLConnection;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,6 +36,8 @@ public class RestApiController {
     private DocumentDao documentDao;
     private AddressDao addressDao;
     private PhoneDao phoneDao;
+    @Value("${user.files.path}")
+    private String staticPath;
     private static final Logger LOGGER = Logger.getLogger(RestApiController.class);
 
     public RestApiController() {
@@ -197,6 +204,35 @@ public class RestApiController {
         return contactDao.findContactsFromIdAndWithLimit(current, count);
     }
 
+    @GetMapping(value = "/contact/{id}/documents")
+    public Object findDocumentsByUserId(@PathVariable Long id){
+        return notNullValidation(documentDao.findDocumentsByUserId(id), "NO DATA");
+    }
+
+//  TEST METHOD
+    @GetMapping(value = "/sendEmails")
+    public Object sendEmailsTo(@RequestParam("To") String to){
+        String[] split = to.split(",");
+        return contactDao.findContactsByIdList(split);
+    }
+
+    @GetMapping(value = "/download")
+    public void download(@RequestParam String path, HttpServletRequest request, HttpServletResponse response){
+        String dataDirectory = String.format("%s/%s", staticPath, path);
+        String filename = path.split("/")[path.split("/").length-1];
+            Path file = Paths.get(dataDirectory);
+        if (Files.exists(file)) {
+            response.setContentType(URLConnection.guessContentTypeFromName(filename));
+            response.addHeader("Content-Disposition", "attachment; filename=" + filename);
+            try {
+                Files.copy(file, response.getOutputStream());
+                response.getOutputStream().flush();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
     private Object notNullValidation(Object object, String message) {
         if (object != null) {
             return object;
@@ -205,5 +241,6 @@ public class RestApiController {
         stringStringHashMap.put("error", message);
         return stringStringHashMap;
     }
-
+//email
+//contact page
 }

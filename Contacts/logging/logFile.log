@@ -86,3 +86,4 @@
 2018-09-26 22:37:01 ERROR AbstractDao:66 - 
 2018-09-26 22:38:18 ERROR AbstractDao:94 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-5,5' at line 1
 2018-09-26 22:38:18 ERROR AbstractDao:66 - 
+2018-09-27 11:39:17 ERROR RestApiController:112 - Couldn't connect to host, port: smtp.mail.ru, 587; timeout -1

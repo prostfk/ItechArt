@@ -99,7 +99,7 @@ public class ContactDao extends AbstractDao<Contact> {
 
     public List<Contact> findContactsFromIdAndWithLimit(Long firstId, Long limit) {
         //language=SQL
-        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact LIMIT ?,?")) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM contact WHERE status!=1 LIMIT ?,?")) {
             ResultSet resultSet = executeQuery(preparedStatement, firstId, limit);
             System.out.println(preparedStatement);
             List<Contact> list = createList(resultSet);
@@ -120,7 +120,21 @@ public class ContactDao extends AbstractDao<Contact> {
             log(e,LOGGER);
         }
         return null;
+    }
 
+    public List<Contact> findContactsByIdList(String...ids){
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < ids.length-1; i++) {
+            sb.append("?,");
+        }
+        sb.append("?");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(String.format("SELECT * FROM contact WHERE id IN(%s)", sb.toString()))) {
+            ResultSet resultSet = executeQuery(preparedStatement, ids);
+            return createList(resultSet);
+        }catch (Exception e){
+            log(e,LOGGER);
+        }
+        return null;
     }
 
     public Map<String, String> findContactWithAddressById(Long id){

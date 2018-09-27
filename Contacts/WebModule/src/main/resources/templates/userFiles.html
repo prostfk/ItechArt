@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UserFiles</title>
+    <link rel="stylesheet" href="/index.css">
+    <link rel="import" href="/navbar.html">
+    <style>
+        table {
+            align-items: center;
+            background-color: #161616;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 2%;
+        }
+
+        table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container-main" id="container">
+
+
+
+    <table id="table" class="gap-bottom">
+        <tr>
+            <th>FileName</th>
+            <th>Date</th>
+
+        </tr>
+        <tbody id="content-pane">
+
+        </tbody>
+    </table>
+
+
+
+</div>
+
+<script>
+    onload = function show() {
+        var link = document.querySelector('link[rel=import]');
+        var content = link.import.querySelector('#nav');
+        document.body.insertBefore(content.cloneNode(true), document.getElementById('container'));
+        findFiles();
+    };
+    var link = window.location.href.split('/');
+    var id = link[link.length-2];
+    function findFiles() {
+        document.getElementById('container').insertAdjacentHTML('afterbegin','<a class="reg-button" href="/contact/' + id + '/uploadDocument">Upload File</a>');
+        fetch('/rest/contact/' + id + '/documents').then(function (response) {
+            response.json().then(function (data) {
+                console.log(data);
+                if (data.error === undefined){
+                    var str = '';
+                    for (var i = 0; i < data.length; i++) {
+
+                            str += '<tr><th><a href="/rest/download?path=' + data[i].path + '" >' + data[i].name + '</a></th><th>' + data[i].date +'</th></tr>'
+
+                    }
+                    document.getElementById('content-pane').innerHTML = str
+                }
+            })
+        })
+    }
+</script>
+
+</body>
+</html>

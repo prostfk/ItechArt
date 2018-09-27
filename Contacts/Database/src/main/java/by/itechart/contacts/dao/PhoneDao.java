@@ -89,8 +89,8 @@ public class PhoneDao extends AbstractDao<Phone> {
     }
 
     public Phone findPhoneByContactId(Long id) {
-        ResultSet resultSet = executeQuery(String.format("SELECT * FROM phone WHERE contact_id='%d'", id));
-        try {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM phone WHERE contact_id=?")){
+            ResultSet resultSet = executeQuery(preparedStatement, id);
             if (resultSet.next()){
                 return createEntity(resultSet);
             }

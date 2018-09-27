@@ -33,13 +33,8 @@
 <div id="container" class="container">
 
     <div class="gap-bottom">
-        <div class="reg-form">
-            <div class="reg-element">
-                <!--<label for="count">Count of items</label>-->
-                <!--<input type="number" class="reg-input" id="count" value="5">-->
-                <!--<button class="reg-button" onclick="loadContacts()">Get contacts</button>-->
-            </div>
-        </div>
+        <button class="reg-button" style="visibility: hidden;" id="send-emails-button" onclick="sendEmailsRedirect()">Send Emails</button>
+        <span id="message-span" style="color: red;"></span>
         <table id="table">
             <tr>
                 <th>Name</th>
@@ -57,9 +52,11 @@
                 <th>Edit</th>
             </tr>
             <tbody id="content-pane">
-                <tr></tr>
+            <tr></tr>
             </tbody>
         </table>
+        <button class="reg-button" onclick="goBack()"><-</button>
+        <button class="reg-button" onclick="goNext()">-></button>
     </div>
 
 </div>
@@ -68,39 +65,84 @@
 <script>
     var strings = window.location.href.split('/');
     var number = strings[strings.length - 1] - 1;
-    console.log(number);
+    var checkBoxes = [];
+
     function loadContacts() {
-        var contentPane = document.getElementById('content-pane');
-        while (contentPane.firstChild){
-            contentPane.removeChild(contentPane.firstChild);
+        var count = 3;
+        if (number !== 0) {
+            number *= count;
         }
-        var count = 2;
-        if (number!==0){
-            number+=count;
-        }
-        // var count = document.getElementById('count').value;
-        console.log(count);
         if (count > 0 && count < 50) {
             fetch('/rest/contacts?current=' + number + '&count=' + count).then(function (response) {
                 response.json()
                     .then(function (data) {
                         console.log(data);
                         for (var i = 0; i < data.length; i++) {
-                            document.getElementById("content-pane").insertAdjacentHTML('afterend', "<tr><th>" + data[i].name + "</th><th>" + data[i].surname + "</th><th>" + data[i].patronymic + "</th><th>" + data[i].date + "</th>" + "<th>" + data[i].gender + "</th>" + "<th>" + data[i].citizenship + "</th>" + "<th>" + data[i].familyStatus + "</th>" + "<th>" + data[i].site + "</th>" + "<th>" + data[i].email + "</th>" + "<th>" + data[i].job + "</th>" + "</tr>");
+                            document.getElementById("content-pane").insertAdjacentHTML('afterend', "<tr><th><a href='/contact/" + data[i].id + "'>" + data[i].name + "</a></th><th>" + data[i].surname + "</th><th>" + data[i].patronymic + "</th><th>" + data[i].date + "</th>" + "<th>" + data[i].gender + "</th>" + "<th>" + data[i].citizenship + "</th>" + "<th>" + data[i].familyStatus + "</th>" + "<th>" + data[i].site + "</th>" + "<th>" + data[i].email + "</th>" + "<th>" + data[i].job + "</th>" + "<th><a href='" + (data[i].addressId !== 0 ? ("/contact/" + data[i].id) : ("/contact/" + data[i].id + "/addAddress")) + "'>Address</a></th><th><button style='background-color: red;' onclick='deleteUser(" + data[i].id + ")'>Delete</button>" + "</th><th><a href='/contact/" + data[i].id + "/edit'>Edit</a></th><th><input id='" + data[i].id + "' type='checkbox' onchange='plusCheck(this)' style='background-color: black;'> </th>" + "</tr>");
                         }
                     })
             })
-        }else{
+        } else {
             alert(number)
         }
 
     }
+
+    function deleteUser(id) {
+        fetch('/rest/contact/' + id + '/delete').then(function (response) {
+            response.json().then(function (data) {
+                if (data.error === undefined) {
+                    location.reload();
+                } else {
+                    document.getElementById('message-span').innerText = "Something went wrong";
+                }
+            })
+        })
+    }
+
+    function goBack() {
+        var strings = window.location.href.split('/');
+        var page = strings[strings.length - 1];
+        if (Number(page) !== 0) {
+            window.location.href = '/contacts/' + (Number(page) - 1);
+        }
+    }
+
+    function goNext() {
+        var strings = window.location.href.split('/');
+        var page = strings[strings.length - 1];
+        window.location.href = '/contacts/' + ++page;
+    }
+
+    function plusCheck(checkbox) {
+        var currentId = Number(checkbox.getAttribute('id'));
+        var button = document.getElementById('send-emails-button');
+        if (!checkBoxes.includes(currentId)) {
+            checkBoxes.push(currentId);
+        } else {
+            checkBoxes.splice(checkBoxes.indexOf(currentId), 1);
+        }
+        if (checkBoxes.length > 0) {
+            button.style.visibility = 'visible';
+        } else {
+            button.style.visibility = 'hidden';
+        }
+        console.log(checkBoxes);
+    }
+
+    function sendEmailsRedirect() {
+        localStorage.removeItem('usersForEmail');
+        localStorage.setItem('usersForEmail', checkBoxes.join(","));
+        window.location.href = '/contact/email/sendEmailToUsers';
+        // window.location.replace("http://localhost:8080/contact/sendEmailToUsers");
+    }
+
 </script>
 <script>
     onload = function show() {
         var link = document.querySelector('link[rel=import]');
         var content = link.import.querySelector('#nav');
-        document.body.insertBefore(content.cloneNode(true), document.getElementById('container'))
+        document.body.insertBefore(content.cloneNode(true), document.getElementById('container'));
         loadContacts();
     };
 </script>

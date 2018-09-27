@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -49,6 +50,17 @@ public class DocumentDao extends AbstractDao<Document> {
             LOGGER.error(e.getMessage());
         }
         return documents;
+    }
+
+    public List<Document> findDocumentsByUserId(Long id){
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM document WHERE contact_id=?")) {
+            ResultSet resultSet = executeQuery(preparedStatement, id);
+            return createList(resultSet);
+        }catch (Exception e){
+            log(e,LOGGER);
+        }
+        return Collections.emptyList();
+
     }
 
     public Document findDocumentByNameAndContactId(String name, Long contactId){

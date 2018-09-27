@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Send email</title>
+    <link rel="stylesheet" href="/index.css">
+    <link rel="import" href="/navbar.html">
+</head>
+<body>
+
+<div class="container" id="container">
+
+    <div class="gap-bottom">
+
+        <div class="reg-form">
+
+            <span id="message-span"></span>
+            <form>
+                <div class="reg-element">
+                    <label for="message-input">Message</label>
+                    <input id="message-input" type="text" class="reg-input" placeholder="Message">
+                </div>
+                <div class="reg-element">
+                    <button class="reg-button" onclick="sendEmails();">Send</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+    onload = function show() {
+        var link = document.querySelector('link[rel=import]');
+        var content = link.import.querySelector('#nav');
+        document.body.insertBefore(content.cloneNode(true), document.getElementById('container'));
+        loadContacts();
+    };
+    function sendEmails() {
+        var message = document.getElementById('message-input').value;
+        var item = localStorage.getItem('usersForEmail');
+        var span = document.getElementById('message-span');
+        fetch('/rest/sendEmails?To=' + item).then(function (response) {
+            response.json().then(function (data) {
+                console.log(data);
+                if (data.status==='okay'){
+                    span.style.color = 'green';
+                    span.innerText = 'Emails was send';
+                }else{
+                    span.style.color = 'red';
+                    span.innerText = 'Something went wrong';
+                }
+            })
+        })
+    }
+
+</script>
+
+</body>
+</html>

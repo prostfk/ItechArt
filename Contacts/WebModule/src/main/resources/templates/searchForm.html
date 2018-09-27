@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Find contact</title>
@@ -97,7 +97,7 @@
                         var str = "";
                         for (var i = 0; i < data.length; i++) {
                             console.log(data[i]);
-                            str += "<tr><td><a href='/contact/" + data[i].id + "'>" + data[i].name + "</a></td><td>" + data[i].surname + "</td><td>" + data[i].patronymic + "</td><td>" + data[i].date + "</td><td>" + data[i].gender + "</td><td>" + data[i].citizenship + "</td><td>" + data[i].familyStatus + "</td><td>" + data[i].site + "</td><td>" + data[i].email + "</td><td>" + data[i].job + "</td><td><a href='/rest/address/" + data[i].addressId + "'>" + (data[i].addressId !== 0 ? 'Address' : 'None') + "</a><td><a href='/rest/contact/" + data[i].id + "/delete/'>Delete</a></td><td><a href='/contact/" + data[i].id + "/edit'>Edit</a></td></td></tr>";
+                            str += "<tr><td><a href='/contact/" + data[i].id + "'>" + data[i].name + "</a></td><td>" + data[i].surname + "</td><td>" + data[i].patronymic + "</td><td>" + data[i].date + "</td><td>" + data[i].gender + "</td><td>" + data[i].citizenship + "</td><td>" + data[i].familyStatus + "</td><td>" + data[i].site + "</td><td>" + data[i].email + "</td><td>" + data[i].job + "</td><td><a href='/contact/" + data[i].id  + (data[i].addressId===0 ? '/addAddress' : '') + "'>" + (data[i].addressId !== 0 ? 'Address' : 'None') + "</a><td><a href='/rest/contact/" + data[i].id + "/delete/'>Delete</a></td><td><a href='/contact/" + data[i].id + "/edit'>Edit</a></td></td><td><input type='checkbox'></td></tr>";
                         }
                         document.getElementById("content-pane").innerHTML = str;
                     }
@@ -110,11 +110,14 @@
 
     function addInfoToSelect() {
         var type = document.getElementById('parameter').value;
-
         if (type==='date_of_birth'){
             //todo create range of dates by selecting date of birth
             document.getElementById('reg-element').innerHTML = "<input type='date'><input type='date'>"
         }
+    }
+
+    function sendEmailRequest() {
+        document.get
     }
 
 </script>
