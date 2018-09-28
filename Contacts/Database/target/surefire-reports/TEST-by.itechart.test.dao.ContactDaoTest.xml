@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="by.itechart.test.dao.ContactDaoTest" time="0.206" errors="1" skipped="0">
+<testsuite tests="1" failures="0" name="by.itechart.test.dao.ContactDaoTest" time="0.561" errors="1" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="10.0.2+13-Ubuntu-1ubuntu0.18.04.2"/>
@@ -42,10 +42,9 @@
     <property name="java.specification.version" value="10"/>
     <property name="user.name" value="prostrmk"/>
     <property name="java.class.path" value="/usr/share/maven/boot/plexus-classworlds-2.x.jar"/>
-    <property name="org.slf4j.simpleLogger.defaultLogLevel" value="debug"/>
     <property name="java.vm.specification.version" value="10"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher package -X"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher package"/>
     <property name="java.home" value="/usr/lib/jvm/java-11-openjdk-amd64"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -63,10 +62,10 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="by.itechart.test.dao.ContactDaoTest" name="findByIdTest" time="0.206">
+  <testcase classname="by.itechart.test.dao.ContactDaoTest" name="findByIdTest" time="0.561">
     <error type="java.lang.NullPointerException">java.lang.NullPointerException
-	at by.itechart.contacts.dao.AbstractDao.executeQuery(AbstractDao.java:54)
-	at by.itechart.contacts.dao.ContactDao.findContactById(ContactDao.java:109)
+	at by.itechart.contacts.dao.AbstractDao.executeQuery(AbstractDao.java:47)
+	at by.itechart.contacts.dao.ContactDao.findContactById(ContactDao.java:204)
 	at by.itechart.test.dao.ContactDaoTest.findByIdTest(ContactDaoTest.java:26)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -99,20 +98,14 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
-    <system-err>java.sql.SQLNonTransientConnectionException: Cannot load connection class because of underlying exception: com.mysql.cj.exceptions.WrongArgumentException: Malformed database URL, failed to parse the connection string near &apos;;characterEncoding=UTF-8&apos;.
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:110)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:73)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:79)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:131)
-	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:227)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:677)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:228)
-	at by.itechart.contacts.dao.AbstractDao.initDao(AbstractDao.java:38)
-	at by.itechart.contacts.dao.AbstractDao.&lt;init&gt;(AbstractDao.java:23)
-	at by.itechart.contacts.dao.ContactDao.&lt;init&gt;(ContactDao.java:12)
+    <system-err>java.io.FileNotFoundException: Database/src/main/resources/database.properties (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:220)
+	at java.base/java.io.FileInputStream.&lt;init&gt;(FileInputStream.java:158)
+	at java.base/java.io.FileInputStream.&lt;init&gt;(FileInputStream.java:113)
+	at by.itechart.contacts.dao.AbstractDao.initDao(AbstractDao.java:27)
+	at by.itechart.contacts.dao.AbstractDao.&lt;init&gt;(AbstractDao.java:18)
+	at by.itechart.contacts.dao.ContactDao.&lt;init&gt;(ContactDao.java:11)
 	at by.itechart.test.dao.ContactDaoTest.setUp(ContactDaoTest.java:21)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -143,36 +136,6 @@
 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
-Caused by: com.mysql.cj.exceptions.UnableToConnectException: Cannot load connection class because of underlying exception: com.mysql.cj.exceptions.WrongArgumentException: Malformed database URL, failed to parse the connection string near &apos;;characterEncoding=UTF-8&apos;.
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105)
-	... 36 more
-Caused by: com.mysql.cj.exceptions.WrongArgumentException: Malformed database URL, failed to parse the connection string near &apos;;characterEncoding=UTF-8&apos;.
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
-	at com.mysql.cj.conf.ConnectionUrlParser.processKeyValuePattern(ConnectionUrlParser.java:539)
-	at com.mysql.cj.conf.ConnectionUrlParser.parseQuerySection(ConnectionUrlParser.java:519)
-	at com.mysql.cj.conf.ConnectionUrlParser.getProperties(ConnectionUrlParser.java:644)
-	at com.mysql.cj.conf.ConnectionUrl.collectProperties(ConnectionUrl.java:304)
-	at com.mysql.cj.conf.ConnectionUrl.&lt;init&gt;(ConnectionUrl.java:289)
-	at com.mysql.cj.conf.url.SingleConnectionUrl.&lt;init&gt;(SingleConnectionUrl.java:47)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
-	at com.mysql.cj.util.Util.handleNewInstance(Util.java:210)
-	at com.mysql.cj.util.Util.getInstance(Util.java:185)
-	at com.mysql.cj.util.Util.getInstance(Util.java:192)
-	at com.mysql.cj.conf.ConnectionUrl.getConnectionUrlInstance(ConnectionUrl.java:201)
-	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:204)
-	... 35 more
 </system-err>
   </testcase>
 </testsuite>

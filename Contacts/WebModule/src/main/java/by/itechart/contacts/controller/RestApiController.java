@@ -40,6 +40,9 @@ public class RestApiController {
     private PhoneDao phoneDao;
     @Value("${user.files.path}")
     private String staticPath;
+    @Value("${message.birthday}") String birthday;
+    @Value("${message.newYear}") String newYear;
+    @Value("${message.party}") String party;
     private static final Logger LOGGER = Logger.getLogger(RestApiController.class);
 
     public RestApiController() {
@@ -137,6 +140,7 @@ public class RestApiController {
 
     @PostMapping(value = "/addContact")
     public Object postAddContact(Contact contact, Phone phone) {
+        System.out.println(contact);
         if (contact != null & contact.getName() != null & contact.getSurname() != null & !contact.getSurname().equals("") & !contact.getName().equals("")) {
             contactDao.save(contact);
             Contact base = contactDao.findContactByNameAndSurname(contact.getName(), contact.getSurname());
@@ -211,22 +215,27 @@ public class RestApiController {
         return notNullValidation(documentDao.findDocumentsByUserId(id), "NO DATA");
     }
 
-//  TEST METHOD
     @GetMapping(value = "/sendEmails")
     public Object sendEmailsTo(@RequestParam("To") String to, @RequestParam String message){
         String[] split = to.split(",");
         List<Contact> contactsByIdList = contactDao.findContactsByIdList(split);
         int successMails = 0;
+        message = EmailUtil.getMessage(message,party,newYear,birthday);
+        JSONObject json = new JSONObject();
         for (int i = 0; i < split.length; i++) {
             try {
+                message = message.replace("{username}", contactsByIdList.get(i).getName());
                 EmailUtil.sendMail(contactsByIdList.get(i).getEmail(), "Subject", message);
                 successMails++;
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        JSONObject json = new JSONObject();
-        json.put("successEmails", successMails);
+        if (successMails == split.length){
+            json.put("status", "ok");
+        }else{
+            json.put("status", "some email addresses may be invalid");
+        }
         return json.toString();
     }
 
@@ -239,6 +248,31 @@ public class RestApiController {
         return notNullValidation(contactDao.findContactsByFieldsAndValues(params,values), "Something went wrong");
     }
 
+    @GetMapping(value = "/contact/{id}/documents/rename")
+    public Object renameDocument(@PathVariable Long id, @RequestParam String name, @RequestParam String newFileName){
+        Document doc = documentDao.findDocumentByNameAndContactId(name, id);
+        File file = new File(staticPath + doc.getPath());
+        String[] split = doc.getPath().split("/");
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < split.length - 1; i++) {
+            stringBuilder.append("/").append(split[i]);
+        }
+        stringBuilder.append("/").append(newFileName);
+        File newFile = new File(stringBuilder.toString());
+        JSONObject json = new JSONObject();
+        if (!newFile.exists()){
+            boolean b = file.renameTo(newFile);
+            System.out.println(b);
+            doc.setPath(stringBuilder.toString());
+            doc.setName(newFileName);
+            documentDao.update(doc.getId(),doc);
+            json.put("status", "success");
+        }else{
+            json.put("status", "error, such file already exists");
+        }
+        return json.toString();
+
+    }
     @GetMapping(value = "/download")
     public void download(@RequestParam String path, HttpServletResponse response){
         String dataDirectory = String.format("%s/%s", staticPath, path);

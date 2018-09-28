@@ -2,3 +2,5 @@
 2018-09-19 11:19:31 ERROR AbstractDao:27 - Connection error: Database/src/main/resources/database.properties (No such file or directory)
 2018-09-19 23:06:01 ERROR AbstractDao:119 - Cannot load connection class because of underlying exception: com.mysql.cj.exceptions.WrongArgumentException: Malformed database URL, failed to parse the connection string near ';characterEncoding=UTF-8'.
 2018-09-19 23:06:28 ERROR AbstractDao:119 - Cannot load connection class because of underlying exception: com.mysql.cj.exceptions.WrongArgumentException: Malformed database URL, failed to parse the connection string near ';characterEncoding=UTF-8'.
+2018-09-27 23:07:31 ERROR AbstractDao:131 - Database/src/main/resources/database.properties (No such file or directory)
+2018-09-27 23:13:29 ERROR AbstractDao:131 - Database/src/main/resources/database.properties (No such file or directory)

@@ -39,6 +39,7 @@
         <tr>
             <th>Filename</th>
             <th>Go to file</th>
+            <th>Rename</th>
         </tr>
         <tbody id="content-pane">
 
@@ -57,7 +58,7 @@
                     var str = "";
                     console.log(data);
                     for (var i = 0; i < data.length; i++) {
-                        str += "<tr><td>" + data[i].name + "</td><td><a href='" + data[i].path +"'>Check file</a></td></tr>"
+                        str += "<tr><td id='name-" + data[i].id +"'>" + data[i].name + "</td><td><a href='" + data[i].path +"'>Check file</a></td><td><button onclick='rename(this)' id='rename-" + data[i].id + "'>Rename</button></td></tr>"
                     }
                     document.getElementById("content-pane").innerHTML = str;
                 }
@@ -71,6 +72,8 @@
         var content = link.import.querySelector('#nav');
         document.body.insertBefore(content.cloneNode(true),document.getElementById('container'))
     };
+
+
 </script>
 </body>
 </html>

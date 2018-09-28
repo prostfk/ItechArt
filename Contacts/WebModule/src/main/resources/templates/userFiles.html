@@ -36,12 +36,12 @@
 <div class="container-main" id="container">
 
 
-
+    <span id="message-span"></span>
     <table id="table" class="gap-bottom">
         <tr>
             <th>FileName</th>
             <th>Date</th>
-
+            <th>Rename</th>
         </tr>
         <tbody id="content-pane">
 
@@ -70,7 +70,7 @@
                     var str = '';
                     for (var i = 0; i < data.length; i++) {
 
-                            str += '<tr><th><a href="/rest/download?path=' + data[i].path + '" >' + data[i].name + '</a></th><th>' + data[i].date +'</th></tr>'
+                            str += '<tr><th ><a href="/rest/download?path=' + data[i].path + '" id="name-' + data[i].id +'">' + data[i].name + '</a></th><th>' + data[i].date +'</th><th><button id="' + data[i].id + '" onclick="rename(this)">Rename</button></th></tr>'
 
                     }
                     document.getElementById('content-pane').innerHTML = str
@@ -78,6 +78,29 @@
             })
         })
     }
+
+    function rename(elem) {
+        document.getElementById('container').insertAdjacentHTML('afterbegin','<div class="reg-element"><input type="text" id="new-name" placeholder="name" class="reg-input"><button class="reg-button" onclick="sendRename(' + elem.getAttribute('id') +')">Submit</button></div>')
+    }
+
+    function sendRename(fileId) {
+        var newName = document.getElementById('new-name').value;
+        console.log(newName);
+        fetch('/rest/contact/' + id + '/documents/rename?name=' + document.getElementById('name-' + fileId).innerText + '&newFileName=' + newName).then(function (response) {
+            response.json().then(function (data) {
+                var span = document.getElementById('message-span');
+                console.log(data);
+                if (data.status==="success"){
+                    span.style.color = 'green';
+                    span.innerText = 'Success';
+                }else{
+                    span.style.color = 'red';
+                    span.innerText = data.status;
+                }
+            })
+        })
+    }
+
 </script>
 
 </body>

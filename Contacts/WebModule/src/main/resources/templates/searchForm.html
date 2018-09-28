@@ -38,6 +38,7 @@
 
 
     <div class="reg-form" style="margin-top: 2%">
+        <button class="reg-button" style="visibility: hidden;" id="send-emails-button" onclick="sendEmailsRedirect()">Send Emails</button>
         <h1>Chose field</h1>
         <div class="reg-element">
             <button class="reg-button" onclick="addInputWithSelect()" style="border: 1px solid green;">Add field
@@ -65,7 +66,7 @@
 
     </div>
 
-
+    <span id="message-span" style="color: red;"></span>
     <table id="table" class="gap-bottom" style="display: none;">
         <tr>
             <th>Name</th>
@@ -81,6 +82,7 @@
             <th>Address</th>
             <th>Delete</th>
             <th>Edit</th>
+            <th>Send email</th>
         </tr>
         <tbody id="content-pane">
 
@@ -93,8 +95,9 @@
 <script>
 
     var paramCount = 1;
-
+    var checkBoxes = [];
     function search() {
+        document.getElementById('message-span').innerText = '';
         var type = '';
         var value = '';
         for (var i = 1; i <= paramCount; i++) {
@@ -115,9 +118,11 @@
                         var str = "";
                         for (var i = 0; i < data.length; i++) {
                             console.log(data[i]);
-                            str += "<tr><td><a href='/contact/" + data[i].id + "'>" + data[i].name + "</a></td><td>" + data[i].surname + "</td><td>" + data[i].patronymic + "</td><td>" + data[i].date + "</td><td>" + data[i].gender + "</td><td>" + data[i].citizenship + "</td><td>" + data[i].familyStatus + "</td><td>" + data[i].site + "</td><td>" + data[i].email + "</td><td>" + data[i].job + "</td><td><a href='/contact/" + data[i].id + (data[i].addressId === 0 ? '/addAddress' : '') + "'>" + (data[i].addressId !== 0 ? 'Address' : 'None') + "</a><td><a href='/rest/contact/" + data[i].id + "/delete/'>Delete</a></td><td><a href='/contact/" + data[i].id + "/edit'>Edit</a></td></td><td><input type='checkbox'></td></tr>";
+                            str += "<tr><td><a href='/contact/" + data[i].id + "'>" + data[i].name + "</a></td><td>" + data[i].surname + "</td><td>" + data[i].patronymic + "</td><td>" + data[i].date + "</td><td>" + data[i].gender + "</td><td>" + data[i].citizenship + "</td><td>" + data[i].familyStatus + "</td><td>" + data[i].site + "</td><td>" + data[i].email + "</td><td>" + data[i].job + "</td><td><a href='/contact/" + data[i].id + (data[i].addressId === 0 ? '/addAddress' : '') + "'>" + (data[i].addressId !== 0 ? 'Address' : 'None') + "</a><td><a href='/rest/contact/" + data[i].id + "/delete/'>Delete</a></td><td><a href='/contact/" + data[i].id + "/edit'>Edit</a></td></td><td><input type='checkbox' id='" + data[i].id + "' onchange='plusCheck(this)'></td></tr>";
                         }
                         document.getElementById("content-pane").innerHTML = str;
+                    }else{
+                        document.getElementById('message-span').innerText = 'No one was found'
                     }
                 })
             })
@@ -125,11 +130,6 @@
             document.getElementById('content-pane').innerText = "";
         }
     }
-
-    function sendEmailRequest() {
-        document.get
-    }
-
 
     function addInputWithSelect() {
         var html = '<div class="reg-element" id="element-' + Number(paramCount + 1) + '"><select name="parameter" id="parameter' + Number(paramCount + 1) + '">' +
@@ -165,6 +165,28 @@
             console.log(elem.getAttribute('id'));
             elem.parentNode.removeChild(elem);
         }
+    }
+
+    function plusCheck(checkbox) {
+        var currentId = Number(checkbox.getAttribute('id'));
+        var button = document.getElementById('send-emails-button');
+        if (!checkBoxes.includes(currentId)) {
+            checkBoxes.push(currentId);
+        } else {
+            checkBoxes.splice(checkBoxes.indexOf(currentId), 1);
+        }
+        if (checkBoxes.length > 0) {
+            button.style.visibility = 'visible';
+        } else {
+            button.style.visibility = 'hidden';
+        }
+        console.log(checkBoxes);
+    }
+
+    function sendEmailsRedirect() {
+        localStorage.removeItem('usersForEmail');
+        localStorage.setItem('usersForEmail', checkBoxes.join(","));
+        window.location.href = '/contact/email/sendEmailToUsers';
     }
 
 </script>

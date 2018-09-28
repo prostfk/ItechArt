@@ -40,14 +40,14 @@
         fetch('/rest/contact/' + id + '/full').then(function (response) {
             response.json().then(function (data) {
                 console.log(data);
-                document.getElementById('contact-info').innerHTML = '<h1><strong>' + checkForNull(data.name, "Name") + '<a href="/contact/ ' + data.id + '/edit"> Edit</a></strong></h1><h1><a href="/contact/' + data.id + '/uploadDocument">Upload document</a></h1><h1><a href="/contact/ ' + data.id + '/phone">Phone</a></h1><h1><a href="/contact/' + data.id + '/documents">Files</a></h1><h2>' +
+                document.getElementById('contact-info').innerHTML = '<h1><a href="/contact/ ' + data.id + '/edit"> Edit</a></h1>' + '<h1><strong>' + checkForNull(data.name, "Name") + '</strong></h1><h1><a href="/contact/' + data.id + '/uploadDocument">Upload document</a></h1><h1><a href="/contact/ ' + data.id + '/phone">Phone</a></h1><h1><a href="/contact/' + data.id + '/documents">Files</a></h1><h2>' +
                     checkForNull(data.surname, "Surname") + '</h2><h2>' + checkForNull(data.patronymic, "Patronymic") + '</h2><h2>' + checkForNull(data.date, "Date") + '</h2><h2>' +
                     checkForNull(data.gender, "Gender") + '</h2><h2>' + checkForNull(data.citizenship, "Citizenship") + '</h2><h2>' + checkForNull(data.familyStatus, "Family status") + '</h2><h2>' +
                     checkForNull(data.site, "Site") + '</h2><h2>' + checkForNull(data.email, "Email") + '</h2><h2>' + checkForNull(data.job, "Job") + '</h2><h2>';
                 if (data.country===null){
                     document.getElementById('contact-address').innerHTML = '<a class="reg-button" href="/contact/' + id + '/addAddress">Add address</a>'
                 }else{
-                    document.getElementById('contact-address').innerHTML = checkForNull(data.country, 'Country') + '</h2><h2>' + checkForNull(data.city, 'City') + '</h2><h2>' + checkForNull(data.street, 'Street') + '</h2><h2>' +
+                    document.getElementById('contact-address').innerHTML = '<h1><a href="/contact/' + id + '/editAddress">Edit</a></h1>' +  checkForNull(data.country, 'Country') + '</h2><h2>' + checkForNull(data.city, 'City') + '</h2><h2>' + checkForNull(data.street, 'Street') + '</h2><h2>' +
                         checkForNull(data.house, 'House') + '</h2><h2>' + checkForNull(data.flat, 'Flat') + '</h2><h2>' + checkForNull(data.postIndex, 'Post index') + '</h2>'
                 }
             })

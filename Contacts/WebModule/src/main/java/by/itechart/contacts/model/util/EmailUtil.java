@@ -1,6 +1,7 @@
 package by.itechart.contacts.model.util;
 
 import by.itechart.contacts.dao.AbstractDao;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -15,6 +16,8 @@ public class EmailUtil {
 
     private static String login;
     private static String password;
+
+
 
     static {
         Map<String, String> privateData = AbstractDao.getPrivateData();
@@ -43,5 +46,15 @@ public class EmailUtil {
             transport.close();
         }
     }
+
+    public static String getMessage(String message, String party, String newYear, String birthday){
+
+        switch (message){
+            case "message.birthday": return birthday;
+            case "message.newYear": return newYear;
+            default: return party;
+        }
+    }
+
 
 }

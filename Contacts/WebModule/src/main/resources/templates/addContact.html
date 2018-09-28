@@ -5,6 +5,7 @@
     <title>Add contact</title>
     <link rel="stylesheet" href="/index.css">
     <link rel="import" href="/navbar.html">
+    <script src="/index.js"></script>
 
 
 </head>
@@ -122,25 +123,25 @@
         dataJson.append("number", document.getElementById('number').value);
         dataJson.append("type",document.getElementById('type').value);
         dataJson.append("comment",document.getElementById('comment').value);
-
-
-        fetch('/rest/addContact', {
-            method: 'POST',
-            body: dataJson
-        }).then(function (response) {
-            response.json().then(function (data) {
-                console.log(dataJson);
-                console.log(data);
-                if (data.error === undefined) {
-                    document.getElementById('add-form').style.visibility = 'hidden';
-                    document.getElementById('message-span').style.color = 'green';
-                    document.getElementById('message-span').innerText = "Your contact has been added";
-                } else {
-                    document.getElementById('message-span').style.color = 'red';
-                    document.getElementById('message-span').innerText = "Please, check your data!";
-                }
-            })
-        })
+        var response = await sendJson('/rest/addContact',dataJson,'POST')
+        alert(response);
+        // fetch('/rest/addContact', {
+        //     method: 'POST',
+        //     body: dataJson
+        // }).then(function (response) {
+        //     response.json().then(function (data) {
+        //         console.log(dataJson);
+        //         console.log(data);
+        //         if (data.error === undefined) {
+        //             document.getElementById('add-form').style.visibility = 'hidden';
+        //             document.getElementById('message-span').style.color = 'green';
+        //             document.getElementById('message-span').innerText = "Your contact has been added";
+        //         } else {
+        //             document.getElementById('message-span').style.color = 'red';
+        //             document.getElementById('message-span').innerText = "Please, check your data!";
+        //         }
+        //     })
+        // })
 
 
     };

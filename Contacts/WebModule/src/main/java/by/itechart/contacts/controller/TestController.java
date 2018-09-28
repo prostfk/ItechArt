@@ -28,7 +28,7 @@ public class TestController {
 
     @GetMapping(value = "/test")
     public String testPage(){
-        return "newStyle";
+        return "test";
     }
 
 }

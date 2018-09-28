@@ -67,12 +67,13 @@
         </tbody>
     </table>
 
-
+    <script src="/index.js"></script>
     <script>
         onload = function show() {
             var link = document.querySelector('link[rel=import]');
             var content = link.import.querySelector('#nav');
-            document.body.insertBefore(content.cloneNode(true),document.getElementById('table'))
+            document.body.insertBefore(content.cloneNode(true),document.getElementById('table'));
+            send();
         };
     </script>
 </body>
