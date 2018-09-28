@@ -225,7 +225,7 @@ public class RestApiController {
         for (int i = 0; i < split.length; i++) {
             try {
                 message = message.replace("{username}", contactsByIdList.get(i).getName());
-                EmailUtil.sendMail(contactsByIdList.get(i).getEmail(), "Subject", message);
+                EmailUtil.sendMail(contactsByIdList.get(i).getEmail(), String.format("Hey, %s, we have something for you! ", contactsByIdList.get(i).getName()), message);
                 successMails++;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -288,6 +288,18 @@ public class RestApiController {
                 ex.printStackTrace();
             }
         }
+    }
+
+    @GetMapping(value = "/email/preview")
+    public Object getText(@RequestParam String text){
+        JSONObject json = new JSONObject();
+        switch (text){
+            case "message.birthday": json.put("message", birthday);break;
+            case "message.party": json.put("message", party);break;
+            case "message.newYear": json.put("message", newYear);break;
+            default: json.put("error", "No such data");break;
+        }
+        return json.toString();
     }
 
     private Object notNullValidation(Object object, String message) {

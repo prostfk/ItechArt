@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit</title>
-    <link rel="stylesheet" href="/index.css">
-    <link rel="import" href="/navbar.html">
+    <link rel="stylesheet" href="/testViewDesign.css">
     <script src="/index.js"></script>
-    <style>
-
-    </style>
 
 </head>
 <body>
+<div class="container" id="after-edit">
 
+</div>
 <div class="container" id="container">
 
     <div class="gap-bottom">
@@ -21,19 +19,19 @@
         <form class="reg-form" id="contact-form">
             <div class="reg-element">
                 <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Name" class="reg-input">
+                <input type="text" id="name" name="name" placeholder="Name" class="inp">
             </div>
             <div class="reg-element">
                 <label for="surname">Surname</label>
-                <input type="text" id="surname" name="surname" placeholder="Surname" class="reg-input">
+                <input type="text" id="surname" name="surname" placeholder="Surname" class="inp">
             </div>
             <div class="reg-element">
                 <label for="patronymic">Patronymic</label>
-                <input type="text" id="patronymic" name="patronymic" placeholder="Patronymic" class="reg-input">
+                <input type="text" id="patronymic" name="patronymic" placeholder="Patronymic" class="inp">
             </div>
             <div class="reg-element">
                 <label for="date">Date</label>
-                <input type="date" id="date" name="date" placeholder="Date" value="2000-01-01" class="reg-input">
+                <input type="date" id="date" name="date" placeholder="Date" value="2000-01-01" class="inp">
             </div>
             <div class="reg-element">
                 <label for="gender">Gender</label>
@@ -44,7 +42,7 @@
             </div>
             <div class="reg-element">
                 <label for="citizenship">Citizenship</label>
-                <input type="text" id="citizenship" name="citizenship" placeholder="Citizenship" class="reg-input">
+                <input type="text" id="citizenship" name="citizenship" placeholder="Citizenship" class="inp">
             </div>
             <div class="reg-element">
                 <label for="familyStatus">Family Status</label>
@@ -57,26 +55,26 @@
             </div>
             <div class="reg-element">
                 <label for="site">Site</label>
-                <input type="text" id="site" name="site" placeholder="Site" class="reg-input">
+                <input type="text" id="site" name="site" placeholder="Site" class="inp">
             </div>
             <div class="reg-element">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Email" class="reg-input">
+                <input type="email" id="email" name="email" placeholder="Email" class="inp">
             </div>
             <div class="reg-element">
                 <label for="job">Job</label>
-                <input type="text" id="job" name="job" placeholder="Job" class="reg-input">
+                <input type="text" id="job" name="job" placeholder="Job" class="inp">
             </div>
 
             <div>
                 <div class="reg-element">
                     <label for="number">Number</label>
                     <input type="tel" width="40px" pattern="+[0-9]{3}" id="countryCode" name="countryCode"
-                           placeholder="Country code" class="reg-input">
+                           placeholder="Country code" class="inp">
                 </div>
                 <div class="reg-element">
                     <input type="tel" pattern="[0-9]{9}" id="number" name="number" placeholder="Number"
-                           class="reg-input">
+                           class="inp">
                 </div>
                 <div class="reg-element">
                     <label for="type">Type</label>
@@ -88,11 +86,11 @@
                 </div>
                 <div class="reg-element">
                     <label for="comment">Comment</label>
-                    <input type="text" id="comment" name="comment" placeholder="Comment" class="reg-input">
+                    <input type="text" id="comment" name="comment" placeholder="Comment" class="inp">
                 </div>
             </div>
             <div class="reg-element">
-                <button type="button" onclick="sendOnServer()" class="reg-button">Submit</button>
+                <button type="button" onclick="sendOnServer()" class="butt">Submit</button>
             </div>
 
         </form>
@@ -106,9 +104,7 @@
     var url = window.location.href.split('/');
     var id = url[url.length - 2];
     onload = function show() {
-        var link = document.querySelector('link[rel=import]');
-        var content = link.import.querySelector('#nav');
-        document.body.insertBefore(content.cloneNode(true), document.getElementById('container'))
+        createNav();
         initForm();
     };
 
@@ -172,24 +168,24 @@
         formData.append('number', document.getElementById('number').value);
         formData.append('type', document.getElementById('type').value);
         formData.append('comment', document.getElementById('comment').value);
-        var resp = await sendJson('/rest/contact/' + id + '/edit',formData, 'POST');
-
-
-        // fetch('/rest/contact/' + id + '/edit', {
-        //     method: 'POST',
-        //     body: formData
-        // }).then(function (response) {
-        //     response.json().then(function (data) {
-        //         if (data.error === undefined) {
-        //             document.getElementById('contact-form').style.visibility = 'hidden';
-        //             document.getElementById('message-span').style.color = 'green';
-        //             document.getElementById('message-span').innerText = "Your contact was edited";
-        //         }else{
-        //             document.getElementById('message-span').style.color = 'red';
-        //             document.getElementById('message-span').innerText = "Please, check your data!";
-        //         }
-        //     })
-        // })
+        // var resp = await sendJson('/rest/contact/' + id + '/edit',formData, 'POST');
+        fetch('/rest/contact/' + id + '/edit', {
+            method: 'POST',
+            body: formData
+        }).then(function (response) {
+            response.json().then(function (data) {
+                if (data.error === undefined) {
+                    document.getElementById('contact-form').style.visibility = 'hidden';
+                    document.getElementById('message-span').style.color = 'green';
+                    document.getElementById('message-span').innerText = "Your contact was edited";
+                    document.getElementById('after-edit').insertAdjacentHTML('afterbegin','' +
+                        '<a class="butt" href="/contact/' + id + '">Go to contact</a>');
+                }else{
+                    document.getElementById('message-span').style.color = 'red';
+                    document.getElementById('message-span').innerText = "Please, check your data!";
+                }
+            })
+        })
     }
 
 </script>

@@ -3,32 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Documents</title>
-    <link rel="stylesheet" href="/index.css">
-    <link rel="import" href="/navbar.html">
+    <link rel="stylesheet" href="/testViewDesign.css">
+    <script src="/index.js"></script>
 
-    <style>
-        table {
-            align-items: center;
-            background-color: #161616;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 2%;
-        }
-
-        table th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-        }
-
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-        }
-        a{
-            color: white;
-            text-decoration: none;
-        }
-    </style>
 </head>
 <body>
 
@@ -50,7 +27,7 @@
 
 
 <script>
-    onload = function findContacts() {
+    function findDocs() {
         fetch('/rest/documents').then(function (response) {
             response.json().then(function (data) {
                 if (data.length > 0) {
@@ -68,9 +45,8 @@
 </script>
 <script>
     onload = function show() {
-        var link = document.querySelector('link[rel=import]');
-        var content = link.import.querySelector('#nav');
-        document.body.insertBefore(content.cloneNode(true),document.getElementById('container'))
+        createNav();
+        findDocs();
     };
 
 

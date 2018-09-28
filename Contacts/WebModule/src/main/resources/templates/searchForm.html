@@ -3,52 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Find contact</title>
-    <link rel="stylesheet" href="/index.css">
-    <link rel="import" href="/navbar.html">
-
+    <link rel="stylesheet" href="/testViewDesign.css">
+    <script src="/index.js"></script>
     <style>
-        table {
-            align-items: center;
-            background-color: #161616;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 2%;
-        }
-
-        table th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-        }
-
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-        }
-
-        a {
-            color: white;
-            text-decoration: none;
+        .butt{
+            padding: 4px 6px;
+            border-radius: 3px;
         }
     </style>
 </head>
 <body>
 
 
-<div class="container-main" id="container">
+<div class="container" id="container">
 
 
     <div class="reg-form" style="margin-top: 2%">
-        <button class="reg-button" style="visibility: hidden;" id="send-emails-button" onclick="sendEmailsRedirect()">Send Emails</button>
         <h1>Chose field</h1>
         <div class="reg-element">
-            <button class="reg-button" onclick="addInputWithSelect()" style="border: 1px solid green;">Add field
+            <button class="butt" onclick="addInputWithSelect()" style="border: 1px solid #edffed; background-color: lightgreen">Add field
             </button>
-            <button class="reg-button" onclick="deleteInputWithSelect()" style="border: 1px solid red;">Remove field
+            <button class="butt" onclick="deleteInputWithSelect()" style="border: 1px solid #ffeded;background-color: tomato">Remove field
             </button>
-            <button class="reg-button" onclick="search()" style="border: 1px solid blue;">Search</button>
+            <button class="butt" onclick="search()" style="border: 1px solid #edfff9;background-color: darkturquoise">Search</button>
         </div>
         <div class="reg-element" id="element-1">
-
             <select name="parameter" id="parameter1">
                 <option value="name">Name</option>
                 <option value="surname">Surname</option>
@@ -65,6 +44,13 @@
         </div>
 
     </div>
+</div>
+
+<div class="container">
+    <button class="butt" style="visibility: hidden;" id="send-emails-button" onclick="sendEmailsRedirect()">Send Emails</button>
+</div>
+
+<div class="container">
 
     <span id="message-span" style="color: red;"></span>
     <table id="table" class="gap-bottom" style="display: none;">
@@ -192,9 +178,7 @@
 </script>
 <script>
     onload = function show() {
-        var link = document.querySelector('link[rel=import]');
-        var content = link.import.querySelector('#nav');
-        document.body.insertBefore(content.cloneNode(true), document.getElementById('container'))
+        createNav();
     };
 </script>
 </body>

@@ -1,80 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Index page</title>
-    <link rel="stylesheet" href="/index.css">
-    <style>
-        table {
-            align-items: center;
-            background-color: #161616;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 2%;
-        }
-
-        table th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-        }
-
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-        }
-        a{
-            color: white;
-            text-decoration: none;
-        }
-    </style>
-    <link rel="import" href="/navbar.html">
-
+    <link rel="stylesheet" href="/testViewDesign.css">
+    <script src="/index.js"></script>
 </head>
 <body>
 
-
-
+<div class="container" style="width: 30%;align-content: center">
     <table id="table">
         <tr>
             <th>Description</th>
             <th>Link to</th>
         </tr>
         <tbody>
-            <tr>
-                <th>Contact info</th>
-                <th><a href="/contact/search">Link</a></th>
-            </tr>
-            <tr>
-                <th>Add contact</th>
-                <th><a href="/contact/addContact">Link</a></th>
-            </tr>
-            <tr>
-                <th>All contacts</th>
-                <th><a href="/contacts/1">Link</a></th>
-            </tr>
-            <tr>
-                <th>Send email</th>
-                <th><a href="/contact/sendEmail">Link</a></th>
-            </tr>
-            <tr>
-                <th>Upload document</th>
-                <th><a href="/contact/search">Link</a></th>
-            </tr>
-            <tr>
-                <th>Git</th>
-                <th><a href="https://github.com/prostfk/ItechArt/tree/master/Contacts">Link</a></th>
-            </tr>
+        <tr>
+            <td>Contact info</td>
+            <td><a href="/contact/search">Link</a></td>
+        </tr>
+        <tr>
+            <td>Add contact</td>
+            <td><a href="/contact/addContact">Link</a></td>
+        </tr>
+        <tr>
+            <td>All contacts</td>
+            <td><a href="/contacts/1">Link</a></td>
+        </tr>
+        <tr>
+            <td>Send email</td>
+            <td><a href="/contact/sendEmail">Link</a></td>
+        </tr>
+        <tr>
+            <td>Upload document</td>
+            <td><a href="/contact/search">Link</a></td>
+        </tr>
+        <tr>
+            <td>Git</td>
+            <td><a href="https://github.com/prostfk/ItechArt/tree/master/Contacts">Link</a></td>
+        </tr>
         </tbody>
     </table>
+</div>
 
-    <script src="/index.js"></script>
-    <script>
-        onload = function show() {
-            var link = document.querySelector('link[rel=import]');
-            var content = link.import.querySelector('#nav');
-            document.body.insertBefore(content.cloneNode(true),document.getElementById('table'));
-            send();
-        };
-    </script>
+<script src="/index.js"></script>
+<script>
+    onload = function show() {
+        createNav();
+    };
+</script>
 </body>
 </html>

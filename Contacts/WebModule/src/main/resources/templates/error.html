@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Error page</title>
-    <link rel="stylesheet" href="/index.css">
-    <link rel="import" href="/navbar.html">
-
+    <link rel="stylesheet" href="/testViewDesign.css">
+    <script src="/index.js"></script>
 </head>
 <body>
 
 
-<div class="reg-form" id="container" style="margin: 2% 30% 2% 30%;overflow: hidden;">
+<div class="container" id="container">
     <h1>An error occurred</h1>
+</div>
+<div class="container">
+    <a href="/" class="butt">Go to main page</a>
 </div>
 <script>
     onload = function show() {
-        var link = document.querySelector('link[rel=import]');
-        var content = link.import.querySelector('#nav');
-        document.body.insertBefore(content.cloneNode(true),document.getElementById('container'))
+        createNav();
     };
 </script>
 

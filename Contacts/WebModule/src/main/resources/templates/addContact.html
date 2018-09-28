@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Add contact</title>
-    <link rel="stylesheet" href="/index.css">
-    <link rel="import" href="/navbar.html">
+    <link rel="stylesheet" href="/testViewDesign.css">
     <script src="/index.js"></script>
 
 
@@ -12,27 +11,29 @@
 <body>
 
 
+<div id="after-add" class="container"></div>
+
 <div class="container" id="container">
 
-    <div class="gap-bottom">
+    <div>
 
         <span id="message-span"></span>
         <form class="reg-form" id="add-form">
             <div class="reg-element">
                 <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Name" class="reg-input">
+                <input type="text" id="name" name="name" placeholder="Name" class="inp">
             </div>
             <div class="reg-element">
                 <label for="surname">Surname</label>
-                <input type="text" id="surname" name="surname" placeholder="Surname" class="reg-input">
+                <input type="text" id="surname" name="surname" placeholder="Surname" class="inp">
             </div>
             <div class="reg-element">
                 <label for="patronymic">Patronymic</label>
-                <input type="text" id="patronymic" name="patronymic" placeholder="Patronymic" class="reg-input">
+                <input type="text" id="patronymic" name="patronymic" placeholder="Patronymic" class="inp">
             </div>
             <div class="reg-element">
                 <label for="date">Date</label>
-                <input type="date" id="date" name="date" placeholder="Date" value="2000-01-01" class="reg-input">
+                <input type="date" id="date" name="date" placeholder="Date" value="2000-01-01" class="inp">
             </div>
             <div class="reg-element">
                 <label for="gender">Gender</label>
@@ -43,7 +44,7 @@
             </div>
             <div class="reg-element">
                 <label for="citizenship">Citizenship</label>
-                <input type="text" id="citizenship" name="citizenship" placeholder="Citizenship" class="reg-input">
+                <input type="text" id="citizenship" name="citizenship" placeholder="Citizenship" class="inp">
             </div>
             <div class="reg-element">
                 <label for="familyStatus">Family Status</label>
@@ -56,26 +57,26 @@
             </div>
             <div class="reg-element">
                 <label for="site">Site</label>
-                <input type="text" id="site" name="site" placeholder="Site" class="reg-input">
+                <input type="text" id="site" name="site" placeholder="Site" class="inp">
             </div>
             <div class="reg-element">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Email" class="reg-input">
+                <input type="email" id="email" name="email" placeholder="Email" class="inp">
             </div>
             <div class="reg-element">
                 <label for="job">Job</label>
-                <input type="text" id="job" name="job" placeholder="Job" class="reg-input">
+                <input type="text" id="job" name="job" placeholder="Job" class="inp">
             </div>
 
             <div>
                 <div class="reg-element">
                     <label for="number">Number</label>
                     <input type="tel" width="40px" pattern="+[0-9]{3}" id="countryCode" name="countryCode"
-                           placeholder="Country code" class="reg-input">
+                           placeholder="Country code" class="inp">
                 </div>
                 <div class="reg-element">
                     <input type="tel" pattern="[0-9]{9}" id="number" name="number" placeholder="Number"
-                           class="reg-input">
+                           class="inp">
                 </div>
                 <div class="reg-element">
                     <label for="type">Type</label>
@@ -87,12 +88,12 @@
                 </div>
                 <div class="reg-element">
                     <label for="comment">Comment</label>
-                    <input type="text" id="comment" name="comment" placeholder="Comment" class="reg-input">
+                    <input type="text" id="comment" name="comment" placeholder="Comment" class="inp">
                 </div>
             </div>
 
             <div class="reg-element">
-                <button type="button" onclick="sendData()" class="reg-button">Submit</button>
+                <button type="button" onclick="sendData()" class="butt">Submit</button>
             </div>
 
         </form>
@@ -102,9 +103,7 @@
 </div>
 <script>
     onload = function show() {
-        var link = document.querySelector('link[rel=import]');
-        var content = link.import.querySelector('#nav');
-        document.body.insertBefore(content.cloneNode(true), document.getElementById('container'))
+        createNav();
     };
 
     function sendData() {
@@ -123,25 +122,26 @@
         dataJson.append("number", document.getElementById('number').value);
         dataJson.append("type",document.getElementById('type').value);
         dataJson.append("comment",document.getElementById('comment').value);
-        var response = await sendJson('/rest/addContact',dataJson,'POST')
-        alert(response);
-        // fetch('/rest/addContact', {
-        //     method: 'POST',
-        //     body: dataJson
-        // }).then(function (response) {
-        //     response.json().then(function (data) {
-        //         console.log(dataJson);
-        //         console.log(data);
-        //         if (data.error === undefined) {
-        //             document.getElementById('add-form').style.visibility = 'hidden';
-        //             document.getElementById('message-span').style.color = 'green';
-        //             document.getElementById('message-span').innerText = "Your contact has been added";
-        //         } else {
-        //             document.getElementById('message-span').style.color = 'red';
-        //             document.getElementById('message-span').innerText = "Please, check your data!";
-        //         }
-        //     })
-        // })
+        // var response = sendJson('/rest/addContact',dataJson,'POST')
+        // alert(response);
+        fetch('/rest/addContact', {
+            method: 'POST',
+            body: dataJson
+        }).then(function (response) {
+            response.json().then(function (data) {
+                console.log(dataJson);
+                console.log(data);
+                if (data.error === undefined) {
+                    document.getElementById('add-form').style.visibility = 'hidden';
+                    document.getElementById('message-span').style.color = 'green';
+                    document.getElementById('message-span').innerText = "Your contact has been added";
+                    document.getElementById('after-add').innerHTML = '<a class="butt" href="/contact/' + data.id + '">Check contact</a>';
+                } else {
+                    document.getElementById('message-span').style.color = 'red';
+                    document.getElementById('message-span').innerText = "Please, check your data!";
+                }
+            })
+        })
 
 
     };

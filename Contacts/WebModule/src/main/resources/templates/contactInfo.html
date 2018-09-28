@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Contact info</title>
-    <link rel="stylesheet" href="/index.css">
-    <link rel="import" href="/navbar.html">
+    <link rel="stylesheet" href="/testViewDesign.css">
+    <script src="/index.js"></script>
+
 </head>
 <body>
 
@@ -27,9 +28,7 @@
 
 <script>
     onload = function show() {
-        var link = document.querySelector('link[rel=import]');
-        var content = link.import.querySelector('#nav');
-        document.body.insertBefore(content.cloneNode(true), document.getElementById('container'));
+        createNav();
         initTabs();
         initContact();
     };

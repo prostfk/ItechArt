@@ -3,33 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Send email</title>
-    <link rel="stylesheet" href="/index.css">
-    <link rel="import" href="/navbar.html">
+    <link rel="stylesheet" href="/testViewDesign.css">
+    <script src="/index.js"></script>
 </head>
 <body>
 
+<div class="container">
+    <span id="message-span"></span>
+</div>
+
 <div class="container" id="container">
 
-    <div class="gap-bottom">
+    <div class="gap-bottom" id="content">
 
         <div class="reg-form">
 
-            <span id="message-span"></span>
-            <!--<form>-->
             <div class="reg-element">
                 <label for="message-input">Message</label>
-                <!--<input id="message-input" type="text" class="reg-input" placeholder="Message">-->
-                <select name="message" id="message-input">
+                <select name="message" id="message-input" onchange="preview()">
                     <option value="message.birthday">Birthday</option>
                     <option value="message.newYear">New Year</option>
-                    <option value="message.Party">Party</option>
+                    <option value="message.party">Party</option>
                 </select>
             </div>
             <div class="reg-element">
-                <button class="reg-button" onclick="sendEmails();">Send</button>
+                <button class="butt" onclick="sendEmails();">Send</button>
             </div>
 
-            <!--</form>-->
 
         </div>
 
@@ -37,12 +37,17 @@
 
 </div>
 
+<div class="container">
+    <h4>Preview:</h4><br>
+</div>
+<div class="container">
+    <p id="preview-text"></p>
+</div>
 
 <script>
     onload = function show() {
-        var link = document.querySelector('link[rel=import]');
-        var content = link.import.querySelector('#nav');
-        document.body.insertBefore(content.cloneNode(true), document.getElementById('container'));
+        createNav();
+        preview();
     };
 
     function sendEmails() {
@@ -55,6 +60,7 @@
                 if (data.status === 'ok') {
                     span.style.color = 'green';
                     span.innerText = 'Emails was send';
+                    document.getElementById('content').style.visibility = 'hidden';
                 } else {
                     span.style.color = 'red';
                     span.innerText = data.status;
@@ -63,6 +69,25 @@
         })
     }
 
+    function preview() {
+        var message = document.getElementById('message-input').value;
+        // document.getElementById('preview-text')
+        fetch('/rest/email/preview?text=' + message).then(function (response) {
+            response.json().then(function (data) {
+                console.log(data);
+                console.log(data.error);
+                if (data.error === undefined) {
+                    document.getElementById('preview-text').innerText = data.message;
+                } else {
+                    var span = document.getElementById('message-span');
+                    span.style.color = 'red';
+                    span.innerText = data.error;
+
+                }
+            })
+        })
+
+    }
 </script>
 
 </body>

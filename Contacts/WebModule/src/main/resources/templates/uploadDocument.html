@@ -2,32 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Upload document</title>
-    <link rel="stylesheet" href="/index.css">
-    <link rel="import" href="/navbar.html">
+    <link rel="stylesheet" href="/testViewDesign.css">
+    <script src="/index.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        input[type=file]{
+            display: none;
+        }
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            /*cursor: context-menu;*/
+        }
+    </style>
 
 </head>
 <body>
 
-
+<div class="container">
+    <h1>Upload your file here</h1>
+</div>
 <div class="container" id="container">
     <div class="gap-bottom">
-        <span id="message-span"></span>
         <form class="reg-form" id="file-form">
             <div class="reg-element" style="margin: 2% 30% 2% 30%;overflow: hidden;">
-                <label for="file">Upload your file here</label>
-                <input id="file" type="file" min="1" max="999999" name="file">
+                <label style="font-size: 30px" for="file"><i class="fa fa-cloud-upload"></i></label>
+                <input class="custom-file-upload" id="file" type="file" min="1" max="999999" name="file">
             </div>
-            <button type="button" onclick="sendFrom()" class="reg-button">Upload</button>
+            <button class="butt" type="button" onclick="sendFrom()">Upload</button>
         </form>
     </div>
+</div>
+<div class="container">
+    <span id="message-span"></span>
 </div>
 
 <script>
     onload = function show() {
-        var link = document.querySelector('link[rel=import]');
-        var content = link.import.querySelector('#nav');
-        document.body.insertBefore(content.cloneNode(true), document.getElementById('container'))
+        createNav();
     };
 
     function sendFrom() {
