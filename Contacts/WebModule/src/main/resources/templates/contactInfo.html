@@ -5,6 +5,14 @@
     <title>Contact info</title>
     <link rel="stylesheet" href="/testViewDesign.css">
     <script src="/index.js"></script>
+    <style>
+        .title{
+            color: #f98e8e;
+        }
+        .content{
+            color: #161616;
+        }
+    </style>
 
 </head>
 <body>
@@ -12,26 +20,31 @@
 <div class="container" id="container" style="margin-top: 3%">
 
     <div id="tabs">
-        <div class="tab">Info</div>
-        <div class="tab">Address</div>
-        <div class="tab">Phone</div>
-        <div class="tabContent" id="contact-info"></div>
-        <div class="tabContent" id="contact-address"></div>
-        <div class="tabContent" id="contact-phone"></div>
+        <div class="tab butt" id="contact-tab" onclick="openTab(1)">Info <i class="fa fa-address-book-o"></i></div>
+        <div class="tab butt" id="address-tab" onclick="openTab(2)">Address <i class="fa fa-map-signs"></i></div>
+        <div class="tab butt" id="phones-tab" onclick="openTab(3)">Phone <i class="fa fa-phone"></i></div>
+        <div id="content-div"></div>
     </div>
 
-    <!--<div id="info">-->
-
-    <!--</div>-->
 </div>
 
 
 <script>
+    var contactInfo;
+    var addressInfo;
+    var phonesInfo;
     onload = function show() {
         createNav();
-        initTabs();
         initContact();
+        openTab(1);
     };
+    function openTab(visibleTab) {
+        switch (visibleTab) {
+            case 1: document.getElementById('content-div').innerHTML = contactInfo;break;
+            case 2: document.getElementById('content-div').innerHTML = addressInfo;break;
+            case 3: document.getElementById('content-div').innerHTML = phonesInfo;break;
+        }
+    }
 
     function initContact() {
         var link = window.location.href.split("/");
@@ -39,14 +52,16 @@
         fetch('/rest/contact/' + id + '/full').then(function (response) {
             response.json().then(function (data) {
                 console.log(data);
-                document.getElementById('contact-info').innerHTML = '<h1><a href="/contact/ ' + data.id + '/edit"> Edit</a></h1>' + '<h1><strong>' + checkForNull(data.name, "Name") + '</strong></h1><h1><a href="/contact/' + data.id + '/uploadDocument">Upload document</a></h1><h1><a href="/contact/ ' + data.id + '/phone">Phone</a></h1><h1><a href="/contact/' + data.id + '/documents">Files</a></h1><h2>' +
-                    checkForNull(data.surname, "Surname") + '</h2><h2>' + checkForNull(data.patronymic, "Patronymic") + '</h2><h2>' + checkForNull(data.date, "Date") + '</h2><h2>' +
+                contactInfo = '<h1><a class="butt" href="/contact/ ' + data.id + '/edit"> Edit</a></h1>' + '<h1><strong>' + checkForNull(data.name, "Name") + '</strong></h1><h1><a href="/contact/' + data.id + '/uploadDocument" class="butt">Upload document</a></h1><h1><a href="/contact/' + data.id + '/documents" class="butt">Files</a></h1><h2>' +
+                    checkForNull(data.surname, "<a class='title'>Surname</a>") + '</h2><h2>' + checkForNull(data.patronymic, "<a class='title'>Patronymic</a>") + '</h2><h2>' + checkForNull(data.date, "<a class='title'>Date</a>") + '</h2><h2>' +
                     checkForNull(data.gender, "Gender") + '</h2><h2>' + checkForNull(data.citizenship, "Citizenship") + '</h2><h2>' + checkForNull(data.familyStatus, "Family status") + '</h2><h2>' +
                     checkForNull(data.site, "Site") + '</h2><h2>' + checkForNull(data.email, "Email") + '</h2><h2>' + checkForNull(data.job, "Job") + '</h2><h2>';
+
+
                 if (data.country===null){
-                    document.getElementById('contact-address').innerHTML = '<a class="reg-button" href="/contact/' + id + '/addAddress">Add address</a>'
+                    addressInfo = '<a class="reg-button" href="/contact/' + id + '/addAddress">Add address</a>'
                 }else{
-                    document.getElementById('contact-address').innerHTML = '<h1><a href="/contact/' + id + '/editAddress">Edit</a></h1>' +  checkForNull(data.country, 'Country') + '</h2><h2>' + checkForNull(data.city, 'City') + '</h2><h2>' + checkForNull(data.street, 'Street') + '</h2><h2>' +
+                    addressInfo = '<h1><a href="/contact/' + id + '/editAddress">Edit</a></h1>' +  checkForNull(data.country, 'Country') + '</h2><h2>' + checkForNull(data.city, 'City') + '</h2><h2>' + checkForNull(data.street, 'Street') + '</h2><h2>' +
                         checkForNull(data.house, 'House') + '</h2><h2>' + checkForNull(data.flat, 'Flat') + '</h2><h2>' + checkForNull(data.postIndex, 'Post index') + '</h2>'
                 }
             })
@@ -54,10 +69,10 @@
         fetch('/rest/contact/' + id + '/phone').then(function (response) {
             response.json().then(function (data) {
                 if (data.error === undefined) {
-                    document.getElementById('contact-phone').innerHTML = '<div><h2>' + checkForNull(data.countryCode, 'Country code') + '</h2><h2>' + checkForNull(data.number, 'Number') + '</h2><h2>' +
-                        checkForNull(data.type, 'Type') + '</h2>' + checkForNull(data.comment, 'Comment') + '</div>'
+                    phonesInfo = '<div><h2>' + checkForNull(data.countryCode, 'Country code') + '</h2><h2>' + checkForNull(data.number, 'Number') + '</h2><h2>' +
+                        checkForNull(data.type, 'Type') + '</h2>' + checkForNull(data.comment, 'Comment') + '</div>';
                 } else {
-                    document.getElementById('contact-phone').innerHTML = '<a class="reg-button" href="/contact/' + id + '/edit">Add phone</a>'
+                    phonesInfo = '<a class="reg-button" href="/contact/' + id + '/edit">Add phone</a>';
                 }
             })
         })
@@ -67,46 +82,6 @@
         return value === null ? '' : (message + ": " + value);
     }
 
-</script>
-
-<script>
-    var tab; // заголовок вкладки
-    var tabContent; // блок содержащий контент вкладки
-
-    function initTabs() {
-        tabContent = document.getElementsByClassName('tabContent');
-        tab = document.getElementsByClassName('tab');
-        hideTabsContent(1);
-    }
-
-    function hideTabsContent(a) {
-        for (var i = a; i < tabContent.length; i++) {
-            tabContent[i].classList.remove('show');
-            tabContent[i].classList.add("hide");
-            tab[i].classList.remove('whiteborder');
-        }
-    }
-
-    document.getElementById('tabs').onclick = function (event) {
-        var target = event.target;
-        if (target.className === 'tab') {
-            for (var i = 0; i < tab.length; i++) {
-                if (target === tab[i]) {
-                    showTabsContent(i);
-                    break;
-                }
-            }
-        }
-    };
-
-    function showTabsContent(b) {
-        if (tabContent[b].classList.contains('hide')) {
-            hideTabsContent(0);
-            tab[b].classList.add('whiteborder');
-            tabContent[b].classList.remove('hide');
-            tabContent[b].classList.add('show');
-        }
-    }
 </script>
 
 </body>

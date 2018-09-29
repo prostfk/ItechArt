@@ -7,26 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bce5a31f-19e2-4474-9748-0525e18c00fe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/RestApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/RestApiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/static/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/static/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/static/testViewDesign.css" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/static/testViewDesign.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/templates/addAddress.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/addAddress.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/templates/addContact.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/addContact.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/templates/contactInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/contactInfo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/templates/documents.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/documents.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/templates/editAddress.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/editAddress.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/templates/editContact.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/editContact.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/templates/error.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/error.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/templates/phoneView.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/phoneView.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/templates/restContactViewer.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/restContactViewer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/templates/searchForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/searchForm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/templates/sendEmail.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/sendEmail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/templates/sendEmailToUsers.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/sendEmailToUsers.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/templates/uploadDocument.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/uploadDocument.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/templates/userFiles.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/userFiles.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebModule/src/main/resources/templates/viewAddress.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebModule/src/main/resources/templates/viewAddress.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logging/logFile.log" beforeDir="false" afterPath="$PROJECT_DIR$/logging/logFile.log" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/Database/target/" />
@@ -79,7 +66,7 @@
     <session id="-1327021399">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="32" />
+          <entry key="project.closed" value="33" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.16" value="1" />
@@ -89,6 +76,7 @@
           <entry key="project.open.time.47" value="1" />
           <entry key="project.open.time.48" value="1" />
           <entry key="project.open.time.49" value="1" />
+          <entry key="project.open.time.50" value="1" />
           <entry key="project.open.time.53" value="1" />
           <entry key="project.open.time.56" value="3" />
           <entry key="project.open.time.57" value="3" />
@@ -105,21 +93,21 @@
           <entry key="project.open.time.9" value="2" />
           <entry key="project.open.time.96" value="1" />
           <entry key="project.open.time.99" value="1" />
-          <entry key="project.opened" value="34" />
+          <entry key="project.opened" value="35" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="address" value="6" />
           <entry key="contact" value="42" />
-          <entry key="css" value="17" />
+          <entry key="css" value="18" />
           <entry key="document" value="10" />
           <entry key="gitignore" value="1" />
-          <entry key="html" value="262" />
+          <entry key="html" value="270" />
           <entry key="ico" value="1" />
           <entry key="iml" value="4" />
-          <entry key="java" value="237" />
-          <entry key="js" value="8" />
+          <entry key="java" value="238" />
+          <entry key="js" value="10" />
           <entry key="json" value="1" />
           <entry key="log" value="4" />
           <entry key="name" value="1" />
@@ -134,14 +122,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="17" />
+          <entry key="CSS" value="18" />
           <entry key="Database Element" value="75" />
-          <entry key="HTML" value="262" />
+          <entry key="HTML" value="270" />
           <entry key="IDEA_MODULE" value="4" />
           <entry key="Image" value="1" />
-          <entry key="JAVA" value="237" />
+          <entry key="JAVA" value="238" />
           <entry key="JSON" value="1" />
-          <entry key="JavaScript" value="8" />
+          <entry key="JavaScript" value="10" />
           <entry key="Log" value="4" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="Properties" value="17" />
@@ -154,12 +142,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="cell" value="260" />
-          <entry key="css" value="1111" />
+          <entry key="css" value="1160" />
           <entry key="dummy" value="38" />
           <entry key="gitignore" value="16" />
-          <entry key="html" value="22693" />
+          <entry key="html" value="23486" />
           <entry key="java" value="19514" />
-          <entry key="js" value="789" />
+          <entry key="js" value="809" />
           <entry key="properties" value="290" />
           <entry key="sql" value="1284" />
           <entry key="txt" value="18" />
@@ -168,10 +156,10 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="1111" />
-          <entry key="HTML" value="22692" />
+          <entry key="CSS" value="1160" />
+          <entry key="HTML" value="23485" />
           <entry key="JAVA" value="19514" />
-          <entry key="JavaScript" value="789" />
+          <entry key="JavaScript" value="809" />
           <entry key="PLAIN_TEXT" value="72" />
           <entry key="Properties" value="290" />
           <entry key="SQL" value="87" />
@@ -189,55 +177,31 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/editContact.html">
+        <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/static/testViewDesign.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="5" selection-start-line="5" selection-end-line="6" selection-end-column="37" />
-              <folding>
-                <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/addAddress.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/sendEmail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/searchForm.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="5" column="4" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="6" selection-end-column="37" />
-              <folding>
-                <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="3500">
+              <caret line="175" column="12" lean-forward="true" selection-start-line="175" selection-start-column="12" selection-end-line="175" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/error.html">
+        <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/contactInfo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+            <state relative-caret-position="180">
+              <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/static/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="9" column="83" selection-start-line="9" selection-start-column="83" selection-end-line="9" selection-end-column="83" />
             </state>
           </provider>
         </entry>
@@ -326,26 +290,26 @@
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/static/test.css" />
         <option value="$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/TestController.java" />
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/test.html" />
-        <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/restContactViewer.html" />
-        <option value="$PROJECT_DIR$/WebModule/src/main/resources/static/testViewDesign.css" />
-        <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/contactInfo.html" />
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/documents.html" />
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/userFiles.html" />
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/uploadDocument.html" />
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/editAddress.html" />
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/phoneView.html" />
-        <option value="$PROJECT_DIR$/WebModule/src/main/resources/static/index.js" />
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/index.html" />
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/sendEmailToUsers.html" />
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/sendEmail.html" />
         <option value="$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/RestApiController.java" />
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/viewAddress.html" />
-        <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/editContact.html" />
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/addContact.html" />
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/addAddress.html" />
-        <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/searchForm.html" />
         <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/error.html" />
+        <option value="$PROJECT_DIR$/WebModule/src/main/resources/static/index.js" />
+        <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/editContact.html" />
+        <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/restContactViewer.html" />
+        <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/searchForm.html" />
+        <option value="$PROJECT_DIR$/WebModule/src/main/resources/static/testViewDesign.css" />
+        <option value="$PROJECT_DIR$/WebModule/src/main/resources/templates/contactInfo.html" />
       </list>
     </option>
   </component>
@@ -354,6 +318,13 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -378,8 +349,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Production'; set:Production; class com.intellij.psi.search.scope.ProjectProductionScope">
@@ -458,29 +427,6 @@
               <item name="web" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="by" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="itechart" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="contacts" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="model" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="Unknown" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="web" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="by" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="itechart" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="contacts" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="model" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="util" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="Unknown" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="web" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="resources" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
@@ -503,6 +449,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -516,13 +464,13 @@
     <property name="SearchEverywhereHistoryKey" value="pom&#9;FILE&#9;file:///home/prostrmk/Documents/Programs/Java/Java EE/ITechArt/Contacts/WebModule/pom.xml" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538166705841" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538242233145" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
@@ -1277,7 +1225,8 @@
       <workItem from="1538060494169" duration="17633000" />
       <workItem from="1538120878954" duration="7186000" />
       <workItem from="1538133430403" duration="7048000" />
-      <workItem from="1538144014866" duration="16786000" />
+      <workItem from="1538144014866" duration="17659000" />
+      <workItem from="1538231320759" duration="10490000" />
     </task>
     <servers />
   </component>
@@ -1302,7 +1251,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="214006000" />
+    <option name="totallyTimeSpent" value="225369000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1317,7 +1266,7 @@
     <frame x="45" y="27" width="1875" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info x="752" y="95" width="461" height="916" id="Project" order="0" sideWeight="0.49925262" visible="true" weight="0.15418261" />
+      <window_info x="752" y="95" width="461" height="916" id="Project" order="0" sideWeight="0.49925262" visible="true" weight="0.15582286" />
       <window_info id="Structure" order="1" sideWeight="0.5007474" side_tool="true" weight="0.15254237" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1327,7 +1276,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32969433" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.25873363" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.29912663" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.41593885" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1563,42 +1512,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/static/index.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="277">
           <caret line="356" lean-forward="true" selection-start-line="356" selection-end-line="383" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/restContactViewer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="68" column="14" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#select#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#style#0;n#button#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/contactInfo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-540">
-          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1613,9 +1530,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="6" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1626,24 +1540,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/uploadDocument.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="5" selection-end-column="37" />
-          <folding>
-            <element signature="n#style#0;n#label#0;n#div#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="10" column="62" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#table#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1651,20 +1551,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/static/testViewDesign.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="103" column="5" selection-start-line="103" selection-start-column="1" selection-end-line="103" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/static/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -1696,10 +1582,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/addContact.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="33" column="27" lean-forward="true" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/uploadDocument.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="113" lean-forward="true" selection-start-line="6" selection-start-column="113" selection-end-line="6" selection-end-column="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/addAddress.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/error.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/editContact.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="33" column="75" selection-start-line="33" selection-start-column="75" selection-end-line="33" selection-end-column="75" />
+          <folding>
+            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/WebModule/src/main/java/by/itechart/contacts/controller/RestApiController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
-          <caret line="141" column="63" lean-forward="true" selection-start-line="141" selection-start-column="63" selection-end-line="141" selection-end-column="63" />
+          <caret line="209" selection-start-line="209" selection-end-line="209" />
           <folding>
             <element signature="method#deleteContact#0;class#RestApiController#0" />
             <element signature="method#findContact#0;class#RestApiController#0" />
@@ -1714,7 +1645,6 @@
             <element signature="method#findContactByEmail#0;class#RestApiController#0" />
             <element signature="method#findPhones#0;class#RestApiController#0" />
             <element signature="method#findPhoneByContact#0;class#RestApiController#0" />
-            <element signature="method#getContacts#0;class#RestApiController#0" />
             <element signature="method#findDocumentsByUserId#0;class#RestApiController#0" />
             <element signature="method#updatedSearch#0;class#RestApiController#0" />
             <element signature="method#renameDocument#0;class#RestApiController#0" />
@@ -1724,27 +1654,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/addContact.html">
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/static/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/editContact.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" selection-start-line="5" selection-end-line="6" selection-end-column="37" />
-          <folding>
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/addAddress.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+        <state relative-caret-position="147">
+          <caret line="9" column="83" selection-start-line="9" selection-start-column="83" selection-end-line="9" selection-end-column="83" />
         </state>
       </provider>
     </entry>
@@ -1755,10 +1668,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/restContactViewer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1036">
+          <caret line="91" column="111" selection-start-line="91" selection-start-column="111" selection-end-line="91" selection-end-column="111" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#select#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#button#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#td#11;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#12;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#13;n#tr#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/searchForm.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="4" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="6" selection-end-column="37" />
+        <state relative-caret-position="-1100">
+          <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
           <folding>
             <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1768,10 +1697,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/error.html">
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/static/testViewDesign.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+        <state relative-caret-position="3500">
+          <caret line="175" column="12" lean-forward="true" selection-start-line="175" selection-start-column="12" selection-end-line="175" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebModule/src/main/resources/templates/contactInfo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

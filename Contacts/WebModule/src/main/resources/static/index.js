@@ -7,7 +7,7 @@ function sendJson(url, data, method) {
 }
 
 function createNav() {
-    var str = '<div class="topnav" id="myTopnav">' +
+    var str = '<meta name="viewport" content="width=device-width, initial-scale=1"><div class="topnav" id="myTopnav">' +
         '        <a href="/" class="active">CONTACTS</a>' +
         '        <a href="/contact/search">FIND CONTACT</a>' +
         '        <a href="/contact/addContact">ADD NEW CONTACT</a>' +

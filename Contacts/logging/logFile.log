@@ -91,3 +91,5 @@
 2018-09-27 21:00:20 ERROR ContactDao:131 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'job LIKE '%none%'' at line 1
 2018-09-28 14:43:45 ERROR AbstractDao:94 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-5,5' at line 1
 2018-09-28 14:43:45 ERROR AbstractDao:66 - 
+2018-09-29 17:34:36 ERROR AbstractDao:94 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-5,5' at line 1
+2018-09-29 17:34:36 ERROR AbstractDao:66 - 

@@ -19,7 +19,7 @@
 
 
     <div class="reg-form" style="margin-top: 2%">
-        <h1>Chose field</h1>
+        <h1 align="center">Choose field</h1>
         <div class="reg-element">
             <button class="butt" onclick="addInputWithSelect()" style="border: 1px solid #edffed; background-color: lightgreen">Add field
             </button>
@@ -104,7 +104,7 @@
                         var str = "";
                         for (var i = 0; i < data.length; i++) {
                             console.log(data[i]);
-                            str += "<tr><td><a href='/contact/" + data[i].id + "'>" + data[i].name + "</a></td><td>" + data[i].surname + "</td><td>" + data[i].patronymic + "</td><td>" + data[i].date + "</td><td>" + data[i].gender + "</td><td>" + data[i].citizenship + "</td><td>" + data[i].familyStatus + "</td><td>" + data[i].site + "</td><td>" + data[i].email + "</td><td>" + data[i].job + "</td><td><a href='/contact/" + data[i].id + (data[i].addressId === 0 ? '/addAddress' : '') + "'>" + (data[i].addressId !== 0 ? 'Address' : 'None') + "</a><td><a href='/rest/contact/" + data[i].id + "/delete/'>Delete</a></td><td><a href='/contact/" + data[i].id + "/edit'>Edit</a></td></td><td><input type='checkbox' id='" + data[i].id + "' onchange='plusCheck(this)'></td></tr>";
+                            str += "<tr><td><a href='/contact/" + data[i].id + "'>" + data[i].name + "<i class='fa fa-user'></i></a></td><td>" + data[i].surname + "</td><td>" + data[i].patronymic + "</td><td>" + data[i].date + "</td><td>" + data[i].gender + "</td><td>" + data[i].citizenship + "</td><td>" + data[i].familyStatus + "</td><td>" + data[i].site + "</td><td>" + data[i].email + "</td><td>" + data[i].job + "</td><td><a href='/contact/" + data[i].id + (data[i].addressId === 0 ? '/addAddress' : '') + "'>" + (data[i].addressId !== 0 ? 'Address' : 'None') + "</a><td><a href='/rest/contact/" + data[i].id + "/delete/'><i class='fa fa-trash-o'></i></a></td><td><a href='/contact/" + data[i].id + "/edit'><i class='fa fa-pencil'></i></a></td></td><td><input type='checkbox' id='" + data[i].id + "' onchange='plusCheck(this)'></td></tr>";
                         }
                         document.getElementById("content-pane").innerHTML = str;
                     }else{
