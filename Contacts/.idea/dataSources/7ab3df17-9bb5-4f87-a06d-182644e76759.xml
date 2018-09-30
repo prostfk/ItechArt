@@ -1152,41 +1152,47 @@
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <index id="279" parent="239" name="contact_id">
+    <column id="279" parent="239" name="status">
+      <Position>7</Position>
+      <DataType>tinyint(1)|0s</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="280" parent="239" name="contact_id">
       <ColNames>contact_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="280" parent="239" name="PRIMARY">
+    <key id="281" parent="239" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="281" parent="239" name="phone_ibfk_1">
+    <foreign-key id="282" parent="239" name="phone_ibfk_1">
       <ColNames>contact_id</ColNames>
       <RefSchemaName>Contact</RefSchemaName>
       <RefTableName>contact</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="282" parent="240" name="id">
+    <column id="283" parent="240" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="283" parent="240" name="keyword">
+    <column id="284" parent="240" name="keyword">
       <Position>2</Position>
       <DataType>varchar(15)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="284" parent="240" name="value">
+    <column id="285" parent="240" name="value">
       <Position>3</Position>
       <DataType>varchar(50)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <key id="285" parent="240" name="PRIMARY">
+    <key id="286" parent="240" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

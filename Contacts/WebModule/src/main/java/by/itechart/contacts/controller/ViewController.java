@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.List;
 
 @Controller
 public class ViewController {
@@ -125,13 +126,13 @@ public class ViewController {
         return new ModelAndView("error", "message", message);
     }
 
-    @GetMapping(value = "/contact/{id}/phone")
+    @GetMapping(value = "/contact/{id}/phones")
     public String getPhone(@PathVariable Long id){
-        Phone phoneByContactId = phoneDao.findPhoneByContactId(id);
-        if (phoneByContactId!=null){
+        List<Phone> phonesByContactId = phoneDao.findPhonesByContactId(id);
+        if (phonesByContactId.size()>0){
             return "phoneView";
         }else{
-            return String.format("redirect:/contact/%d/edit",id);
+            return String.format("redirect:/contact/%d/addPhone",id);
         }
     }
 

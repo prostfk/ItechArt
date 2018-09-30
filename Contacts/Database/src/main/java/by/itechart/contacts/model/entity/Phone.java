@@ -8,6 +8,7 @@ public class Phone {
     private String number;
     private String type;
     private String comment;
+    private boolean status;
 
     public Phone() {
     }
@@ -35,6 +36,16 @@ public class Phone {
         this.countryCode = countryCode;
         this.number = number;
         this.type = type;
+    }
+
+    public Phone(Long id, Long contactId, String countryCode, String number, String type, String comment, boolean status) {
+        this.id = id;
+        this.contactId = contactId;
+        this.countryCode = countryCode;
+        this.number = number;
+        this.type = type;
+        this.comment = comment;
+        this.status = status;
     }
 
     public Long getId() {
@@ -83,5 +94,13 @@ public class Phone {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

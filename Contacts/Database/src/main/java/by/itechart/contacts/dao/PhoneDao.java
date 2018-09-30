@@ -12,6 +12,19 @@ public class PhoneDao extends AbstractDao<Phone> {
 
     private static final Logger LOGGER = Logger.getLogger(PhoneDao.class);
 
+    public Phone delete(Long id){
+        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE phone SET status=1 WHERE id=?")) {
+            execute(preparedStatement,id);
+            ResultSet resultSet = connection.createStatement().executeQuery(String.format("SELECT * FROM phone WHERE id=%d", id));
+            if (resultSet.next()){
+                return createEntity(resultSet);
+            }
+        }catch (Exception e){
+            log(e,LOGGER);
+        }
+        return null;
+    }
+
     @Override
     public Phone save(Phone phone) {
         //language=SQL
@@ -88,12 +101,10 @@ public class PhoneDao extends AbstractDao<Phone> {
         }
     }
 
-    public Phone findPhoneByContactId(Long id) {
+    public List<Phone> findPhonesByContactId(Long id) {
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM phone WHERE contact_id=?")){
             ResultSet resultSet = executeQuery(preparedStatement, id);
-            if (resultSet.next()){
-                return createEntity(resultSet);
-            }
+            return createList(resultSet);
         }catch (Exception e){
             log(e,LOGGER);
         }

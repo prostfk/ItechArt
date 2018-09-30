@@ -122,8 +122,6 @@
         dataJson.append("number", document.getElementById('number').value);
         dataJson.append("type",document.getElementById('type').value);
         dataJson.append("comment",document.getElementById('comment').value);
-        // var response = sendJson('/rest/addContact',dataJson,'POST')
-        // alert(response);
         fetch('/rest/addContact', {
             method: 'POST',
             body: dataJson
@@ -142,6 +140,7 @@
                 }
             })
         })
+
 
 
     };
