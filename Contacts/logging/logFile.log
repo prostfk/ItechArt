@@ -93,3 +93,4 @@
 2018-09-28 14:43:45 ERROR AbstractDao:66 - 
 2018-09-29 17:34:36 ERROR AbstractDao:94 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-5,5' at line 1
 2018-09-29 17:34:36 ERROR AbstractDao:66 - 
+2018-09-30 18:36:35 ERROR AbstractDao:81 - Data truncation: Data too long for column 'number' at row 1

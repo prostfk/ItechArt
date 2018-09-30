@@ -20,9 +20,11 @@
         <div class="tab butt" id="contact-tab" onclick="openTab(1)" style="font-size: 25px">Info <i class="fa fa-address-book-o"></i></div>
         <div class="tab butt" id="address-tab" onclick="openTab(2)" style="font-size: 25px">Address <i class="fa fa-map-signs"></i></div>
         <div class="tab butt" id="phones-tab" onclick="openTab(3)" style="font-size: 25px">Phone <i class="fa fa-phone"></i></div>
-        <div id="content-div"></div>
+        <div id="content-div" style="margin-top: 2%"></div>
     </div>
 
+</div>
+<div class="container">
 </div>
 
 
@@ -57,7 +59,7 @@
                 openTab(1);
 
                 if (data.country===null){
-                    addressInfo = '<a class="reg-button" href="/contact/' + id + '/addAddress">Add address</a>'
+                    addressInfo = '<a class="butt bordered" href="/contact/' + id + '/addAddress">Add address</a>'
                 }else{
                     addressInfo = '<h1><a href="/contact/' + id + '/editAddress">Edit</a></h1>' +  checkForNull(data.country, 'Country') + '</h2><h2>' + checkForNull(data.city, 'City') + '</h2><h2>' + checkForNull(data.street, 'Street') + '</h2><h2>' +
                         checkForNull(data.house, 'House') + '</h2><h2>' + checkForNull(data.flat, 'Flat') + '</h2><h2>' + checkForNull(data.postIndex, 'Post index') + '</h2>'
@@ -65,13 +67,17 @@
             })
         });
 
-        fetch('/rest/contact/' + id + '/phone').then(function (response) {
+        fetch('/rest/contact/' + id + '/phones').then(function (response) {
             response.json().then(function (data) {
+                phonesInfo = '<a class="butt bordered" href="/contact/' + id + '/addPhone">Add phone</a>';
                 if (data.error === undefined) {
-                    phonesInfo = '<div><h2>' + checkForNull(data.countryCode, 'Country code') + '</h2><h2>' + checkForNull(data.number, 'Number') + '</h2><h2>' +
-                        checkForNull(data.type, 'Type') + '</h2>' + checkForNull(data.comment, 'Comment') + '</div>';
+                    phonesInfo += '<table><tr class="head-th"><th>Number</th><th>Type</th><th>Comment</th><th>Delete</th><th>Edit</th></tr><tbody>';
+                    for (var i = 0; i < data.length; i++) {
+                        phonesInfo += '<tr><td>' + data[i].countryCode + ' ' + data[i].number + '</td><td>' + data[i].type + '</td><td>' + data[i].comment + '</td><td><a class="butt" style="box-shadow: 0 0 1px rgba(0,0,0,0.5);" href="/rest/contact/removePhone/' + data[i].id +'"><i class="fa fa-trash"></i></a><td><a class="butt" style="box-shadow: 0 0 1px rgba(0,0,0,0.5);" href="/contact/' + data[i].contactId + '/editPhone/' + data[i].id + '"><i class="fa fa-pencil"></i></a></td></td></tr>';
+                    }
+                    phonesInfo += '</tbody></table>'
                 } else {
-                    phonesInfo = '<a class="reg-button" href="/contact/' + id + '/edit">Add phone</a>';
+                    phonesInfo += "<h3>No one phone</h3>"
                 }
             })
         });

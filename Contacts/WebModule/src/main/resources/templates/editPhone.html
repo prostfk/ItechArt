@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit phone</title>
+    <link rel="stylesheet" href="/testViewDesign.css">
+    <script src="/index.js"></script>
+</head>
+<body>
+<div class="container">
+    <button class="butt" onclick="goToUserPage()">Go to contact</button>
+</div>
+
+<div class="container">
+    <span id="message-span"></span>
+</div>
+
+<div class="container">
+
+    <form id="phone-form" class="reg-form">
+        <div class="reg-element">
+            <label for="number">Number</label>
+            <input type="tel" width="40px" pattern="+[0-9]{3}" id="countryCode" name="countryCode"
+                   placeholder="Country code" class="inp">
+        </div>
+        <div class="reg-element">
+            <input type="tel" pattern="[0-9]{9}" id="number" name="number" placeholder="Number"
+                   class="inp">
+        </div>
+        <div class="reg-element">
+            <label for="type">Type</label>
+            <select name="type" id="type">
+                <option value="mobile">Mobile</option>
+                <option value="home">Home</option>
+                <option value="work">Work</option>
+            </select>
+        </div>
+        <div class="reg-element">
+            <label for="comment">Comment</label>
+            <input type="text" id="comment" name="comment" placeholder="Comment" class="inp">
+        </div>
+        <div class="reg-element">
+            <button type="button" onclick="sendEditedPhone()" class="butt">Submit</button>
+        </div>
+
+    </form>
+
+</div>
+
+<script>
+    onload = function initPage() {
+        createNav();
+        initPhone();
+    };
+    var link = location.href.split("/");
+    var contactId = link[link.length - 3];
+    var phoneId = link[link.length - 1];
+
+    function initPhone() {
+        fetch('/rest/contact/' + contactId + '/phone/' + phoneId).then(function (response) {
+            response.json().then(function (data) {
+                console.log(data);
+                if (data.error === undefined) {
+                    document.getElementById('countryCode').value = data.countryCode;
+                    document.getElementById('number').value = data.number;
+                    selectOption(document.getElementById('type'), data.type);
+                    document.getElementById('comment').value = data.comment;
+                } else {
+                    document.getElementById('phone-form').style.visibility = 'hidden';
+                    document.getElementById('message-span').style.color = 'red';
+                    document.getElementById('message-span').innerText = 'ERROR';
+                }
+            }).catch(function () {
+                document.getElementById('message-span').style.color = 'red';
+                document.getElementById('message-span').innerText = 'Check your data';
+            })
+        })
+    }
+
+    function sendEditedPhone() {
+        var dataJson = new FormData();
+        dataJson.append("countryCode", document.getElementById('countryCode').value);
+        dataJson.append("number", document.getElementById('number').value);
+        dataJson.append("type", document.getElementById('type').value);
+        dataJson.append("comment", document.getElementById('comment').value);
+        dataJson.append("contactId", contactId);
+        dataJson.append('id', phoneId);
+        fetch('/rest/contact/' + contactId + '/editPhone/' + phoneId, {
+            method: "POST",
+            body: dataJson
+        }).then(function (response) {
+            response.json().then(function (data) {
+                console.log(data);
+                if (data.error === undefined) {
+                    document.getElementById('phone-form').style.visibility = 'hidden';
+                    document.getElementById('message-span').style.color = 'green';
+                    document.getElementById('message-span').innerText = 'Your phone has been added';
+
+                } else {
+                    document.getElementById('message-span').style.color = 'red';
+                    document.getElementById('message-span').innerText = 'Check your data';
+                }
+            })
+        });
+        document.getElementById('go-to-phones').style.visibility = 'visible';
+    }
+
+    function goToUserPage() {
+        window.location.href='/contact/' + id
+    }
+
+    function selectOption(element, value) {
+        var opts = element.options;
+        for (var opt, j = 0; opt = opts[j]; j++) {
+            if (opt.value === value) {
+                element.selectedIndex = j;
+                break;
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

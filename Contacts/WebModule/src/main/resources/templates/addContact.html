@@ -68,32 +68,8 @@
                 <input type="text" id="job" name="job" placeholder="Job" class="inp">
             </div>
 
-            <div>
-                <div class="reg-element">
-                    <label for="number">Number</label>
-                    <input type="tel" width="40px" pattern="+[0-9]{3}" id="countryCode" name="countryCode"
-                           placeholder="Country code" class="inp">
-                </div>
-                <div class="reg-element">
-                    <input type="tel" pattern="[0-9]{9}" id="number" name="number" placeholder="Number"
-                           class="inp">
-                </div>
-                <div class="reg-element">
-                    <label for="type">Type</label>
-                    <select name="type" id="type">
-                        <option value="mobile">Mobile</option>
-                        <option value="home">Home</option>
-                        <option value="work">Work</option>
-                    </select>
-                </div>
-                <div class="reg-element">
-                    <label for="comment">Comment</label>
-                    <input type="text" id="comment" name="comment" placeholder="Comment" class="inp">
-                </div>
-            </div>
-
             <div class="reg-element">
-                <button type="button" onclick="sendData()" class="butt">Submit</button>
+                <button type="button" onclick="addNewContact()" class="butt">Submit</button>
             </div>
 
         </form>
@@ -106,7 +82,7 @@
         createNav();
     };
 
-    function sendData() {
+    function addNewContact() {
         var dataJson = new FormData();
         dataJson.append("name", document.getElementById('name').value);
         dataJson.append("surname", document.getElementById('surname').value);
@@ -118,10 +94,7 @@
         dataJson.append("site", document.getElementById('site').value);
         dataJson.append("email", document.getElementById('email').value);
         dataJson.append("job", document.getElementById('job').value);
-        dataJson.append("countryCode", document.getElementById('countryCode').value);
-        dataJson.append("number", document.getElementById('number').value);
-        dataJson.append("type",document.getElementById('type').value);
-        dataJson.append("comment",document.getElementById('comment').value);
+
         fetch('/rest/addContact', {
             method: 'POST',
             body: dataJson

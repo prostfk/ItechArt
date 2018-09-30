@@ -9,12 +9,12 @@
 </head>
 <body>
 
-<div id="after-add" class="container"></div>
 
+<div class="container"><span id="message-span"></span></div>
+<div class="container"><button class="butt" onclick="goToUserPage()">Go to contact</button></div>
 <div class="container"><h3>Add address</h3></div>
 <div class="container" id="container">
     <div class=" gap-bottom">
-        <span id="message-span"></span>
         <div id="form-div" style="visibility: visible;">
             <form class="reg-form" id="add-form">
                 <div class="reg-element">
@@ -42,7 +42,7 @@
                     <input type="number" id="postIndex" name="postIndex" placeholder="Post Index" class="inp">
                 </div>
                 <div class="reg-element">
-                    <button type="button" id="sub-button" class="butt">Submit</button>
+                    <button type="button" id="sub-button" onclick="sendNewAddress();" class="butt">Submit</button>
                 </div>
 
             </form>
@@ -58,6 +58,34 @@
         createNav();
     };
 
+    var link = location.href.split("/");
+    var id = link[link.length - 2];
+
+    function sendNewAddress() {
+        var formData = new FormData();
+        formData.append('country', document.getElementById('country').value);
+        formData.append('city', document.getElementById('city').value);
+        formData.append('street', document.getElementById('street').value);
+        formData.append('house', document.getElementById('house').value);
+        formData.append('flat', document.getElementById('flat').value);
+        formData.append('postIndex', document.getElementById('postIndex').value);
+
+        fetch('/rest/contact/' + id + '/addAddress',{method: "POST", body: formData}).then(function (response) {
+            response.json().then(function (data) {
+                if (data.error===undefined){
+                    document.getElementById('message-span').style.color = 'green';
+                    document.getElementById('message-span').innerText = 'Success';
+                    document.getElementById('add-form').style.visibility = 'hidden';
+                }else{
+                    document.getElementById('message-span').style.color = 'red';
+                    document.getElementById('message-span').innerText = 'Check your data';
+                }
+            })
+        })
+    }
+    function goToUserPage() {
+        window.location.href='/contact/' + id
+    }
 
 </script>
 

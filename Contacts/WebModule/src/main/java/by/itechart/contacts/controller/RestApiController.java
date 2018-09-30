@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
@@ -40,9 +41,12 @@ public class RestApiController {
     private PhoneDao phoneDao;
     @Value("${user.files.path}")
     private String staticPath;
-    @Value("${message.birthday}") String birthday;
-    @Value("${message.newYear}") String newYear;
-    @Value("${message.party}") String party;
+    @Value("${message.birthday}")
+    String birthday;
+    @Value("${message.newYear}")
+    String newYear;
+    @Value("${message.party}")
+    String party;
     private static final Logger LOGGER = Logger.getLogger(RestApiController.class);
 
     public RestApiController() {
@@ -127,27 +131,16 @@ public class RestApiController {
     }
 
     @PostMapping(value = "/contact/{contactId}/edit")
-    public Object processEditing(@PathVariable Long contactId, Contact contact, Phone phone) {
-        phone.setContactId(contactId);
-        Phone phoneByContactId = phoneDao.findPhoneByContactId(contactId);
-        if (phoneByContactId != null && !phone.getNumber().equals("")&&!phone.getCountryCode().equals("")) {
-            phoneDao.update(phoneByContactId.getContactId(), phone);
-        } else {
-            phoneDao.save(phone);
-        }
+    public Object processEditing(@PathVariable Long contactId, Contact contact) {
         return notNullValidation(contactDao.update(contactId, contact), "check your data");
     }
 
     @PostMapping(value = "/addContact")
-    public Object postAddContact(Contact contact, Phone phone) {
+    public Object postAddContact(Contact contact) {
         System.out.println(contact);
         if (contact != null & contact.getName() != null & contact.getSurname() != null & !contact.getSurname().equals("") & !contact.getName().equals("")) {
             contactDao.save(contact);
             Contact base = contactDao.findContactByNameAndSurname(contact.getName(), contact.getSurname());
-            if (phone != null & !phone.getCountryCode().equals("") & !phone.getNumber().equals("")){
-                phone.setContactId(base.getId());
-                phoneDao.save(phone);
-            }
             return base;
         }
         return notNullValidation(null, "You did't pass the validator");
@@ -164,8 +157,8 @@ public class RestApiController {
     }
 
     @PostMapping(value = "/contact/{id}/document/upload")
-    public Object uploadPost(@PathVariable Long id, MultipartFile file,@Value("${user.files.path}") String startPath) {
-        String filePath = String.format("%s/userFiles/%d/",startPath, id);
+    public Object uploadPost(@PathVariable Long id, MultipartFile file, @Value("${user.files.path}") String startPath) {
+        String filePath = String.format("%s/userFiles/%d/", startPath, id);
         File dir = new File(filePath);
         if (!dir.exists()) {
             boolean mkdir = dir.mkdir();
@@ -180,12 +173,12 @@ public class RestApiController {
             stream.close();
             Document document = new Document(String.format("/userFiles/%d/%s", id, file.getOriginalFilename()), id, file.getOriginalFilename());
             documentDao.save(document);
-            return documentDao.findDocumentByNameAndContactId(file.getOriginalFilename(),id);
+            return documentDao.findDocumentByNameAndContactId(file.getOriginalFilename(), id);
         } catch (IOException e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());
         }
-        return notNullValidation(null,"Something went wrong");
+        return notNullValidation(null, "Something went wrong");
     }
 
     @GetMapping(value = "/contact/findContactByEmail")
@@ -200,9 +193,9 @@ public class RestApiController {
         return phonesByParameter;
     }
 
-    @GetMapping(value = "/contact/{id}/phone")
+    @GetMapping(value = "/contact/{id}/phones")
     public Object findPhoneByContact(@PathVariable Long id) {
-        return notNullValidation(phoneDao.findPhoneByContactId(id), "no such data");
+        return notNullValidation(phoneDao.findPhonesByContactId(id), "no such data");
     }
 
     @GetMapping(value = "/contacts")
@@ -211,16 +204,16 @@ public class RestApiController {
     }
 
     @GetMapping(value = "/contact/{id}/documents")
-    public Object findDocumentsByUserId(@PathVariable Long id){
+    public Object findDocumentsByUserId(@PathVariable Long id) {
         return notNullValidation(documentDao.findDocumentsByUserId(id), "NO DATA");
     }
 
     @GetMapping(value = "/sendEmails")
-    public Object sendEmailsTo(@RequestParam("To") String to, @RequestParam String message){
+    public Object sendEmailsTo(@RequestParam("To") String to, @RequestParam String message) {
         String[] split = to.split(",");
         List<Contact> contactsByIdList = contactDao.findContactsByIdList(split);
         int successMails = 0;
-        message = EmailUtil.getMessage(message,party,newYear,birthday);
+        message = EmailUtil.getMessage(message, party, newYear, birthday);
         JSONObject json = new JSONObject();
         for (int i = 0; i < split.length; i++) {
             try {
@@ -231,25 +224,39 @@ public class RestApiController {
                 e.printStackTrace();
             }
         }
-        if (successMails == split.length){
+        if (successMails == split.length) {
             json.put("status", "ok");
-        }else{
+        } else {
             json.put("status", "some email addresses may be invalid");
         }
         return json.toString();
     }
 
+    @PostMapping(value = "/contact/{id}/addPhone")
+    public Object addNewPhone(@PathVariable Long id, Phone phone) {
+        Contact contact = contactDao.findContactById(id);
+        if (contact != null) {
+            if (phone.getCountryCode().length() > 0 && phone.getCountryCode().length() < 5 && phone.getNumber().length() > 5 && phone.getNumber().length() < 15) {
+                phone.setContactId(id);
+                phoneDao.save(phone);
+                return phone;
+            }
+        }
+        return notNullValidation(null, "Check your data");
+
+    }
+
     @GetMapping(value = "/updatedSearch")
-    public Object updatedSearch(@RequestParam String param, @RequestParam String value){
+    public Object updatedSearch(@RequestParam String param, @RequestParam String value) {
         System.out.println(param);
         System.out.println(value);
         String[] params = param.split(",");
         String[] values = value.split(",");
-        return notNullValidation(contactDao.findContactsByFieldsAndValues(params,values), "Something went wrong");
+        return notNullValidation(contactDao.findContactsByFieldsAndValues(params, values), "Something went wrong");
     }
 
     @GetMapping(value = "/contact/{id}/documents/rename")
-    public Object renameDocument(@PathVariable Long id, @RequestParam String name, @RequestParam String newFileName){
+    public Object renameDocument(@PathVariable Long id, @RequestParam String name, @RequestParam String newFileName) {
         Document doc = documentDao.findDocumentByNameAndContactId(name, id);
         File file = new File(staticPath + doc.getPath());
         String[] split = doc.getPath().split("/");
@@ -260,24 +267,25 @@ public class RestApiController {
         stringBuilder.append("/").append(newFileName);
         File newFile = new File(stringBuilder.toString());
         JSONObject json = new JSONObject();
-        if (!newFile.exists()){
+        if (!newFile.exists()) {
             boolean b = file.renameTo(newFile);
             System.out.println(b);
             doc.setPath(stringBuilder.toString());
             doc.setName(newFileName);
-            documentDao.update(doc.getId(),doc);
+            documentDao.update(doc.getId(), doc);
             json.put("status", "success");
-        }else{
+        } else {
             json.put("status", "error, such file already exists");
         }
         return json.toString();
 
     }
+
     @GetMapping(value = "/download")
-    public void download(@RequestParam String path, HttpServletResponse response){
+    public void download(@RequestParam String path, HttpServletResponse response) {
         String dataDirectory = String.format("%s/%s", staticPath, path);
-        String filename = path.split("/")[path.split("/").length-1];
-            Path file = Paths.get(dataDirectory);
+        String filename = path.split("/")[path.split("/").length - 1];
+        Path file = Paths.get(dataDirectory);
         if (Files.exists(file)) {
             response.setContentType(URLConnection.guessContentTypeFromName(filename));
             response.addHeader("Content-Disposition", "attachment; filename=" + filename);
@@ -291,15 +299,47 @@ public class RestApiController {
     }
 
     @GetMapping(value = "/email/preview")
-    public Object getText(@RequestParam String text){
+    public Object getText(@RequestParam String text) {
         JSONObject json = new JSONObject();
-        switch (text){
-            case "message.birthday": json.put("message", birthday);break;
-            case "message.party": json.put("message", party);break;
-            case "message.newYear": json.put("message", newYear);break;
-            default: json.put("error", "No such data");break;
+        switch (text) {
+            case "message.birthday":
+                json.put("message", birthday);
+                break;
+            case "message.party":
+                json.put("message", party);
+                break;
+            case "message.newYear":
+                json.put("message", newYear);
+                break;
+            default:
+                json.put("error", "No such data");
+                break;
         }
         return json.toString();
+    }
+
+    @PostMapping(value = "/contact/removePhone/{id}")
+    public Object removePhone(@PathVariable Long id){
+        Phone byId = phoneDao.findById(id);
+        if (byId!=null){
+            phoneDao.delete(id);
+        }
+        return notNullValidation(byId, "No such data");
+    }
+
+    @GetMapping(value = "/contact/{contactId}/phone/{id}")
+    public Object findPhoneById(@PathVariable Long id){
+        Phone byId = phoneDao.findById(id);
+        return notNullValidation(byId,"No such data");
+    }
+
+    @PostMapping(value = "/contact/{id}/editPhone/{phoneId}")
+    public Object editPhone(@PathVariable Long id, @PathVariable Long phoneId, Phone phone){
+        if (phone.getContactId() == id){
+            phoneDao.update(phoneId,phone);
+            return phone;
+        }
+        return notNullValidation(null, "Something went wrong");
     }
 
     private Object notNullValidation(Object object, String message) {

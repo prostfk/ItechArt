@@ -39,10 +39,10 @@ public class ViewController {
     }
 
     @GetMapping(value = "/contact/{id}")
-    public ModelAndView getContactPage(@PathVariable Long id){
-        if (contactDao.findContactById(id)!=null){
+    public ModelAndView getContactPage(@PathVariable Long id) {
+        if (contactDao.findContactById(id) != null) {
             return new ModelAndView("contactInfo");
-        }else{
+        } else {
             return new ModelAndView("error", "message", "No such user");
         }
     }
@@ -127,37 +127,50 @@ public class ViewController {
     }
 
     @GetMapping(value = "/contact/{id}/phones")
-    public String getPhone(@PathVariable Long id){
+    public String getPhone(@PathVariable Long id) {
         List<Phone> phonesByContactId = phoneDao.findPhonesByContactId(id);
-        if (phonesByContactId.size()>0){
+        if (phonesByContactId.size() > 0) {
             return "phoneView";
-        }else{
-            return String.format("redirect:/contact/%d/addPhone",id);
+        } else {
+            return String.format("redirect:/contact/%d/addPhone", id);
         }
     }
 
     @GetMapping(value = "/contact/{id}/documents")
-    public String getFiles(@PathVariable Long id){
+    public String getFiles(@PathVariable Long id) {
         Contact byId = contactDao.findById(id);
+        return byId!=null ? "userFiles" : String.format("redirect:/contact/%d/uploadDocument", id);
+    }
+
+    @GetMapping(value = "/contact/{id}/addPhone")
+    public String addPhoneToContact(@PathVariable Long id) {
+        Contact byId = contactDao.findContactById(id);
+        return byId != null ? "addPhone" : "error";
+    }
+
+    @GetMapping(value = "/contact/{id}/editPhone/{phoneId}")
+    public String editPhone(@PathVariable Long id, @PathVariable Long phoneId){
+        Phone byId = phoneDao.findById(phoneId);
         if (byId!=null){
-            return "userFiles";
-        }else{
-            return String.format("redirect:/contact/%d/uploadDocument", id);
+            if (byId.getContactId().equals(id)){
+                return "editPhone";
+            }
         }
+        return "error";
     }
 
     @GetMapping(value = "/contacts")
-    public String redirectToContacts(){
+    public String redirectToContacts() {
         return "redirect:/contacts/1";
     }
 
     @GetMapping(value = "/contacts/{id}")
-    public String getContacts(){
+    public String getContacts() {
         return "restContactViewer";
     }
 
     @GetMapping(value = "/contact/email/sendEmailToUsers")
-    public String sendEmailToUsers(){
+    public String sendEmailToUsers() {
         return "sendEmailToUsers";
     }
 

@@ -53,7 +53,7 @@ public class PhoneDao extends AbstractDao<Phone> {
 
     @Override
     public List<Phone> findAll() {
-        try (ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM phone")) {
+        try (ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM phone WHERE status!=1")) {
             return createList(resultSet);
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,8 +65,9 @@ public class PhoneDao extends AbstractDao<Phone> {
     @Override
     public Phone update(Long id, Phone phone) {
         //language=SQL
-        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE phone SET country_code=?, number=?,type=?,comment=? WHERE contact_id=?")) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE phone SET country_code=?, number=?,type=?,comment=? WHERE id=? AND status!=1")) {
             execute(preparedStatement, phone.getCountryCode(), phone.getNumber(), phone.getType(), phone.getComment(), id);
+            System.out.println(preparedStatement);
             return phone;
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,7 +91,7 @@ public class PhoneDao extends AbstractDao<Phone> {
     }
 
     public List<Phone> findPhonesByParameter(String parameter, String value) {
-        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM phone WHERE ? LIKE ?")) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM phone WHERE ? LIKE ? AND status!=1")) {
             value = String.format("%%%s%%", value);
             ResultSet resultSet = executeQuery(preparedStatement, parameter, value);
             System.out.println(preparedStatement.toString());
@@ -102,9 +103,21 @@ public class PhoneDao extends AbstractDao<Phone> {
     }
 
     public List<Phone> findPhonesByContactId(Long id) {
-        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM phone WHERE contact_id=?")){
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM phone WHERE contact_id=? AND status!=1")){
             ResultSet resultSet = executeQuery(preparedStatement, id);
             return createList(resultSet);
+        }catch (Exception e){
+            log(e,LOGGER);
+        }
+        return null;
+    }
+
+    public Phone findPhonesByNumberAndCountryCodeAndContactId(String countryCode, String number, Long contactId){
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM phone WHERE country_code=? AND number=? AND contact_id=? AND status!=1")) {
+            ResultSet resultSet = executeQuery(preparedStatement, countryCode, number, contactId);
+            if (resultSet.next()){
+                createEntity(resultSet);
+            }
         }catch (Exception e){
             log(e,LOGGER);
         }
