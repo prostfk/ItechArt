@@ -10,38 +10,40 @@
 </head>
 <body>
 
+<div class="container"><span id="message-span"></span></div>
+<div class="container"><button class="butt" onclick="goToUserPage()">Go to contact</button></div>
+<div class="container"><h3>Edit address</h3></div>
+<div id="container" class="container">
 
-<div id="container" class="container-main">
 
-
-    <form action="/rest/editAddress" method="post" class="reg-form">
+    <form id="edit-address-form" class="reg-form">
         <div class="reg-element">
             <label for="country">Country</label>
-            <input type="text" id="country" name="country" placeholder="Country" class="reg-input">
+            <input type="text" id="country" name="country" placeholder="Country" class="inp">
         </div>
         <div class="reg-element">
             <label for="city">City</label>
-            <input type="text" id="city" name="city" placeholder="City" class="reg-input">
+            <input type="text" id="city" name="city" placeholder="City" class="inp">
         </div>
         <div class="reg-element">
             <label for="street">Street</label>
-            <input type="text" id="street" name="street" placeholder="Street" class="reg-input">
+            <input type="text" id="street" name="street" placeholder="Street" class="inp">
         </div>
         <div class="reg-element">
             <label for="house">House</label>
-            <input type="number" id="house" name="house" placeholder="House" class="reg-input">
+            <input type="number" id="house" name="house" placeholder="House" class="inp">
         </div>
         <div class="reg-element">
             <label for="flat">Flat</label>
-            <input type="number" id="flat" name="flat" placeholder="Flat" class="reg-input">
+            <input type="number" id="flat" name="flat" placeholder="Flat" class="inp">
         </div>
         <div class="reg-element">
             <label for="postIndex">Post Index</label>
-            <input type="number" id="postIndex" name="postIndex" placeholder="Post Index" class="reg-input">
+            <input type="number" id="postIndex" name="postIndex" placeholder="Post Index" class="inp">
         </div>
 
         <div class="reg-element">
-            <input type="submit" value="Submit" class="reg-button">
+            <button class="butt" type="button" id="sub-butt">Submit</button>
         </div>
 
     </form>
@@ -51,12 +53,11 @@
 <script>
     onload = function show() {
         createNav();
-        send();
+        initAddressForm();
     };
-
-    function send() {
-        var link = window.location.href.split("/");
-        var id = link[link.length - 2];
+    var link = window.location.href.split("/");
+    var id = link[link.length - 2];
+    function initAddressForm() {
         fetch('/rest/contact/' + id + '/address').then(function (response) {
             response.json().then(function (data) {
                 console.log(data);
@@ -68,6 +69,31 @@
                 document.getElementById('postIndex').value = data.postIndex;
             })
         })
+    }
+    document.getElementById('sub-butt').onclick = function sendEditedAddress() {
+        var formData = new FormData();
+        formData.append('country', document.getElementById('country').value);
+        formData.append('city', document.getElementById('city').value);
+        formData.append('street', document.getElementById('street').value);
+        formData.append('house', document.getElementById('house').value);
+        formData.append('flat', document.getElementById('flat').value);
+        formData.append('postIndex', document.getElementById('postIndex').value);
+
+        fetch('/rest/contact/' + id + '/editAddress',{method: "POST", body: formData}).then(function (response) {
+            response.json().then(function (data) {
+                if (data.error===undefined){
+                    document.getElementById('message-span').style.color = 'green';
+                    document.getElementById('message-span').innerText = 'Success';
+                    document.getElementById('edit-address-form').style.visibility = 'hidden';
+                }else{
+                    document.getElementById('message-span').style.color = 'red';
+                    document.getElementById('message-span').innerText = 'Check your data';
+                }
+            })
+        })
+    };
+    function goToUserPage() {
+        window.location.href='/contact/' + id
     }
 </script>
 </body>

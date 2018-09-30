@@ -29,15 +29,15 @@
             <tr class="head-th">
                 <th>Name</th>
                 <th>Surname</th>
-                <th>Patronymic</th>
-                <th>DateOfBirth</th>
-                <th>Gender</th>
-                <th>Citizenship</th>
-                <th>FamilyStatus</th>
-                <th>Site</th>
-                <th>Email</th>
-                <th>Job</th>
-                <th>Address</th>
+                <th class='mob-off'>Patronymic</th>
+                <th class='mob-off'>DateOfBirth</th>
+                <th class='mob-off'>Gender</th>
+                <th class='mob-off'>Citizenship</th>
+                <th class='mob-off'>FamilyStatus</th>
+                <th class='mob-off'>Site</th>
+                <th class='mob-off'>Email</th>
+                <th class='mob-off'>Job</th>
+                <th class='mob-off'>Address</th>
                 <th>Delete</th>
                 <th>Edit</th>
                 <th>Send email</th>
@@ -89,7 +89,7 @@
                         console.log(data);
                         var str = '';
                         for (var i = 0; i < data.length; i++) {
-                            str +="<tr><td><a href='/contact/" + data[i].id + "'>" + data[i].name + "<i class='fa fa-user'></i></a></td><td>" + data[i].surname + "</td><td>" + data[i].patronymic + "</td><td>" + data[i].date + "</td>" + "<td>" + data[i].gender + "</td>" + "<td>" + data[i].citizenship + "</td>" + "<td>" + data[i].familyStatus + "</td>" + "<td>" + data[i].site + "</td>" + "<td>" + data[i].email + "</td>" + "<td>" + data[i].job + "</td>" + "<td><a href='" + (data[i].addressId !== 0 ? ("/contact/" + data[i].id) : ("/contact/" + data[i].id + "/addAddress")) + "'>Address</a></td><td><button class='butt' style='box-shadow: 0 0 1px rgba(0,0,0,0.5);' onclick='deleteUser(" + data[i].id + ")'><i class='fa fa-trash-o'></i></button>" + "</td><td><a class='butt' style='box-shadow: 0 0 1px rgba(0,0,0,0.5);' href='/contact/" + data[i].id + "/edit'><i class='fa fa-pencil'></i></a></td><td><input class='butt' style='box-shadow: 0 0 1px rgba(0,0,0,0.5); float: right;' id='" + data[i].id + "' type='checkbox' onchange='plusCheck(this)'></td>" + "</tr>";
+                            str +="<tr><td><a href='/contact/" + data[i].id + "'>" + data[i].name + "<i class='fa fa-user'></i></a></td><td>" + data[i].surname + "</td><td class='mob-off'>" + data[i].patronymic + "</td><td class='mob-off'>" + data[i].date + "</td>" + "<td class='mob-off'>" + data[i].gender + "</td>" + "<td class='mob-off'>" + data[i].citizenship + "</td class='mob-off'>" + "<td class='mob-off'>" + data[i].familyStatus + "</td>" + "<td class='mob-off'>" + data[i].site + "</td>" + "<td class='mob-off'>" + data[i].email + "</td>" + "<td class='mob-off'>" + data[i].job + "</td>" + "<td class='mob-off'><a href='" + (data[i].addressId !== 0 ? ("/contact/" + data[i].id) : ("/contact/" + data[i].id + "/addAddress")) + "'>Address</a></td><td><button class='butt' style='box-shadow: 0 0 1px rgba(0,0,0,0.5);' onclick='deleteUser(" + data[i].id + ")'><i class='fa fa-trash-o'></i></button>" + "</td><td><a class='butt' style='box-shadow: 0 0 1px rgba(0,0,0,0.5);' href='/contact/" + data[i].id + "/edit'><i class='fa fa-pencil'></i></a></td><td><input class='butt' style='box-shadow: 0 0 1px rgba(0,0,0,0.5); float: right;' id='" + data[i].id + "' type='checkbox' onchange='plusCheck(this)'></td>" + "</tr>";
                             // document.getElementById("content-pane").insertAdjacentHTML('afterend', "<tr><th><a href='/contact/" + data[i].id + "'>" + data[i].name + "</a></th><th>" + data[i].surname + "</th><th>" + data[i].patronymic + "</th><th>" + data[i].date + "</th>" + "<th>" + data[i].gender + "</th>" + "<th>" + data[i].citizenship + "</th>" + "<th>" + data[i].familyStatus + "</th>" + "<th>" + data[i].site + "</th>" + "<th>" + data[i].email + "</th>" + "<th>" + data[i].job + "</th>" + "<th><a href='" + (data[i].addressId !== 0 ? ("/contact/" + data[i].id) : ("/contact/" + data[i].id + "/addAddress")) + "'>Address</a></th><th><button style='background-color: red;' onclick='deleteUser(" + data[i].id + ")'>Delete</button>" + "</th><th><a href='/contact/" + data[i].id + "/edit'>Edit</a></th><th><input id='" + data[i].id + "' type='checkbox' onchange='plusCheck(this)' style='background-color: black;'> </th>" + "</tr>");
                         }
                         document.getElementById('content-pane').innerHTML = str;

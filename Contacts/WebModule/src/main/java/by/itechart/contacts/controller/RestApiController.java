@@ -146,13 +146,13 @@ public class RestApiController {
         return notNullValidation(null, "You did't pass the validator");
     }
 
-    @PostMapping(value = "/editAddress")
-    public Object editAddress(@ModelAttribute Address address) {
-        Address update = addressDao.update(address.getId(), address);
-        if (update != null) {
-            return update;
+    @PostMapping(value = "/contact/{id}/editAddress")
+    public Object editAddress(@PathVariable Long id, Address address) {
+        Address baseAddress = addressDao.findAddressByUserId(id);
+        if (baseAddress != null) {
+            return addressDao.update(baseAddress.getId(), address);
         } else {
-            return notNullValidation(addressDao.save(address), "server error");
+            return notNullValidation(null, "No such address");
         }
     }
 
@@ -333,6 +333,11 @@ public class RestApiController {
         return notNullValidation(byId,"No such data");
     }
 
+    @GetMapping(value = "/contact/{id}/file/{fileId}/remove")
+    public Object removeFile(@PathVariable Long id, @PathVariable Long fileId){
+        return notNullValidation(documentDao.delete(fileId), "No such data");
+    }
+
     @PostMapping(value = "/contact/{id}/editPhone/{phoneId}")
     public Object editPhone(@PathVariable Long id, @PathVariable Long phoneId, Phone phone){
         if (phone.getContactId() == id){
@@ -350,6 +355,4 @@ public class RestApiController {
         stringStringHashMap.put("error", message);
         return stringStringHashMap;
     }
-//email
-//contact page
 }

@@ -26,10 +26,10 @@ public class DocumentDao extends AbstractDao<Document> {
 
     @Override
     public Document findById(Long id) {
-        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM document WHERE id=?")) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM document WHERE id=? AND status!=1")) {
             ResultSet resultSet = executeQuery(preparedStatement, id);
             if (resultSet.next()){
-                return createEntity(executeQuery(preparedStatement, id));
+                return createEntity(resultSet);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -41,7 +41,7 @@ public class DocumentDao extends AbstractDao<Document> {
     @Override
     public List<Document> findAll() {
         //language=SQL
-        ResultSet resultSet = executeQuery("SELECT * FROM document");
+        ResultSet resultSet = executeQuery("SELECT * FROM document WHERE status!=1");
         List<Document> documents = new LinkedList<>();
         try {
             documents = createList(resultSet);
@@ -53,7 +53,7 @@ public class DocumentDao extends AbstractDao<Document> {
     }
 
     public List<Document> findDocumentsByUserId(Long id){
-        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM document WHERE contact_id=?")) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM document WHERE contact_id=? AND status!=1")) {
             ResultSet resultSet = executeQuery(preparedStatement, id);
             return createList(resultSet);
         }catch (Exception e){
@@ -64,7 +64,7 @@ public class DocumentDao extends AbstractDao<Document> {
     }
 
     public Document findDocumentByNameAndContactId(String name, Long contactId){
-        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM document WHERE contact_id=? AND name=?")) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM document WHERE contact_id=? AND name=? AND status!=1")) {
             ResultSet resultSet = executeQuery(preparedStatement, contactId, name);
             if (resultSet.next()){
                 return createEntity(resultSet);
@@ -78,19 +78,33 @@ public class DocumentDao extends AbstractDao<Document> {
     @Override
     public Document update(Long id, Document document) {
         //language=SQL
-        execute(String.format("UPDATE document SET path='%s', contact_id='%d', name='%s' WHERE id='%d'", document.getPath(), document.getContactId(), document.getName(), id));
+        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE document SET path=?, contact_id=?, name=? WHERE id=?")) {
+            execute(preparedStatement, document.getPath(), document.getContactId(), document.getName(), id);
+        }catch (Exception e){
+            log(e,LOGGER);
+        }
         return document;
+    }
+
+    public Document delete(Long id){
+        Document byId = findById(id);
+        try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE document SET status=1 WHERE id=? AND status!=1")) {
+            execute(preparedStatement,id);
+            return byId;
+        }catch (Exception e){
+            log(e,LOGGER);
+        }
+        return null;
     }
 
     @Override
     public Document createEntity(ResultSet resultSet) {
         try {
-            Document document = new Document(
+            return new Document(
                     resultSet.getLong("id"), resultSet.getString("path"),
                     resultSet.getLong("contact_id"), resultSet.getString("name"),
                     resultSet.getString("upload_date")
             );
-            return document;
         } catch (Exception e) {
             e.printStackTrace();
             LOGGER.error(e.getMessage());

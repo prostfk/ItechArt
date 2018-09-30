@@ -11,6 +11,11 @@
 <div class="container" id="after-edit">
 
 </div>
+
+<div class="container">
+    <button onclick="comeBackToUserPage()" class="butt">Go to user page</button>
+</div>
+
 <div class="container" id="container">
 
     <div class="gap-bottom">
@@ -66,29 +71,6 @@
                 <input type="text" id="job" name="job" placeholder="Job" class="inp">
             </div>
 
-            <div>
-                <div class="reg-element">
-                    <label for="number">Number</label>
-                    <input type="tel" width="40px" pattern="+[0-9]{3}" id="countryCode" name="countryCode"
-                           placeholder="Country code" class="inp">
-                </div>
-                <div class="reg-element">
-                    <input type="tel" pattern="[0-9]{9}" id="number" name="number" placeholder="Number"
-                           class="inp">
-                </div>
-                <div class="reg-element">
-                    <label for="type">Type</label>
-                    <select name="type" id="type">
-                        <option value="mobile">Mobile</option>
-                        <option value="home">Home</option>
-                        <option value="work">Work</option>
-                    </select>
-                </div>
-                <div class="reg-element">
-                    <label for="comment">Comment</label>
-                    <input type="text" id="comment" name="comment" placeholder="Comment" class="inp">
-                </div>
-            </div>
             <div class="reg-element">
                 <button type="button" onclick="sendOnServer()" class="butt">Submit</button>
             </div>
@@ -125,18 +107,7 @@
 
             })
         });
-        fetch('/rest/contact/' + id + '/phone').then(function (response) {
-            response.json().then(function (data) {
-                if (data.error === undefined) {
-                    console.log(data);
-                    document.getElementById('countryCode').value = data.countryCode;
-                    document.getElementById('number').value = data.number;
-                    selectOption(document.getElementById('type'), data.type);
-                    document.getElementById('comment').value = data.comment;
-                }
-            })
-        });
-        document.getElementById('contact-form').action = '/rest/contact/' + id + '/edit';
+
 
     }
 
@@ -164,11 +135,11 @@
         formData.append('site', document.getElementById('site').value);
         formData.append('email', document.getElementById('email').value);
         formData.append('job', document.getElementById('job').value);
-        formData.append('countryCode', document.getElementById('countryCode').value);
-        formData.append('number', document.getElementById('number').value);
-        formData.append('type', document.getElementById('type').value);
-        formData.append('comment', document.getElementById('comment').value);
         sendEditedContactInfo(id, formData);
+    }
+
+    function comeBackToUserPage() {
+        location.href = '/contact/' + id;
     }
 
 </script>

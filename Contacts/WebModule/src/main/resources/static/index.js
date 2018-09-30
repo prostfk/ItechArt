@@ -33,8 +33,6 @@ function sendEditedContactInfo(id, formData) {
                 document.getElementById('contact-form').style.visibility = 'hidden';
                 document.getElementById('message-span').style.color = 'green';
                 document.getElementById('message-span').innerText = "Your contact was edited";
-                document.getElementById('after-edit').insertAdjacentHTML('afterbegin','' +
-                    '<a class="butt" href="/contact/' + id + '">Go to contact</a>');
             }else{
                 document.getElementById('message-span').style.color = 'red';
                 document.getElementById('message-span').innerText = "Please, check your data!";

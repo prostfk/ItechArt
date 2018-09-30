@@ -57,15 +57,15 @@
         <tr>
             <th>Name</th>
             <th>Surname</th>
-            <th>Patronymic</th>
-            <th>DateOfBirth</th>
-            <th>Gender</th>
-            <th>Citizenship</th>
-            <th>FamilyStatus</th>
-            <th>Site</th>
-            <th>Email</th>
-            <th>Job</th>
-            <th>Address</th>
+            <th class='mob-off'>Patronymic</th>
+            <th class='mob-off'>DateOfBirth</th>
+            <th class='mob-off'>Gender</th>
+            <th class='mob-off'>Citizenship</th>
+            <th class='mob-off'>FamilyStatus</th>
+            <th class='mob-off'>Site</th>
+            <th class='mob-off'>Email</th>
+            <th class='mob-off'>Job</th>
+            <th class='mob-off'>Address</th>
             <th>Delete</th>
             <th>Edit</th>
             <th>Send email</th>
@@ -104,7 +104,7 @@
                         var str = "";
                         for (var i = 0; i < data.length; i++) {
                             console.log(data[i]);
-                            str += "<tr><td><a href='/contact/" + data[i].id + "'>" + data[i].name + "<i class='fa fa-user'></i></a></td><td>" + data[i].surname + "</td><td>" + data[i].patronymic + "</td><td>" + data[i].date + "</td><td>" + data[i].gender + "</td><td>" + data[i].citizenship + "</td><td>" + data[i].familyStatus + "</td><td>" + data[i].site + "</td><td>" + data[i].email + "</td><td>" + data[i].job + "</td><td><a href='/contact/" + data[i].id + (data[i].addressId === 0 ? '/addAddress' : '') + "'>" + (data[i].addressId !== 0 ? 'Address' : 'None') + "</a><td><a href='/rest/contact/" + data[i].id + "/delete/'><i class='fa fa-trash-o'></i></a></td><td><a href='/contact/" + data[i].id + "/edit'><i class='fa fa-pencil'></i></a></td></td><td><input type='checkbox' id='" + data[i].id + "' onchange='plusCheck(this)'></td></tr>";
+                            str += "<tr><td><a href='/contact/" + data[i].id + "'>" + data[i].name + "<i class='fa fa-user'></i></a></td><td>" + data[i].surname + "</td><td class='mob-off'>" + data[i].patronymic + "</td><td class='mob-off'>" + data[i].date + "</td><td class='mob-off'>" + data[i].gender + "</td><td class='mob-off'>" + data[i].citizenship + "</td><td class='mob-off'>" + data[i].familyStatus + "</td><td class='mob-off'>" + data[i].site + "</td><td class='mob-off'>" + data[i].email + "</td><td class='mob-off'>" + data[i].job + "</td><td class='mob-off'><a href='/contact/" + data[i].id + (data[i].addressId === 0 ? '/addAddress' : '') + "'>" + (data[i].addressId !== 0 ? 'Address' : 'None') + "</a><td><a onclick='removeContact("+ data[i].id +")'><i class='fa fa-trash-o'></i></a></td><td><a href='/contact/" + data[i].id + "/edit'><i class='fa fa-pencil'></i></a></td></td><td><input type='checkbox' id='" + data[i].id + "' onchange='plusCheck(this)'></td></tr>";
                         }
                         document.getElementById("content-pane").innerHTML = str;
                     }else{
@@ -173,6 +173,16 @@
         localStorage.removeItem('usersForEmail');
         localStorage.setItem('usersForEmail', checkBoxes.join(","));
         window.location.href = '/contact/email/sendEmailToUsers';
+    }
+
+    function removeContact(elementId) {
+        fetch("/rest/contact/" + elementId + "/delete").then(function (response) {
+            if (response.status > 199 && response.status < 300){
+                location.reload()
+            }else{
+                alert(response.json());
+            }
+        })
     }
 
 </script>
