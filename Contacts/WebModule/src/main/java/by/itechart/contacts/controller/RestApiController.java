@@ -265,11 +265,9 @@ public class RestApiController {
             stringBuilder.append("/").append(split[i]);
         }
         stringBuilder.append("/").append(newFileName);
-        File newFile = new File(stringBuilder.toString());
+        File newFile = new File(staticPath + stringBuilder.toString());
         JSONObject json = new JSONObject();
-        if (!newFile.exists()) {
-            boolean b = file.renameTo(newFile);
-            System.out.println(b);
+        if (!newFile.exists() && file.renameTo(newFile)) {
             doc.setPath(stringBuilder.toString());
             doc.setName(newFileName);
             documentDao.update(doc.getId(), doc);

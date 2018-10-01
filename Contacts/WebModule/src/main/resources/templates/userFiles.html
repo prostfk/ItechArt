@@ -11,9 +11,10 @@
 <body>
 
 <div id="for-butt" style="margin: 3%"></div>
-<div class="container" id="container">
+<div class="container" id="container"></div>
+<div class="container"><span id="message-span"></span></div>
+<div class="container">
 
-    <span id="message-span"></span>
     <table id="table" class="gap-bottom">
         <tr>
             <th>FileName</th>
@@ -27,7 +28,6 @@
     </table>
 
 
-
 </div>
 
 <script>
@@ -36,16 +36,17 @@
         findFiles();
     };
     var link = window.location.href.split('/');
-    var id = link[link.length-2];
+    var id = link[link.length - 2];
+
     function findFiles() {
-        document.getElementById('for-butt').insertAdjacentHTML('afterbegin','<a class="butt" style="" href="/contact/' + id + '/uploadDocument">Upload File</a>');
+        document.getElementById('for-butt').insertAdjacentHTML('afterbegin', '<a class="butt" style="" href="/contact/' + id + '/uploadDocument">Upload File</a>');
         fetch('/rest/contact/' + id + '/documents').then(function (response) {
             response.json().then(function (data) {
                 console.log(data);
-                if (data.error === undefined){
+                if (data.error === undefined) {
                     var str = '';
                     for (var i = 0; i < data.length; i++) {
-                            str += '<tr><td><a href="/rest/download?path=' + data[i].path + '" id="name-' + data[i].id +'">' + data[i].name + '</a></td><td>' + data[i].date +'</td><td><button class="butt" id="' + data[i].id + '" onclick="rename(this)">Rename</button></td><td><i onclick="deleteDocument(' + data[i].id + ')" class="fa fa-trash-o"></i></td></tr>'
+                        str += '<tr><td><a href="/rest/download?path=' + data[i].path + '" id="name-' + data[i].id + '">' + data[i].name + '</a></td><td>' + data[i].date + '</td><td><button class="butt" id="' + data[i].id + '" onclick="rename(this)">Rename</button></td><td><i onclick="deleteDocument(' + data[i].id + ')" class="fa fa-trash-o"></i></td></tr>'
                     }
                     document.getElementById('content-pane').innerHTML = str
                 }
@@ -54,7 +55,7 @@
     }
 
     function rename(elem) {
-        document.getElementById('container').insertAdjacentHTML('afterbegin','<div class="reg-element"><input type="text" id="new-name" placeholder="name" class="reg-input"><button class="reg-button" onclick="sendRename(' + elem.getAttribute('id') +')">Submit</button></div>')
+        document.getElementById('container').innerHTML = '<div class="reg-element"><input type="text" id="new-name" placeholder="name" class="inp"><button class="butt" onclick="sendRename(' + elem.getAttribute('id') + ')">Submit</button></div>';
     }
 
     function sendRename(fileId) {
@@ -64,21 +65,21 @@
             response.json().then(function (data) {
                 var span = document.getElementById('message-span');
                 console.log(data);
-                if (data.status==="success"){
+                if (data.status === "success") {
                     span.style.color = 'green';
                     span.innerText = 'Success';
-                }else{
+                } else {
                     span.style.color = 'red';
                     span.innerText = data.status;
                 }
             })
         })
     }
-    
+
     function deleteDocument(fileId) {
         fetch('/rest/contact/' + id + '/file/' + fileId + '/remove').then(function (response) {
             response.json().then(function (data) {
-                if (data.error===undefined){
+                if (data.error === undefined) {
                     location.reload();
                 }
             })
