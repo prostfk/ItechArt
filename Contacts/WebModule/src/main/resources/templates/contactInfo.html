@@ -74,7 +74,7 @@
                 if (data.error === undefined) {
                     phonesInfo += '<div class="container"><table style="margin-top: 5%"><tr class="head-th"><th>Number</th><th>Type</th><th>Comment</th><th>Delete</th><th>Edit</th></tr><tbody>';
                     for (var i = 0; i < data.length; i++) {
-                        phonesInfo += '<tr><td>' + data[i].countryCode + ' ' + data[i].number + '</td><td>' + data[i].type + '</td><td>' + data[i].comment + '</td><td><a class="butt" style="box-shadow: 0 0 1px rgba(0,0,0,0.5);" onclick="removePhone(' + data[i].id + ')"><i class="fa fa-trash"></i></a><td><a class="butt" style="box-shadow: 0 0 1px rgba(0,0,0,0.5);" href="/contact/' + data[i].contactId + '/editPhone/' + data[i].id + '"><i class="fa fa-pencil"></i></a></td></td></tr>';
+                        phonesInfo += '<tr><td>' + data[i].countryCode + ' ' + data[i].number + '</td><td>' + data[i].type + '</td><td>' + data[i].comment + '</td><td><a onclick="removePhone(' + data[i].id + ')"><i class="fa fa-trash"></i></a><td><a href="/contact/' + data[i].contactId + '/editPhone/' + data[i].id + '"><i class="fa fa-pencil"></i></a></td></td></tr>';
                     }
                     phonesInfo += '</tbody></table></div>'
                 } else {

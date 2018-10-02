@@ -1,0 +1,15 @@
+by/itechart/contacts/dao/AbstractDao.class
+by/itechart/contacts/model/validator/AddressValidator.class
+by/itechart/contacts/model/entity/ContactField.class
+by/itechart/contacts/model/entity/Document.class
+by/itechart/contacts/model/entity/Gender.class
+by/itechart/contacts/model/validator/Validator.class
+by/itechart/contacts/model/entity/Address.class
+by/itechart/contacts/model/validator/ContactValidator.class
+by/itechart/contacts/model/entity/Phone.class
+by/itechart/contacts/dao/AddressDao.class
+by/itechart/contacts/dao/PhoneDao.class
+by/itechart/contacts/model/entity/FamilyStatus.class
+by/itechart/contacts/dao/DocumentDao.class
+by/itechart/contacts/model/entity/Contact.class
+by/itechart/contacts/dao/ContactDao.class

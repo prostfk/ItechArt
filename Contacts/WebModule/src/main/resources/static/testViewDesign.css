@@ -84,6 +84,7 @@ th, td {
 
 td {
     background-color: #ede4d4;
+    white-space: nowrap;
 }
 
 th {

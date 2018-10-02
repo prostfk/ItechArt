@@ -11,7 +11,8 @@
             width: 0;
             background: transparent;
         }
-        input[type=checkbox]{
+
+        input[type=checkbox] {
             margin-left: 1%;
         }
     </style>
@@ -56,7 +57,9 @@
             <option value="20">20</option>
             <option value="25">25</option>
         </select>
-        <button class="butt" style="visibility: hidden;" id="send-emails-button" onclick="sendEmailsRedirect()">Send Emails</button>
+        <button class="butt" style="visibility: hidden;" id="send-emails-button" onclick="sendEmailsRedirect()">Send
+            Emails
+        </button>
 
     </div>
 
@@ -69,19 +72,23 @@
     var checkBoxes = [];
 
     function loadContacts() {
-        var count = 5;
-        var item = localStorage.getItem('countOfCounts');
-        // if (item!==5||item!==10||item !==15 || item !==20){
-        //     count = document.getElementById('countOfContacts').value;
-        //     localStorage.setItem('countOfContacts', count);
-        // }else{
+        // var count = 5;
+        var strings = window.location.href.split('/');
+        var number = strings[strings.length - 1] - 1;
+        var count = document.getElementById("countOfContacts").value;
+        var item = Number(localStorage.getItem('countOfCounts'));
+        // if (item >= 5 && item <= 20) {
         //     count = localStorage.getItem('countOfContacts');
         //     setSelect(document.getElementById('countOfContacts'), count);
+        // } else if (number === 0 || number === null) {
+        //     count = document.getElementById('countOfContacts').value;
+        //     localStorage.setItem('countOfContacts', count);
         // }
-        console.log(count);
+        console.log(number + " " + count);
         if (number !== 0) {
             number *= count;
         }
+        console.log(number + " " + count);
         if (count > 0 && count < 50) {
             fetch('/rest/contacts?current=' + number + '&count=' + count).then(function (response) {
                 response.json()
@@ -89,8 +96,7 @@
                         console.log(data);
                         var str = '';
                         for (var i = 0; i < data.length; i++) {
-                            str +="<tr><td><a href='/contact/" + data[i].id + "'>" + data[i].name + "<i class='fa fa-user'></i></a></td><td>" + data[i].surname + "</td><td class='mob-off'>" + data[i].patronymic + "</td><td class='mob-off'>" + data[i].date + "</td>" + "<td class='mob-off'>" + data[i].gender + "</td>" + "<td class='mob-off'>" + data[i].citizenship + "</td class='mob-off'>" + "<td class='mob-off'>" + data[i].familyStatus + "</td>" + "<td class='mob-off'>" + data[i].site + "</td>" + "<td class='mob-off'>" + data[i].email + "</td>" + "<td class='mob-off'>" + data[i].job + "</td>" + "<td class='mob-off'><a href='" + (data[i].addressId !== 0 ? ("/contact/" + data[i].id) : ("/contact/" + data[i].id + "/addAddress")) + "'>Address</a></td><td><button class='butt' style='box-shadow: 0 0 1px rgba(0,0,0,0.5);' onclick='deleteUser(" + data[i].id + ")'><i class='fa fa-trash-o'></i></button>" + "</td><td><a class='butt' style='box-shadow: 0 0 1px rgba(0,0,0,0.5);' href='/contact/" + data[i].id + "/edit'><i class='fa fa-pencil'></i></a></td><td><input class='butt' style='box-shadow: 0 0 1px rgba(0,0,0,0.5); float: right;' id='" + data[i].id + "' type='checkbox' onchange='plusCheck(this)'></td>" + "</tr>";
-                            // document.getElementById("content-pane").insertAdjacentHTML('afterend', "<tr><th><a href='/contact/" + data[i].id + "'>" + data[i].name + "</a></th><th>" + data[i].surname + "</th><th>" + data[i].patronymic + "</th><th>" + data[i].date + "</th>" + "<th>" + data[i].gender + "</th>" + "<th>" + data[i].citizenship + "</th>" + "<th>" + data[i].familyStatus + "</th>" + "<th>" + data[i].site + "</th>" + "<th>" + data[i].email + "</th>" + "<th>" + data[i].job + "</th>" + "<th><a href='" + (data[i].addressId !== 0 ? ("/contact/" + data[i].id) : ("/contact/" + data[i].id + "/addAddress")) + "'>Address</a></th><th><button style='background-color: red;' onclick='deleteUser(" + data[i].id + ")'>Delete</button>" + "</th><th><a href='/contact/" + data[i].id + "/edit'>Edit</a></th><th><input id='" + data[i].id + "' type='checkbox' onchange='plusCheck(this)' style='background-color: black;'> </th>" + "</tr>");
+                            str += "<tr><td><a href='/contact/" + data[i].id + "'>" + data[i].name + " <i class='fa fa-user'></i></a></td><td>" + data[i].surname + "</td><td class='mob-off'>" + data[i].patronymic + "</td><td class='mob-off'>" + data[i].date + "</td>" + "<td class='mob-off'>" + data[i].gender + "</td>" + "<td class='mob-off'>" + data[i].citizenship + "</td class='mob-off'>" + "<td class='mob-off'>" + data[i].familyStatus + "</td>" + "<td class='mob-off'>" + data[i].site + "</td>" + "<td class='mob-off'>" + data[i].email + "</td>" + "<td class='mob-off'>" + data[i].job + "</td>" + "<td class='mob-off'><a href='" + (data[i].addressId !== 0 ? ("/contact/" + data[i].id) : ("/contact/" + data[i].id + "/addAddress")) + "'>Address</a></td><td><button class='butt' style='box-shadow: 0 0 1px rgba(0,0,0,0.5);' onclick='deleteUser(" + data[i].id + ")'><i class='fa fa-trash-o'></i></button>" + "</td><td><a class='butt' style='box-shadow: 0 0 1px rgba(0,0,0,0.5);' href='/contact/" + data[i].id + "/edit'><i class='fa fa-pencil'></i></a></td><td><input class='butt' style='box-shadow: 0 0 1px rgba(0,0,0,0.5); float: right;' id='" + data[i].id + "' type='checkbox' onchange='plusCheck(this)'></td>" + "</tr>";
                         }
                         document.getElementById('content-pane').innerHTML = str;
                     })
@@ -159,6 +165,7 @@
             }
         }
     }
+
     onload = function loadAll() {
         createNav();
         loadContacts();

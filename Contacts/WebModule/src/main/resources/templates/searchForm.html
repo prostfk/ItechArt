@@ -18,7 +18,7 @@
 <div class="container" id="container">
 
 
-    <div class="reg-form" style="margin-top: 2%">
+    <div class="reg-form" id="reg-form" style="margin-top: 2%">
         <h1 align="center">Choose field</h1>
         <div class="reg-element">
             <button class="butt" onclick="addInputWithSelect()" style="border: 1px solid #edffed; background-color: lightgreen">Add field
@@ -40,7 +40,7 @@
                 <option value="email">Email</option>
                 <option value="job">Job</option>
             </select>
-            <input type="text" id="value1" placeholder="Value" class="reg-input"><br/>
+            <input type="text" id="value1" placeholder="Value" class="inp"><br/>
         </div>
 
     </div>
@@ -82,18 +82,19 @@
 
     var paramCount = 1;
     var checkBoxes = [];
+    var params = [];
     function search() {
         document.getElementById('message-span').innerText = '';
         var type = '';
         var value = '';
         for (var i = 1; i <= paramCount; i++) {
             var tmpType = document.getElementById('parameter' + i).value;
-            type += (tmpType === "" ? ' ' : tmpType) + ",";
             var tmpValue = document.getElementById('value' + i).value;
-            value += (tmpValue === "" ? ' ' : tmpValue) + ",";
+            if (tmpValue!==""){
+                type += (tmpType === "" ? ' ' : tmpType) + ",";
+                value += (tmpValue === "" ? ' ' : tmpValue) + ",";
+            }
         }
-        console.log(type);
-        console.log(value);
         document.getElementById('table').style.display = "none";
         document.getElementById('content-pane').innerText = "";
         if (value !== "") {
@@ -130,8 +131,11 @@
             '                <option value="email">Email</option>' +
             '                <option value="job">Job</option>' +
             '            </select>' +
-            '            <input type="text" id="value' + Number(paramCount + 1) + '" placeholder="Value" class="reg-input"><br/></div>';
-        document.getElementById('value' + paramCount++).insertAdjacentHTML('afterend', html);
+            '            <input type="text" id="value' + Number(paramCount + 1) + '" placeholder="Value" class="inp"><i onclick="deleteInputById(' + Number(paramCount+1) + ')" class="fa fa-minus"></i></div>';
+        document.getElementById('reg-form').insertAdjacentHTML('beforeend', html);paramCount++
+        params.push(paramCount);
+        console.log(params);
+
     }
 
     function showData() {
@@ -141,16 +145,18 @@
             par += document.getElementById('parameter' + i).value + " ";
             val += document.getElementById('value' + i).value + " ";
         }
-        console.log(par);
-        console.log(val);
     }
 
     function deleteInputWithSelect() {
         if (paramCount > 1) {
             var elem = document.getElementById('element-' + paramCount--);
-            console.log(elem.getAttribute('id'));
             elem.parentNode.removeChild(elem);
         }
+    }
+
+    function deleteInputById(thisId){
+        var elem = document.getElementById('element-' + thisId);
+        elem.style.display = 'none';
     }
 
     function plusCheck(checkbox) {

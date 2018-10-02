@@ -18,6 +18,11 @@ public abstract class AbstractDao<T> {
             initDao("Database/src/main/resources/database.properties");
 //            initDao("src/main/resources/database.properties");
         }catch (Exception e){
+            try {
+                initDao("database.properties");
+            }catch (Exception ex){
+                log(ex, LOGGER);
+            }
             log(e, LOGGER);
         }
     }
@@ -29,6 +34,7 @@ public abstract class AbstractDao<T> {
             String username = properties.getProperty("spring.datasource.username");
             String password = properties.getProperty("spring.datasource.password");
             connection = DriverManager.getConnection(url,username,password);
+            connection.createStatement().execute("SET NAMES 'utf8'");
     }
 
     void execute(String sql){

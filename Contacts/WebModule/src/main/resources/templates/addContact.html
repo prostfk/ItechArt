@@ -5,7 +5,8 @@
     <title>Add contact</title>
     <link rel="stylesheet" href="/testViewDesign.css">
     <script src="/index.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js"></script>
+    <script src="https://cdn.rawgit.com/camsong/fetch-ie8/master/fetch.js"></script>
 
 </head>
 <body>
@@ -23,10 +24,12 @@
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" placeholder="Name" class="inp">
             </div>
+            <div class="reg-element"><span id="error-name" style="color: red"></span></div>
             <div class="reg-element">
                 <label for="surname">Surname</label>
                 <input type="text" id="surname" name="surname" placeholder="Surname" class="inp">
             </div>
+            <div class="reg-element"><span id="error-surname" style="color: red"></span></div>
             <div class="reg-element">
                 <label for="patronymic">Patronymic</label>
                 <input type="text" id="patronymic" name="patronymic" placeholder="Patronymic" class="inp">
@@ -81,42 +84,61 @@
     onload = function show() {
         createNav();
     };
+    window.Promise = ES6Promise;
 
     function addNewContact() {
-        var dataJson = new FormData();
-        dataJson.append("name", document.getElementById('name').value);
-        dataJson.append("surname", document.getElementById('surname').value);
-        dataJson.append("patronymic", document.getElementById('patronymic').value);
-        dataJson.append("date", document.getElementById('date').value);
-        dataJson.append("gender", document.getElementById('gender').value);
-        dataJson.append("citizenship", document.getElementById('citizenship').value);
-        dataJson.append("familyStatus", document.getElementById('familyStatus').value);
-        dataJson.append("site", document.getElementById('site').value);
-        dataJson.append("email", document.getElementById('email').value);
-        dataJson.append("job", document.getElementById('job').value);
+        if (validateFields()) {
+            var dataJson = new FormData();
+            dataJson.append("name", document.getElementById('name').value);
+            dataJson.append("surname", document.getElementById('surname').value);
+            dataJson.append("patronymic", document.getElementById('patronymic').value);
+            dataJson.append("date", document.getElementById('date').value);
+            dataJson.append("gender", document.getElementById('gender').value);
+            dataJson.append("citizenship", document.getElementById('citizenship').value);
+            dataJson.append("familyStatus", document.getElementById('familyStatus').value);
+            dataJson.append("site", document.getElementById('site').value);
+            dataJson.append("email", document.getElementById('email').value);
+            dataJson.append("job", document.getElementById('job').value);
 
-        fetch('/rest/addContact', {
-            method: 'POST',
-            body: dataJson
-        }).then(function (response) {
-            response.json().then(function (data) {
-                console.log(dataJson);
-                console.log(data);
-                if (data.error === undefined) {
-                    document.getElementById('add-form').style.visibility = 'hidden';
-                    document.getElementById('message-span').style.color = 'green';
-                    document.getElementById('message-span').innerText = "Your contact has been added";
-                    document.getElementById('after-add').innerHTML = '<a class="butt" href="/contact/' + data.id + '">Check contact</a>';
-                } else {
-                    document.getElementById('message-span').style.color = 'red';
-                    document.getElementById('message-span').innerText = "Please, check your data!";
-                }
+            fetch('/rest/addContact', {
+                method: 'POST',
+                body: dataJson
+            }).then(function (response) {
+                response.json().then(function (data) {
+                    console.log(dataJson);
+                    console.log(data);
+                    if (data.error === undefined) {
+                        document.getElementById('add-form').style.visibility = 'hidden';
+                        document.getElementById('message-span').style.color = 'green';
+                        document.getElementById('message-span').innerText = "Your contact has been added";
+                        document.getElementById('after-add').innerHTML = '<a class="butt" href="/contact/' + data.id + '">Check contact</a>';
+                    } else {
+                        document.getElementById('message-span').style.color = 'red';
+                        document.getElementById('message-span').innerText = "Please, check your data!";
+                    }
+                })
             })
-        })
-
-
-
+        }
     };
+
+    function validateFields() {
+        var name = document.getElementById('name').value;
+        var surname = document.getElementById('surname').value;
+        var dateOfBirth = document.getElementById('date').value;
+        if (name.length > 30 || name.length < 3) {
+            document.getElementById('error-name').innerText = "Name must be between 3 and 30 chars.";
+            return false;
+        }else if (surname.length > 30 || surname.length < 3) {
+            document.getElementById('error-name').innerText = "";
+            document.getElementById('error-surname').innerText = "Surname must be between 3 and 30 chars.";
+            return false;
+        }else if ((Date.now() - Date.parse(dateOfBirth)) < 0){
+            console.log("Date is invalid");
+            return false;
+        } else {
+            return true;
+        }
+    }
 </script>
 
 </body>
