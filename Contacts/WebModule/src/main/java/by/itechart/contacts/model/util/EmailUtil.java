@@ -36,7 +36,7 @@ public class EmailUtil {
         msg.setFrom(new InternetAddress(login, "Contacts"));
         msg.setRecipient(Message.RecipientType.TO, new InternetAddress(toMail));
         msg.setSubject(subject);
-        msg.setContent(messageText, "text/html");
+        msg.setContent(messageText, "text/plain; charset=UTF-8");
         msg.setHeader("X-SES-CONFIGURATION-SET", "ConfigSet");
         Transport transport = session.getTransport();
         try {
@@ -47,12 +47,12 @@ public class EmailUtil {
         }
     }
 
-    public static String getMessage(String message, String party, String newYear, String birthday){
-
+    public static String getMessage(String message, String party, String newYear, String birthday, String customText){
         switch (message){
             case "message.birthday": return birthday;
             case "message.newYear": return newYear;
-            default: return party;
+            case "message.party": return party;
+            default: return customText;
         }
     }
 

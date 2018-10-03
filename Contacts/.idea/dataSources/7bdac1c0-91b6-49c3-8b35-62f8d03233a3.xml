@@ -1147,6 +1147,7 @@
     <column id="280" parent="239" name="status">
       <Position>7</Position>
       <DataType>tinyint(1)|0s</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <index id="281" parent="239" name="contact_id">

@@ -24,10 +24,15 @@
                     <option value="message.birthday">Birthday</option>
                     <option value="message.newYear">New Year</option>
                     <option value="message.party">Party</option>
+                    <option value="custom">Custom</option>
                 </select>
             </div>
+            <div class="reg-element" id="custom-group" style="display: none;">
+                <label for="custom-text">Type your text here</label>
+                <textarea name="custom-text" class="inp" id="custom-text"></textarea>
+            </div>
             <div class="reg-element">
-                <button class="butt" onclick="sendEmails();">Send</button>
+                <button class="butt" onclick="sendEmailsFormData();">Send</button>
             </div>
 
 
@@ -54,7 +59,32 @@
         var message = document.getElementById('message-input').value;
         var item = localStorage.getItem('usersForEmail');
         var span = document.getElementById('message-span');
-        fetch('/rest/sendEmails?To=' + item + "&message=" + message).then(function (response) {
+        var url = '/rest/sendEmails?To=' + item + "&message=" + message + "&text=" + document.getElementById('custom-text').value;
+        console.log(url);
+        fetch(url).then(function (response) {
+            response.json().then(function (data) {
+                console.log(data);
+                if (data.status === 'ok') {
+                    span.style.color = 'green';
+                    span.innerText = 'Emails was send';
+                    document.getElementById('content').style.visibility = 'hidden';
+                } else {
+                    span.style.color = 'red';
+                    span.innerText = data.status;
+                }
+            })
+        })
+    }
+
+    function sendEmailsFormData() {
+        var formData = new FormData();
+        var message = document.getElementById('message-input').value;
+        var item = localStorage.getItem('usersForEmail');
+        var span = document.getElementById('message-span');
+        formData.append('message-type', message);
+        formData.append('to', localStorage.getItem('usersForEmail'));
+        formData.append('custom-text', document.getElementById('custom-text').value);
+        fetch('/rest/sendTest',{method: 'POST', body: formData}).then(function (response) {
             response.json().then(function (data) {
                 console.log(data);
                 if (data.status === 'ok') {
@@ -72,20 +102,26 @@
     function preview() {
         var message = document.getElementById('message-input').value;
         // document.getElementById('preview-text')
-        fetch('/rest/email/preview?text=' + message).then(function (response) {
-            response.json().then(function (data) {
-                console.log(data);
-                console.log(data.error);
-                if (data.error === undefined) {
-                    document.getElementById('preview-text').innerText = data.message;
-                } else {
-                    var span = document.getElementById('message-span');
-                    span.style.color = 'red';
-                    span.innerText = data.error;
+        if (message !== 'custom') {
+            document.getElementById('custom-group').style.display = "none";
+            fetch('/rest/email/preview?text=' + message).then(function (response) {
+                response.json().then(function (data) {
+                    console.log(data);
+                    console.log(data.error);
+                    if (data.error === undefined) {
+                        document.getElementById('preview-text').innerText = data.message;
+                    } else {
+                        var span = document.getElementById('message-span');
+                        span.style.color = 'red';
+                        span.innerText = data.error;
 
-                }
+                    }
+                })
             })
-        })
+        } else {
+            document.getElementById('custom-group').style.display = "";
+            document.getElementById('preview-text').innerText = "";
+        }
 
     }
 </script>

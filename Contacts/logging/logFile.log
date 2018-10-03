@@ -95,3 +95,24 @@
 2018-09-29 17:34:36 ERROR AbstractDao:66 - 
 2018-09-30 18:36:35 ERROR AbstractDao:81 - Data truncation: Data too long for column 'number' at row 1
 2018-09-30 23:44:28 ERROR DocumentDao:110 - Before start of result set
+2018-10-03 03:00:48 ERROR AbstractDao:140 - database.properties (No such file or directory)
+2018-10-03 03:00:48 ERROR AbstractDao:140 - Access denied for user ''@'localhost' (using password: NO)
+2018-10-03 03:00:48 ERROR AbstractDao:140 - database.properties (No such file or directory)
+2018-10-03 03:00:48 ERROR AbstractDao:140 - Access denied for user ''@'localhost' (using password: NO)
+2018-10-03 03:00:48 ERROR AbstractDao:140 - database.properties (No such file or directory)
+2018-10-03 03:00:48 ERROR AbstractDao:140 - Access denied for user ''@'localhost' (using password: NO)
+2018-10-03 03:00:48 ERROR AbstractDao:140 - database.properties (No such file or directory)
+2018-10-03 03:00:48 ERROR AbstractDao:140 - Access denied for user ''@'localhost' (using password: NO)
+2018-10-03 03:00:48 ERROR AbstractDao:140 - database.properties (No such file or directory)
+2018-10-03 03:00:48 ERROR AbstractDao:140 - Access denied for user ''@'localhost' (using password: NO)
+2018-10-03 03:00:48 ERROR AbstractDao:140 - database.properties (No such file or directory)
+2018-10-03 03:00:48 ERROR AbstractDao:140 - Access denied for user ''@'localhost' (using password: NO)
+2018-10-03 03:00:48 ERROR AbstractDao:140 - database.properties (No such file or directory)
+2018-10-03 03:00:48 ERROR AbstractDao:140 - Access denied for user ''@'localhost' (using password: NO)
+2018-10-03 03:00:48 ERROR AbstractDao:140 - database.properties (No such file or directory)
+2018-10-03 03:00:48 ERROR AbstractDao:140 - Access denied for user ''@'localhost' (using password: NO)
+2018-10-03 03:00:48 ERROR AbstractDao:140 - database.properties (No such file or directory)
+2018-10-03 03:00:48 ERROR AbstractDao:140 - Access denied for user ''@'localhost' (using password: NO)
+2018-10-03 03:00:48 ERROR AbstractDao:140 - database.properties (No such file or directory)
+2018-10-03 03:00:48 ERROR AbstractDao:140 - Access denied for user ''@'localhost' (using password: NO)
+2018-10-03 03:00:53 ERROR ContactDao:140 - 

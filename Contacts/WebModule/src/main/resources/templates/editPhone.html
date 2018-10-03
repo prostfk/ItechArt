@@ -16,6 +16,10 @@
 </div>
 
 <div class="container">
+    <img src="/loading.gif" alt="" id="load-pic" style="display:none;width: 300px; height: 300px">
+</div>
+
+<div class="container">
 
     <form id="phone-form" class="reg-form">
         <div class="reg-element">
@@ -43,6 +47,7 @@
             <button type="button" onclick="sendEditedPhone()" class="butt">Submit</button>
         </div>
 
+
     </form>
 
 </div>
@@ -66,7 +71,7 @@
                     selectOption(document.getElementById('type'), data.type);
                     document.getElementById('comment').value = data.comment;
                 } else {
-                    document.getElementById('phone-form').style.visibility = 'hidden';
+                    document.getElementById('phone-form').style.display = 'none';
                     document.getElementById('message-span').style.color = 'red';
                     document.getElementById('message-span').innerText = 'ERROR';
                 }
@@ -78,6 +83,7 @@
     }
 
     function sendEditedPhone() {
+        document.getElementById('load-pic').style.display = "";
         var dataJson = new FormData();
         dataJson.append("countryCode", document.getElementById('countryCode').value);
         dataJson.append("number", document.getElementById('number').value);
@@ -95,8 +101,12 @@
                     document.getElementById('phone-form').style.visibility = 'hidden';
                     document.getElementById('message-span').style.color = 'green';
                     document.getElementById('message-span').innerText = 'Your phone has been added';
-
+                    // goToUserPage();
+                    setTimeout(function () {
+                        location.href = "/contact/" + contactId;
+                    }, 1300)
                 } else {
+                    document.getElementById('load-pic').style.display = "none";
                     document.getElementById('message-span').style.color = 'red';
                     document.getElementById('message-span').innerText = 'Check your data';
                 }

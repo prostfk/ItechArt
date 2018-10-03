@@ -209,16 +209,40 @@ public class RestApiController {
     }
 
     @GetMapping(value = "/sendEmails")
-    public Object sendEmailsTo(@RequestParam("To") String to, @RequestParam String message) {
+    public Object sendEmailsTo(@RequestParam("To") String to, @RequestParam String message, @RequestParam(required = false) String customText) {
         String[] split = to.split(",");
         List<Contact> contactsByIdList = contactDao.findContactsByIdList(split);
         int successMails = 0;
-        message = EmailUtil.getMessage(message, party, newYear, birthday);
+        String messageText = EmailUtil.getMessage(message, party, newYear, birthday, customText);
         JSONObject json = new JSONObject();
         for (int i = 0; i < split.length; i++) {
             try {
-                message = message.replace("{username}", contactsByIdList.get(i).getName());
+                messageText = messageText.replace("{username}", contactsByIdList.get(i).getName());
                 EmailUtil.sendMail(contactsByIdList.get(i).getEmail(), String.format("Hey, %s, we have something for you! ", contactsByIdList.get(i).getName()), message);
+                successMails++;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (successMails == split.length) {
+            json.put("status", "ok");
+        } else {
+            json.put("status", "some email addresses may be invalid");
+        }
+        return json.toString();
+    }
+
+    @PostMapping(value = "/sendTest")
+    public Object sendTest(@RequestParam("to") String to, @RequestParam("message-type") String messageType, @RequestParam(value = "custom-text") String customText){
+        String[] split = to.split(",");
+        List<Contact> contactsByIdList = contactDao.findContactsByIdList(split);
+        int successMails = 0;
+        String messageText = EmailUtil.getMessage(messageType, party, newYear, birthday, customText);
+        JSONObject json = new JSONObject();
+        for (int i = 0; i < split.length; i++) {
+            try {
+                messageText = messageText.replace("{username}", contactsByIdList.get(i).getName());
+                EmailUtil.sendMail(contactsByIdList.get(i).getEmail(), String.format("Hey, %s, we have something for you! ", contactsByIdList.get(i).getName()), messageText);
                 successMails++;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -317,29 +341,29 @@ public class RestApiController {
     }
 
     @PostMapping(value = "/contact/removePhone/{id}")
-    public Object removePhone(@PathVariable Long id){
+    public Object removePhone(@PathVariable Long id) {
         Phone byId = phoneDao.findById(id);
-        if (byId!=null){
+        if (byId != null) {
             phoneDao.delete(id);
         }
         return notNullValidation(byId, "No such data");
     }
 
     @GetMapping(value = "/contact/{contactId}/phone/{id}")
-    public Object findPhoneById(@PathVariable Long id){
+    public Object findPhoneById(@PathVariable Long id) {
         Phone byId = phoneDao.findById(id);
-        return notNullValidation(byId,"No such data");
+        return notNullValidation(byId, "No such data");
     }
 
     @GetMapping(value = "/contact/{id}/file/{fileId}/remove")
-    public Object removeFile(@PathVariable Long id, @PathVariable Long fileId){
+    public Object removeFile(@PathVariable Long id, @PathVariable Long fileId) {
         return notNullValidation(documentDao.delete(fileId), "No such data");
     }
 
     @PostMapping(value = "/contact/{id}/editPhone/{phoneId}")
-    public Object editPhone(@PathVariable Long id, @PathVariable Long phoneId, Phone phone){
-        if (phone.getContactId() == id){
-            phoneDao.update(phoneId,phone);
+    public Object editPhone(@PathVariable Long id, @PathVariable Long phoneId, Phone phone) {
+        if (phone.getContactId() == id) {
+            phoneDao.update(phoneId, phone);
             return phone;
         }
         return notNullValidation(null, "Something went wrong");

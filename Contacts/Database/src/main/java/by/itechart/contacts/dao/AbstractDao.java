@@ -34,7 +34,6 @@ public abstract class AbstractDao<T> {
             String username = properties.getProperty("spring.datasource.username");
             String password = properties.getProperty("spring.datasource.password");
             connection = DriverManager.getConnection(url,username,password);
-            connection.createStatement().execute("SET NAMES 'utf8'");
     }
 
     void execute(String sql){
@@ -79,8 +78,11 @@ public abstract class AbstractDao<T> {
         int index = 1;
         try{
             for (int i = 0; i < args.length; i++) {
-                preparedStatement.setObject(index++, args[i]);
-            }
+                if (args[i] instanceof String){
+                    preparedStatement.setNString(index++, args[i].toString());
+                }else{
+                    preparedStatement.setObject(index++, args[i]);
+                }            }
             preparedStatement.execute();
         }catch (Exception e){
             e.printStackTrace();
@@ -92,7 +94,11 @@ public abstract class AbstractDao<T> {
         int index = 1;
         try{
             for (int i = 0; i < args.length; i++) {
-                preparedStatement.setObject(index++, args[i]);
+                if (args[i] instanceof String){
+                    preparedStatement.setNString(index++, args[i].toString());
+                }else{
+                    preparedStatement.setObject(index++, args[i]);
+                }
             }
             return preparedStatement.executeQuery();
         }catch (Exception e){
